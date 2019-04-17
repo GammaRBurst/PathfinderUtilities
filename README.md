@@ -38,4 +38,4 @@ Just download the files and double-click on *random_encounters.html*! No install
   * Tyrant's grasp #1 - #6 (partly published)
 
 ## TODO (maybe)
-* Add a _list creatures_ option.
+* Add a _list creatures_ option to avoid the generation of groups and simply list all single creatures that match the selected criteria.
