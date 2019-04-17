@@ -1,6 +1,8 @@
 # Random Encounter Generator (REG) for Pathfinder
 The Random Encounter Generator is, as the name suggests, a program that creates random encounter tables based on the user's input. The software is based on HTML and JavaScript and can be executed on every operating system (Windows, Mac, Linux, probably even mobile devices) with any browser (Firefox, Chrome, ...), even if offline, as long as JavaScript is enabled.
 
+Just download the files and double-click on *random_encounters.html*! No installation needed.
+
 ## Available Filters
 * __Challenge rating__: You can choose any interval between _1/8_ and _30_ on a double slider.
 * __Mythic rank__: Same as before, between _0_ (non-mythic) and _10_.
