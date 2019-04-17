@@ -27,10 +27,10 @@ Other features:
 
 Missing volumes:
 * Campaign Setting:
-** Concordance of rivals (to be published)
-** Druma, profit & prophecy (to be published)
+  * Concordance of rivals (to be published)
+  * Druma, profit & prophecy (to be published)
 * Player Companion:
-** Heroes of Golarion
-** Chronicle of legends (to be published)
+  * Heroes of Golarion
+  * Chronicle of legends (to be published)
 * Adventure Path:
-** Tyrant's grasp #1 - #6 (partly published)
+  * Tyrant's grasp #1 - #6 (partly published)
