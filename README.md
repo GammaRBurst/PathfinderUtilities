@@ -1,7 +1,7 @@
 # Random Encounter Generator (REG) for Pathfinder
 The Random Encounter Generator is, as the name suggests, a program that creates random encounter tables based on the user's input. The software is based on HTML and JavaScript and can be executed on every operating system (Windows, Mac, Linux, probably even mobile devices) with any browser (Firefox, Chrome, ...), even if offline, as long as JavaScript is enabled.
 
-The filters available are:
+## Available Filters
 * __Challenge rating__: You can choose any interval between _1/8_ and _30_ on a double slider.
 * __Mythic rank__: Same as before, between _0_ (non-mythic) and _10_.
 * __Alignment__: You can choose one or more alignments. The software will search any creature with _at least_ one of the alignments selected. (__OR__ selection mode)
@@ -20,12 +20,12 @@ The filters available are:
 * __Dice colum__: Used if you want to roll a die to select a creature. 0 indicates to remove the dice column.
 * __CR increase__: A double slider to select how big is the CR of a group compared to the CR of a member of this group (the strongest for mixed groups).
 
-Other features:
+## Other Features
 * Contains over 3400 unique creatures and mixed groups.
 * Each creature links to its sheet on [Archives of Nethys](https://www.aonprd.com/). __Warning__: Part of Bestiary 5 and most of Bestiary 6 are still to be imported on the site, so these link will generate an error.
 * Creatures are ordered based on their _Challenge rating_ and then on their _Mythic rank_. Other than that, their order is random.
 
-Missing volumes:
+## Missing Manuals
 * Campaign Setting:
   * Concordance of rivals (to be published)
   * Druma, profit & prophecy (to be published)
@@ -34,3 +34,6 @@ Missing volumes:
   * Chronicle of legends (to be published)
 * Adventure Path:
   * Tyrant's grasp #1 - #6 (partly published)
+
+## TODO (maybe)
+* Add a _list creatures_ option.
