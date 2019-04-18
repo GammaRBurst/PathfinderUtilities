@@ -23,19 +23,33 @@ Just download the files and double-click on *random_encounters.html*! No install
 * __CR increase__: A double slider to select how big is the CR of a group compared to the CR of a member of this group (the strongest for mixed groups).
 
 ## Other Features
-* Contains over 3400 unique creatures and mixed groups.
+* Contains almost 3500 unique creatures and mixed groups.
 * Each creature links to its sheet on [Archives of Nethys](https://www.aonprd.com/). __Warning__: Part of Bestiary 5 and most of Bestiary 6 are still to be imported on the site, so these link will generate an error.
 * Creatures are ordered based on their _Challenge rating_ and then on their _Mythic rank_. Other than that, their order is random.
+
+## Things you Won't Find Here
+* __Creatures with class levels__ rarely entered the creature database. Most of them are playable races (e.g _drow_, _strix_) or creatures with a template (e.g. _lich_, _vampire_).
+* __Creatures with templates__ are included only if they looked significant and/or iconic enough to me. Most undead are, as well as lycanthropes and many others. Other creatures looked too specific, e.g. the _half-celestial unicorn_.
+* __Variants with too broad a definition__ are never included. The variants that found their way into the database should be fairly easy to construct. Monsters like e.g. the _balor lord_ that don't have a fixed CR, usually have class levels and the like are practically impossible to define in a way that will work with the software. I may publish a list of such creatures in the future.
+* __An automatic system__ to apply templates and/or class levels to existing creatures or playable races was part of the project at the start, but I quickly realized that:
+  * Adding class levels to monsters requires the knowledge of the monster role, an information that can be found only in the Bestiaries, which leaves about 1/4 of the material without this information.
+  * There are a ton o classes, archetypes and prestige classes. Yes, it's in no way comparable to the number of creatures that can be found in the database, but then there are all the possible combinations of these classes, archetypes and prestige classes, each with its own set of rules and requirements. And the combinations have to be somehow significant.
+  * Templates require a lot of information on the base creature. Informations that are not interesting to narrow down the results, such as the number of hit dice, but that risk to quickly clog the database. And every time a new template requires a new information, I would have to take all the books and look at all of them.
+
+  These are jobs for a human mind, not a machine.
 
 ## Missing Manuals
 * Campaign Setting:
   * Concordance of rivals (to be published)
   * Druma, profit & prophecy (to be published)
 * Player Companion:
-  * Heroes of Golarion
   * Chronicle of legends (to be published)
 * Adventure Path:
   * Tyrant's grasp #1 - #6 (partly published)
 
-## TODO (maybe)
-* Add a _list creatures_ option to avoid the generation of groups and simply list all single creatures that match the selected criteria.
+## Next Update
+The next update should be released before the end of April. It will contain:
+* __Simple list generation__: No dice, no groups, simply a list of all creatures that match the search. (Feature working, needs some GUI refinement)
+* __Old creatures__: Some creatures found in bestiaries and other books appear only in mixed groups and thus didn't have their own entry. To complement the single list, all these creatures will be added. (Work in progress: ~5-10%)
+* __New creatures__: From Tyrant's grasp #1 and #2. (Completed)
+* __New subtype__: Mortic. (Completed)
