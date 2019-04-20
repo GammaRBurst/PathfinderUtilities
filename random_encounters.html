@@ -135,7 +135,7 @@ tfoot td {
 		</style>
 		<script>
 			$(function() {
-				var debug = true;
+				var debug = false;
 				var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
 				var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
 				$('#tstamp').val(Date.now());
@@ -261,6 +261,7 @@ tfoot td {
 					var planes = [];
 					var source = [];
 					var logic = ['', '', '', ''];
+					var simple_list = false;
 					var add_variants = false;
 					var add_mixed = false;
 					var add_unique = false;
@@ -336,6 +337,9 @@ tfoot td {
 						}
 						else if(key == 'pl_logic') {
 							logic[3] = params[i].split('=')[1];
+						}
+						else if(key == 'slist') {
+							simple_list = true;
 						}
 						else if(key == 'variants') {
 							add_variants = true;
@@ -437,6 +441,9 @@ tfoot td {
 					$('input[name=env_logic][value=' + logic[1] + ']').prop('checked', true);
 					$('input[name=cl_logic][value=' + logic[2] + ']').prop('checked', true);
 					$('input[name=pl_logic][value=' + logic[3] + ']').prop('checked', true);
+					if(simple_list) {
+						$('input#slist').prop('checked', true);
+					}
 					if(!add_variants) {
 						$('input#variant').prop('checked', false);
 					}
@@ -527,12 +534,39 @@ tfoot td {
 							}
 							//Filtering 1
 							for(var i = monsters.length - 1; i >= 0; i--) {
-								//CR, MR
-								if((monsters[i][1].length == 1 &&  monsters[i][1][0] > cr[1]) || (monsters[i][1].length == 2 && ((monsters[i][1][0] + monsters[i][1][1]) < cr[0] || (monsters[i][1][0] + monsters[i][1][1]) > cr[1] || monsters[i][1][1] < cr_comb[0] || monsters[i][1][1] > cr_comb[1])) || monsters[i][2] < mr[0] || monsters[i][2] > mr[1]) {
-									monsters.splice(i, 1);
-									continue;
+								//CR
+								if(simple_list) {
+									if(monsters[i][1].length == 1) {
+										if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
+											monsters.splice(i, 1);
+											continue;
+										}
+									}
+									else {
+										monsters.splice(i, 1);
+										continue;
+									}
 								}
-								if(cr_comb[0] > 0 && monsters[i][12] == '1u' && monsters[i][1].length == 1) {
+								else {
+									if(monsters[i][1].length == 1) {
+										if(monsters[i][1][0] > cr[1]) {
+											monsters.splice(i, 1);
+											continue;
+										}
+										if(cr_comb[0] > 0 && monsters[i][12] == '1u') {
+											monsters.splice(i, 1);
+											continue;
+										}
+									}
+									else {
+										if((monsters[i][1][0] + monsters[i][1][1]) < cr[0] || (monsters[i][1][0] + monsters[i][1][1]) > cr[1] || monsters[i][1][1] < cr_comb[0] || monsters[i][1][1] > cr_comb[1]) {
+											monsters.splice(i, 1);
+											continue;
+										}
+									}
+								}
+								//MR
+								if(monsters[i][2] < mr[0] || monsters[i][2] > mr[1]) {
 									monsters.splice(i, 1);
 									continue;
 								}
@@ -742,6 +776,11 @@ tfoot td {
 										continue;
 									}
 								}
+								//Source
+								if(source.length > 0 && source.indexOf(monsters[i][13]) == -1) {
+									monsters.splice(i, 1);
+									continue;
+								}
 								//Variants
 								if(!add_variants && monsters[i][11] != '') {
 									monsters.splice(i, 1);
@@ -752,13 +791,13 @@ tfoot td {
 									monsters.splice(i, 1);
 									continue;
 								}
-								//Source
-								if(source.length > 0 && source.indexOf(monsters[i][13]) == -1) {
+								//Intervals
+								if(!simple_list && monsters[i][12] == '0') {
 									monsters.splice(i, 1);
 									continue;
 								}
 							}
-							//Creating groups
+							//Creating groups and links
 							monsters2 = [];
 							for(var i = 0; i < monsters.length; i++) {
 								if(monsters[i][0].indexOf('[') >= 0) { //Link generation
@@ -857,111 +896,135 @@ tfoot td {
 									alt_name = monsters[i][0].split('/')[1];
 									monsters[i][0] = monsters[i][0].split('/')[0];
 								}
-								for(var j = 0; j < monsters[i][12].length; j++) {
-									if(monsters[i][12][j] == '' || monsters[i][12][j] == '1u') { //Combinations and unique monsters
-										if(link_name != '') {
-											if(monsters[i][6].indexOf('47') >= 0) {
-												var monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monsters[i][0] + '</a>';
-											}
-											else {
-												var monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monsters[i][0] + '</a>';
-											}
-											monsters2.push([monster_name, monsters[i][1], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
+								if(simple_list) {
+									if(link_name != '') {
+										if(monsters[i][0].indexOf('|') >= 0) {
+											monsters[i][0] = monsters[i][0].split('|')[0];
+										}
+										if(monsters[i][6].indexOf('47') >= 0) {
+											var monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monsters[i][0] + '</a>';
 										}
 										else {
-											if(monsters[i][12][j] == '' || (monsters[i][12][j] == '1u' && add_unique)) {
-												monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
-											}
+											var monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monsters[i][0] + '</a>';
 										}
+										if(alt_name != '') {
+											monster_name += ' (' + alt_name + ')';
+										}
+										monsters2.push([monster_name, monsters[i][1][0], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
 									}
 									else {
-										if(monsters[i][12][j].indexOf('|') >= 0) { //Extracting group name
-											var interval = monsters[i][12][j].split('|')[0];
-											var description = monsters[i][12][j].split('|')[1];
-											if(['a', 'e', 'i', 'o'].indexOf(description.slice(0, 1)) >= 0) {
-												description = 'an ' + description + ' of ';
+										if(monsters[i][12][j] == '1u' && add_unique) {
+											monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
+										}
+									}
+								}
+								else {
+									for(var j = 0; j < monsters[i][12].length; j++) {
+										if(monsters[i][12][j] == '' || monsters[i][12][j] == '1u') { //Combinations and unique monsters
+											if(link_name != '') {
+												if(monsters[i][6].indexOf('47') >= 0) {
+													var monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monsters[i][0] + '</a>';
+												}
+												else {
+													var monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monsters[i][0] + '</a>';
+												}
+												monsters2.push([monster_name, monsters[i][1], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
 											}
 											else {
-												description = 'a ' + description + ' of ';
+												if(monsters[i][12][j] == '' || (monsters[i][12][j] == '1u' && add_unique)) {
+													monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
+												}
 											}
 										}
 										else {
-											var interval = monsters[i][12][j];
-											var description = '';
-										}
-										if(monsters[i][1].length == 1) {
-											if(monsters[i][1][0] == -4 || monsters[i][1][0] == -2 || monsters[i][1][0] == 0) {
-												var index_cr = 0;
-											}
-											else if(monsters[i][1][0] == -3) {
-												var index_cr = 1;
-											}
-											else if(monsters[i][1][0] == -1) {
-												var index_cr = 2;
-											}
-											else if(monsters[i][1][0] % 2 == 1) {
-												var index_cr = 3;
+											if(monsters[i][12][j].indexOf('|') >= 0) { //Extracting group name
+												var interval = monsters[i][12][j].split('|')[0];
+												var description = monsters[i][12][j].split('|')[1];
+												if(['a', 'e', 'i', 'o'].indexOf(description.slice(0, 1)) >= 0) {
+													description = 'an ' + description + ' of ';
+												}
+												else {
+													description = 'a ' + description + ' of ';
+												}
 											}
 											else {
-												var index_cr = 4;
+												var interval = monsters[i][12][j];
+												var description = '';
 											}
-										}
-										else {
-											if((monsters[i][1][0] + monsters[i][1][1]) <= 0) {
-												var index_cr = monsters[i][1][0] + monsters[i][1][1] + 4;
+											if(monsters[i][1].length == 1) {
+												if(monsters[i][1][0] == -4 || monsters[i][1][0] == -2 || monsters[i][1][0] == 0) {
+													var index_cr = 0;
+												}
+												else if(monsters[i][1][0] == -3) {
+													var index_cr = 1;
+												}
+												else if(monsters[i][1][0] == -1) {
+													var index_cr = 2;
+												}
+												else if(monsters[i][1][0] % 2 == 1) {
+													var index_cr = 3;
+												}
+												else {
+													var index_cr = 4;
+												}
 											}
 											else {
-												var index_cr = 6 - ((monsters[i][1][0] + monsters[i][1][1]) % 2);
+												if((monsters[i][1][0] + monsters[i][1][1]) <= 0) {
+													var index_cr = monsters[i][1][0] + monsters[i][1][1] + 4;
+												}
+												else {
+													var index_cr = 6 - ((monsters[i][1][0] + monsters[i][1][1]) % 2);
+												}
 											}
-										}
-										var dice2 = genDice(interval, index_cr, cr_comb);
-										for(var k = cr_comb[0]; k <= cr_comb[1]; k++) {
-											if(dice2[k].length > 0) { //Choosing one of the possible dice
-												index_dice = Math.floor(Math.random() * dice2[k].length);
-												if(dice2[k][index_dice] == '1') {
-													if(monsters[i][0].indexOf('|') >= 0) {
-														var monster_name = monsters[i][0].split('|')[0];
-													}
-													else {
-														var monster_name = monsters[i][0];
-													}
-												}
-												else { //Constructing plural
-													if(monsters[i][0].indexOf('|') >= 0) {
-														if(monsters[i][0].split('|')[1].length > 0 && monsters[i][0].split('|')[1].slice(0, 1) == '-') {
-															var monster_name = monsters[i][0].split('|')[0] + monsters[i][0].split('|')[1].slice(1);
+											var dice2 = genDice(interval, index_cr, cr_comb);
+											for(var k = cr_comb[0]; k <= cr_comb[1]; k++) {
+												if(dice2[k].length > 0) { //Choosing one of the possible dice
+													index_dice = Math.floor(Math.random() * dice2[k].length);
+													if(dice2[k][index_dice] == '1') {
+														if(monsters[i][0].indexOf('|') >= 0) {
+															var monster_name = monsters[i][0].split('|')[0];
 														}
 														else {
-															var monster_name = monsters[i][0].split('|')[1];
+															var monster_name = monsters[i][0];
 														}
 													}
-													else {
-														if(monsters[i][0].slice(-1) == 's' || monsters[i][0].slice(-1) == 'x' || monsters[i][0].slice(-2) == 'ch') {
-															var monster_name = monsters[i][0] + 'es';
-														}
-														else if(monsters[i][0].slice(-1) == 'y') {
-															var monster_name = monsters[i][0].slice(0, -1) + 'ies';
-														}
-														else if(monsters[i][0].slice(-3) == 'man' && !(monsters[i][0].slice(-5) == 'human')) {
-															var monster_name = monsters[i][0].slice(0, -3) + 'men';
+													else { //Constructing plural
+														if(monsters[i][0].indexOf('|') >= 0) {
+															if(monsters[i][0].split('|')[1].length > 0 && monsters[i][0].split('|')[1].slice(0, 1) == '-') {
+																var monster_name = monsters[i][0].split('|')[0] + monsters[i][0].split('|')[1].slice(1);
+															}
+															else {
+																var monster_name = monsters[i][0].split('|')[1];
+															}
 														}
 														else {
-															var monster_name = monsters[i][0] + 's';
+															if(monsters[i][0].slice(-1) == 's' || monsters[i][0].slice(-1) == 'x' || monsters[i][0].slice(-2) == 'ch') {
+																var monster_name = monsters[i][0] + 'es';
+															}
+															else if(monsters[i][0].slice(-1) == 'y') {
+																var monster_name = monsters[i][0].slice(0, -1) + 'ies';
+															}
+															else if(monsters[i][0].slice(-3) == 'man' && !(monsters[i][0].slice(-5) == 'human')) {
+																var monster_name = monsters[i][0].slice(0, -3) + 'men';
+															}
+															else {
+																var monster_name = monsters[i][0] + 's';
+															}
 														}
 													}
-												}
-												if(link_name != '') {
-													if(monsters[i][6].indexOf('47') >= 0) {
-														monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monster_name + '</a>';
+													if(link_name != '') {
+														if(monsters[i][6].indexOf('47') >= 0) {
+															monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monster_name + '</a>';
+														}
+														else {
+															monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monster_name + '</a>';
+														}
 													}
-													else {
-														monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monster_name + '</a>';
+													if(alt_name != '') {
+														monster_name += ' (' + alt_name + ')';
 													}
+													monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
 												}
-												if(alt_name != '') {
-													monster_name += ' (' + alt_name + ')';
-												}
-												monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
 											}
 										}
 									}
@@ -969,19 +1032,21 @@ tfoot td {
 							}
 							monsters = monsters2;
 							//Filtering 2
-							for(var i = monsters.length - 1; i >= 0; i--) {
-								//CR
-								if(monsters[i][1].length == 1) {
-									if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
-										monsters.splice(i, 1);
-										continue;
+							if(!simple_list) {
+								for(var i = monsters.length - 1; i >= 0; i--) {
+									//CR
+									if(monsters[i][1].length == 1) {
+										if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
+											monsters.splice(i, 1);
+											continue;
+										}
+										else {
+											monsters[i][1] = monsters[i][1][0];
+										}
 									}
 									else {
-										monsters[i][1] = monsters[i][1][0];
+										monsters[i][1] = monsters[i][1][0] + monsters[i][1][1];
 									}
-								}
-								else {
-									monsters[i][1] = monsters[i][1][0] + monsters[i][1][1];
 								}
 							}
 							//Creating table
@@ -995,65 +1060,76 @@ tfoot td {
 							if(maxdice == 0) {
 								$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
 							}
+							else if(simple_list) {
+								$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Creatures</th><th id="tcr">CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
+							}
 							else {
 								$('#table').append('<table id="random_table"><thead><tr><th id="tdice">dice</th><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="5">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
 							}
-							var monsters2 = [];
-							if(maxcreatures == 0) {
+							if(maxcreatures == 0 || simple_list) {
 								maxcreatures = monsters.length;
 								if(maxcreatures > maxdice) {
 									maxdice = maxcreatures;
 								}
 							}
-							for(var i = 0; i < maxcreatures && monsters.length > 0; i++) {
-								random_index = Math.floor(Math.random() * monsters.length);
-								monsters2.push([monsters[random_index][0], monsters[random_index][1], monsters[random_index][2], monsters[random_index][11], monsters[random_index][12]]);
-								monsters.splice(random_index, 1);
+							var monsters2 = [];
+							if(simple_list) {
+								for(var i = 0; i < monsters.length; i++) {
+									monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][11], monsters[i][12]]);
+								}
 							}
-							for(var i = 0; i < monsters2.length; i++) {
-								for(var j = 0; j < monsters2.length - 1; j++) {
-									if(monsters2[j][1] > monsters2[j + 1][1] || (monsters2[j][1] == monsters2[j + 1][1] && monsters2[j][2] > monsters2[j + 1][2])) {
-										var tmp = monsters2[j];
-										monsters2[j] = monsters2[j + 1];
-										monsters2[j + 1] = tmp;
+							else {
+								for(var i = 0; i < maxcreatures && monsters.length > 0; i++) { //Random selection
+									random_index = Math.floor(Math.random() * monsters.length);
+									monsters2.push([monsters[random_index][0], monsters[random_index][1], monsters[random_index][2], monsters[random_index][11], monsters[random_index][12]]);
+									monsters.splice(random_index, 1);
+								}
+							}
+							monsters = monsters2;
+							for(var i = 0; i < monsters.length; i++) { //Sorting
+								for(var j = 0; j < monsters.length - 1; j++) {
+									if(monsters[j][1] > monsters[j + 1][1] || (monsters[j][1] == monsters[j + 1][1] && monsters[j][2] > monsters[j + 1][2])) {
+										var tmp = monsters[j];
+										monsters[j] = monsters[j + 1];
+										monsters[j + 1] = tmp;
 									}
 								}
 							}
-							for(var i = 0; i < monsters2.length; i++) {
-								var interval_min = Math.floor(maxdice * i / monsters2.length) + 1;
-								var interval_max = Math.floor(maxdice * (i + 1) / monsters2.length);
+							for(var i = 0; i < monsters.length; i++) { //Filling table
+								var interval_min = Math.floor(maxdice * i / monsters.length) + 1;
+								var interval_max = Math.floor(maxdice * (i + 1) / monsters.length);
 								if(interval_min == interval_max) {
 									var interval = interval_min;
 								}
 								else {
 									var interval = interval_min + '-' + interval_max;
 								}
-								if(monsters2[i][1] == 0) {
+								if(monsters[i][1] == 0) {
 									var temp_cr = '1/2';
 								}
-								else if(monsters2[i][1] == -1) {
+								else if(monsters[i][1] == -1) {
 									var temp_cr = '1/3';
 								}
-								else if(monsters2[i][1] == -2) {
+								else if(monsters[i][1] == -2) {
 									var temp_cr = '1/4';
 								}
-								else if(monsters2[i][1] == -3) {
+								else if(monsters[i][1] == -3) {
 									var temp_cr = '1/6';
 								}
-								else if(monsters2[i][1] == -4) {
+								else if(monsters[i][1] == -4) {
 									var temp_cr = '1/8';
 								}
 								else {
-									var temp_cr = monsters2[i][1];
+									var temp_cr = monsters[i][1];
 								}
-								if(monsters2[i][2] > 0) {
-									temp_cr += ' / MR ' + monsters2[i][2];
+								if(monsters[i][2] > 0) {
+									temp_cr += ' / MR ' + monsters[i][2];
 								}
-								if(maxdice == 0) {
-									$('#random_table tbody').append('<tr><td>' + monsters2[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters2[i][3] + '</td><td>' + monsters2[i][4] + '</td></tr>');
+								if(maxdice == 0 || simple_list) {
+									$('#random_table tbody').append('<tr><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + monsters[i][4] + '</td></tr>');
 								}
 								else {
-									$('#random_table tbody').append('<tr><td>' + interval + '</td><td>' + monsters2[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters2[i][3] + '</td><td>' + monsters2[i][4] + '</td></tr>');
+									$('#random_table tbody').append('<tr><td>' + interval + '</td><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + monsters[i][4] + '</td></tr>');
 								}
 							}
 						}
@@ -1285,12 +1361,14 @@ tfoot td {
 					<label for="st45"><input type="checkbox" name="st" id="st45" value="45" /> Incorporeal</label>
 					<label for="st46"><input type="checkbox" name="st" id="st46" value="46" /> Kaiju</label>
 					<label for="st47"><input type="checkbox" name="st" id="st47" value="47" /> Mythic</label>
-					<label for="st48"><input type="checkbox" name="st" id="st48" value="48" /> Nightshade</label>
-					<label for="st49"><input type="checkbox" name="st" id="st49" value="49" /> Robot</label>
-					<label for="st50"><input type="checkbox" name="st" id="st50" value="50" /> Shapechanger</label>
-					<label for="st51"><input type="checkbox" name="st" id="st51" value="51" /> Spawn of Rovagug</label>
-					<label for="st52"><input type="checkbox" name="st" id="st52" value="52" /> Swarm</label>
-					<label for="st53"><input type="checkbox" name="st" id="st53" value="53" /> Troop</label>
+					<label for="st48"><input type="checkbox" name="st" id="st48" value="48" /> Mortic</label>
+					<label for="st49"><input type="checkbox" name="st" id="st49" value="49" /> Nightshade</label>
+					<label for="st50"><input type="checkbox" name="st" id="st50" value="50" /> Robot</label>
+					<label for="st51"><input type="checkbox" name="st" id="st51" value="51" /> Shapechanger</label>
+					<label for="st52"><input type="checkbox" name="st" id="st52" value="52" /> Spawn of Rovagug</label>
+					<label for="st53"><input type="checkbox" name="st" id="st53" value="53" /> Swarm</label>
+					<label for="st54"><input type="checkbox" name="st" id="st54" value="54" /> Troop</label>
+					<label for="st55"><input type="checkbox" name="st" id="st55" value="55" /> Wild Hunt</label>
 					<label for="st99"><input type="checkbox" name="st" id="st99" value="99" /> None/Others</label>
 				</div>
 				<div class="center">
@@ -1489,6 +1567,7 @@ tfoot td {
 			<h3 class="show" id="show_other_options">Other Options</h3>
 			<div class="content" id="other_options">
 				<h3 class="hide" id="hide_other_options">Other Options</h3>
+				<label for="slist" style="width: auto; padding-bottom: 1.5em;"><input type="checkbox" name="slist" id="slist" value="0" /> Generate only a list of creatures</label> (If checked the following options are ignored.)<br />
 				<label for="variant"><input type="checkbox" name="variants" id="variant" value="0" checked="checked" /> Include variant creatures</label>
 				<label for="mixed"><input type="checkbox" name="mixed" id="mixed" value="0" checked="checked" /> Include mixed groups</label>
 				<label for="unique"><input type="checkbox" name="unique" id="unique" value="0" checked="checked" /> Include unique creatures</label><br />
@@ -1525,7 +1604,7 @@ tfoot td {
 			The Random Encounter Generator belongs to GammaRayBurst and is distributed freely under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 International License</a>. <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br />
 			If you like the software, consider a <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CQ895MAZ4URBU&currency_code=EUR&source=url">small donation</a> to show your appreciation.
 			<!-- Please do not remove the footer. You can freely modify the rest of the page, and can add your own copyright conditions, as long as they are coherent with the CC ShareAlike condition. You can also add a donation link or something similar if you modify the software or the database significantly (for example if you port it for another game), but the software must remain free. Thanks! GRB -->
-			<br /><br />Version 190416
+			<br /><br />Version 190420
 		</div>
 	</body>
 </html>

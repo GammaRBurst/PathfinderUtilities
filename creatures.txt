@@ -37,11 +37,11 @@ aurochs;2;;5;5;1;;27,39;8;2;0;;1-2,3-30|herd;B1
 babau;6;;9;4;9;8,9,12,22;;0,13;;18;;1-2,3-8|gang;B1
 balor;20;;9;5;9;8,9,12,22;;0,11,13;;18;;1;B1
 barbed devil/hamatula;11;;7;4;9;9,11,12,23;;0,13;;20;;1-2,3-5|team,6-11|squad;B1
-barghest;4;;7;4;9;9,11,12,50;;0,13;;0;;1;B1
+barghest;4;;7;4;9;9,11,12,51;;0,13;;0;;1;B1
 basidirond;5;;5;4;10;;;13;;0;;1-2,3-8|grove;B1
 basilisk;5;;5;4;6;;;0,13;;0;;1-2,3-6|colony;B1
 bat;-4;;5;1;1;;31;3,4;2,3;0;;10-400|colony;B1
-bat swarm;2;;5;1;1;52;;0;2,3;0;;1-2,3-6|flight,11-20|colony;B1
+bat swarm;2;;5;1;1;53;;0;2,3;0;;1-2,3-6|flight,11-20|colony;B1
 bearded devil/barbazu;5;;7;4;9;9,11,12,23;;0,13;;20;;1-2,3-10|squad,11-40|troop;B1
 bebilith;10;;9;6;9;8,9,12;;0,13;;18;;1,2-6|band;B1
 behir;8;;5;6;6;;;3,5;3;0;;1-2;B1
@@ -62,7 +62,7 @@ cat;-2;;5;2;1;;31;8,14;2,3;0;;1-2,3-12|pack;B1
 cauchemar;11;;8;6;9;9,12;;0;;19;;1;B1
 cave fisher;2;;5;4;12;;;13;;0;;1-2,3-6|tangle;B1
 centaur;3;;5;5;7;;;4,8;2;0;;1-2,3-10|band;B1
-centipede swarm;4;;5;1;12;52;;4,13;2,3;0;;1-2,3-6|tangle;B1
+centipede swarm;4;;5;1;12;53;;4,13;2,3;0;;1-2,3-6|tangle;B1
 cheetah;2;;5;4;1;;27;8;3;0;;1-2;B1
 chimera;7;;9;5;6;;;5;2;0;;1-2,3-6|pride,7-12|flight;B1
 chimera manticore;7;;9;5;6;;;5,12;2;0;[chimera], [manticore];1-2,3-6|pride;B1
@@ -79,7 +79,7 @@ cold iron cobra;2;;5;3;2;;;0,11,13;;0;iron cobra;1-2,3-10|nest;B1
 colossal animated object;11;;5;8;2;;;0,1,11;;0;animated object;1;B1
 constrictor snake;2;;5;4;1;;27;4,9,12;3;0;;1,2-6|nest;B1
 couatl;10;;1;5;9;13;;4;3;0;;1-2,3-6|flight;B1
-crab swarm;4;;5;1;12;2,52;;1;;0;;1-2,3-8|wave;B1
+crab swarm;4;;5;1;12;2,53;;1;;0;;1-2,3-8|wave;B1
 crag linnorm;14;;9;7;3;;41;5;1;0;;1;B1
 crimson worm;13;;5;8;6;;;3;2,3;0;giant [purple worm];1;B1
 crocodile;2;;5;5;1;;27;9,12;3;0;;1-2,3-12|colony;B1
@@ -108,27 +108,30 @@ dire tiger/smilodon;8;;5;5;1;;;4,8,13;;0;;1-2;B1
 dire wolf|dire wolves;3;;5;5;1;;;4;1,2;0;;1-2,3-8|pack;B1
 dire wolverine;4;;5;5;1;;;4;1;0;;1-2;B1
 djinni|djinn;5;;3;5;9;1,12;;0,11;;7;;1-2,3-6|company,7-10|band;B1
+djinni vizier;8;;3;5;9;1,12;;0,11;;7;djinni;0;B1
 dog;-1;;5;3;1;;27;0;;0;;1-2,3-12|pack;B1
 dolphin;0;;5;4;1;;27;7;;0;;1-2,3-18|pod;B1
-doppelganger;3;;5;4;7;50;;0,13;;0;;1-2,3-6|gang;B1
+doppelganger;3;;5;4;7;51;;0,13;;0;;1-2,3-6|gang;B1
 dracolisk\half-dragon (black dragon, basilisk);7;;5;4;3;;;12,13;2;0;;1-2;B1
 dragon turtle;9;;5;6;3;2;;7;2;0;;1;B1
 dread wraith;7;;7;5;11;45;;0,11,13;;0;advanced giant [wraith];1-2,3-6|gang,7-12|pack;B1
 dretch;2;;9;3;9;8,9,12,22;;0,13;;18;;1-2,3-5|gang,6-12|crowd,13-40|mob;B1
 drider;7;;9;5;0;;33;13;;0;;1-2,3-8|group;B1
 drow|-;-1;;9;4;5;;;13;;0;;2,3-4|squad,5-8|patrol,10-40|war party;B1
+drow noble;3;;9;4;5;;;13;;0;;0;B1
 dryad;3;;3;4;4;;;4;2;0;;1-2,3-8|grove;B1
 duergar;-1;;7;4;5;;;13;;0;;1,2-5|team;B1
 dust mephit\mephit;3;;5;3;9;1,12;32,43;0,11;;7;;1-2,3-6|gang,7-12|mob;B1
 eagle;0;;5;3;1;;27;6,11;2;0;;1-2;B1
 earth mephit\mephit;3;;5;3;9;4,12;32,43;0,13;;8;;1-2,3-6|gang,7-12|mob;B1
 efreeti|efreet;8;;7;5;9;6,12;;0;;9;;1-2,3-6|company,7-12|band;B1
+efreeti malik;10;;7;5;9;6,12;;0;;9;efreeti;0;B1
 elasmosaurus;7;;5;6;1;;27,28;7;3;0;;1-2,3-6|school;B1
 elder air elemental;11;;5;6;9;1,5,12;;0,11;;7;;1-2,3-8|gang;B1
 elder earth elemental;11;;5;6;9;4,5,12;;0,13;;8;;1-2,3-8|gang;B1
 elder fire elemental;11;;5;6;9;5,6,12;;0;;9;;1-2,3-8|gang;B1
 elder water elemental;11;;5;6;9;5,7,12;;0,1;;10;;1-2,3-8|gang;B1
-elder xorn;8;;5;5;9;4,12;;0,13;;8;advanced giant xorn;1-2;B1
+elder xorn;8;;5;5;9;4,12;;0,13;;8;advanced giant [xorn];1-2;B1
 electric eel;2;;5;3;1;2;27;9;3;0;;1;B1
 elephant;7;;5;6;1;;27;8;3;0;;1,6-30|herd;B1
 erinyes|-;8;;7;4;9;9,11,12,23;;0,11,13;;20;;1,3;B1
@@ -146,11 +149,14 @@ frost wight;4;;7;4;11;3;;0,13;;0;wight;1-2,3-6|gang,7-12|pack;B1
 gargantuan animated object;9;;5;7;2;;;0,1,11;;0;animated object;1-2,3-4|group;B1
 gargoyle;4;;9;4;7;4;;10,11,13,14;;0;;1-2,3-12|wing;B1
 gelatinous cube;3;;5;5;8;;;13;;0;;1;B1
-ghaele;13;;3;4;9;8,10,12,19,50;;0,11,13;;16;;1-2,3-6|squad;B1
+ghaele;13;;3;4;9;8,10,12,19,51;;0,11,13;;16;;1-2,3-6|squad;B1
 ghast;2;;9;4;11;;;0,13;;0;advanced [ghoul];1,2-4|gang;B1
 ghost;7;;9;4;11;45;;0,13;;0;;1;B1
 ghoul;1;;9;4;11;;;0,13;;0;;1,2-4|gang,7-12|pack;B1
-giant ant;2;;5;4;12;;27;0,13;;0;;1-2,3-6|gang;B1
+giant ant drone;3;;5;4;12;;27;0,13;;0;advanced [giant ant];0;B1
+giant ant queen;4;;5;4;12;;27;0,13;;0;;advanced giant [giant ant];B1
+giant ant soldier\giant ant;2;;5;4;12;;27;0,13;;0;;1-2,3-6|gang;B1
+giant ant worker;1;;5;4;12;;27;0,13;;0;giant ant;0;B1
 giant centipede;0;;5;4;12;;27;4,13;2,3;0;;1-2,3-6|colony;B1
 giant crab;2;;5;4;12;2;27;1;;0;;1,2-12|cast;B1
 giant eagle;3;;2;5;6;;;6,11;2;0;;1-2,3-12|eyrie;B1
@@ -189,7 +195,7 @@ great wyrm red dragon;22;;9;8;3;6;20;6;3;0;red dragon\ancient red dragon;1;B1
 great wyrm silver dragon;22;;1;8;3;3;23;6;2;0;silver dragon\ancient silver dragon;1;B1
 great wyrm white dragon;18;;9;7;3;3;20;6;1;0;white dragon\ancient white dragon;1;B1
 greater air elemental;9;;5;6;9;1,5,12;;0,11;;7;;1-2,3-8|gang;B1
-greater barghest;7;;7;5;9;9,11,12,50;;0,13;;0;;1;B1
+greater barghest;7;;7;5;9;9,11,12,51;;0,13;;0;;1;B1
 greater earth elemental;9;;5;6;9;4,5,12;;0,13;;8;;1-2,3-8|gang;B1
 greater fire elemental;9;;5;6;9;5,6,12;;0;;9;;1-2,3-8|gang;B1
 greater shadow;8;;9;4;11;45;;0,11,13;;0;;1;B1
@@ -231,6 +237,7 @@ iron cobra;2;;5;3;2;;;0,11,13;;0;;1-2,3-10|nest;B1
 iron golem;13;;5;5;2;;36;0,13;;0;;1,2-4|gang;B1
 iron golem shield guardian;15;;5;5;2;;36;0,13;;0;iron golem;1-2;B1
 janni|jann;4;;5;4;9;13;;3;3;0;;1-2,3-6|company,7-12|band;B1
+janni sheikh;7;;5;4;9;13;;3;3;0;janni;0;B1
 juvenile black dragon;8;;9;4;3;7;20;12;3;0;black dragon\young black dragon;1;B1
 juvenile blue dragon;10;;7;5;3;4;20;3;3;0;blue dragon\young blue dragon;1;B1
 juvenile brass dragon;8;;3;4;3;6;23;3;3;0;brass dragon\young brass dragon;1;B1
@@ -255,8 +262,8 @@ large animated object;5;;5;5;2;;;0,1,11;;0;animated object;1-2,3-10|group;B1
 large earth elemental;5;;5;5;9;4,5,12;;0,13;;8;;1-2,3-8|gang;B1
 large fire elemental;5;;5;5;9;5,6,12;;0;;9;;1-2,3-8|gang;B1
 large water elemental;5;;5;5;9;5,7,12;;0,1;;10;;1-2,3-8|gang;B1
-leech swarm;4;;5;1;12;2,52;;12;2,3;0;;1-2,3-6|infestation;B1
-lemure;1;;7;4;9;9,11,12,23;;0,13;;20;;1-2,3-5|gang,6-17|swarm,10-40|mob;B1
+leech swarm;4;;5;1;12;2,53;;12;2,3;0;;1-2,3-6|infestation;B1
+lemure;1;;7;4;9;9,11,12,23;;0,13;;20;;1-2,3-5|gang,6-17|swarm,10-100|mob;B1
 leopard;2;;5;4;1;;27;4;;0;;1-2;B1
 lich;12;;8;4;11;;;0,13;;0;;1;B1
 lillend;7;;3;5;9;8,10,12,19;;0,11,13;;16;;1-2,3-6|choir;B1
@@ -266,6 +273,7 @@ lizardfolk|-;1;;5;4;5;;;12;2;0;;1-2,3-12|band,13-60|tribe;B1
 magma mephit\mephit;3;;5;3;9;6,12;32,43;0,11,13;;9;;1-2,3-6|gang,7-12|mob;B1
 manticore;5;;7;5;6;;;5,12;3;0;;1-2,3-6|pride;B1
 marid;9;;6;5;9;7,12;;0,1;;10;;1-2,3-6|company,7-12|band;B1
+marid shahzada;9;;6;5;9;7,12;;0,1;;10;marid;0;B1
 marilith;17;;9;5;9;8,9,12,22;;0,13;;18;;1-2;B1
 mastodon;9;;5;6;1;;27;4,8;1,2;0;;1,6-30|herd;B1
 mature adult black dragon;12;;9;5;3;7;20;12;3;0;black dragon\adult black dragon;1;B1
@@ -286,7 +294,7 @@ medium water elemental;3;;5;4;9;5,7,12;;0,1;;10;;1-2,3-8|gang;B1
 medusa;7;;7;4;7;;;12,13;2;0;;1;B1
 megaraptor;5;;5;5;1;;28;4;3;0;advanced giant [deinonychus];1-2,3-8|pack;B1
 merfolk|-;-1;;5;4;5;2;;7;2;0;;1,2-4|company;B1
-mimic;4;;5;4;0;50;;0,13;;0;;1;B1
+mimic;4;;5;4;0;51;;0,13;;0;;1;B1
 mining beetle;0;;5;3;12;;;0,13;;0;advanced [fire beetle];1,2-6|cluster,7-12|colony;B1
 minotaur;4;;9;5;7;;;10,13;2;0;;1-2,3-4|gang;B1
 mite;-2;;7;3;4;;;13;;0;;1,2-8|band;B1
@@ -316,7 +324,7 @@ old red dragon;17;;9;7;3;6;20;6;3;0;red dragon\adult red dragon;1;B1
 old silver dragon;17;;1;7;3;3;23;6;2;0;silver dragon\adult silver dragon;1;B1
 old white dragon;13;;9;6;3;3;20;6;1;0;white dragon\adult white dragon;1;B1
 ogre;3;;9;5;5;41;;5;1,2;0;;1-2,3-4|gang,5-16|family;B1
-ogre mage;8;;7;5;9;13,29,41,50;;5;1;0;;1-2;B1
+ogre mage;8;;7;5;9;13,29,41,51;;5;1;0;;1-2;B1
 ooze mephit\mephit;3;;5;3;9;7,12;32,43;0,1;;10;;1-2,3-6|gang,7-12|mob;B1
 orangutan;1;;5;4;1;;;4;3;0;young [gorilla];1-2,3-12|troop;B1
 orc;-1;;9;4;5;;;5,6,13;2;0;;1,2-8|gang;B1
@@ -337,9 +345,9 @@ pteranodon;3;;5;5;1;;27,28;2,11;3;0;;1-2,3-12|flock;B1
 purple worm;12;;5;7;6;;;13;;0;;1;B1
 pyrohydra;6;;5;6;6;6;;3,6,17;3;0;hydra;1;B1
 quasit;2;;9;2;9;8,9,12,22;32;0,11,13;;18;;1,2-12|flock;B1
-rakshasa;10;;7;4;9;13,33,50;;0,13;;0;;1-2,3-12|cult;B1
+rakshasa;10;;7;4;9;13,33,51;;0,13;;0;;1-2,3-12|cult;B1
 rat;-2;;5;2;1;;31;0;2;0;;1-2,3-12|nest,13-100|plague;B1
-rat swarm;2;;5;2;1;52;;0,13;;0;;1-2,3-5|pack,6-12|infestation;B1
+rat swarm;2;;5;2;1;53;;0,13;;0;;1-2,3-5|pack,6-12|infestation;B1
 raven;-3;;5;2;1;;31;0;2;0;;1-2,3-12|flock,13-100|unkindnesss;B1
 remorhaz;7;;5;6;6;;;3,6,16;1;0;;1;B1
 retriever;11;;9;6;2;12;;0,13;;18;;1;B1
@@ -360,6 +368,7 @@ sewer centipede;-2;;5;3;12;;;13,14;2,3;0;small [giant centipede];1-2,3-8|colony;
 shadow;3;;9;4;11;45;;0,11,13;;0;;1-2,3-6|gang,7-12|swarm;B1
 shadow demon;7;;9;4;9;8,9,12,22,45;;0,11,13;;18;;1-2,3-8|haunt;B1
 shaitan;7;;4;5;9;4,12;;0,13;;8;;1-2,3-6|company,7-12|band;B1
+shaitan pasha;7;;4;5;9;4,12;;0,13;;8;shaitan;0;B1
 shambling mound;6;;5;5;10;;;4,12;2;0;;1;B1
 shark;2;;5;5;1;2;27;7;;0;;1-2,3-6|school,7-13|pack;B1
 shocker lizard;2;;5;3;6;;;12;3;0;;1-2,3-6|clutch,7-12|colony;B1
@@ -375,7 +384,7 @@ small water elemental;1;;5;3;9;5,7,12;32;0,1;;10;;1-2,3-8|gang;B1
 solar;23;;1;5;9;10,12,16;;0,11,13;;14,15,16;;1-2;B1
 spectre;7;;7;4;11;45;;0,11,13;;0;;1-2,3-6|gang,7-12|swarm;B1
 sphinx manticore;8;;5;5;6;;46;3,5,13;3;0;[manticore], [sphinx];1-2,3-6|pride;B1
-spider swarm;1;;5;1;12;52;;0,13;;0;;1-2,3-6|tangle,11-20|colony;B1
+spider swarm;1;;5;1;12;53;;0,13;;0;;1-2,3-6|tangle,11-20|colony;B1
 spirit naga;9;;9;5;0;;45;12;2;0;;1,2-4|nest;B1
 squid;1;;5;4;1;2;27;7;;0;;1-2,3-12|school;B1
 steam mephit\mephit;3;;5;3;9;6,12;32,43;0,11;;9;;1-2,3-6|gang,7-12|mob;B1
@@ -402,6 +411,7 @@ trumpet archon;14;;1;4;9;10,11,12,17;;0,11,13;;14;;1-2,3-5|squad;B1
 tyrannosaurus;9;;5;7;1;;27,28;4,8;3;0;;1-2,3-6|pack;B1
 unicorn;3;;3;5;6;;;4;2;0;;1-2,3-6|blessing;B1
 vampire;9;;9;4;11;;49;0,13;;0;;1;B1
+vampire spawn;3;;7;4;11;;;0,13;;0;[vampire], [wight];0;B1
 vargouille;2;;8;3;9;9,12;;0;;0,18,19,20;;2,3-6|cluster,7-12|mob;B1
 vegepygmy;0;;5;3;10;;;13;;0;;1,2-6|gang;B1
 venomous snake;1;;5;4;1;;;0;2,3;0;;1-2,3-8|nest;B1
@@ -428,11 +438,11 @@ very young white dragon;4;;9;3;3;3;20;6;1;0;white dragon\young white dragon;1;B1
 violet fungus|violet fungi;3;;5;4;10;;;13;;0;;1-2,3-12|grove;B1
 viper;0;;5;2;1;;27,31;0;2,3;0;;1;B1
 vrock;9;;9;5;9;8,9,12,22;;0,11,13;;18;;1-2,3-10|gang;B1
-wasp swarm;3;;5;1;12;52;;4;2;0;;1-2,3-6|fury,7-12|maelstrom;B1
+wasp swarm;3;;5;1;12;53;;4;2;0;;1-2,3-6|fury,7-12|maelstrom;B1
 water mephit\mephit;3;;5;3;9;7,12;32,43;0,1;;10;;1-2,3-6|gang,7-12|mob;B1
 weasel;0;;5;2;1;;31;5;2;0;;1;B1
-wererat\wererat (human form);2;;7;4;5;50;42;14;;0;;1-2,5-10|pack;B1
-werewolf|werewolves\werewolf (human form);2;;9;4;5;50;42;0;;0;;1-2,3-6|pack;B1
+wererat\wererat (human form);2;;7;4;5;51;42;14;;0;;1-2,5-10|pack;B1
+werewolf|werewolves\werewolf (human form);2;;9;4;5;51;42;0;;0;;1-2,3-6|pack;B1
 wight;3;;7;4;11;;;0,13;;0;;1-2,3-6|gang,7-12|pack;B1
 will-o'-wisp\*Will-o%u2019-Wisp;6;;9;3;0;1;;12;;0;;1-2,3-4|string;B1
 winter wolf|winter wolves;5;;8;5;6;3;;4,8;1;0;;1-2,6-11|pack;B1
@@ -467,6 +477,7 @@ wyrmling white dragon;2;;9;2;3;3;20;6;1;0;white dragon\young white dragon;1;B1
 wyvern;6;;5;5;3;;;5;2,3;0;;1-2,3-6|flight;B1
 xill;6;;7;4;9;9,12;;0,11,13,15;;3;;1-2,3-6|gang;B1
 xorn;6;;5;4;9;4,12;;0,13;;8;;1-2,3-6|cluster;B1
+yellow musk creeper;2;;5;4;10;;;4,13;2,3;0;;0;B1
 yeth hound;3;;8;4;9;9,12;;0,11,13;;0,18,19,20;;1-2,6-11|pack;B1
 yeti;4;;5;5;7;3;;6;1;0;;1-2,3-8|tribe;B1
 young adult black dragon;9;;9;5;3;7;20;12;3;0;black dragon\adult black dragon;1;B1
@@ -493,24 +504,22 @@ zombie\human zombie;0;;8;4;11;;;0,13;;0;;1-100;B1
 1 [night hag] mounted on a [nightmare];9,0;;8;4,5;9;9,12;38;0;;18,19,20;;;B1
 1 [yellow musk creeper] plus 1d6 yellow musk zombies;2,2;;5;4;10;;;4,13;2,3;0;;;B1
 a band of 1d4+2 [ettins\ettin] plus 1d2 [grizzly bears\grizzly bear];6,5;;5,9;5;1,5;41;;5;1;0;;;B1
+a band of 1d4+6 [djinn\djinni] plus 1 djinni vizier;8,4;;3;5;9;1,12;;0,11;;7;djinni;;B1
+a band of 1d6+6 [efreet\efreeti] and 1 efreeti malik;10,5;;7;5;9;6,12;;0;;9;efreeti;;B1
+a band of 1d6+6 [jann\janni] and 1 janni sheikh;7,4;;5;4;9;13;;3;3;0;janni;;B1
 a band of 1d6+6 [marids\marid] and 1 marid shahzada;11,5;;6;5;9;7,12;;0,1;;10;marid;;B1
 a band of 1d6+6 [shaitans\shaitan] and 1 shaitan pasha;13,2;;4;5;9;4,12;;0,13;;8;shaitan;;B1
 a colony of 1d4+2 [ettins\ettin] plus 1d2 [grizzly bears\grizzly bear] and 1d8+8 [goblins\goblin];6,5;;5,8,9;3,5;1,5;41;;5;1;0;;;B1
 a colony of 1d4+2 [ettins\ettin] plus 1d2 [grizzly bears\grizzly bear] and 1d6+6 [orcs\orc];6,5;;5,8,9;4,5;1,5;41;;5;1;0;;;B1
-a company of 1d6 [djinn\djinni] and 1 djinni vizier;8,2;;3;5;9;1,12;;0,11;;7;djinni;;B1
-a company of 1d6 [efreet\efreeti] and 1 efreeti malik;10,3;;7;5;9;6,12;;0;;9;efreeti;;B1
-a company of 1d6 [jann\janni] and 1 janni sheikh;7,2;;5;4;9;13;;3;3;0;janni;;B1
 a company of 1d6+1 [girallons\girallon] and 1 [high girallon\angazhani (high girallon)];9,3;;5;5;6;;;4;3;0;;;B1
-a company of 1d6 [marids\marid] and 1 marid shahzada;11,3;;6;5;9;7,12;;0,1;;10;marid;;B1
-a company of 1d6 [shaitans\shaitan] and 1 shaitan pasha;13,1;;4;5;9;4,12;;0,13;;8;shaitan;;B1
 a contingent of 1d3 [ice devils\ice devil (gelugon)], 2d3 [horned devils\horned devil (cornugon)] and 1d4 [bone devils\bone devil (osyluth)];16,5;;7;5;9;9,11,12,23;;0,11,13;;20;;;B1
 a gang of 1 [dark stalker] and 1d4+1 [dark creepers\dark creeper];4,3;;6;3,4;5;40;;13;;0;;;B1
-a guild of 1d20+10 [wererats\wererat] plus 1d8+4 [dire rats\dire rat];2,10;;5,7;2,4;1,5;50,52;42;14;;0;;;B1
+a guild of 1d20+10 [wererats\wererat] plus 1d8+4 [dire rats\dire rat];2,10;;5,7;2,4;1,5;51,53;42;14;;0;;;B1
 a hunting party of 1d4+1 [gnolls\gnoll] and 1d2 [hyenas\hyena];1,4;;5,9;4;1,5;;;3,8;3;0;;;B1
 a mob of 1d3+1 [mohrgs\mohrg] plus 1d8+3 [zombies\human zombie];8,3;;8,9;4;11;;;0,13;;0;;;B1
 a nest of 1d4+2 [ettercaps\ettercap] plus 2d4 [giant spiders\giant spider];3,5;;5,8;4;0,12;;;4;2;0;;;B1
 a pack of 1 ghast plus 1d10+2 [ghouls\ghoul];2,5;;9;4;11;;;0,13;;0;ghoul;;B1
-a patrol of 1d2 [ogre mages\ogre mage] plus 1d3+1 [ogres\ogre];8,2;;7,9;5;5,9;13,29,41,50;;5;1;0;;;B1
+a patrol of 1d2 [ogre mages\ogre mage] plus 1d3+1 [ogres\ogre];8,2;;7,9;5;5,9;13,29,41,51;;5;1;0;;;B1
 a platoon of 1 [marilith], 1d3 [glabrezus\glabrezu] and 1d12+2 [babaus\babau];17,1;;9;4,5,6;9;8,9,12,22;;0,13;;18;;;B1
 a riding party of 1d4+8 [hill giants\hill giant] plus 1d4 [dire wolves\dire wolf];7,7;;5,9;5;1,5;41;;5;2;0;;;B1
 a troop of 1 [glabrezu], 1 [succubus] and 1d4+1 [vrocks\vrock];13,2;;9;4,5,6;9;8,9,12,22;;0,13;;18;;;B1
@@ -537,7 +546,7 @@ albino cave solifugid;4;;5;4;12;;;13;;0;;1-2,3-6|colony;B2
 alchemical golem;9;;5;5;2;;36;0,13;;0;;1,2-4|gang;B2
 alchemical golem shield guardian;11;;5;5;2;;36;0,13;;0;alchemical golem;1-2;B2
 allosaurus;7;;5;6;1;;27,28;4,8;2,3;0;;1-2,3-6|pack;B2
-amoeba swarm;1;;5;0;8;52;;0,13;;0;;1,2-5|colony;B2
+amoeba swarm;1;;5;0;8;53;;0,13;;0;;1,2-5|colony;B2
 amphisbaena;4;;5;5;6;;;5,13;2;0;;1,2-5|pack;B2
 ancient black dragon ravener;18;;9;6;11;7;;12;3;0;ancient black dragon;1;B2
 ancient blue dragon ravener;20;;7;7;11;4;;3;3;0;ancient blue dragon;1;B2
@@ -551,7 +560,7 @@ ancient umbral dragon;19;;9;7;3;12;26;0,11,13;;0,1,2,3,11,18,19,20;;1;B2
 ancient umbral dragon ravener;21;;9;7;11;12;;0,11,13;;0,1,2,3,11,18,19,20;ancient umbral dragon;1;B2
 ancient white dragon ravener;17;;9;6;11;3;;6;1;0;ancient white dragon;1;B2
 animate dream;8;;8;4;9;12,45;;0,11,13,15;;3;;1;B2
-aranea;4;;5;4;6;50;;4;3;0;;1,2-6|colony;B2
+aranea;4;;5;4;6;51;;4;3;0;;1,2-6|colony;B2
 arbiter;2;;4;2;9;11,12,25;32;0,11,13,15;;;;1-2,3-14|flock;B2
 arsinoitherium|-;7;;5;5;1;;27,44;8;2;0;;1-2,3-12|herd;B2
 astradaemon;16;;8;5;9;9,12,20;;0,11,13,15;;2,19;;1-2,3-6|pack;B2
@@ -597,7 +606,7 @@ chupacabra;3;;5;3;6;;;5,8;3;0;;1-2,3-7|gang;B2
 clockwork golem;12;;5;5;2;;36;0,13;;0;;1,2-4|gang;B2
 clockwork golem shield guardian;14;;5;5;2;;36;0,13;;0;clockwork golem;1-2;B2
 coach of the silent;14;;7;4;11;;;0,13;;0;advanced [dullahan];1;B2
-cockroach swarm;2;;5;1;12;52;;0,13;2,3;0;;1-2,3-20|intrusion;B2
+cockroach swarm;2;;5;1;12;53;;0,13;2,3;0;;1-2,3-20|intrusion;B2
 compsognathus;0;;5;2;1;;28,31;4,8;2,3;0;;1-2,5-20|pack;B2
 crawling hand;0;;8;2;11;;;0,13;;0;;1,2-5|gang;B2
 crocotta;4;;5;5;1;;;8;3;0;advanced [dire hyena], [leucrotta];1-2,3-12|pack;B2
@@ -628,7 +637,7 @@ elder magma elemental;11;;5;6;9;4,5,6,12;;0,13;;9;;1-2,3-8|gang;B2
 elder mud elemental;11;;5;6;9;4,5,7,12;;0,1,13;;8;;1-2,3-8|gang;B2
 elysian titan;21;;3;8;9;8,10,12;18;0;;16;;1-2,3-6|crusade;B2
 emperor cobra;5;;5;5;1;;;12;2,3;0;;1-2,3-8|nest;B2
-faceless stalker/ugothol\faceless stalker;4;;9;4;0;50;;12,13;;0;;1-2,3-9|gang;B2
+faceless stalker/ugothol\faceless stalker;4;;9;4;0;51;;12,13;;0;;1-2,3-9|gang;B2
 fetchling/kayal\fetchling;0;;5;4;9;13;;0;;1;;1-2,3-12|guild;B2
 flame drake;5;;9;5;3;6;29;5,6;2;0;;1-2,3-12|rampage;B2
 forest drake;4;;7;5;3;4;29;4;;0;;1-2,3-12|rampage;B2
@@ -708,10 +717,10 @@ hydrodaemon;8;;8;5;9;2,9,12,20;;0,1,13;;19;;1,2-5|gang,6-12|mob;B2
 iathavos;20;;9;8;9;8,9,12,32;;0,11,13;;18;;1;B2
 ice troll;4;;9;5;5;3,41;48;6,13;1;0;;1-2,3-6|band;B2
 ifrit;0;;5;4;9;13;;0;;0;;1-2,3-5|gang;B2
-imentesh;10;;6;5;9;8,12,30,50;;0,1,11;;17;;1-2,3-10|envoy;B2
+imentesh;10;;6;5;9;8,12,30,51;;0,1,11;;17;;1-2,3-10|envoy;B2
 immolation devil\puragaus;19;;7;5;9;9,11,12,23;;0,11,13;;20;;1-2,3-6|council;B2
 jabberwock;23;;9;6;3;1,6;;4;;0,4;;1;B2
-jellyfish swarm;6;;5;1;12;2,52;;7;;0;;1,2-8|bloom;B2
+jellyfish swarm;6;;5;1;12;2,53;;7;;0;;1,2-8|bloom;B2
 jinkin;1;;9;2;4;;37;13,14;;0;;1-2,3-12|mob;B2
 juju zombie;2;;8;4;11;;;0,13;;0;;1;B2
 jungle grick;4;;5;4;0;;;4;3;0;advanced [grick];1,2-5|cluster;B2
@@ -723,12 +732,12 @@ juvenile magma dragon;9;;6;4;3;6,12;26;6,13;;9;magma dragon\young magma dragon;1
 juvenile umbral dragon;11;;9;5;3;12;26;0,11,13;;0,1,2,3,11,18,19,20;umbral dragon\young umbral dragon;1;B2
 jyoti;9;;5;4;9;12;;0,11;;11;;1-2,3-8|flight;B2
 kalavakus;10;;9;4;9;8,9,12,22;;0,13;;18;;1-2;B2
-keketar;17;;6;5;9;8,12,30,50;;0,1,11;;17;;1,2-4|chorus;B2
-kelpie;4;;8;4;4;2,50;;1;;0;;1,2-5|shoal;B2
+keketar;17;;6;5;9;8,12,30,51;;0,1,11;;17;;1,2-4|chorus;B2
+kelpie;4;;8;4;4;2,51;;1;;0;;1,2-5|shoal;B2
 kolyarut;12;;4;4;9;11,12,25;;0,13,15;;;;1-2,3-6|inquisition;B2
 korred;4;;6;3;4;;;4;2;0;;1-2,3-6|gang;B2
 krenshar;1;;5;4;6;;;4,8;2;0;;1-2,6-10|pride;B2
-lamia matriarch;8;;9;5;7;50;;0;;0;;1-2,3-6|cult;B2
+lamia matriarch;8;;9;5;7;51;;0;;0;;1-2,3-6|cult;B2
 large ice elemental;5;;5;5;9;1,3,5,7,12;;0,1;;10;;1-2,3-8|gang;B2
 large lightning elemental;5;;5;5;9;1,5,12;;0,11;;7;;1-2,3-8|gang;B2
 large magma elemental;5;;5;5;9;4,5,6,12;;0,13;;9;;1-2,3-8|gang;B2
@@ -768,20 +777,20 @@ mithral golem shield guardian;18;;5;6;2;;36;0,13;;0;mithral golem;1-2;B2
 mobat;3;;5;5;6;;;4,5,13;2,3;0;;1,2-8|colony;B2
 monadic deva;12;;2;4;9;2,10,12,16;;0,2,11,13,15;;3,7,8,9,10,14,15,16;;1-2,3-6|squad;B2
 mongrelman;1;;4;4;7;;;10,13;;0;;1-2,3-6|gang,7-12|band;B2
-monkey swarm;2;;5;2;1;52;;4;3;0;;1-2,3-6|mission;B2
+monkey swarm;2;;5;2;1;53;;4;3;0;;1-2,3-6|mission;B2
 moonflower;8;;5;6;10;;;0;;0;;1,2-8|cluster;B2
-mosquito swarm;3;;5;1;12;52;;13;3;0;;1-2,3-6|fury,7-12|scourge;B2
+mosquito swarm;3;;5;1;12;53;;13;3;0;;1-2,3-6|fury,7-12|scourge;B2
 mothman;6;;6;4;7;;;0,11;;0;;1;B2
 movanic deva;10;;2;4;9;10,12,16;;0,11,13;;0,11,12,14,15,16;;1-2,3-6|squad;B2
 mu spore;21;;6;8;10;;;0,11,13;;0;;1-2;B2
-naunet;7;;6;5;9;8,12,30,50;;0,1,11;;17;;1-2,3-12|cacophony;B2
+naunet;7;;6;5;9;8,12,30,51;;0,1,11;;17;;1-2,3-12|cacophony;B2
 necrophidius;3;;5;4;2;;;0,13;;0;;1,2-6|coil;B2
 neh-thalggu;8;;9;5;0;;;0,13;;0;;1;B2
 nereid;10;;6;4;4;7;;1;;0;;1;B2
-nightcrawler;18;;9;7;11;12,48;;0,13;;11;;1-2;B2
-nightwalker;16;;9;6;11;12,48;;0;;11;;1-2,3-4|gang;B2
-nightwave;20;;9;8;11;2,12,48;;0,1,11;;11;;1;B2
-nightwing;14;;9;6;11;12,48;;0,11;;11;;1-2,3-6|flight;B2
+nightcrawler;18;;9;7;11;12,49;;0,13;;11;;1-2;B2
+nightwalker;16;;9;6;11;12,49;;0;;11;;1-2,3-4|gang;B2
+nightwave;20;;9;8;11;2,12,49;;0,1,11;;11;;1;B2
+nightwing;14;;9;6;11;12,49;;0,11;;11;;1-2,3-6|flight;B2
 nuglub;2;;9;3;4;;32,37;13,14;;0;;1-2,3-6|mob;B2
 nyogoth;10;;9;4;9;8,9,12,32;;0,11,13;;18;;1,2-8|brood;B2
 ogrekin;2;;9;4;5;41;;0;;0;;1,2-6|family;B2
@@ -862,9 +871,9 @@ thoqqua;2;;5;4;9;4,5,6,12;;0,13;;9;;1-2;B2
 thrasfyr;17;;9;6;6;6;;0;;0;;1;B2
 thulgant;18;;9;5;9;8,9,12,32;;0,11,13;;18;;1-2,3-4|patrol;B2
 thunderbird;11;;5;7;6;;;5,6,11;;0;;1;B2
-tick swarm;9;;5;0;12;52;;4;2;0;;1-2,3-6|colony;B2
+tick swarm;9;;5;0;12;53;;4;2;0;;1-2,3-6|colony;B2
 titan centipede;9;;5;8;12;;;4,13;2,3;0;;1-2,3-6|colony;B2
-totenmaske;7;;8;4;11;50;;0,13;;0;;1-2;B2
+totenmaske;7;;8;4;11;51;;0,13;;0;;1-2;B2
 triton;2;;2;4;9;7,13;;7;;0;;1,2-5|company,6-11|squad;B2
 twigjack;3;;9;2;4;;;4;2;0;;1-2,3-8|gang;B2
 tylosaurus;8;;5;7;1;;27,28;7;3;0;;1-2,3-6|school;B2
@@ -885,14 +894,14 @@ very young magma dragon;6;;6;3;3;6,12;26;6,13;;9;magma dragon\young magma dragon
 very young umbral dragon;8;;9;4;3;12;26;0,11,13;;0,1,2,3,11,18,19,20;umbral dragon\young umbral dragon;1;B2
 vexgit;1;;7;2;4;;37;13,14;;0;;1-2,3-12|mob;B2
 viper vine;13;;5;5;10;;;4,12;2,3;0;;1;B2
-voidworm;2;;6;2;9;8,12,30,50;32;0,11;;17;;1-2,3-18|school;B2
+voidworm;2;;6;2;9;8,12,30,51;32;0,11;;17;;1-2,3-18|school;B2
 vrolikai;19;;9;5;9;8,9,12,22;;0,11,13;;18;;1;B2
 vulpinal;6;;2;3;9;10,12,15;;0,13;;15;;1-2,3-12|team;B2
 water orm;10;;5;6;6;2;;9;;0;;1;B2
 wendigo;17;;9;5;9;3,13;;0;1;0;;1;B2
-werebear\werebear (human form);4;;1;4;5;50;42;4;;0;;1-2,3-6|family;B2
-wereboar\wereboar (human form);2;;6;4;5;50;42;4,8;;0;;1-2,3-8|brood;B2
-weretiger\weretiger (human form);4;;8;4;5;50;42;8,12;;0;;1-2;B2
+werebear\werebear (human form);4;;1;4;5;51;42;4;;0;;1-2,3-6|family;B2
+wereboar\wereboar (human form);2;;6;4;5;51;42;4,8;;0;;1-2,3-8|brood;B2
+weretiger\weretiger (human form);4;;8;4;5;51;42;8,12;;0;;1-2;B2
 whale;10;;5;7;1;;;7;;0;;1-2,3-16|pod;B2
 winged chupacabra;3;;5;3;6;;;5,8,11;3;0;chupacabra;1-2,3-7|gang;B2
 winterwight;17;;9;4;11;3;;0,13;1;0;;1-2,3-6|incursion;B2
@@ -939,15 +948,15 @@ a court of 1 [vampire] and 1d6+2 [dhampirs\dhampir];9,0;;9;4;5,11;;49;0,13;;0;;;
 a gang of 1 [dark stalker] and 1d4+1 [dark slayers\dark slayer];4,3;;6,9;3,4;5;40;;13;;0;;;B2
 a hunting party of 1d6+4 [wood giants\wood giant] plus 1d4 [dire wolves\dire wolf];6,6;;3,5;5;1,5;41;;4;2;0;;;B2
 a retinue of 1 [handmaiden devil\handmaiden devil (gylou)] and 2d4 [erinyes];14,1;;7;4;9;9,11,12,23;;0,11,13;;20;;;B2
-a tribe of 1d6+6 [monkey swarms\monkey swarm] plus 1d4 [gorillas\gorilla];2,7;;5;2,5;1;52;;4;3;0;;;B2
+a tribe of 1d6+6 [monkey swarms\monkey swarm] plus 1d4 [gorillas\gorilla];2,7;;5;2,5;1;53;;4;3;0;;;B2
 a tribunal of 1 [pleroma], 3 [akhanas\akhana], and 1d4+1 [theletos];20,1;;5;4,5;9;12,14;;0,11,13;;13,14,15,16,17,18,19,20,21;;;B2
 a troupe of 1 [nereid] plus 1 [giant moray eel];10,0;;5,6;4,5;1,4;2,7;;7;;0;;;B2
 a troupe of 1 [nereid] plus 1 [giant octopus];10,1;;5,6;4,5;1,4;2,7;;7;;0;;;B2
 a troupe of 1 [nereid] plus 1 [orca];10,0;;5,6;4,6;1,4;7;;7;;0;;;B2
 a troupe of 1 [nereid] plus 1 [giant squid];10,1;;5,6;4,6;1,4;2,7;;7;;0;;;B2
-a troupe of 1d4+2 [werebears\werebear (human form)] plus 1d4 black bears;4,5;;1,5;4;1,5;50;42;4;;0;young [grizzly bear];;B2
-a troupe of 1d4+2 [werebears\werebear (human form)] plus 1d4 [grizzly bears\grizzly bear];4,6;;1,5;4,5;1,5;50;42;4;;0;;;B2
-a troupe of 1d6+2 [wereboars\wereboar (human form)] plus 1d4 [boars\boar];2,6;;5,6;4;1,5;50;42;4,8;;0;;;B2
+a troupe of 1d4+2 [werebears\werebear (human form)] plus 1d4 black bears;4,5;;1,5;4;1,5;51;42;4;;0;young [grizzly bear];;B2
+a troupe of 1d4+2 [werebears\werebear (human form)] plus 1d4 [grizzly bears\grizzly bear];4,6;;1,5;4,5;1,5;51;42;4;;0;;;B2
+a troupe of 1d6+2 [wereboars\wereboar (human form)] plus 1d4 [boars\boar];2,6;;5,6;4;1,5;51;42;4,8;;0;;;B2
 a warband of 1d6+10 [grindylows\grindylow] with 1d2 [octopus] minions;1,6;;5,9;3;0,1;2;;7;1,2;0;;;B2
 
 #Bestiary 3 (12.2011)
@@ -963,7 +972,7 @@ adult underworld dragon;11;;7;5;3;6;22;13;;0;;1;B3
 aghash;4;;8;4;9;9,12,24;;0,13;;19;;1;B3
 aghasura;11;;7;6;9;9,11,12,18;;0,1,13;;20;;1,2-9|troop;B3
 ahuizotl;6;;8;5;6;2;;9,12;3;0;;1;B3
-akhlut;13;;5;6;6;3,50;;7,8,9;1;0;;1;B3
+akhlut;13;;5;6;6;3,51;;7,8,9;1;0;;1;B3
 akvan;20;;8;7;9;9,12,24;;0,11,13;;19;;1;B3
 allip;3;;9;4;11;45;;0,13;;0;;1-2,3-6|haunt;B3
 alraune;13;;8;5;10;;;4;2;0;;1;B3
@@ -994,7 +1003,7 @@ basilosaurus;12;;5;7;1;;27,44;7;;0;;1-2,3-10|pod;B3
 baykok;9;;8;4;11;;;0,11,13;;0;;1,2-5|gang,6-12|flight;B3
 berbalang;6;;9;4;11;;;0,11;;0;;1,2-8|pack;B3
 bhuta;11;;8;4;11;45;;2,3,4,5,6,8,12,16;;0;;1;B3
-bog nixie;3;;8;3;4;2;;1;2;0;advanced nixie;2-4|gang,6-11|band,20-80|tribe;B3
+bog nixie;3;;8;3;4;2;;1;2;0;advanced [nixie];2-4|gang,6-11|band,20-80|tribe;B3
 bogeyman;10;;8;4;4;;;0;;0;;1;B3
 bone golem;8;;5;5;2;;36;0,13;;0;;1,2-4|gang;B3
 bone golem shield guardian;10;;5;5;2;;36;0,13;;0;bone golem;1-2;B3
@@ -1025,10 +1034,10 @@ confounding bandersnatch;18;;5;7;6;;;4;;0;bandersnatch;1;B3
 contract devil/phistophilus;10;;7;4;9;9,11,12,23;;0,13;;20;;1,2-12|court;B3
 criosphinx;7;;5;5;6;;46;3,5;3;0;;1;B3
 crucidaemon;15;;8;4;9;9,12,20;;0,13;;19;;1-2,3-6|inquisition;B3
-dandasuka;5;;7;3;9;13,33,50;;0,13;;0;;1-2,3-10|murder;B3
+dandasuka;5;;7;3;9;13,33,51;;0,13;;0;;1-2,3-10|murder;B3
 deadfall scorpion;8;;5;6;12;;;4;2;0;;1,2-5|nest;B3
 death's head jellyfish\Death%u2019s Head Jellyfish;1;;5;3;12;2;;7;;0;;1,2-5|pack,6-13|bloom;B3
-deathtrap ooze;8;;5;5;8;50;;13;;0;;1;B3
+deathtrap ooze;8;;5;5;8;51;;13;;0;;1;B3
 deathweb;6;;5;5;11;;;0,13;;0;;1-2,3-8|nest;B3
 deep sea serpent;19;;5;7;6;2;;7;;0;;1;B3
 demilich;14;;8;2;11;;;0,13;;0;;1;B3
@@ -1042,7 +1051,7 @@ disenchanter;3;;5;5;6;;;1;3;0;;1-2;B3
 doru;2;;8;2;9;9,12,24;32;0,11,13;;19;;1;B3
 dragonne;7;;5;5;6;;;3;2;0;;1-2,5-10|pride;B3
 dread corby;2;;8;4;7;;;13;;0;advanced [dire corby];1-2;B3
-dusk kamadan;5;;8;5;6;;;8;2,3;0;advanced kamadan;1-2,3-9|pack;B3
+dusk kamadan;5;;8;5;6;;;8;2,3;0;advanced [kamadan];1-2,3-9|pack;B3
 dybbuk;15;;8;4;11;45;;0,11,13;;0;;1;B3
 ecorche;16;;9;5;11;;;0,13;;0;;1,2-4|gang;B3
 elk;1;;5;4;1;;27,39;8;1,2;0;;1-2,3-50|herd;B3
@@ -1050,7 +1059,7 @@ eremite;20;;7;4;9;9,11,12,27;;0,11,13;;1;;1-2,3-5|cell;B3
 faerie dragon;2;;3;2;3;;32;4;2,3;0;;1,2-8|clan;B3
 faun;1;;3;4;4;;;4;2;0;;1-2,3-8|band;B3
 festrog;1;;8;4;11;;;0,13;;0;;1-2,3-5|gang,6-11|pack;B3
-fire yai|-;15;;8;5;9;6,13,29,41,50;;5,6;2,3;0;;1;B3
+fire yai|-;15;;8;5;9;6,13,29,41,51;;5,6;2,3;0;;1;B3
 fjord linnorm;16;;9;7;3;2;41;2,6;1;0;;1;B3
 flail snail;4;;5;5;6;;;13;;0;;1-2,3-30|rout;B3
 flumph;1;;1;3;0;;;0,11,13;;0;;1-2,4-16|colony;B3
@@ -1062,13 +1071,13 @@ fossil golem shield guardian;14;;5;6;2;;36;0,13;;0;fossil golem;1-2;B3
 fox;-2;;5;2;1;;31;0;;0;;1-2,3-12|skulk;B3
 frumious bandersnatch;19;;5;7;6;;;4;;0;bandersnatch;1;B3
 fuath;1;;9;2;4;2;37;1;;0;;1-2,3-12|mob;B3
-fungus leshy;2;;5;3;10;50;40;12,13;;0;;1,2-16|cluster;B3
+fungus leshy;2;;5;3;10;51;40;12,13;;0;;1,2-16|cluster;B3
 garden ooze;2;;5;3;8;;;4,12,14;2;0;;1-2,3-5|patch;B3
 garuda;9;;3;4;9;13;;5,6;3;0;;1-2,3-6|aerie;B3
 ghawwas;10;;8;5;9;2,9,12,24;;0,1,13;;19;;1;B3
 ghorazagh;13;;8;5;0;;;13;;0;;1-2,3-9|colony;B3
 ghost scorpion;0;;5;3;12;;;3,12;3;0;;1-2,3-6|nest;B3
-ghul;5;;9;4;11;50;;3;3;0;;1,2-8|pack;B3
+ghul;5;;9;4;11;51;;3;3;0;;1,2-8|pack;B3
 giant adult ant lion;6;;5;6;12;;;3;3;0;;1,2-12|cloud;B3
 giant ant lion;5;;5;5;12;;;3;3;0;;1,2-4|nest;B3
 giant chameleon;3;;5;5;1;;27;4,6;3;0;;1-2,3-6|blend;B3
@@ -1085,7 +1094,7 @@ globster;5;;5;5;8;2;;2,7;;0;;1-2,3-8|beaching;B3
 goat;-1;;5;3;1;;31;0;;0;;1-2,3-12|herd;B3
 goblin snake;1;;9;3;0;;;12,13;;0;;1-2;B3
 gorynych;15;;9;6;3;;;4;2;0;;1;B3
-gourd leshy;1;;5;3;10;50;40;5,8;;0;;1,2-16|patch;B3
+gourd leshy;1;;5;3;10;51;40;5,8;;0;;1,2-16|patch;B3
 graveknight;11;;7;4;11;;;0;;0;;1;B3
 graven guardian;5;;5;4;2;;;0,13;;0;;1,2-4|band,5-12|assembly;B3
 great cyclops|great cyclopes;12;;9;6;5;41;;0;2,3;0;;1,2-5|colony,6-14|tribe;B3
@@ -1102,22 +1111,22 @@ grootslang;16;;9;7;6;;;9;3;0;;1;B3
 guecubu;8;;9;4;11;4;;0,13;;0;;1;B3
 harbinger archon;2;;1;2;9;10,11,12,17;32;0,11,13;;14;;1-2,3-12|constellation;B3
 hekatonkheires titan\hekatonkheires;24;;9;8;9;8,9,12;18;0;;22;;1;B3
-hellwasp swarm;8;;7;1;12;12,52;;0,11;;20;;1-2,3-6|infestation;B3
+hellwasp swarm;8;;7;1;12;12,53;;0,11;;20;;1-2,3-6|infestation;B3
 hieracosphinx;5;;9;5;6;;46;5;3;0;;1-2,3-8|flock;B3
 hodag;6;;5;5;6;;;4,12;2;0;;1;B3
 hollow serpent;16;;8;5;11;;;0,13;;0;;1-2,3-8|nest;B3
 huecuva;2;;9;4;11;;;0,13;;0;;1-2,3-10|cloister;B3
 humbaba;19;;6;8;7;;;4;;0;;1;B3
 hungry fog;6;;5;6;8;;;0,13;2;0;;1-2,3-10|bank;B3
-ice yai|-;14;;9;5;9;3,13,29,41,50;;6;1;0;;1;B3
+ice yai|-;14;;9;5;9;3,13,29,41,51;;6;1;0;;1;B3
 iguanodon;6;;5;6;1;;27,28;4,12;3;0;;1-2,3-6|pack;B3
 iku-turso;8;;8;4;0;2;;1,13;1,2;0;;1-2,3-8|cell;B3
 incubus|incubi;6;;9;4;9;8,9,12,22;;0,11,13;;18;;1,2-8|wing;B3
 interlocutor;12;;7;5;9;9,11,12,27;;0,13;;1;;1-2,3-5|gang;B3
-jackalwere;2;;9;4;6;50;;3;3;0;;1-2;B3
+jackalwere;2;;9;4;6;51;;3;3;0;;1-2;B3
 jiang-shi;6;;7;4;11;;49;0,13;;0;;1,2-8|broderhood;B3
 jinushigami;20;;5;7;9;4,12,26;;0,13;;0;;1;B3
-jorogumo;12;;8;4;7;50;;4,5,6,8;2;0;;1;B3
+jorogumo;12;;8;4;7;51;;4,5,6,8;2;0;;1;B3
 jotund troll;15;;9;6;5;41;48;5,6;1;0;;1;B3
 jubjub bird;15;;5;6;6;;;4;2,3;0;;1-2;B3
 jungle giant;10;;5;6;5;41;;4;3;0;;1-2;B3
@@ -1133,9 +1142,9 @@ kech;3;;8;4;7;;;4;3;0;;1-2;B3
 kirin;7;;1;5;6;1;;0,11;;0;;1-2;B3
 kodama;5;;5;3;9;12,26;;4;;0;;1-2,3-7|group,8-16|grove;B3
 kongamato;15;;5;6;3;;;4;3;0;;1-2;B3
-kuwa;4;;7;4;9;13,29,50;;0,13;;0;;1;B3
+kuwa;4;;7;4;9;13,29,51;;0,13;;0;;1;B3
 lammasu;8;;1;5;6;;;3;2;0;;1;B3
-leaf leshy;0;;5;3;10;50;40;4,5;;0;;1,2-16|grove;B3
+leaf leshy;0;;5;3;10;51;40;4,5;;0;;1,2-16|grove;B3
 legion archon;7;;1;4;9;10,11,12,17;;0,11,13;;14;;1-2,3-12|squad;B3
 lesser bandersnatch;13;;5;6;6;;;4;;0;bandersnatch;1;B3
 lukwata;11;;5;6;6;2;;9,12;3;0;;1-2,3-8|school;B3
@@ -1143,9 +1152,9 @@ lunar naga;6;;6;5;0;;45;0,13;;0;;1,2-4|nest;B3
 maftet;6;;5;4;7;;;3,6;2,3;0;;1-2,6-10|pride;B3
 magicbane bandersnatch;20;;5;7;6;;;4;;0;bandersnatch;1;B3
 magmin;3;;6;3;9;5,6,12;;0;;9;;1,2-8|gang;B3
-maharaja\rakshasa maharaja;20;;7;4;9;13,33,50;;0,13;;0;;1;B3
+maharaja\rakshasa maharaja;20;;7;4;9;13,33,51;;0,13;;0;;1;B3
 manananggal;7;;9;4;11;;;0,11,13;;0;;1,2-6|pack;B3
-marai;8;;7;4;9;13,33,50;;0,13;;0;;1-2,3-12|cult;B3
+marai;8;;7;4;9;13,33,51;;0,13;;0;;1-2,3-12|cult;B3
 mature adult forest dragon;15;;9;6;3;4;22;4;;0;forest dragon\adult forest dragon;1;B3
 mature adult sea dragon;13;;3;6;3;7;22;7;;0;sea dragon\adult sea dragon;1;B3
 mature adult sky dragon;14;;1;6;3;1;22;6;2,3;0;sky dragon\adult sky dragon;1;B3
@@ -1154,7 +1163,7 @@ mature adult underworld dragon;12;;7;5;3;6;22;13;;0;underworld dragon\adult unde
 megalania;7;;5;6;1;;27,44;4,8;3;0;;1-2,3-12|pack;B3
 mobogo;10;;9;6;6;2;;12;2;0;;1,2-4|gang;B3
 moon-beast;11;;9;5;0;;;0,13;;0;;1-2,3-5|cabal;B3
-moss troll;3;;9;5;5;41,50;48;4;1,2;0;;1,2-3|gang,4-8|troop;B3
+moss troll;3;;9;5;5;41,51;48;4;1,2;0;;1,2-3|gang,4-8|troop;B3
 myceloid;4;;8;4;10;;;13;;0;;1-2,3-24|band,25-250|colony;B3
 nephilim;8;;5;5;9;13;;5;3;0;;1-2,3-8|tribe;B3
 nixie;1;;5;3;4;2;;1;2;0;;2-4|gang,6-11|band,20-80|tribe;B3
@@ -1169,25 +1178,25 @@ old underworld dragon;14;;7;6;3;6;22;13;;0;underworld dragon\adult underworld dr
 ogre spider;5;;5;6;12;;;5,12;1,2;0;;1-2;B3
 otter;-2;;5;2;1;;31;1;;0;;1,2-16|family;B3
 pachycephalosaurus;4;;5;5;1;;27,28;8;2,3;0;;1-2;B3
-pairaka;7;;8;4;9;9,12,24,50;;0,11,13;;19;;1;B3
+pairaka;7;;8;4;9;9,12,24,51;;0,11,13;;19;;1;B3
 pale stranger;10;;8;4;11;;;0,13;;0;;1;B3
 penanggalen;5;;8;4;11;;;0,11,13;;0;;1;B3
 peri;14;;2;4;9;10,13;;0,11,13;;0,14,15,16;;1-2;B3
 phantom fungus;3;;5;4;10;;;13;;0;;1,2-5|grove;B3
 pig;-1;;5;3;1;;31;0;;0;;1-2,3-12|herd;B3
 plasma ooze;16;;5;7;8;;;0,11,13;;0;;1;B3
-popobala;15;;9;4;7;50;;2,4;3;0;;1;B3
-polar kamadan;6;;8;5;6;;;8;1;0;advanced kamadan;1-2,3-9|pack;B3
+popobala;15;;9;4;7;51;;2,4;3;0;;1;B3
+polar kamadan;6;;8;5;6;;;8;1;0;advanced [kamadan];1-2,3-9|pack;B3
 porcupine;-2;;5;2;1;;;4,8;2;0;;1-2,3-6|prickle;B3
 primal bandersnatch;19;;5;7;6;12;;4;;0,4;advanced [bandersnatch];1;B3
-pukwudgie;7;;8;3;7;50;;4,5,6;2;0;;1-2,3-10|cult;B3
+pukwudgie;7;;8;3;7;51;;4,5,6;2;0;;1-2,3-10|cult;B3
 raccoon;0;;5;2;1;;31;4;2;0;;1,2-4|gaze;B3
-raktavarna;2;;7;2;9;13,33,50;32;0,13;;0;;1-2,3-10|rack;B3
+raktavarna;2;;7;2;9;13,33,51;32;0,13;;0;;1-2,3-10|rack;B3
 ratfolk|-;-1;;5;3;5;;;3,14;3;0;;1-2,3-12|pack,13-100|colony;B3
 rift drake;9;;9;5;3;4;29;5,6;3;0;;1-2,3-12|rampage;B3
 river drake;3;;8;4;3;2,7;29;9;2;0;;1-2,3-12|rampage;B3
-rot grub swarm;7;;5;0;12;52;;0,13;;0;;1;B3
-royal naga;11;;4;6;0;50;45;0,13;;0;;1;B3
+rot grub swarm;7;;5;0;12;53;;0,13;;0;;1;B3
+royal naga;11;;4;6;0;51;45;0,13;;0;;1;B3
 rusalka;12;;8;4;4;2;;1;;0;;1-2,3-6|eddy;B3
 sabosan;5;;8;4;7;;;4,12;3;0;;1,2-6|hunting party,7-12|clan;B3
 sagari;0;;8;2;0;;;4;;0;;1-2,3-8|herd,9-16|harras;B3
@@ -1196,7 +1205,7 @@ sargassum fiend;9;;5;5;10;2;;7;;0;;1-2,3-8|bed;B3
 sasquatch;2;;5;4;5;;;4;1,2;0;;1-2,3-7|family;B3
 schir;4;;9;4;9;8,9,12,22;;0,13;;18;;1,2-8|pack;B3
 sea bonze;15;;8;7;11;2;;7;;0;;1;B3
-seaweed leshy;3;;5;3;10;2,50;40;2,7;;0;;1,2-16|patch;B3
+seaweed leshy;3;;5;3;10;2,51;40;2,7;;0;;1,2-16|patch;B3
 sepid;14;;8;5;9;9,12,24;;0,13;;19;;1;B3
 shadow mastiff;5;;8;4;9;9,12;;0,13;;0,1,18,19,20;;1-2,3-8|pack;B3
 shae;4;;5;4;9;12;;0,13;;1;;1-2,3-12|ascendance;B3
@@ -1212,7 +1221,7 @@ siyokoy;10;;5;4;0;2;;7;;0;;1-2,3-12|bed;B3
 skunk;-2;;5;2;1;;31;4;2;0;;1-2,3-5|surfeit;B3
 sleipnir;11;;5;5;6;;;6;1;0;;1-2,3-10|herd;B3
 slimy demodand;16;;9;4;9;8,9,12,21;;0,11,13;;18;;1;B3
-snake swarm;2;;5;2;1;52;;0;;0;;1,2-4|nest;B3
+snake swarm;2;;5;2;1;53;;0;;0;;1,2-4|nest;B3
 spider eater;5;;5;5;6;;;4;2;0;;1,2-12|brood;B3
 spinosaurus;11;;5;7;1;;27,28;4,12;3;0;;1-2,3-6|pack;B3
 spirit oni;2;;7;2;9;13,29;32;0,11,13;;0;;1-2,3-12|rack;B3
@@ -1220,10 +1229,10 @@ sprite;-1;;6;1;4;;32;4;2;0;;1-2,3-6|troop,7-14|band,15-40|tribe;B3
 stymphalidies|-;8;;5;5;6;;;2,8;3;0;;1-2,3-9|flight;B3
 suli;0;;5;4;9;13;;0;;0;;1-2,3-6|group;B3
 taiga linnorm;19;;9;8;3;;41;4;1;0;;1;B3
-tanuki;4;;6;4;7;50;;4,14;2;0;;1-2,3-8|gathering;B3
+tanuki;4;;6;4;7;51;;4,14;2;0;;1-2,3-8|gathering;B3
 taotieh;11;;5;5;2;;;0,13;;0;;1-2;B3
 tarry demodand;13;;9;4;9;8,9,12,21;;0,11,13;;18;;1-2,3-8|patrol;B3
-tataka;15;;7;5;9;13,33,50;;0,13;;0;;1-2,3-6|patrol;B3
+tataka;15;;7;5;9;13,33,51;;0,13;;0;;1-2,3-6|patrol;B3
 tatzlwyrm;2;;5;4;3;;;4;;0;;1,2-5|nest;B3
 tempest behemoth;22;;5;8;6;1,36;;11;;0;;1-2;B3
 terra-cotta archer;6;;5;4;2;;;0,13;;0;terra-cotta soldier;1-2,3-12|troop,13-100|army;B3
@@ -1248,7 +1257,7 @@ unfettered eidolon;8;;6;4;9;12;;0,11,13;;0;;1;B3
 upasunda;9;;7;4;9;9,11,12,18;;0,13;;20;;1-2,3-6|squad;B3
 valkyrie;12;;6;4;9;12;;0,13;;0;;1,2-8|ride;B3
 vanara;0;;1;4;5;;;4;;0;;1-2,3-6|party,7-100|community;B3
-venomous snake swarm;4;;5;2;1;52;;0;;0;;1,2-4|nest,5-7|knot;B3
+venomous snake swarm;4;;5;2;1;53;;0;;0;;1,2-4|nest,5-7|knot;B3
 very old forest dragon;18;;9;7;3;4;22;4;;0;forest dragon\ancient forest dragon;1;B3
 very old sea dragon;16;;3;7;3;7;22;7;;0;sea dragon\ancient sea dragon;1;B3
 very old sky dragon;17;;1;7;3;1;22;6;2,3;0;sky dragon\ancient sky dragon;1;B3
@@ -1261,12 +1270,12 @@ very young sovereign dragon;9;;5;4;3;;22;6;;0;sovereign dragon\young sovereign d
 very young underworld dragon;5;;7;3;3;6;22;13;;0;underworld dragon\young underworld dragon;1;B3
 vishkanya;0;;5;4;5;;;0;;0;;1-2,3-8|squad;B3
 vodyanoi;5;;6;4;7;2;;9,12;;0;;1-2,3-12|family;B3
-void yai|-;20;;7;6;9;13,29,41,50;;6;1,2;0;;1;B3
+void yai|-;20;;7;6;9;13,29,41,51;;6;1,2;0;;1;B3
 voonith;4;;6;3;6;2;;9,12;;0;;1-2,3-6|clutch;B3
 vulnudaemon;4;;8;3;9;9,12,20;;0,13;;19;;1-2,3-12|murder;B3
 vulture;0;;5;3;1;;;5,8;3;0;;1-2,3-24|flock;B3
 water naga;7;;5;5;0;2;45;1;2;0;;1-2,3-4|nest;B3
-water yai|-;18;;9;6;9;2,7,13,29,41,50;;1,2;;0;;1;B3
+water yai|-;18;;9;6;9;2,7,13,29,41,51;;1,2;;0;;1;B3
 wolf-in-sheep's-clothing\*Wolf-in-Sheep%u2019s-Clothing;8;;5;4;0;;;4;;0;;1;B3
 wyrm forest dragon;20;;9;7;3;4;22;4;;0;forest dragon\ancient forest dragon;1;B3
 wyrm forest dragon ravener;22;;11;7;3;4;;4;;0;wyrm forest dragon\ancient forest dragon;1;B3
@@ -1295,22 +1304,22 @@ yuki-onna;8;;7;4;11;3,45;;0;1;0;;1;B3
 zoog;1;;9;2;6;;32;4;;0;;1-2,3-14|gang;B3
 zuishin;10;;1;4;9;12,26;;0,11,13;;0;;1-2,3-8|warband;B3
 zuvembie;4;;8;4;11;;;0,13;;0;;1;B3
-an army of 2d10+2 [terra-cotta soldiers\terra-cotta soldier], 1d10+3 [terra-cotta archers\terra-cotta archer] and 1d10+3 [terra-cotta horsemen\terra-cotta horseme];7,9;;5;4,5;2;;;0,13;;0;;;B3
+an army of 2d10+2 [terra-cotta soldiers\terra-cotta soldier], 1d10+3 [terra-cotta archers\terra-cotta archer] and 1d10+3 [terra-cotta horsemen\terra-cotta horsemen];7,9;;5;4,5;2;;;0,13;;0;;;B3
 a band of 1d3+5 [cave giants\cave giant] plus 1d2 [monitor lizards\monitor lizard];6,6;;5,9;4,5;1,5;41;;13;;0;;;B3
-a band of 1 [fire yai] plus 1d4+4 [fire giants\fire giant];15,2;;7,8;5;5,9;6,13,29,41,50;;5,6;2,3;0;;;B3
+a band of 1 [fire yai] plus 1d4+4 [fire giants\fire giant];15,2;;7,8;5;5,9;6,13,29,41,51;;5,6;2,3;0;;;B3
 a colony of 1 [thriae queen], 3 [thriae seers\thriae seer], 1d10+10 [thriae soldiers\thriae soldier] and 3d10 [giant bees\giant bee];18,1;;4,5;4,6;7,12;;47;0;;0;;;B3
 a company of 1d6+8 [clockwork soldiers\clockwork soldier] plus 1d4 [clockwork servants\clockwork servant];6,6;;5;4;2;38;;0,13;;0;;;B3
 a family of 2 [disenchanters\disenchanter] and 1d2 young disenchanter calves;3,3;;5;5;6;;;1;3;0;disenchanter;;B3
-a gang of 1 [ice yai] plus 1d12+4 [frost giants\frost giant];14,3;;9;5;5,9;3,13,29,41,50;;6;1;0;;;B3
-a hunt of 1d2 [jackalweres\jackalwere] and 1d6+2 [jackals\jackal];2,3;;5,9;3,4;1,6;50;;3;3;0;;;B3
+a gang of 1 [ice yai] plus 1d12+4 [frost giants\frost giant];14,3;;9;5;5,9;3,13,29,41,51;;6;1;0;;;B3
+a hunt of 1d2 [jackalweres\jackalwere] and 1d6+2 [jackals\jackal];2,3;;5,9;3,4;1,6;51;;3;3;0;;;B3
 a hunting flock of 1d3 dread corbies and 1d6+4 [dire corbies\dire corby];2,8;;8;4;7;;;13;;0;dire corby;;B3
 a hunting party of 1d8+1 [jungle giants\jungle giant] plus 1d3 [girallons\girallon];10,5;;5;5,6;5,6;41;;4;3;0;;;B3
 a nest of 1d10+2 [goblin snakes\goblin snake] plus 1d6 [venomous snakes\venomous snake];1,7;;5,9;3,4;0,1;;;12;2,3;0;;;B3
 a pack of 2d8+2 [adlets\adlet] plus 1 adlet shaman;11,6;;6;4;5;3;;5,6,8;1;0;advanced [adlet];;B3
-a pack of 1d4+1 [jackalweres\jackalwere] plus 1d10+2 [jackals\jackal];2,5;;5,9;3,4;1,6;50;;3;3;0;;;B3
+a pack of 1d4+1 [jackalweres\jackalwere] plus 1d10+2 [jackals\jackal];2,5;;5,9;3,4;1,6;51;;3;3;0;;;B3
 a patrol of 1d3+2 [girtablilus\girtablilu] plus 1d3+1 [giant scorpions\giant scorpion];8,4;;5;5;7,12;;;3;3;0;;;B3
 a slaving party of 2 [slimy demodands\slimy demodand] and 1d4+1 [tarry demodands\tarry demodand];16,3;;9;4;9;8,9,12,21;;0,11,13;;18;;;B3
-a tribe of 1 [fire yai] plus 1d10+20 [fire giants\fire giant];15,5;;7,8;5;5,9;6,13,29,41,50;;5,6;2,3;0;;;B3
+a tribe of 1 [fire yai] plus 1d10+20 [fire giants\fire giant];15,5;;7,8;5;5,9;6,13,29,41,51;;5,6;2,3;0;;;B3
 a tribe of 3d10+3 [keches\kech] plus 2d3 [dire apes\dire ape (gigantopithecus)];3,9;;5,8;4,5;1,7;;;4;3;0;;;B3
 a troop of 1 [graveknight] plus 1d12+12 [skeletal champions\skeletal champion];11,2;;7,8;4;11;;;0;;0;;;B3
 a warband of 1 [shaggy demodand] plus 1d4+1 [tarry demodands\tarry demodand];16,2;;9;4;9;8,9,12,21;;0,11,13;;18;;;B3
@@ -1348,7 +1357,7 @@ bhole;17;;6;8;6;;;13;;0;;1;B4
 blindborn;1;;5;2;8;;;0,13;;0;boilborn;1,2-20|infestation;B4
 blood golem;6;;5;4;2;;36;0,13;;0;;1,2-4|gang;B4
 blood golem shield guardian;8;;5;4;2;;36;0,13;;0;blood golem;1-2;B4
-blood hag;8;;8;4;7;50;38;0;;0;;1,3|coven;B4
+blood hag;8;;8;4;7;51;38;0;;0;;1,3|coven;B4
 bodythief;14;;7;7;10;;;4;2,3;0;;1;B4
 boilborn;1;;5;2;8;;;0,13;;0;;1,2-20|infestation;B4
 Bokrug;27;10;6;5;6;2,8,12,42;;1;;0;;1u;B4
@@ -1399,6 +1408,7 @@ fleshdreg;1;;8;3;0;;;10;;0;;1-2,3-8|batch;B4
 flying polyp;14;;9;6;0;1;;0,11;;0;;1-2,3-10|storm;B4
 fomorian titan;22;8;9;8;9;8,9,12,47;18;0;;18;;1-2,3-6|war band;B4
 formian myrmarch|-s;10;;4;5;7;;34;0,13;2,3;0;;1,2-4|team;B4
+formian queen;17;;4;5;7;;34;0,13;2,3;0;;0;B4
 formian taskmaster;7;;4;4;7;;34;0,13;2,3;0;;1,2-6|embassy;B4
 formian warrior;3;;4;4;7;;34;0,13;2,3;0;;1-2,3-12|patrol;B4
 formian worker;0;;4;3;7;;34;0,13;2,3;0;;1;B4
@@ -1439,6 +1449,7 @@ grothlut;3;;9;4;0;;33;13;;0;;1,2-10|rout;B4
 guardian dragon;24;10;5;7;3;2,47;;0,1,11,13;;0;;1;B4
 guardian phantom armor;2;;8;4;11;;;0,13;;0;;1-2;B4
 halsora;7;;9;3;0;;33;13;;0;;1,2-6|gang;B4
+hamadryad;15;;3;4;4;;;4;2;0;;0;B4
 haniver;0;;5;2;4;2;37;2;;0;;1-2,4-12|swarm;B4
 harionago;11;;8;4;11;;;0;;0;;1;B4
 Hastur;29;10;9;4;0;8,9,42;;0;;0;;1u;B4
@@ -1448,7 +1459,7 @@ huldra;4;;6;4;4;;;4,6;1;0;;1-2,3-9|family;B4
 hungry flesh;3;;5;5;8;;;0,13;;0;;1,2-5|cluster;B4
 hyakume;15;;8;5;0;;;13;;0;;1,2-6|enclave;B4
 hypnalis;5;;5;4;9;12;;0,11,13,15;;3;;1-2,3-7|nest;B4
-ijiraq;9;;6;4;4;50;;4,8;1;0;;1;B4
+ijiraq;9;;6;4;4;51;;4,8;1;0;;1;B4
 immense tortoise;8;;5;8;1;;;2;3;0;;1;B4
 immortal ichor;17;;8;4;8;12;;10,13;;0;;1;B4
 incutilis;2;;7;2;0;2;;7;;0;;1-2;B4
@@ -1460,7 +1471,7 @@ isitoq;0;;8;1;11;;32;0,11,13;;0;;1,2-8|gang;B4
 jack-o'-lantern\*Jack-o'-Lantern;1;;8;4;10;;;4,5,8;2;0;;1,2-12|patch;B4
 jinmenju;11;;5;6;10;;;5,6;2;0;;1;B4
 juggernaut;11;;5;7;2;;;0,13;;0;;1;B4
-julunggali;21;8;5;8;6;2,12,47,50;;0,1;;0;;1;B4
+julunggali;21;8;5;8;6;2,12,47,51;;0,1;;0;;1;B4
 junk golem;4;;5;4;2;;36;0,13;;0;;1,2-6|gang;B4
 junk golem shield guardian;6;;5;4;2;;36;0,13;;0;junk golem;1-2;B4
 juvenile lunar dragon;10;;6;5;3;;24;15;;0;lunar dragon\young lunar dragon;1;B4
@@ -1474,7 +1485,7 @@ kapre;10;;6;6;10;;;4;2,3;0;;1;B4
 karkinoi;6;;9;5;7;2;;7;;0;;1,2-6|gang,3-18|tribe;B4
 kasatha;0;;4;4;5;;;3;3;0;;1,2-6|band,2-20|sect,20-60|tribe;B4
 killer seahorse;5;;5;6;1;2;;7;;0;;1-2,3-8|school;B4
-kitsune;0;;5;4;5;50;;4,5,6;2;0;;1-2,3-8|gang;B4
+kitsune;0;;5;4;5;51;;4,5,6;2;0;;1-2,3-8|gang;B4
 Korada;26;10;2;5;9;9,10,15;7;4,6;;15;;1u;B4
 Kostchtchie;26;10;9;6;9;3,8,9,12,22;4;0;1;18;;1u;B4
 lampad;5;;6;4;4;;;13;;0;;1;B4
@@ -1484,7 +1495,7 @@ leaf ray;1;;5;3;10;;;4;2,3;0;;1,2-20|rustle;B4
 leanan sidhe|-;9;3;6;4;4;47;;0;;0;;1;B4
 living topiary;4;;5;4;10;;;0;;0;;1,2-4|garden,5-7|boscage;B4
 living wall;4;;5;5;2;;;10,13;;0;;1,2-8|pack;B4
-locust swarm;2;;5;0;12;52;;3,8;2,3;0;;1-2,3-20|cloud,21-100|plague;B4
+locust swarm;2;;5;0;12;53;;3,8;2,3;0;;1-2,3-20|cloud,21-100|plague;B4
 lorelei;12;;8;5;0;2;;2;;0;;1;B4
 lunarma;6;;5;4;0;;;13;;0;;1-2,3-16|hive;B4
 lurker above;7;;5;6;0;;;13;;0;;1;B4
@@ -1546,7 +1557,7 @@ sayona;12;;9;4;11;;;0,13;;0;;1;B4
 scarlet spider;-2;;5;2;12;;31;0;;0;;1-2,3-8|colony;B4
 sea cat;4;;5;5;6;;;2;3;0;;1-2,3-15|pride;B4
 seaweed siren;13;;6;5;6;2;;2;;0;;1;B4
-selkie;5;;6;4;7;2,50;;7;1;0;;1-2,3-14|pack;B4
+selkie;5;;6;4;7;2,51;;7;1;0;;1-2,3-14|pack;B4
 seps;11;;5;6;6;;;3,4;2,3;0;;1,2-5|nest;B4
 shadow drake;2;;9;2;3;3;29,32;0,11,13;;0;;1-2,3-5|rampage;B4
 shard slag;8;;5;6;8;6;;13,17;;0;;1;B4
@@ -1560,7 +1571,7 @@ sloth;-3;;5;2;1;;31;4;3;0;;1-2;B4
 snallygaster;3;;9;4;0;;;4,6;2;0;;1-2;B4
 soulbound mannequin;7;;2,4,5,6,8;4;2;;;0,13;;0;;1-2,3-12|family;B4
 soulbound shell;12;;5;4;2;;;0,13;;0;;1;B4
-soulsliver;2;;8;4;9;12,50;;0;;22;;1,2-5|gang;B4
+soulsliver;2;;8;4;9;12,51;;0;;22;;1,2-5|gang;B4
 spawn of Yog-Sothoth;10;;9;5;0;12;;5;2;0;;1;B4
 spire drake;7;;7;5;3;;29;5;;0;;1-2,3-12|rampage;B4
 Spring-Heeled Jack;3;;9;3;4;;;0;;0;;1;B4
@@ -1569,7 +1580,7 @@ star-spawn of Cthulhu\*Star-Spawn of Cthulhu;20;;9;6;0;;;0,1,11,13,15;;0;;1-2,3-
 stone colossus;19;7;5;8;2;39,47;;0;;0;;1;B4
 styracosaurus;5;;5;5;1;;27,28;8;3;0;;1-2,3-16|herd;B4
 svartalfar;8;;7;4;4;12;;0,13;;1;;1-2,3-12|cabal,10-30|clan;B4
-swan maiden;6;;3;4;4;50;;9,12;2;0;;1-2,3-10|flock;B4
+swan maiden;6;;3;4;4;51;;9,12;2;0;;1-2,3-10|flock;B4
 taniniver;18;;8;6;3;;;0,13;;0;;1;B4
 tiberolith;10;;5;6;2;;;1,2;;0;;1-2,3-4|squad;B4
 tikbalang;9;;9;5;7;;;4;3;0;;1-2,3-5|gang;B4
@@ -1601,9 +1612,9 @@ wax golem;3;;5;4;2;;36;0,13;;0;;1,2-4|gang;B4
 wax golem shield guardian;5;;5;4;2;;36;0,13;;0;wax golem;1-2;B4
 wayang;0;;6;3;5;;;4;2;0;;1-2,3-24|tribe;B4
 weedwhip;2;;5;4;10;;;4;2,3;0;;1-2,3-6|patch;B4
-werebat\werebat (human form);3;;8;4;5;50;42;4,5;2;0;;1-2,3-5|gang;B4
-werecrocodile\werecrocodile (human form);3;;8;4;5;50;42;9,12;3;0;;1-2,3-12|colony;B4
-wereshark\wereshark (human form);3;;9;4;5;50;42;2,7;;0;;1-2,3-6|shiver;B4
+werebat\werebat (human form);3;;8;4;5;51;42;4,5;2;0;;1-2,3-5|gang;B4
+werecrocodile\werecrocodile (human form);3;;8;4;5;51;42;9,12;3;0;;1-2,3-12|colony;B4
+wereshark\wereshark (human form);3;;9;4;5;51;42;2,7;;0;;1-2,3-6|shiver;B4
 wickerman;13;;5;8;2;6;;0;;0;;1;B4
 wikkawak;4;;9;4;5;;;6;1;0;;1-2,3-6|gang;B4
 winter hag;7;;9;4;7;3;38;4,8;1;0;;1,3|coven;B4
@@ -1641,7 +1652,7 @@ an army of 1 [erlking] plus 4d6 [centaurs\centaur], 4d6 [satyrs\satyr] and 1d4+1
 a band of 1 [formian taskmaster] plus 2d8 [formian workers\formian worker] and 1d4+4 [formian warriors\formian warrior];7,3;;4;3,4;7;;34;0,13;2,3;0;;;B4
 a batch of 1 [trapper] plus 1d10+20 [executioner's hoods\executioner's hood];8,4;;5;2,6;0;;;13;;0;;;B4
 a bodyguard of 1d4 [sacristans\sacristan] plus 1 [ostiarius];10,3;;7;4;9;9,11,12,27;;0,13;;1;;;B4
-a conclave of 1d10 [ratlings\ratling] plus 2d6 [dire rats\dire rat] and 1d4 [rat swarms\rat swarm];2,7;;5,9;2,3;1,6;52;;14;;0;;;B4
+a conclave of 1d10 [ratlings\ratling] plus 2d6 [dire rats\dire rat] and 1d4 [rat swarms\rat swarm];2,7;;5,9;2,3;1,6;53;;14;;0;;;B4
 a court of 1 [hamadryad] plus 2d6 [centaurs\centaur], 2d6 [dryads\dryad], 2d4 [satyrs\satyr] and 1d2 [treants\treant];15,1;;2,3,5,6;4,5,6;4,7,10;;;4;2;0;;;B4
 a delegation of 1 [dark dancer], 1 [dark stalker] and 1d6+4 [dark creepers\dark creeper];4,5;;6;3,4;5;40;;13;;0;;;B4
 a den of 1d2 [pards\pard] and 1d4 young pard cubs;3,3;;6;3,4;6;;;4,8;2,3;0;pard;;B4
@@ -1651,7 +1662,7 @@ a family of 1d3+2 [river giants\river giant] plus 1d2 [tigers\tiger];6,5;;3,5,9;
 a gang of 1 [dark caller] plus 1d4+1 [dark stalkers\dark stalker];5,4;;6,9;4;5;40;;13;;0;;;B4
 a herd of 1d3 [emperor walruses\emperor walrus] and 2d8+4 [walruses\walrus];8,5;;5;5,7;1;;;7;1;0;;;B4
 a hive of 1 [formian queen] plus 1d20 &times 10 [formian myrmarchs\formian myrmarch], 3d20 &times 10 [formian taskmasters\formian taskmaster], 7d20 &times 10 [formian warriors\formian warrior] and 3d100 &times 10 [formian workers\formian worker];17,10;;4;3,4,5;7;;34;0,13;2,3;0;;;B4
-an infestation of 1d8+8 [grimples\grimple] plus 2d3 trained [dire rats\dire rat] and 1d4 [spider swarms\spider swarm];1,6;;5,6;1,2,3;1,4,12;52;37;14;;0;;;B4
+an infestation of 1d8+8 [grimples\grimple] plus 2d3 trained [dire rats\dire rat] and 1d4 [spider swarms\spider swarm];1,6;;5,6;1,2,3;1,4,12;53;37;14;;0;;;B4
 a nest of 2 [rukhs\rukh] and 1d4 [juvenile rukhs\juvenile rukh];10,2;;5;5,7;6;;;3,6;3;0;;;B4
 a nest of 1 [tyrant jelly] plus 1d12+7 [giant wasps\giant wasp];9,3;3;5;5;8,12;47;;13;;0;;;B4
 a pack of 1 death worg and 1d10+1 [death dogs\death dog];3,5;;8;5;6;;;3;3;0;death dog;;B4
@@ -1691,15 +1702,15 @@ ancient occult dragon;15;;2;6;3;;21;0,11,13;;0;;1;B5
 android;1;;5;4;5;;;0;;0;;1-2,3-12|platoon;B5
 anemos;18;;5;4;9;1,5,12;;0,11;;0,7;;1,4|council;B5
 animate hair;0;;8;2;8;;;14;;0;;1,2-6|clog;B5
-annihilator\annihilator robot;16;;5;7;2;49;;0;;0;;1;B5
-anunnaki;18;7;5;5;7;47,50;;0,11,13;;0;;1-2,6-10|cabal;B5
+annihilator\annihilator robot;16;;5;7;2;50;;0;;0;;1;B5
+anunnaki;18;7;5;5;7;47,51;;0,11,13;;0;;1-2,6-10|cabal;B5
 apallie;2;;5;3;8;;;0;2;0;;1-2,4-12|colony;B5
 apkallu;23;9;4;5;9;7,10,12,47;;0,1,11,13;;14,20,21;;1;B5
 apostate devil/deimavigga;17;;7;4;9;9,11,12,23;;0,11,13;;20;;1;B5
 astomoi;0;;5;4;5;;;0;;0;;1-2,6-20|convent;B5
 bagiennik;6;;6;3;4;2;;9;1;0;;1-2,3-8|gang;B5
 balisse;8;;2;4;9;10,12,16;;0,11,13;;14,15,16;;1;B5
-bat plague swarm;17;8;8;1;6;47,52;;0,13;;0;;1;B5
+bat plague swarm;17;8;8;1;6;47,53;;0,13;;0;;1;B5
 bisha ga tsuku;9;;8;4;9;2,13;;5,6;1;0;;1;B5
 blightspawn;5;;9;4;0;;;13;;0;;1;B5
 blood caterpillar;4;;5;5;12;;;4;2,3;0;;1-2,3-12|clutch;B5
@@ -1742,7 +1753,7 @@ devastator;22;8;9;7;2;12,47;;0,11,13;;18;;1-2,3-13|catastrophe;B5
 digmaul;3;;5;4;1;;27;4;2;0;;1-2;B5
 dire polar bear;8;;5;5;1;;27;2,8;1;0;;1-2;B5
 domovoi;3;;3;2;4;;;0;;0;;1,2-6|gathering;B5
-doppeldrek;5;;5;4;8;50;;0,13;;0;;1;B5
+doppeldrek;5;;5;4;8;51;;0,13;;0;;1;B5
 dragonkin;9;;4;5;3;;;6;;0;;1-2,3-6|patrol,7-14|wing;B5
 duppy;7;;9;4;11;45;;2;3;0;;1-2,3-8|pack;B5
 dvorovoi;4;;6;3;4;;;0;;0;;1,2-6|gathering;B5
@@ -1751,12 +1762,13 @@ earth veela;7;;5;4;9;4,12;50;6,13;;0,8;;1-2,3-6|troupe;B5
 earth wysp;2;;5;2;9;4,5;32,51;0,13;;8;;1,3-8|cloud;B5
 echeneis;1;;5;3;6;2;;1;2,3;0;;1-2,3-8|school;B5
 eclipse giant;19;;5;7;5;41;;8;2;0;;1-2;B5
+egregore;10;;5;5;0;;;0,13;;0;;0;B5
 elder aether elemental;11;;5;6;9;0,5,12;;0,11,15;;3;;1-2,3-8|gang;B5
 elder deep one;14;;9;7;7;2;;1;;0;;1-2;B5
 elder pyrausta;0;;6;2;3;6;;0;3;0;advanced giant [pyrausta];1-2;B5
 emotion ooze;6;;5;4;8;;;0,13;;0;;1-2,3-12|conflict;B5
 empyrean;20;;2;5;9;10,12,16;;0,11,13;;14,15,16;;1;B5
-encantado;8;;6;4;4;50;;9;3;0;;1;B5
+encantado;8;;6;4;4;51;;9;3;0;;1;B5
 esipil;2;;8;2;9;9,12,34;32;0,15;;3;;1,2-12|pack;B5
 ether drake;10;;5;5;3;0;29;0;;0;;1-2,3-6|rampage;B5
 etiainen;1;;6;4;9;13,45;;14;;0;;1;B5
@@ -1767,11 +1779,11 @@ firbolg;4;;5;5;5;41;;4,5;2;0;;1-2,3-8|gang,9-16|clan,10-40|enclave;B5
 fire veela;7;;5;4;9;6,12;50;0;3;0,9;;1-2,3-6|troupe;B5
 fire wysp;2;;5;2;9;5,6;32,51;0,11;;9;;1,3-8|cloud;B5
 flying fox;-1;;5;2;1;;31;4;3;0;;1-2,10-100|colony;B5
-flytrap leshy;4;;5;3;10;50;40;13;3;0;;1,4-8|cluster;B5
+flytrap leshy;4;;5;3;10;51;40;13;3;0;;1,4-8|cluster;B5
 frog father;5;;5;6;1;;27;9,12;3;0;;1-2;B5
 gancanagh;4;;3;4;9;8,10,12,19;;0,13;;16;;1;B5
 gate archon;17;;1;4;9;10,11,12,17;;0,11,13;;14;;1-2;B5
-gearsman\gearsman robot;4;;5;4;2;49;;0;;0;;1-2,3-12|squad;B5
+gearsman\gearsman robot;4;;5;4;2;50;;0;;0;;1-2,3-12|squad;B5
 gegenees|-;16;;6;6;7;41;;0;2,3;0;;1,2-5|hunting party;B5
 ghoran;1;;5;4;10;;;0;;0;;1-2,3-12|plot;B5
 giant assassin bug;3;;5;3;12;;27;0;3;0;;1,2-12|nest;B5
@@ -1783,7 +1795,7 @@ glaistig;21;10;6;4;4;4,47;;4,12;2;0;;1;B5
 goliath frog;3;;5;5;1;;27;9,12;3;0;;1-2,3-6|army;B5
 gravebound;4;;8;4;11;4;;0;;0;;1-2,3-6|tomb;B5
 gray|-s;4;;8;3;5;;;0;;0;;1-2,6-12|invasion;B5
-gray goo;14;;5;2;2;52;;0,13;;0;;1-2,3-12|storm;B5
+gray goo;14;;5;2;2;53;;0,13;;0;;1-2,3-12|storm;B5
 great assassin bug;5;;5;4;12;;;0;3;0;;1,2-12|nest;B5
 great wyrm astral dragon;21;;5;8;3;12;21;0,11,15;;2;astral dragon\ancient astral dragon;1;B5
 great wyrm dream dragon;22;;5;8;3;12;21;0,11,13;;5;dream dragon\ancient dream dragon;1;B5
@@ -1837,8 +1849,8 @@ lesser death;16;;8;4;11;12;;0,11,13,15;;;;1,2-4|murder;B5
 liminal sprite;2;;6;2;4;;32;14;;0;;1-2,3-6|court;B5
 lipika;18;;5;5;9;12,14;;0,11,13;;13,14,15,16,17,18,19,20,21;;1;B5
 living mirage;9;;5;7;8;;;3,7;;0;;1;B5
-locust plague swarm;15;8;8;0;6;47,52;;0,13;;0;;1;B5
-lotus leshy;5;;5;3;10;50;40;9;3;0;;1;B5
+locust plague swarm;15;8;8;0;6;47,53;;0,13;;0;;1;B5
+lotus leshy;5;;5;3;10;51;40;9;3;0;;1;B5
 lotus tree;20;;5;7;10;;;2,4;;0;;1;B5
 lusca;17;;9;7;6;2;;7;3;0;;1;B5
 maharishi manu;16;;1;4;9;10,11,12,28;;0,11;;0,12;;1;B5
@@ -1860,7 +1872,7 @@ moon giant;15;;4;6;5;41;;5,6;3;0;;1-2;B5
 muckdweller;-2;;5;3;6;;;13;2;0;;1-2,3-7|pack,8-17|swarm;B5
 mummy lord;10;;7;4;11;;;0,13;;0;;1;B5
 muse;16;;3;4;4;;;0,13;;0;;1,2-9|gathering;B5
-myrmidon\myrmidon robot;11;;5;5;2;49;;0,11;;0;;1,2-6|unit;B5
+myrmidon\myrmidon robot;11;;5;5;2;50;;0,11;;0;;1,2-6|unit;B5
 narwhal;3;;5;5;1;;27;7;1;0;;1-2,3-18|pod;B5
 nemhain;15;;8;4;11;45;;0,13;;0;;1;B5
 ningen;16;;5;8;7;;;7;1;0;;1-2;B5
@@ -1878,8 +1890,8 @@ othaos;5;;5;4;9;12,14;;0,11,13;;13,14,15,16,17,18,19,20,21;;1;B5
 ovinnik;2;;6;2;4;;;0;;0;;1;B5
 pakalchi;9;;8;4;9;9,12,34;;0,15;;3;;1-2,3-7|plot;B5
 papinijuwari;13;;8;6;5;41;;8;3;0;;1-2;B5
-penguin;-1;;5;3;1;;31;7;1;0;;1-2,10-100|colony;B5
-peuchen;10;;8;4;6;50;;0;2,3;0;;1;B5
+penguin;-1;;5;3;1;;31;7;1;0;;1-2,3-30|colony;B5
+peuchen;10;;8;4;6;51;;0;2,3;0;;1;B5
 pharaonic guardian;11;;7;5;11;45;;10;3;0;;1-2,3-6|patrol;B5
 plankta;17;;8;8;0;2,4;;7;;0;;1;B5
 plesiosaurus;2;;5;5;1;;27,28;1,13;2,3;0;;1-2,3-7|school;B5
@@ -1892,22 +1904,22 @@ pyrausta;-2;;6;1;3;6;32;0;3;0;;1-2,12-20|swarm;B5
 qolok;16;;8;5;9;9,12,34;;0,15;;3;;1,2-6|terror;B5
 raelis;10;;3;5;9;8,10,12,19;;0,11,13;;16;;1-2,3-6|band;B5
 ramidreju;0;;5;4;6;;;0;;0;;1;B5
-rat plague swarm;11;8;7;2;6;47,52;;0,13;;0;;1;B5
+rat plague swarm;11;8;7;2;6;47,53;;0,13;;0;;1;B5
 red panda;0;;5;2;1;;31;4,6;2;0;;1-2;B5
 reptial;4;;2;3;9;10,12,15;;0;;15;;1-2,3-10|mess;B5
-reptoid;0;;7;4;5;50;;0;;0;;1-2,3-8|cabal;B5
+reptoid;0;;7;4;5;51;;0;;0;;1-2,3-8|cabal;B5
 rhu-chalik;6;;9;3;0;;;0,11,13;;0;;1;B5
 riftcreeper;15;;9;7;8;12;;6;;18;;1;B5
 rishi manu;14;;1;4;9;10,11,12,28;;0,11;;0,12;;1,2-16|council;B5
 roiling oil;6;;5;5;8;;;13;;0;;1;B5
-rope dragon;5;;6;3;3;50;;14;;0;;1;B5
+rope dragon;5;;6;3;3;51;;14;;0;;1;B5
 sacred sha;6;;7;4;6;;;3;3;0;advanced fiendish [sha];1-2,3-8|pack;B5
 sand mantis shrimp;9;;5;4;12;;;3;3;0;giant mantis shrimp;1;B5
 sangoi;7;;8;3;4;;;0;1,2;0;;1-2;B5
 saxra;18;;8;6;11;1;;6;;0;;1;B5
-scarab swarm;3;;5;2;12;52;;3;3;0;;1-2,3-6|infestation;B5
+scarab swarm;3;;5;2;12;53;;3;3;0;;1-2,3-6|infestation;B5
 scitalis;12;;5;5;3;;;0;;0;;1-2,3-5|den;B5
-seal;-1;;5;3;1;;31;7;;0;;1-2,3-24|rookery;B5
+seal;-1;;5;3;1;;31;7;;0;;1-2,3-22|rookery;B5
 seilenos|seilenoi;19;;6;4;4;;;4;2;0;;1;B5
 seraptis;15;;9;4;9;8,9,12,22;;0,13;;18;;1;B5
 sha;4;;7;4;6;;;3;3;0;;1-2,3-8|pack;B5
@@ -1916,7 +1928,7 @@ shadow collector;8;;6;3;4;;;0;;0;;1-2,3-8|gang;B5
 shasalqu;3;;5;3;6;;;3;3;0;;1-2,3-6|cluster;B5
 shen;24;9;5;7;3;2,7,47;;1;;0;;1;B5
 silvercat;4;;5;4;1;;;4;2;0;advanced [digmaul];1-2;B5
-skinwalker;0;;5;4;5;50;;4,5,6;;0;;1-2,3-12|pack;B5
+skinwalker;0;;5;4;5;51;;4,5,6;;0;;1-2,3-12|pack;B5
 small aether elemental;1;;5;3;9;0,5,12;32;0,11,15;;3;;1-2,3-8|gang;B5
 solar pitri;22;8;1;5;9;10,11,12,28,47;;0,11;;12;;1;B5
 somalcygot;12;;8;5;0;;;0,13,15;;0;;1-2,3-6|clutch;B5
@@ -1930,8 +1942,8 @@ su;8;;9;4;6;;;4;;0;;1-2,3-6|troop;B5
 sun giant;16;;3,9;6;5;41;;3,6;3;0;;1-2;B5
 swamp mummy;4;;7;4;11;;;13;;0;;1,2-6|warden squad,7-12|guardian detail;B5
 syricta;12;;9;5;0;;;0;;0;;1-2,3-5|knot;B5
-termite swarm;6;;5;0;12;52;;4,8,13;3;0;;1-2,3-6|nest,7-12|colony;B5
-terraformer\terraformer robot;7;;5;5;2;49;;0;;0;;1-2,3-10|team;B5
+termite swarm;6;;5;0;12;53;;4,8,13;3;0;;1-2,3-6|nest,7-12|colony;B5
+terraformer\terraformer robot;7;;5;5;2;50;;0;;0;;1-2,3-10|team;B5
 therizinosaurus;10;;5;7;1;;27,28;8;3;0;;1-2,3-8|flock;B5
 thought eater;2;;5;2;0;12;;0,11,15;;3;;1,2-3|group;B5
 thriae constructor;14;;5;7;7;;47;0;;0;;1-2;B5
@@ -1946,7 +1958,7 @@ turul;19;;5;7;9;12;;0,11;;12;;1-2;B5
 twilight pitri;18;;1;5;9;10,11,12,28;;0,11;;12;;1;B5
 uintatherium;7;;5;5;1;;27,44;12;2;0;;1-2,3-12|herd;B5
 undigested;-2;;8;2;11;;;0,13;;0;;1,2-5|pack;B5
-undigested swarm;5;;8;2;11;52;;0,13;;0;;1,2-5|pack,6-12|infestation;B5
+undigested swarm;5;;8;2;11;53;;0,13;;0;;1,2-5|pack,6-12|infestation;B5
 unfettered phantom;4;;5;4;9;;;0,11,15;;0,3;;1-2,3-6|flock;B5
 uraeus;5;;1;4;6;;;9;3;0;;1-2,3-8|nest;B5
 urannag;8;;9;6;2;12;;12;;18;;1-2,3-5|tangle,6-12|menace;B5
@@ -1963,8 +1975,8 @@ very young etheric dragon;5;;5;3;3;12;21;0,11,15;;3;etheric dragon\young etheric
 very young nightmare dragon;4;;8;3;3;12;21;0,11,13;;5;nightmare dragon\young nightmare dragon;1;B5
 very young occult dragon;4;;2;3;3;;21;0,11,13;;0;occult dragon\young occult dragon;1;B5
 vescavor queen;9;;9;5;9;8,9,12;;0,11,13;;18;;1;B5
-vescavor swarm;5;;9;1;9;8,9,12,52;;0,11,13;;18;;1-2,3-12|plague,16-30|apocalypse;B5
-vilderavn;16;;8;4;4;50;;0;;0;;1-2,3-5|unkindness;B5
+vescavor swarm;5;;9;1;9;8,9,12,53;;0,11,13;;18;;1-2,3-12|plague,16-30|apocalypse;B5
+vilderavn;16;;8;4;4;51;;0;;0;;1-2,3-5|unkindness;B5
 vishap;19;;5;8;3;12;;0,1,11;;0;;1-2;B5
 vukodlak;3;;8;5;11;;;0;;0;;1-2,3-11|pack;B5
 wakandagi;14;;2;5;9;7,13;;9;2;0;;1;B5
@@ -2008,8 +2020,8 @@ a court of 1 [mummy lord] and 1d8+6 [mummies\mummy];10,3;;7;4;11;;;0,13;;0;;;B5
 a court of 1d3 [seilenoi\seilenos] plus 1d3 [muses\muse], 1d6+2 [centaurs\centaur], 1d4 [satyrs\satyr], 1d2 [leanan sidhe], 1d3+1 [maenads\maenad] and 1d3 [storm giants\storm giant];19,5;3;3,5,6,9;4,5,6;4,5,7;41,47;;4;2;0;;;B5
 a cult of 1d4+2 [akanames\akaname] plus 1 [otyugh];4,3;;5;3,5;0;;;13,14;;0;;;B5
 a cult of 1 [seraptis] plus 2d3 [succubi\succubus];15,0;;9;4;9;8,9,12,22;;0,13;;18;;;B5
-a hive of 2d8+2 [giant ant soldiers\giant ant] plus 1d100+10 giant ant workers, 1d6+2 [knight ants\knight ant], 2d4 giant ant drones and 1 giant ant queen;4,10;;5;3,4,5;12;;;0,13;;0;[giant ant];;B5
-a hive of 1 [vescavor queen] plus 2d10 [vescavor swarms\vescavor swarm];9,4;;9;1,5;9;8,9,12,52;;0,11,13;;18;;;B5
+a hive of 2d8+2 [giant ant soldiers\giant ant] plus 1d100+10 giant ant workers, 1d6+2 [knight ants\knight ant], 2d4 giant ant drones and 1 [giant ant queen];4,10;;5;3,4,5;12;;;0,13;;0;giant ant;;B5
+a hive of 1 [vescavor queen] plus 2d10 [vescavor swarms\vescavor swarm];9,4;;9;1,5;9;8,9,12,53;;0,11,13;;18;;;B5
 a hunting party of 1 [gristly demodand] plus 1d4+1 [tarry demodands\tarry demodand];17,2;;9;4;9;8,9,12,21;;0,11,13;;18;;;B5
 a nest of 1 [brain mole monarch] and 1d6+4 [brain moles\brain mole];5,3;;5;2;6;;;4,5,8;2;0;;;B5
 a scouting party of 2 [knight ants\knight ant] plus 1d4 [giant ants\giant ant];4,3;;5;4,5;12;;;0,13;;0;;;B5
@@ -2021,7 +2033,7 @@ adult havoc dragon;16;;3;6;3;8,10,12;25;0;;16;;1;B6
 adult infernal dragon;16;;7;6;3;9,10,12;25;0;;20;;1;B6
 adult paradise dragon;16;;1;6;3;10,11,12;25;0;;14;;1;B6
 adult rift dragon;16;;9;6;3;8,9,12;25;0;;18;;1;B6
-algea;11;;5;1;9;12,31,52;;0,11,13;;13;;1,2-6|spiral;B6
+algea;11;;5;1;9;12,31,53;;0,11,13;;13;;1,2-6|spiral;B6
 alp;10;;6;4;4;;;0;;0;;1-2,3-8|visitation;B6
 amargasaurus;6;;5;6;1;;27,28;4,8;3;0;;1-2,3-12|herd;B6
 ancient crypt dragon;21;;5;7;3;12;25;0;;13;;1;B6
@@ -2034,17 +2046,17 @@ ancient rift dragon ravener;23;;9;7;11;8,9,12;;0;;18;ancient rift dragon;1;B6
 Apollyon;29;10;8;4;9;9,12,20;0;0,11,13;;19;;1u;B6
 Arshea;29;10;2;4;9;10,12,16;7;0,11,13;;15;;1u;B6
 atuikakura;14;;5;7;6;2;;7;;0;;1;B6
-azuretzi;5;;6;3;9;8,12,30,50;;0,1,11;;17;;1-2,3-6|cackle;B6
+azuretzi;5;;6;3;9;8,12,30,51;;0,1,11;;17;;1-2,3-6|cackle;B6
 Baalzebul;30;10;7;5;9;9,11,12,23;1;0,11,13;;20;;1u;B6
 banelight;12;;8;4;4;;;0,11,13;;0;;1-2;B6
 Barbatos;26;10;7;4;9;9,11,12,23;1;0,13;;20;;1u;B6
 behimiron;13;;9;6;9;8,9,12,32;;0,13;;18;;1-2,3-6|cluster;B6
-Belial;28;10;7;4;9;9,11,12,23,50;1;0,11,13;;20;;1u;B6
+Belial;28;10;7;4;9;9,11,12,23,51;1;0,11,13;;20;;1u;B6
 Black Butterfly;28;10;3;5;9;8,10,12,19;7;0,11,13;;16;;1u;B6
 blood bramble;10;;5;5;10;;;4;2;0;;1-2,3-8|thicket;B6
 bloody bones|-;10;;8;4;11;;;0,13;;0;;1-2,3-10|gang;B6
 boggart;4;;9;3;4;;;4,12;2;0;;1,2-5|gang,6-12|band;B6
-boggle;8;;6;3;4;50;;0;;0;;1-2,3-6|gang;B6
+boggle;8;;6;3;4;51;;0;;0;;1-2,3-6|gang;B6
 bonethorn;12;;5;4;10;;;0,13;;0;;1,2-6|gang,7-12|pack;B6
 brimorak;5;;9;3;9;8,9,12,22;;0,13;;18;;1,2-6|band,7-16|platoon;B6
 brontotherium;8;;5;6;1;;27,44;4,8;2;0;;1-2,3-9|herd;B6
@@ -2069,9 +2081,9 @@ coral capuchin;1;;5;2;6;2;32;2,7;3;0;;1-2;B6
 crimson jellyfish;4;;5;4;12;2;;7;2;0;;1,2-4|pack,5-12|bloom;B6
 crypt flower;7;;5;5;10;;;0;;0;;1-2,3-8|copse;B6
 cryptguard;9;;5;4;2;;;0,13;;0;;1-2,3-6|gang;B6
-cultist troop;11;;9;4;5;53;;13;;0;;1,2-4|band;B6
+cultist troop;11;;9;4;5;54;;13;;0;;1,2-4|band;B6
 cutlass spider;6;;5;5;2;;;0,13;;0;;1;B6
-daitengu;10;;5;4;9;13,50;;6;;0;;1;B6
+daitengu;10;;5;4;9;13,51;;6;;0;;1;B6
 danthienne;5;;6;2;4;;;14;;0;;1,2-4|clique;B6
 deathsnatcher;18;;9;4;7;;;3,6;3;0;;1;B6
 deep walker;14;;7;7;0;2;;7;;0;;1-2,3-6|troop;B6
@@ -2079,13 +2091,13 @@ deinotherium;7;;5;6;1;;27,44;4,8;;0;;1-2;B6
 derro magister;5;;9;3;5;;;13;;0;;1;B6
 desert blight;13;;8;4;8;37;;3;;0;;1;B6
 devil monkey;6;;5;6;1;;27;5,8;2,3;0;;1-2,3-10|troop;B6
-Dispater;27;10;7;5;9;9,11,12,23,50;1;0,11,13;;20;;1u;B6
+Dispater;27;10;7;5;9;9,11,12,23,51;1;0,11,13;;20;;1u;B6
 dream naga;9;;5;5;0;12;45;0,11,13;;5;;1-2,3-6|nest;B6
 duneshaker;18;;5;8;12;;;3;3;0;;1;B6
 dunkleosteus;6;;5;6;1;2;27;7;;0;;1;B6
 elasmotherium;9;;5;6;1;;27,44;4,8;2;0;;1-2,3-9|herd;B6
 elder wyrm;24;;5;8;3;;;0;;0;;1;B6
-erodaemon;11;;8;4;9;9,12,20,50;;0,13;;19;;1-2,3-6|harem;B6
+erodaemon;11;;8;4;9;9,12,20,51;;0,13;;19;;1-2,3-6|harem;B6
 esobok;3;;5;4;9;12,31;;0,13;;13;;1,2-6|pack;B6
 euryale;20;;9;4;7;;;0,13;;0;;1-3;B6
 exiled shade;6;;9;4;11;45;;0,11,13;;0;;1-2,3-10|banishment;B6
@@ -2106,7 +2118,7 @@ giant whip spider;4;;5;4;12;;;5;2,3;0;medium [titanic whip spider];1-2;B6
 giganotosaurus;13;;5;8;1;;27,28;4,8;3;0;;1-2,3-6|pack;B6
 gluttongrass;1;;5;4;10;;;8;;0;;1-2,3-11|swath,12-100|field;B6
 goezspall;14;;5;5;6;;;0;;0;;1;B6
-goblin troop;5;;8;3;5;53;;4,8;2;0;;1,2-6|band;B6
+goblin troop;5;;8;3;5;54;;4,8;2;0;;1,2-6|band;B6
 gold golem;15;;5;5;2;;36;0,13;;0;;1,2-5|procession;B6
 gold golem shield guardian;17;;5;5;2;;36;0,13;;0;gold golem;1-2;B6
 gongorinan;11;;9;4;9;8,9,12,32;;13;;18;;1-2,3-10|cast;B6
@@ -2120,8 +2132,8 @@ great wyrm infernal dragon ravener;26;;7;8;11;9,10,12;;0;;20;great wyrm infernal
 great wyrm paradise dragon;24;;1;8;3;10,11,12;25;0;;14;paradise dragon\ancient paradise dragon;1;B6
 great wyrm rift dragon;24;;9;8;3;8,9,12;25;0;;18;rift dragon\ancient rift dragon;1;B6
 great wyrm rift dragon ravener;26;;9;8;11;8,9,12;;0;;18;great wyrm rift dragon\ancient rift dragon;1;B6
-green man;26;;5;4;10;50;;4;2;0;;1;B6
-hegessik;15;;6;5;9;8,12,30,50;;0,1,11;;17;;1,2-6|cloister;B6
+green man;26;;5;4;10;51;;4;2;0;;1;B6
+hegessik;15;;6;5;9;8,12,30,51;;0,1,11;;17;;1,2-6|cloister;B6
 herecite;9;;7;4;11;;;0,13;;0;;1,2-5|cabal;B6
 hookfang worm;7;;5;6;12;2;;7;;0;;1-2,3-8|shoal;B6
 horla;8;;9;3;0;12;;0,11,15;;3;;1-2,3-10|invasion;B6
@@ -2129,7 +2141,7 @@ hupia;6;;8;4;11;;;0;;0;;1-2,3-12|gathering;B6
 hydraggon;3;;9;4;9;2,8,9,12,32;;1;;18;;1-2,3-10|shoal;B6
 ichkoh;7;;8;4;9;9,12,34;;0,11,15;;3;;1-2,3-12|clot;B6
 Isph-Aun-Vuln;25;10;9;4;9;8,9,12,32,45;15;0,11,13;;18;;1u;B6
-izfiitar;20;;6;4;9;8,12,30,50;;0,1,11;;17;;1,2-3|chorus;B6
+izfiitar;20;;6;4;9;8,12,30,51;;0,1,11;;17;;1,2-3|chorus;B6
 jungle whip spider;1;;5;3;12;;;5;2,3;0;small [titanic whip spider];1-2;B6
 juvenile crypt dragon;13;;5;5;3;12;25;0;;13;crypt dragon\young crypt dragon;1;B6
 juvenile havoc dragon;13;;3;5;3;8,10,12;25;0;;16;havoc dragon\young havoc dragon;1;B6
@@ -2154,7 +2166,7 @@ mature adult paradise dragon;17;;1;6;3;10,11,12;25;0;;14;paradise dragon\adult p
 mature adult rift dragon;17;;9;6;3;8,9,12;25;0;;18;rift dragon\adult rift dragon;1;B6
 memitim;15;;5;4;9;12,31;;0,11,13;;13;;1-2,3-7|dirge;B6
 Mephistopheles;30;10;7;5;9;9,11,12,23;1;0,11,13;;20;;1u;B6
-mezlan;14;;5;4;8;50;;0,13;;0;;1;B6
+mezlan;14;;5;4;8;51;;0,13;;0;;1;B6
 mire nettle;2;;5;3;10;;;12;2;0;;1,2-6|thicket,7-12|grove;B6
 mockingfey;1;;6;2;4;;32;4;;0;;1-2,3-20|jape;B6
 mokele-mbembe;9;;5;6;1;;27;9;3;0;;1-2,3-6|pack;B6
@@ -2167,7 +2179,7 @@ mosslord;18;;7;5;10;;;4;2;0;;1;B6
 muhuru;10;;5;5;6;;;4;3;0;;1-2,3-8|pack;B6
 munavri;1;;3;4;5;;;13;;0;;1-2,3-7|squad,10-40|crew;B6
 naiad;0;;2;4;4;7;;9;;0;;1-2,3-10|current;B6
-nekomata;6;;8;4;6;50;;0;;0;;1-2,3-8|pride;B6
+nekomata;6;;8;4;6;51;;0;;0;;1-2,3-8|pride;B6
 Oaur-Ooung;23;10;9;8;9;2,8,9,12,32;15;0,1,11,13;;18;;1u;B6
 obcisidaemon;19;;8;7;9;9,12,20;;0,11,13;;19;;1-2,3-6|holocaust;B6
 oblivion;20;;8;8;8;;;0,11,13;;11;;1;B6
@@ -2182,13 +2194,13 @@ old rift dragon;19;;9;7;3;8,9,12;25;0;;18;rift dragon\adult rift dragon;1;B6
 olethros;17;;5;4;9;12,31;;0,11,13;;13;;1-2;B6
 omnipath;18;;7;7;0;2;;1;;0;;1;B6
 oolioddroo;13;;9;4;9;8,9,12,22;;0,11,13;;18;;1-2,3-6|cult;B6
-oshageros;13;;6;4;9;8,12,30,50;;0,1,11;;17;;1-2,3-8|school;B6
-ourdivar;4;;6;5;9;8,12,30,50;;0,1,11;;17;;1-2,3-5|breach;B6
+oshageros;13;;6;4;9;8,12,30,51;;0,1,11;;17;;1-2,3-8|school;B6
+ourdivar;4;;6;5;9;8,12,30,51;;0,1,11;;17;;1-2,3-5|breach;B6
 ouroboros;21;;5;8;6;12;;0,11,15;;2;;1,2-4|knot;B6
-outlaw troop;7;;6;4;5;53;;0;;0;;1,2-4|band;B6
-pelagastr;8;;6;4;9;8,12,30,45,50;;0,1,11;;17;;1-2,3-6|convocation;B6
+outlaw troop;7;;6;4;5;54;;0;;0;;1,2-4|band;B6
+pelagastr;8;;6;4;9;8,12,30,45,51;;0,1,11;;17;;1-2,3-6|convocation;B6
 phasmadaemon;17;;8;5;9;9,12,20;;0,11,13;;19;;1-2,3-4|cabal;B6
-piranha swarm;3;;5;2;1;2,52;;9;3;0;;1,2-5|shoal,6-10|school;B6
+piranha swarm;3;;5;2;1;2,53;;9;3;0;;1,2-5|shoal,6-10|school;B6
 plague giant;14;;8;6;5;41;;0;;0;;1-2;B6
 psoglav;13;;9;4;7;;;13;;0;;1-2,3-6|pack;B6
 psychic stalker;7;;8;4;11;45;;0,13;;0;;1;B6
@@ -2196,11 +2208,11 @@ quetzalcoatlus;7;;5;6;1;;27,28;2,8,12;3;0;;1-2,3-6|flock;B6
 quintessence golem;20;;5;6;2;12;36;0,13;;0;;1;B6
 quintessence golem shield guardian;22;;5;6;2;12;36;0,13;;0;quintessence golem;1;B6
 Ragathiel;26;10;1;6;9;10,11,12,16;7;0,11,13;;14;;1u;B6
-raven swarm;3;;5;2;1;52;;0;2;0;;1,2-6|unkindness;B6
+raven swarm;3;;5;2;1;53;;0;2;0;;1,2-6|unkindness;B6
 rawhead;14;;8;4;7;;;0;;0;;1;B6
 razormouth;11;;5;6;12;;;6;2;0;;1-2,3-6|colony;B6
 Rhan-Tegoth;28;10;9;5;0;2,8,9,42;;0,1,13;;0;;1u;B6
-rougarou;0;;4;4;5;50;;0;;0;;1-2,3-12|pack;B6
+rougarou;0;;4;4;5;51;;0;;0;;1-2,3-12|pack;B6
 saber whip spider;7;;5;5;12;;;5;2,3;0;large [titanic whip spider];1-2;B6
 sangudaemon;9;;8;4;9;9,12,20;;0,11,13;;19;;1,2-5|cluster,6-10|hunt;B6
 saurian;16;;5;6;7;;;6;3;0;;1-2;B6
@@ -2241,10 +2253,10 @@ tundra blight;16;;8;4;8;3,37;;8,16;1;0;;1;B6
 uinuja;15;;3;5;9;8,10,12,19;;0,11;;16;;1-2,3-12|collective;B6
 unrisen;5;;8;4;11;;;0,13;;0;;1-2,3-14|blasphemy;B6
 urhag;3;;8;4;0;;;6;1;0;;1-2,3-10|coven;B6
-utukku;8;;9;4;9;8,9,12,32,50;;0,13;;18;;1;B6
+utukku;8;;9;4;9;8,9,12,32,51;;0,13;;18;;1;B6
 Varklops;30;;9;8;6;6,46;;6;3;0;;1u;B6
 vavakia;18;;9;6;9;8,9,12,22;;0,11,13;;18;;1-2;B6
-veiled master;14;;7;5;0;2,50;;1;;0;;1;B6
+veiled master;14;;7;5;0;2,51;;1;;0;;1;B6
 venedaemon;5;;8;4;9;9,12,20;;0,11,13;;19;;1-2;B6
 veranallia;20;;3;5;9;8,10,12,19;;0;;16;;1-2,3-6|grove;B6
 vermlek;3;;9;4;9;8,9,12,22;;0,13;;0,18;;1,2-10|nest;B6
@@ -2263,18 +2275,18 @@ viduus;4;;5;4;9;12,31;;0,13;;13;;1-2,3-12|library;B6
 viridium golem;18;;5;6;2;;36;0,13;;0;;1,2-4|plague;B6
 viridium golem shield guardian;20;;5;6;2;;36;0,13;;0;viridium golem;1-2;B6
 Vorgozen;29;;6;8;8;7,46;;12;3;0;;1u;B6
-vrykolakas;10;;8;4;11;50;;0,13;;0;;1;B6
+vrykolakas;10;;8;4;11;51;;0,13;;0;;1;B6
 warmonger;19;;5;6;2;;;0,13;;0;;1;B6
-weremantis\weremantis (human form);4;;7;4;5;50;30;0;;0;;1-2,3-10|gathering;B6
-werespider\werespider (human form);2;;8;4;5;50;30;0,13;;0;;1-2,3-10|colony;B6
-werewasp\werewasp (human form);5;;6;4;5;50;30;0;;0;;1-2,3-12|cult;B6
+weremantis\weremantis (human form);4;;7;4;5;51;30;0;;0;;1-2,3-10|gathering;B6
+werespider\werespider (human form);2;;8;4;5;51;30;0,13;;0;;1-2,3-10|colony;B6
+werewasp\werewasp (human form);5;;6;4;5;51;30;0;;0;;1-2,3-12|cult;B6
 whaler jellyfish;17;;5;8;12;2;;7;;0;;1,2-4|pack,5-8|bloom;B6
 whisperer;20;;8;5;4;;;2,3,4,5,6,8,10,12,16;;0;;1;B6
-wild hunt archer;13;;6;4;4;54;;0;;0;;1,2-6|squad;B6
-wild hunt horse;11;;6;5;4;54;;0;;0;;1,2-10|herd;B6
-wild hunt hound;10;;6;4;4;54;;0;;0;;1,2-10|pack;B6
-wild hunt monarch;19;;6;4;4;54;;0;;0;;1;B6
-wild hunt scout;15;;6;4;4;54;;0;;0;;1,2-6|invasion;B6
+wild hunt archer;13;;6;4;4;55;;0;;0;;1,2-6|squad;B6
+wild hunt horse;11;;6;5;4;55;;0;;0;;1,2-10|herd;B6
+wild hunt hound;10;;6;4;4;55;;0;;0;;1,2-10|pack;B6
+wild hunt monarch;19;;6;4;4;55;;0;;0;;1;B6
+wild hunt scout;15;;6;4;4;55;;0;;0;;1,2-6|invasion;B6
 wyrm crypt dragon;22;;5;7;3;12;25;0;;13;crypt dragon\ancient crypt dragon;1;B6
 wyrm havoc dragon;22;;3;7;3;8,10,12;25;0;;16;havoc dragon\ancient havoc dragon;1;B6
 wyrm infernal dragon;22;;7;7;3;9,10,12;25;0;;20;infernal dragon\ancient infernal dragon;1;B6
@@ -2292,7 +2304,7 @@ yaddithian;8;;5;4;0;;;0;;0;;1-2,3-18|conclave;B6
 yaenit;6;;9;4;9;8,9,12,22;;0,13;;18;;1,2-5|pack,7-12|clan;B6
 yamah;5;;3;4;9;8,10,12,19;;0,11;;16;;1-2,3-10|crusade;B6
 Yarthoon;25;;6;8;6;1,46;;0,15;1;0;;1u;B6
-Yig;27;10;6;5;7;8,42,50;;0,11,13;;0;;1u;B6
+Yig;27;10;6;5;7;8,42,51;;0,11,13;;0;;1u;B6
 young adult crypt dragon;14;;5;6;3;12;25;0;;13;crypt dragon\adult crypt dragon;1;B6
 young adult havoc dragon;14;;3;6;3;8,10,12;25;0;;16;havoc dragon\adult havoc dragon;1;B6
 young adult infernal dragon;14;;7;6;3;9,10,12;25;0;;20;infernal dragon\adult infernal dragon;1;B6
@@ -2314,15 +2326,15 @@ a cult of 1 [euryale] plus 2d8+2 [medusas\medusa];20,0;;7,9;4;7;;;13;;0;;;B6
 a cult of 1 [lilitu] and 1d6+6 [succubi\succubus];17,1;;9;4;9;8,9,12,22;;0,11,13;;18;;;B6
 a family of 2 [deinotheriums\deinotherium] and 1 young deinotherium;7,3;;5;5,6;1;;44;4,8;;0;;;B6
 a hunting party of 1 [vanth] plus 1d8+2 [esoboks\esobok];7,3;;5;4;9;12,31;;0,13;;13;;;B6
-a ride of 1d4 [wild hunt archers\wild hunt archer] mounted on [wild hunt horses\wild hunt horse];13,4;;6;4,5;4;54;;0;;0;;;B6
-a shoal of 1 [veiled master] and 2d4 [aboleths\aboleth];14,1;;7;5,6;0;2,50;;1;;0;;;B6
+a ride of 1d4 [wild hunt archers\wild hunt archer] mounted on [wild hunt horses\wild hunt horse];13,4;;6;4,5;4;55;;0;;0;;;B6
+a shoal of 1 [veiled master] and 2d4 [aboleths\aboleth];14,1;;7;5,6;0;2,51;;1;;0;;;B6
 a squad of 1 [derro magister] plus 1d4+4 [derros\derro];5,4;;9;3;5;;;13;;0;;;B6
 a terror of 1 [rawhead] plus 1d4+2 [bloody bones];14,3;;8;4;7,11;;;0;;0;;;B6
 a thread of 3 [olethroses\olethros] plus 1d6+2 [morrignas\morrigna];17,4;;5;4;9;12,31;;0,13;;13;;;B6
 a tragedy of 1d4+2 [lovelorns\lovelorn] plus 2d6 [zombies\zombie];4,5;;8,9;2,4;11;;;0,13;;0;;;B6
 a trapper gang of 3 [temerdaemons\temerdaemon] and 1d6+10 [cacodaemons\cacodaemon];14,3;;8;2,5;9;9,12,20;;0,13;;19;;;B6
 a warband of 1 [vavakia] plus 1d3+1 [hezrous\hezrou] and 2d4 [vrocks\vrock];18,1;;9;5,6;9;2,8,9,12,22;;0,13;;18;;;B6
-a wild hunt of 1 [wild hunt monarch], 1 [wild hunt scout], 3 [wild hunt archers\wild hunt archer], 3 [wild hunt horses\wild hunt horse] and 4 [wild hunt hounds\wild hunt hound];19,2;;6;4,5,6;4;54;;0;;0;;;B6
+a wild hunt of 1 [wild hunt monarch], 1 [wild hunt scout], 3 [wild hunt archers\wild hunt archer], 3 [wild hunt horses\wild hunt horse] and 4 [wild hunt hounds\wild hunt hound];19,2;;6;4,5,6;4;55;;0;;0;;;B6
 a witchlight of 1d8+2 [banelights\banelight] plus 1d3+3 [will-o'-wisps\*Will-o%u2019-Wisp];12,6;;8,9;3,4;0,4;1;;12;;0;;;B6
 a witchlight of 1d8+2 [banelights\banelight] plus 1d3+3 [lurkers in light\lurker in light];12,6;;8;3,4;4;12;;0,11;;0;;;B6
 the four [apocalypse horses\apocalypse horse];25,4;;8;5;9;9,12;;0;;19;;1u;B6
@@ -2355,7 +2367,7 @@ mythic fire giant\fire giant;12;5;7;5;5;6,41,47;;6;3;0;;1,2-5|gang;MA
 mythic flesh golem\flesh golem;9;3;5;5;2;47;36;0,13;;0;;1,2-4|gang;MA
 mythic gargoyle\gargoyle;5;2;9;4;7;4,47;;10,11,13,14;;0;;1-2,3-12|wing;MA
 mythic great cyclops\great cyclops;15;6;9;6;5;41,47;;0;2,3;0;;1,2-5|colony,6-14|tribe;MA
-mythic greater barghest\greater barghest;8;2;7;5;9;9,11,12,47,50;;0;;0;;1;MA
+mythic greater barghest\greater barghest;8;2;7;5;9;9,11,12,47,51;;0;;0;;1;MA
 mythic griffon\griffon;5;2;5;5;6;47;;5;2;0;;1-2,6-10|pride;MA
 mythic hell hound\hell hound;4;1;7;4;9;6,9,11,12,47;;0;;20;;1-2,3-12|pack;MA
 mythic hill giant\hill giant;9;3;9;5;5;41,47;;5;2;0;;1,2-5|gang,6-8|band;MA
@@ -2365,7 +2377,7 @@ mythic ice troll;5;2;9;5;5;41,47;48;6,13;1;0;mythic troll\troll;1-2,3-6|gang;MA
 mythic jotund troll;18;7;9;6;5;41,47;48;5,6;1;0;mythic troll\troll;1;MA
 mythic juvenile white dragon\juvenile white dragon;9;3;9;4;3;3,47;20;6;1;0;;1;MA
 mythic kapoacinth;5;2;9;4;7;7,47;;10,11,13,14;;0;mythic gargoyle\gargoyle;1-2,3-12|wing;MA
-mythic lamia\lamia;7;3;9;5;7;47,50;;3;2;0;;1-2,3-12|cult;MA
+mythic lamia\lamia;7;3;9;5;7;47,51;;3;2;0;;1-2,3-12|cult;MA
 mythic lich\lich;17;7;7;4;11;47;;0,13;;0;;1;MA
 mythic manticore\manticore;6;2;7;5;6;47;;5,12;3;0;;1-2,3-6|pride;MA
 mythic marilith\marilith;21;8;9;5;9;8,9,12,22,47;;0,13;;18;;1-2;MA
@@ -2373,14 +2385,14 @@ mythic mature adult black dragon\mature adult black dragon;15;6;9;5;3;7,47;20;12
 mythic mature adult blue dragon\mature adult blue dragon;17;7;7;6;3;4,47;20;3;3;0;;1;MA
 mythic medusa\medusa;9;3;7;4;7;47;;12,13;2;0;;1;MA
 mythic minotaur\minotaur;6;2;9;5;7;47;;10,13;2;0;;1-2,3-4|gang;MA
-mythic moss troll;4;1;9;5;5;41,47,50;48;4;1,2;0;mythic troll\troll;1,2-3|gang,4-8|troop;MA
+mythic moss troll;4;1;9;5;5;41,47,51;48;4;1,2;0;mythic troll\troll;1,2-3|gang,4-8|troop;MA
 mythic mummy\mummy;7;3;7;4;11;47;;0,13;;0;;1,2-6|warden squad,7-12|guardian detail;MA
 mythic nalfeshnee\nalfeshnee;17;7;9;6;9;8,9,12,22,47;;0,11,13;;18;;1;MA
 mythic nessian warhound\nessian warhound;11;4;7;5;9;6,9,11,12,47;;0;;20;;1-2,3-6|pack;MA
 mythic ogre\ogre;4;1;9;5;5;41,47;;5;1,2;0;;1-2,3-4|gang,5-16|family;MA
 mythic owlbear\owlbear;5;2;5;5;6;47;;4;2;0;;1-2,3-8|pack;MA
 mythic phoenix\phoenix;18;7;2;7;6;6,47;;3,5;3;0;;1;MA
-mythic rakshasa\rakshasa;12;5;7;4;9;13,47,50;;0;;0;;1-2,3-12|cult;MA
+mythic rakshasa\rakshasa;12;5;7;4;9;13,47,51;;0;;0;;1-2,3-12|cult;MA
 mythic rock troll;7;3;9;5;5;4,41,47;48;13;;0;mythic troll\troll;1,2-5|gang;MA
 mythic scrag;6;2;9;5;5;2,41,47;48;1;;0;mythic troll\troll;1,2-4|gang;MA
 mythic skeleton\skeleton;1;1;8;4;11;47;;0,13;;0;;1-100;MA
@@ -2425,22 +2437,22 @@ a stampede of 1d4+4 [steam hogs\steam hog] plus 1d6+2 [fire giants\fire giant];1
 a tribe of 1 [lizard scion] with 4d12+10 [lizardfolk];5,6;;5;4,5;5;;;12;2;0;;;MC
 
 #Horror adventures (8.2016)
-hive larva swarm;5;;5;0;0;44,52;;0,13;;0;;1;HA
+hive larva swarm;5;;5;0;0;44,53;;0,13;;0;;1;HA
 hive queen;10;;8;6;0;44;;0,13;;0;;1;HA
 hive warrior;5;;8;4;0;44;;0,13;;0;;1;HA
 hive worker;5;;8;4;0;44;;0,13;;0;hive warrior;1;HA
-a hive of 1 [hive queen] plus 1d20 [hive larva swarms\hive larva swarm], 3d12 hive workers and 1d12 [hive warriors\hive warrior];10,6;;5,8;0,4,6;0;44,52;;0,13;;0;hive warrior;;HA
+a hive of 1 [hive queen] plus 1d20 [hive larva swarms\hive larva swarm], 3d12 hive workers and 1d12 [hive warriors\hive warrior];10,6;;5,8;0,4,6;0;44,53;;0,13;;0;hive warrior;;HA
 
 #Book of the damned (9.2017)
 bushyasta;6;;8;4;9;9,12,24;;0,13;;19;;1-2,3-8|gathering;BD
 deinochos;5;;9;3;9;2,8,9,12,32;;0,1,13;;18;;1-2,3-8|brood;BD
 executioner devil/munagola;11;;7;4;9;9,11,12,23;;0,11,13;;20;;1-2,3-8|squadron;BD
 ghalzarokh;15;;9;5;9;8,9,12,22;;0,11,13;;18;;1-3;BD
-najikai;8;;7;5;9;13,29,50;;4,6;3;0;;1-2,3-8|band;BD
+najikai;8;;7;5;9;13,29,51;;4,6;3;0;;1-2,3-8|band;BD
 nikaramsa;14;;7;5;9;9,11,12,18;;0,11,13;;20;;1,2-5|perversion;BD
 nucol;4;;8;4;9;9,12,34;;0,11,15;;3;;1-2,3-12|sounder;BD
 oitos;11;;7;4;9;9,11,12,27;;0,13;;1;;1-2;BD
-orsatka;13;;7;4;9;13,33,50;;0;;0;;1;BD
+orsatka;13;;7;4;9;13,33,51;;0;;0;;1;BD
 sepsidaemon;7;;8;4;9;9,12,20;;0,13;;19;;1-2,3-8|infection;BD
 squamous demodand;20;;9;7;9;8,9,12,21;;0,11,13;;18;;1;BD
 Voice of the Damned\*Voice of the Damned;25;;8;5;9;9,13;;0;;22;;1u;BD
@@ -2451,6 +2463,7 @@ a delegation of 1 [oitos] plus 1d6 [kyton evangelists\kyton];11,1;;7;4;9;9,11,12
 arctic fox;-2;;5;2;1;;31;0;1;0;fox;1-2,3-12|skulk;UW
 arctic hare;-3;;5;2;1;;31;4,8;1;0;;1-2,3-16|down;UW
 arctic tern;-3;;5;2;1;;31;2;1;0;;1-2,3-20|flock;UW
+armadillo;-2;;5;2;1;;31;8;2,3;0;;1;UW
 cockroach;-4;;5;1;12;;31;0,13;;0;;1-2,3-60|swarm;UW
 creeper ivy;-2;;5;2;10;;31;4,14;2;0;;1-2,3-10|tangle;UW
 dwarf caiman;-2;;5;3;1;;31;9,12;3;0;;1-2,3-12|bask;UW
@@ -2461,18 +2474,27 @@ flowering lettuce;-3;;5;1;10;;31;5;2,3;0;;1-2,3-5|bloom;UW
 giant isopod;-4;;5;2;12;2;31;7;;0;;1-2,3-20|scuttle;UW
 giant tardigrade;-4;;5;1;12;2;31;0,13;;0;;1-2,3-20|colony;UW
 horned lizard;-3;;5;1;1;;31;3;3;0;;1-2,3-12|flock;UW
+ioun wyrd;-1;;5;2;2;;31;0;;0;;1;UW
 jerboa;-3;;5;1;1;;31;3;3;0;;1-2,3-8|burrow;UW
+kakapo;-4;;5;2;1;;31;4;3;0;;1-2,3-4|family;UW
+koala;-2;;5;3;1;;31;4;2,3;0;;1-2,3-5|group;UW
 lamprey|-s;-1;;5;2;1;2;31;7;2;0;;1-2,3-12|school;UW
 lemming;-4;;5;1;1;;31;8;1;0;;1-2,3-30|slice;UW
 margay;-2;;5;2;1;;31;4;3;0;;1-2;UW
 marine iguana;-2;;5;3;1;;31;2;3;0;dwarf caiman;1-2,3-12|bask;UW
 meerkat;-2;;5;2;1;;31;8;3;0;;1-2,3-16|mob,17-30|clan;UW
+mole;-4;;5;1;1;;31;0;;0;;1-2,3-16|labor;UW
 mongoose;0;;5;2;1;;31;5;2;0;weasel;1;UW
 osprey;-1;;5;2;1;;31;2;2;0;hawk;1-2;UW
 parrot;-3;;5;2;1;;31;4;2,3;0;raven;1-2,3-12|flock;UW
 peafowl;-2;;5;3;1;;31;4;2,3;0;;1-2,3-10|muster;UW
+petrifern;-3;;5;1;10;;31;4;;0;;1-2,3-12|bundle;UW
+popoto;-1;;5;3;1;;31;7;2;0;;1-2,3-5|pod;UW
 ptarmigan;-3;;5;2;1;;31;4,8;1;0;;1-2,3-12|flock;UW
+pufferfish;-2;;5;2;1;2;31;7;3;0;;1-2,3-12|school;UW
 puffin;-4;;5;1;1;;31;2;1;0;;1-2,3-20|colony;UW
+rabbit;-3;;5;2;1;;31;8;2;0;;1-2,3-16|down;UW
+rhamphorhynchus;-1;;5;2;1;;28,31;2,4;3;0;;1-2,3-16|flock;UW
 ravenous tumbleweed;-1;;5;2;10;;31;3,8;3;0;;1-2,3-12|drift;UW
 razor fern;-2;;5;2;10;;31;4;3;0;;1-2,3-8|thicket;UW
 sawleg locust;-2;;5;2;12;;31;3,8;;0;;1-2,3-18|flight;UW
@@ -2480,10 +2502,12 @@ sea krait;0;;5;2;1;;31;2,7;2,3;0;viper;1;UW
 shimmerwing dragonfly;-2;;5;2;12;;31;12;2,3;0;;1-2,3-8|flight;UW
 snail kite;-1;;5;2;1;;31;0;2;0;hawk;1-2;UW
 spiny starfish;-3;;5;2;12;;31;7;;0;;1-2,3-22|cluster;UW
+squirrel;-4;;5;1;1;;31;4;2;0;;1-2,3-8|scurry;UW
 suture vine;-1;;5;2;10;;31;4;2;0;;1-2,3-5|clinic;UW
 tarsier;-3;;5;1;1;;31;4;2,3;0;;1-2,3-6|family;UW
 toucan;-3;;5;2;1;;31;4;2,3;0;raven;1-2,3-12|flock;UW
 vampire squid;0;;5;2;1;2;31;7;;0;;1-2,3-8|school;UW
+wallaby;-1;;5;3;1;;31;4;2,3;0;;1-2,3-10|court;UW
 
 #Planar adventures (6.2018)
 aphorite;0;;4;4;9;13;;0;;21;;1,2-12|guild;PA
@@ -2491,15 +2515,15 @@ argent warden;8;;1;4;2;12;;0,13;;14;;1-2,3-8|troop;PA
 bastion archon;20;;1;6;9;10,11,12,17;;0,13;;14;;1;PA
 cynosoma;12;;3;4;9;8,10,12;;0,11,13;;16,22;;1-2,3-6|flight;PA
 duskwalker;0;;5;4;9;13;;0;;0;;1-2,3-6|team;PA
-empusa;13;;6;4;9;8,12,50;;0,11,13;;16;;1-2,3-6|vengeance;PA
+empusa;13;;6;4;9;8,12,51;;0,11,13;;16;;1-2,3-6|vengeance;PA
 etheroot;8;;5;5;10;12;;0,11,15;;3;;1;PA
 ganzi;0;;6;4;9;13;;0;;17;;1-2,3-12|band;PA
-irii;19;;4,6;4;9;12,50;;0,11,13;;6;;1-2;PA
+irii;19;;4,6;4;9;12,51;;0,11,13;;6;;1-2;PA
 leviathan;30;;5;8;6;7;;7;;4;;1u;PA
 moon hag;7;;9;4;7;12;38;0,13;;13;;1,3|coven;PA
 novenarut;4;;4;4;9;11,12,25;;0,13;;21;;1-2,3-10|skirmish;PA
-roseling;7;;2;3;10;12,50;;0,11;;15;;1-2,3-8|bed;PA
-sapphire ooze;2;;3;4;8;12,50;;0,13;;16;;1-2,3-12|colony;PA
+roseling;7;;2;3;10;12,51;;0,11;;15;;1-2,3-8|bed;PA
+sapphire ooze;2;;3;4;8;12,51;;0,13;;16;;1-2,3-12|colony;PA
 sirrush;21;;2;7;3;10,12;;0;;15;;1,2-4|flight;PA
 valharut;11;;4;4;9;11,12,25;;0,13;;21;;1-2,3-8|barrage;PA
 watcher;22;;4;7;8;;;0;;22;;1,2-5|council;PA
@@ -2517,7 +2541,7 @@ lesser host devil/gaav\host devil, lesser (gaav);3;;7;3;9;9,11,12,23;;0,11,13;;2
 
 #Heart of the jungle (6.2010)
 angazhani|-/high girallon;9;;9;5;6;;;4;3;0;;1;CS
-botfly swarm;4;;5;1;12;52;;4,12;3;0;;1,2-20|colony;CS
+botfly swarm;4;;5;1;12;53;;4,12;3;0;;1,2-20|colony;CS
 giant botfly;-1;;5;2;12;;;4;3;0;;1-2,10-30|colony;CS
 tobongo/Mwangi treant;12;;5;7;10;;;4;3;0;;1,2-7|grove;CS
 an empire of 1d8+4 [angazhani\angazhani (high girallon)], 1d8+12 [girallons\girallon] and 5d10+50 [charau-ka];9,8;;5,9;3,5;5,6;;;4;3;0;;;CS
@@ -2560,7 +2584,7 @@ coldwater scourge;6;;5;5;8;2;;7;1;0;sea scourge;1,2-5|swarm,6-9|bloom;CS
 elder nirento;6;;5;6;10;;;4;3;0;;1-2,3-5|grove;CS
 giant sea snake;7;;5;6;1;;;7;3;0;;1-2;CS
 kuru|-;0;;9;4;5;;;2;;0;;1-2,3-6|gang,7-15|raid;CS
-larabay;11;;6;4;4;50;;2,4;2;0;;1-2,3-6|rabble;CS
+larabay;11;;6;4;4;51;;2,4;2;0;;1-2,3-6|rabble;CS
 nirento;4;;5;5;10;;;4,8;3;0;;1-2,3-5|grove;CS
 sea scourge;6;;5;5;8;2;;7;3;0;;1,2-5|swarm,6-9|bloom;CS
 sea snake;1;;5;3;1;;;7;;0;;1-2,3-8|nest;CS
@@ -2573,8 +2597,8 @@ behemoth golem;17;;5;8;2;;;3;2,3;0;;1;CS
 inverted giant;11;;9;6;5;41;;0;;0;;1;CS
 ngoga;7;;5;5;6;;;4;3;0;;1-2,3-5|band;CS
 ubashki lynx;6;;8;5;11;;;3;2,3;0;;1-2;CS
-ubashki swarm;2;;8;2;11;52;;3;3;0;;1-2;CS
-a nuisance of 1d3+2 [ubashki swarms\ubashki swarm] plus 1 [ubashki lynx];6,2;;8;2,5;11;52;;3;3;0;;;CS
+ubashki swarm;2;;8;2;11;53;;3;3;0;;1-2;CS
+a nuisance of 1d3+2 [ubashki swarms\ubashki swarm] plus 1 [ubashki lynx];6,2;;8;2,5;11;53;;3;3;0;;;CS
 
 #Magnimar, city of monuments (7.2012)
 angelic guardian;5;;5;4;2;;;14;;0;;1,2-4|assembly,5-8|choir;CS
@@ -2588,7 +2612,7 @@ ceru;2;;2;2;6;;32;14;;0;;1-2,3-5|litter;CS
 charnel colossus;19;;8;8;11;;;0;;0;;1;CS
 Chemnosit/the Monarch Worm;23;;9;8;6;;51;13;;0;;1u;CS
 deadly mantis;11;;5;8;12;;;4;3;0;;1;CS
-kakuen-taka;14;;9;6;9;8,9,12,52;;0,13;;18;;1-3|gang;CS
+kakuen-taka;14;;9;6;9;8,9,12,53;;0,13;;18;;1-3|gang;CS
 khaei;3;;5;3;7;;;13;;0;;1-2,3-5|gang,6-30|village;CS
 korir-kokembe|-;10;;5;6;3;;;4;3;0;;1,2-5|nest;CS
 lashunta;0;;2;4;5;;;0;;0;;1-30;CS
@@ -2615,7 +2639,7 @@ water wraith;2;;6;5;6;2;;9;3;0;;1-2,3-12|swarm;CS
 whirlmaw;8;;5;4;0;;;3;3;0;;1,2-9|flight;CS
 woundwyrm;15;;9;6;3;8,9;;0;;0;;1;CS
 Zelishkar of the Bitter Flame;21;;8;5;9;6,9,12,20;3;0,11,13;;19;;1u;CS
-a patrol of 1 [kauken-taka] and 1d4 [carrionstorms\carrionstorm];14,0;;8,9;2,6;9,11;8,9,12,52;;0,13;;18;;;CS
+a patrol of 1 [kauken-taka] and 1d4 [carrionstorms\carrionstorm];14,0;;8,9;2,6;9,11;8,9,12,53;;0,13;;18;;;CS
 
 #Irrisen, land of eternal winter (12.2012)
 Baba Yaga's Black Rider\black rider;13;;4;4;4;;;0;;0;;1u;CS
@@ -2633,7 +2657,7 @@ spyglass archon;3;;1;4;9;10,11,12,17;;0,11,13;;14;;1-2;CS
 
 #Fey revisited (5.2013)
 Blackwood satyr;7;;6;4;4;;;4;2;0;;1-2,3-6|band,7-11|orgy;CS
-sprite swarm;5;;6;1;4;52;;4;2;0;;1-2,3-6|troop;CS
+sprite swarm;5;;6;1;4;53;;4;2;0;;1-2,3-6|troop;CS
 
 #The Worldwound (7.2013)
 derakni;10;;9;5;9;8,9,12,22;;0,11,13;;18;;1-2,3-10|swarm;CS
@@ -2655,44 +2679,44 @@ jackal;0;;5;3;1;;;3,8;3;0;;1-2,3-10|pack;CS
 ostrich;1;;5;4;1;;27;3,8;3;0;;1-2,5-10|pride,11-50|flock;CS
 
 #Inner Sea gods (3.2014)
-accomplice devil/hesperian;4;;7;4;9;9,11,12,23,50;;0,13;;20;;1-2,3-5|cabal;CS
+accomplice devil/hesperian;4;;7;4;9;9,11,12,23,51;;0,13;;20;;1-2,3-5|cabal;CS
 ahmuuth;4;;5;4;9;12,31;;0,13;;13;;1-2,3-8|inquisition;CS
 ataxian;4;;3;2;9;8,10,12;;0,11,13;;16;;1-2,3-5|brawl;CS
 burleev;4;;5;4;9;3,6,12;;0;;17;;1-2,3-5|cabal;CS
-chalkost;4;;1;4;9;10,11,12,50;;0,13;;14;;1-2,3-5|team;CS
+chalkost;4;;1;4;9;10,11,12,51;;0,13;;14;;1-2,3-5|team;CS
 dapsara;4;;2;4;9;10,12,16;;0,11,13;;15;;1-2,3-5|band;CS
 iophanite;4;;1;4;9;6,10,11,12,16;;0,11,13;;14;;1-2,3-8|squad;CS
-karumzek;4;;8;4;9;9,12,50;;0,13;;21;;1-2,3-12|swarm;CS
+karumzek;4;;8;4;9;9,12,51;;0,13;;21;;1-2,3-12|swarm;CS
 lampadarius;4;;7;4;9;9,11,12,27;;0,13;;1;;1-2,3-5|choir;CS
 Lawgiver;15;;4;7;2;11,12,43;;0;;21;;1u;CS
 Night Monarch;15;;3;6;9;8,10,12,43;;0,11;;16;;1u;AP
 orsheval;4;;4;4;9;11,12;;0;;21;;1-2,3-8|team;CS
 pavbagha;4;;4;5;9;11,12;;0;;21;;1-2,3-5|pride;CS
 sarcovalt;4;;8;2;9;9,12;;0,11,13;;19;;1-2,3-5|swarm;CS
-stag archon;4;;1;4;9;10,11,12,17,50;;0,13;;14;;1-2,3-5|band;CS
-Sunlord Thalachos;15;;2;5;9;10,12,16,43,50;;0,11,13;;14,15,16;;1u;CS
+stag archon;4;;1;4;9;10,11,12,17,51;;0,13;;14;;1-2,3-5|band;CS
+Sunlord Thalachos;15;;2;5;9;10,12,16,43,51;;0,11,13;;14,15,16;;1u;CS
 swaithe;4;;9;3;9;8,9,12,22;;0,13;;18;;1-2,3-5|gang;CS
-Tarrasque;25;;9;8;6;51;;0;;0;;1u;CS
-Thais;15;;3;5;9;8,10,12,43,50;;0,11,13;;16;;1u;CS
-the Menotherian;15;;6;5;9;8,12,43,50;;0,11,13;;16;;1u;CS
+Tarrasque;25;;9;8;6;52;;0;;0;;1u;CS
+Thais;15;;3;5;9;8,10,12,43,51;;0,11,13;;16;;1u;CS
+the Menotherian;15;;6;5;9;8,12,43,51;;0,11,13;;16;;1u;CS
 the Prince in Chains\*the Prince in Chains;15;;7;5;9;9,11,12,27;;0,11,13;;1;;1u;CS
 thognorok;4;;9;4;9;2,8,9,12,32;;0,1,13;;18;;1-2,3-5|gang;CS
-thyrlien;4;;3;3;9;8,10,12,19,50;;0,11,13;;16;;1-2,3-5|squad;CS
-vendenopterix;4;;6;4;9;8,12,50;;0,11,13;;16;;1-2;CS
+thyrlien;4;;3;3;9;8,10,12,19,51;;0,11,13;;16;;1-2,3-5|squad;CS
+vendenopterix;4;;6;4;9;8,12,51;;0,11,13;;16;;1-2;CS
 xocothian;4;;5;5;9;1,7,12;;0,1,11;;7,10;;1-2,3-5|school;CS
 Yethazmari;15;;9;5;9;8,9,12,43;;0,11,13;;18;;1u;CS
 yhohm;4;;2;2;9;6,10,12;;0,11,13;;15;;1-2,3-5|flight;CS
 zentragt;4;;6;5;9;8,12;;0,13;;16;;1-2,3-5|gang;CS
 
 #Numeria, land of fallen stars (6.2014)
-arachnid robot;0;;5;3;2;49;;0,13;;0;;1-2,3-12|colony;CS
+arachnid robot;0;;5;3;2;50;;0,13;;0;;1-2,3-12|colony;CS
 bloodbrush;2;;5;3;10;;;8;1,2;0;;1-2,3-12|field;CS
 capacitor ooze;11;;5;4;8;;;3,8;1;0;;1;CS
-mannequin robot;2;;5;4;2;49;;0,13;;0;;1-2,3-8|band;CS
+mannequin robot;2;;5;4;2;50;;0,13;;0;;1-2,3-8|band;CS
 robot golem;11;;5;5;2;;36;0,13;;0;;1,2-4|gang;CS
 robot golem shield guardian;13;;5;5;2;;36;0,13;;0;;1-2;CS
-scrapyard robot;3;;5;4;2;49;;10;;0;;1;CS
-torturer robot;8;;5;3;2;49;;0,13;;0;;1;CS
+scrapyard robot;3;;5;4;2;50;;10;;0;;1;CS
+torturer robot;8;;5;3;2;50;;0,13;;0;;1;CS
 zhen worm;0;;5;4;12;;;12;3;0;;1-2,3-20|colony;CS
 
 #Lost treasures (12.2014)
@@ -2724,16 +2748,16 @@ erinat;2;;9;2;4;;37;13,14;;0;;1-2,3-8|mob;CS
 fellsig;3;;8;4;11;6;;6,13;;0;;1-2,3-8|flow;CS
 ragewight;6;;9;4;11;;;5;2;0;;1;CS
 sawdust slough;4;;5;5;10;;;4;2;0;;1-2,3-6|cascade;CS
-silverblood werewolf|silverblood werewolves\silverblood lycanthrope (human form);5;;9;4;5;50;42;0;;0;;1,2-4|pack;CS
+silverblood werewolf|silverblood werewolves\silverblood lycanthrope (human form);5;;9;4;5;51;42;0;;0;;1,2-4|pack;CS
 Talmandor;23;;2;5;9;10,12,15;;11;;15;;1u;CS
 a flight of [Talmandor] and 1d4+2 advanced [avorals\avoral];23,0;;2;4,5;9;10,12,15;;11;;15;avoral;;CS
-a pack of 2d3 [silverblood werewolves\silverblood lycanthrope (human form)], 2d4 [werevolves\werevolf (human form)] and 1d10+10 [hobgoblins\hobgoblin];5,6;;7,9;4;5;50;42;5;2;0;;;CS
+a pack of 2d3 [silverblood werewolves\silverblood lycanthrope (human form)], 2d4 [werevolves\werevolf (human form)] and 1d10+10 [hobgoblins\hobgoblin];5,6;;7,9;4;5;51;42;5;2;0;;;CS
 a war band of 1 [ragewight] plus 1d4+1 cairn wights;6,3;;7,9;4;11;;;5;2;0;wight;;CS
 a war clan of 1d4+1 [ragewight] plus 1d8+2 cairn wights;6,6;;7,9;4;11;;;5;2;0;wight;;CS
 
 #Occult bestiary (8.2015)
-amanusya;6;;7;4;9;13,33,50;;0;;0;;1-2,3-8|troupe;CS
-avatarana;12;;7;4;9;13,33,50;;0;;0;;1;CS
+amanusya;6;;7;4;9;13,33,51;;0;;0;;1-2,3-8|troupe;CS
+avatarana;12;;7;4;9;13,33,51;;0;;0;;1;CS
 baku dreamweaver;11;;5;4;6;;;0,11,13;;0;;1;CS
 cantor;9;;7;3;9;9,11,12,27;;0,13;;1;;1-2,3-6|expedition;CS
 caulborn thoughtkeeper;9;;5;4;9;12;;0,13;;;;1-2,3-6|cabal;CS
@@ -2745,7 +2769,7 @@ egophage;10;;9;3;0;;;13;;0;;1,3-8|brood,10-30|tribe;CS
 enlightened contemplative;5;;5;4;7;;;14;;0;;1,2-5|band;CS
 fear eater;5;;8;4;4;;;13;;0;;1-2,3-6|band;CS
 feargaunt;9;;9;5;9;12,45;;0,11,13;;5;;1;CS
-hive mind beetle swarm;13;;4;1;6;52;;4;2;0;;1,2-4|colony;CS
+hive mind beetle swarm;13;;4;1;6;53;;4;2;0;;1,2-4|colony;CS
 liavaran dreamer;8;;5;5;0;;;11;;0;;1-2,3-5|flotilla;CS
 mnemor;5;;7;4;9;9,11,12,23;;0,13;;20;;1;CS
 neothelid overlord;20;;9;7;0;;;13;;0;;1-2;CS
@@ -2779,7 +2803,7 @@ animate aria;9;;5;5;2;;;14;;0;;1;CS
 ash hag;5;;7;4;7;;;10,14;;0;;1,3|coven;CS
 cerebrus worm;14;;5;7;6;2;;7;;0;;1;CS
 hellfire ignis;3;;8;3;4;6;32;4,8;;0;;1,2-5|gang;CS
-sire devil/patraavex;7;;7;4;9;9,11,12,23,50;;0,13;;20;;1;CS
+sire devil/patraavex;7;;7;4;9;9,11,12,23,51;;0,13;;20;;1;CS
 zealot wraith;7;;8;4;11;45;;0,13;;0;;1-2,3-8|conclave;CS
 a crew of 1d4+4 [hellfire ignises\hellfire ignis] plus 1 advanced hellfire ignis leader;4,5;;8;3;4;6;32;4,8;;0;hellfire ignis;;CS
 
@@ -2832,7 +2856,7 @@ joyful thing;6;;7;4;9;13;;0,13;;0;;1-2,3-8|coven;CS
 suffragan;5;;7;4;9;9,11,12,27;;0,13;;1;;1-2,3-6|tangle;CS
 shadow fern;4;;5;4;10;;;4,13;;0;;1-2,3-12|patch;CS
 smokeshade;2;;8;2;0;12,45;32;0,11,13;;1;;1-2;CS
-a hive of 1 [hive queen] plus 1d10 [hive brutes\hive brute], 3d12 hive workers and 1d12 [hive warriors\hive warrior];10,6;;8;4,5,6;0;44;;0,13;;0;;;CS
+a hive of 1 [hive queen] plus 1d10 [hive brutes\hive brute], 3d12 hive workers and 1d12 [hive warriors\hive warrior];10,6;;8;4,5,6;0;44;;0,13;;0;hive warrior;;CS
 
 #Construct handbook (11.2018)
 champion automaton;10;;4;5;2;12,35;;0,13;;21;;1-2;CS
@@ -2843,12 +2867,12 @@ clockwork songbird;0;;5;2;2;38;;0,13;;0;;1-2,3-12|harmony;CS
 dragonhide golem;16;;5;6;2;;36;0,13;;0;;1,2-4|gang;CS
 dragonhide golem shield guardian;18;;5;6;2;;36;0,13;;0;dragonhide golem;1-2;CS
 familiar automaton;2;;4;2;2;12,35;32;0,13;;21;;1;CS
-gladiator robot;17;;5;4;2;49;;0,13;;0;;1-2,3-6|squad;CS
+gladiator robot;17;;5;4;2;50;;0,13;;0;;1-2,3-6|squad;CS
 inubrix golem;14;;5;5;2;;36;0,13;;0;;1,2-6|gang;CS
 inubrix golem shield guardian;16;;5;5;2;;36;0,13;;0;;1-2;CS
 master automaton;20;;4;6;2;12,35;;0,13;;21;;1;CS
-octopod mechanic drone;13;;5;4;2;49;;0,13;;0;;1-2;CS
-repair robot;2;;5;4;2;49;;0,13;;0;;1-2,3-12|union;CS
+octopod mechanic drone;13;;5;4;2;50;;0,13;;0;;1-2;CS
+repair robot;2;;5;4;2;50;;0,13;;0;;1-2,3-12|union;CS
 sand golem;9;;5;5;2;;36;0,13;;0;;1,2-4|gang;CS
 sand golem shield guardian;11;;5;5;2;;36;0,13;;0;;1-2;CS
 sharpshooter automaton;15;;4;4;2;12,35;;0,13;;21;;1-2;CS
@@ -2867,27 +2891,15 @@ zhyen;0;;5;2;9;1,4,6,7,12;;0,1,11,13;;0,7,8,9,10;;1;PC
 a gang of 1 [zhyen] and 1d3+1 [mephits\mephit];3,3;;5;2,3;9;1,3,4,6,7,12;43;0,1,11,13;;0,7,8,9,10;;;PC
 
 #Animal archive (2.2013)
-armadillo;-2;;5;2;1;;31;8;2,3;0;;1;PC
 llama;0;;5;4;1;;27;5,6;1,2;0;;1-2,3-15|herd;PC
 moose;3;;5;5;1;;27;4;1;0;;1-2;PC
 panda;2;;5;4;1;;27;4;2,3;0;;1-2;PC
-rabbit;-3;;5;2;1;;31;4,8;1;0;;1-2,3-16|down;PC
-squirrel;-4;;5;1;1;;31;4;;0;;1-2;PC
 
 #Familiar folio (1.2015)
 cat sith;2;;6;2;6;;32;5;2;0;;1-2,3-7|band;PC
 caypup;2;;3;3;9;13;32;0;;0;;1,2-4|pack;PC
-ioun wyrd;-1;;5;2;2;;31;0;;0;;1;PC
-kakapo;-4;;5;2;1;;31;4,8;3;0;;1-2,3-4|family;PC
-koala;-2;;5;3;1;;31;4;3;0;;1;PC
-leopard slug;-4;;5;1;12;;31;4;3;0;;1-2,3-10|cornucopia;PC
-mole;-3;;5;2;1;;31;0;;0;;1-2,3-5|labor;PC
 peacock;-2;;5;3;1;;31;4;2,3;0;;1-2,3-10|muster;PC
-petrifern;-3;;5;1;10;;31;4;;0;;1,2-14|bundle,15-60|hive;PC
-popoto;-1;;5;3;1;;31;7;;0;;1-2,3-18|pod;PC
 pseudosphinx;2;;5;2;6;;32;3;3;0;;1;PC
-pufferfish;-2;;5;2;1;2;31;2;3;0;;1,2-8|school;PC
-wallaby;-1;;5;3;1;;31;4,5;2,3;0;;1-2,3-12|herd;PC
 
 #Monster summoner's handbook (6.2015)
 codex archon;5;;1;4;9;10,11,12,17;;0,11,13;;14;;1,2-8|team;PC
@@ -2906,18 +2918,14 @@ pseudowyvern;2;;5;2;3;;32;4,5;2,3;0;;1-2,3-6|flight;PC
 small poppet\poppet, small;0;;5;3;2;;;0,13;;0;;1;PC
 tiny poppet\poppet, tiny;-1;;5;2;2;;31;0,13;;0;;1;PC
 
-#Heroes of Golarion (3.2019)
-#TODO
-
 #Chronicle of legends (5.2019)
 #TODO
-
 
 ##Adventure paths
 
 #Rise of the Runelords (1-6)
 black magga;15;;9;7;9;2,13;;7;;0;;1;AP
-carrionstorm;1;;8;2;11;52;;0,13;;0;;1,2-4|flock,5-12|murder;AP
+carrionstorm;1;;8;2;11;53;;0,13;;0;;1,2-4|flock,5-12|murder;AP
 forgefiend\scanderig;10;;7;5;9;4,12;;13;;8;;1,2-6|team;AP
 hungerer;15;;9;6;7;;;6;1;0;;1,2-5|feast;AP
 kuchrima;8;;9;4;7;;;6;;0;;1-2,3-7|flight,8-12|gluttony;AP
@@ -2960,10 +2968,10 @@ shadowgarm;2;;8;4;0;12;;0,13;;1;;1,2-12|gathering;AP
 spartolos|spartoi;6;;8;4;11;;;0,13;;0;;1-2,3-8|troop;AP
 stone idol;3;;5;1;2;;;0,13;;0;;1;AP
 strix|-;-1;;1,4,7;4;7;;;6;2;0;;1-2,3-6|hunting party,5-12|war party;AP
-stymphalidies swarm;6;;5;2;6;52;;2,8;3;0;;1,2-4|flock,5-8|host;AP
+stymphalidies swarm;6;;5;2;6;53;;2,8;3;0;;1,2-4|flock,5-8|host;AP
 tinder devil/ukobach;4;;7;3;9;9,11,12,23;;0,13;;20;;1-2,4-16|team;AP
 torble;-4;;5;1;12;;31;4,13;;0;;1-2,3-30|swarm;AP
-torble swarm;2;;5;2;12;52;;4,13;;0;;1-2,3-6|infestation;AP
+torble swarm;2;;5;2;12;53;;4,13;;0;;1-2,3-6|infestation;AP
 wood idol;1;;5;1;2;;;0,13;;0;;1;AP
 a squad of the [Hand of the Inheritor\*Hand of the Inheritor] plus 1d4+1 [astral devas\astral deva];15,4;;1;4,5;9;10,11,12,16;;0,11,13;;14,15,16;;;AP
 
@@ -2994,20 +3002,19 @@ an ambush of 1d3 [dweomercats\dweomercat] and 2d6 [dweomercat cubs\dweomercat cu
 #Serpent's skull (37-42)
 Arcanotheign;15;;5;4;9;12,43,45;;0,11,13;;17;;1u;AP
 biloko;0;;8;3;4;;;4;3;0;;1-2,3-16|gang;AP
-bloodhaze mosquito swarm;6;;5;0;12;52;;4,12;3;0;;1-2,3-6|pestilence,7-12|plague;AP
+bloodhaze mosquito swarm;6;;5;0;12;53;;4,12;3;0;;1-2,3-6|pestilence,7-12|plague;AP
 bluetip eurypterid;5;;5;5;12;2;;7;2,3;0;;1-2;AP
 camulatz;9;;9;5;6;;;4;3;0;;1,2-5|flight,6-12|aerie;AP
 chemosit;4;;5;5;6;;;4;3;0;;1-2,3-6|troop;AP
-Emperor of Scales\*Emperor of Scales;15;;9;6;9;8,9,43,50;;0,13;;0;;1u;AP
+Emperor of Scales\*Emperor of Scales;15;;9;6;9;8,9,43,51;;0,13;;0;;1u;AP
 glass urchin;9;;5;6;12;2;;2,7;3;0;;1-2,3-4|cluster;AP
-impundulu;11;;8;4;9;9,12,50;32;4;2,3;0;;1-2,3-12|flock;AP
+impundulu;11;;8;4;9;9,12,51;32;4;2,3;0;;1-2,3-12|flock;AP
 inkanyamba;13;;9;7;6;;;9;3;0;;1-2;AP
 lesser hollow serpent;6;;8;4;11;;;13;;0;;1-2,3-8|nest;AP
-megapiranha swarm;6;;5;2;1;2,52;;1;;0;;1,2-4|shoal,5-7|school;AP
+megapiranha swarm;6;;5;2;1;2,53;;1;;0;;1,2-4|shoal,5-7|school;AP
 obambo;13;;7;4;11;45;;4;3;0;;1;AP
 ochre eurypterid;-1;;5;3;12;2;;7;3;0;;1-2,3-12|swarm;AP
 Personification of Fury\*Personification of Fury;15;;5;6;9;1,5,7,12,43;;0,1,11;;7,10;;1u;AP
-rhamphorhynchus;-1;;5;2;1;;28,31;2,4;3;0;;1-2,3-16|flock;AP
 spitting eurypterid;12;;5;7;12;2;;7;2,3;0;;1;AP
 tikoloshe;3;;9;3;11;2;;1,4;3;0;;1,2-8|gang,9-20|clan;AP
 tribal totem;6;;5;4;2;;;0,13;;0;;1,2-4|gang;AP
@@ -3015,13 +3022,13 @@ tuyewera;4;;9;4;11;;;0,13;;0;;1;AP
 umasi;4;;6;4;7;;;4;3;0;;1,2-8|hunting party,10-30|tribe;AP
 umdhlebi;12;;5;6;10;;;4;3;0;;1;AP
 undead ningyo;1;;8;3;11;2;;0,1;;0;;1-2,3-15|exhibit;AP
-vireseed swarm;5;;5;0;10;52;;0,11;;0,11;;1,2-4|flight,5-7|cloud;AP
+vireseed swarm;5;;5;0;10;53;;0,11;;0,11;;1,2-4|flight,5-7|cloud;AP
 a tribe of 1 [obambo] plus 1d2 [giant flytraps\giant flytrap];13,1;;5,7;4,6;10,11;45;;4;3;0;;;AP
 a tribe of 1 [obambo] plus 1d3 [shambling mounds\shambling mound];13,0;;5,7;4,5;10,11;45;;4;3;0;;;AP
 
 #Carrion crown (43-48)
 boruta;9;;5;4;10;;;0;;0;;1,2-4|party;AP
-choleric ooze swarm;2;;5;2;8;52;;13;;0;;1-2,3-7|mass;AP
+choleric ooze swarm;2;;5;2;8;53;;13;;0;;1-2,3-7|mass;AP
 dark young of Shub-Nigurrath;12;;9;6;0;;;4,12;2;0;;1-2,3-6|grove;AP
 dimensional shambler;8;;9;4;9;8,9;;0,13;;;;1-2,3-9|gang;AP
 flaming skull;0;;8;2;11;;;0,13;;0;;1-2,3-6|patrol;AP
@@ -3031,53 +3038,53 @@ giant beheaded;2;;8;5;11;;;0,13;;0;;1;AP
 gnoph-keh;11;;9;5;1;3;;0;1;0;;1-2,3-8|gathering;AP
 hollow helm;1;;8;2;11;;;0,13;;0;;1-2;AP
 medusa head;3;;8;3;11;;;0,13;;0;;1-3;AP
-melancholic ooze swarm;1;;5;2;8;52;;13;;0;;1-2,3-4|glob;AP
+melancholic ooze swarm;1;;5;2;8;53;;13;;0;;1-2,3-4|glob;AP
 Mother's Maw\*Mother%u2019s Maw;15;;8;5;11;9,12,43;;0,13;;19;;1u;AP
 phantom lancer;6;;8;5;11;;;0,13;;0;;1-2;AP
-phlegmatic ooze swarm;0;;5;2;8;52;;13;;0;;1-2,3-6|sputum;AP
-sanguine ooze swarm;-1;;5;2;8;52;;13;;0;;1-2,3-5|coagulum;AP
+phlegmatic ooze swarm;0;;5;2;8;53;;13;;0;;1-2,3-6|sputum;AP
+sanguine ooze swarm;-1;;5;2;8;53;;13;;0;;1-2,3-5|coagulum;AP
 skin stealer;2;;9;4;4;;;0,13;;0;;1;AP
-skull swarm;1;;8;2;11;52;;0,13;;0;;1-2,3-5|mass;AP
+skull swarm;1;;8;2;11;53;;0,13;;0;;1-2,3-5|mass;AP
 spawning canker;9;;9;4;0;;;0;;0;;1;AP
-Steward of the Skein\*Steward of the Skein;15;;5;4;9;12,43,50;;0,13;;13;;1u;AP
+Steward of the Skein\*Steward of the Skein;15;;5;4;9;12,43,51;;0,13;;13;;1u;AP
 vilkacis;7;;9;4;11;45;;0;;0;;1;AP
 weaverworm;8;;8;6;0;;;4,5;;0;;1;AP
 a band of 1d3+1 [borutas\boruta] plus 1d3 [shambling mounds\shambling mound];9,4;;5;4,5;10;;;4,12;2;0;;;AP
-a jelly of 1d3+2 [phlegmatic ooze swarms\phlegmatic ooze swarm] and 1d3 [sanguine ooze swarms\sanguine ooze swarm];0,4;;5;2;8;52;;13;;0;;;AP
-a sludge of 1d3+2 [melancholic ooze swarms\melancholic ooze swarm] and 1d3+1 [choleric ooze swarms\choleric ooze swarm];2,5;;5;2;8;52;;13;;0;;;AP
+a jelly of 1d3+2 [phlegmatic ooze swarms\phlegmatic ooze swarm] and 1d3 [sanguine ooze swarms\sanguine ooze swarm];0,4;;5;2;8;53;;13;;0;;;AP
+a sludge of 1d3+2 [melancholic ooze swarms\melancholic ooze swarm] and 1d3+1 [choleric ooze swarms\choleric ooze swarm];2,5;;5;2;8;53;;13;;0;;;AP
 
 #Jade regent (50-54)
-atamahuta;11;;7;5;9;13,29,41,50;;6;2;0;;1-2;AP
+atamahuta;11;;7;5;9;13,29,41,51;;6;2;0;;1-2;AP
 chon chon;0;;6;2;0;;;4,10;2,3;0;;1-2,3-12|flight;AP
-chon chon swarm;3;;6;3;0;52;;4,10;2,3;0;;1;AP
+chon chon swarm;3;;6;3;0;53;;4,10;2,3;0;;1;AP
 dosojin;7;;2;4;9;13,26;;0;;0;;1-2,3-10|cloister;AP
-earth yai|-;13;;8;5;9;13,29,41,50;;6;2;0;;1;AP
+earth yai|-;13;;8;5;9;13,29,41,51;;6;2;0;;1;AP
 fukujin;3;;4;2;9;13,26;;0;;0;;1,2-4|garden;AP
 gare linnorm;15;;9;7;3;2;41;9;1;0;;1;AP
 hala;4;;9;4;9;1,8,9,12,22;;0,11,13;;18;;1;AP
-ja noi|-;5;;7;4;9;13,29,50;;5;2,3;0;;1,2-4|patrol;AP
+ja noi|-;5;;7;4;9;13,29,51;;5;2,3;0;;1,2-4|patrol;AP
 kaminari;17;;6;6;9;1,13,26;;5,6,11;2;0;;1-2,3-5|symphony;AP
 kijimuna;2;;6;3;5;;;2,4;2,3;0;;1,2-7|family,8-28|tribe;AP
-nogitsune;7;;8;4;9;13,29,50;;14;;0;;1;AP
-raiju;5;;6;3;9;1,12,50;;0,11;;0;;1-2,3-12|group;AP
+nogitsune;7;;8;4;9;13,29,51;;14;;0;;1;AP
+raiju;5;;6;3;9;1,12,51;;0,11;;0;;1-2,3-12|group;AP
 saumen kar;10;;6;5;7;;;3,5,8;1;0;;1,2-5|family;AP
 Spirit of Adoration\*Spirit of Adoration;15;;2;5;9;10,12,43;;0,13;;15;;1u;AP
 suijin;14;;5;5;9;7,13,26;;1;;0;;1;AP
 the Old Man;15;;4;4;9;11,12,43;;0;;21;;1u;AP
-water strider swarm;1;;5;1;12;52;;9,12;2;0;;1-2;AP
-wind yai|-;16;;7;6;9;1,13,29,41,50;;6;2;0;;1,2-4|gang,5-8|storm;AP
-yamabushi tengu;5;;7;4;9;13,29,50;;6;2;0;;1-2;AP
-a band of 1 [earth yai] plus 1d4+4 [stone giants\stone giant];13,2;;5,8;5;5,9;13,29,41,50;;6;2;0;;;AP
-a cohort of 1d2 [atamahutas\atamahuta] plus 1d3+2 [ettins\ettin];11,2;;7,9;5;5,9;13,29,41,50;;6;2;0;;;AP
-a patrol of 1d2 [yamabushi tengus\yamabushi tengu] plus 1d6+2 [dire corbies\dire corby];5,3;;7,8;4;7,9;13,29,50;;6;2;0;;;AP
-a patrol of 1d2 [yamabushi tengus\yamabushi tengu] plus 1d6+2 [tengus\tengu];5,2;;5,7;4;5,9;13,29,50;;6;2;0;;;AP
-a warband of 1d3+4 [ja noi] plus 1d8+7 [hobgoblins\hobgoblin];5,6;;7;4;5,9;13,29,50;;5;2;0;;;AP
+water strider swarm;1;;5;1;12;53;;9,12;2;0;;1-2;AP
+wind yai|-;16;;7;6;9;1,13,29,41,51;;6;2;0;;1,2-4|gang,5-8|storm;AP
+yamabushi tengu;5;;7;4;9;13,29,51;;6;2;0;;1-2;AP
+a band of 1 [earth yai] plus 1d4+4 [stone giants\stone giant];13,2;;5,8;5;5,9;13,29,41,51;;6;2;0;;;AP
+a cohort of 1d2 [atamahutas\atamahuta] plus 1d3+2 [ettins\ettin];11,2;;7,9;5;5,9;13,29,41,51;;6;2;0;;;AP
+a patrol of 1d2 [yamabushi tengus\yamabushi tengu] plus 1d6+2 [dire corbies\dire corby];5,3;;7,8;4;7,9;13,29,51;;6;2;0;;;AP
+a patrol of 1d2 [yamabushi tengus\yamabushi tengu] plus 1d6+2 [tengus\tengu];5,2;;5,7;4;5,9;13,29,51;;6;2;0;;;AP
+a warband of 1d3+4 [ja noi] plus 1d8+7 [hobgoblins\hobgoblin];5,6;;7;4;5,9;13,29,51;;5;2;0;;;AP
 
 #Skull & shackles (55-60)
 addu;15;;5;7;6;2;;7;3;0;;1-2;AP
 angustiden;7;;5;7;1;2;;7;;0;;1;AP
 black spot;0;;8;2;6;2;;2,7;2,3;0;;1,2-5|cluster;AP
-bottled armada;6;;5;2;2;52;;1;;0;;1,2-5|fleet;AP
+bottled armada;6;;5;2;2;53;;1;;0;;1,2-5|fleet;AP
 canopy creeper;8;;5;6;10;;;4;3;0;;1;AP
 crimson whale;8;;5;7;1;;;7;;0;;1-2,3-8|pod;AP
 deinosuchus;8;;5;7;1;;;1;;0;;1-2,3-6|float;AP
@@ -3094,14 +3101,14 @@ kronosaurus;10;;5;7;1;;28;7;3;0;;1-2,3-8|school;AP
 marine crocodile;3;;5;5;1;;;7;3;0;;1-2,3-6|float;AP
 nothosaurus;5;;5;5;1;;28;1;;0;;1-2,3-12|herd;AP
 oracular cyclops|oracular cyclopes;7;;8;5;5;41;;0;2,3;0;;1,2-6|conclave,7-18|tribe;AP
-ravenous urchin swarm;2;;8;2;12;2,52;;2,7;;0;;1,2-5|pool,11-20|red tide;AP
+ravenous urchin swarm;2;;8;2;12;2,53;;2,7;;0;;1,2-5|pool,11-20|red tide;AP
 sahuagin malenti|-;2;;7;4;7;2;;7;2,3;0;;1-2;AP
 saltwater crocodile;5;;5;6;1;;;2,9;3;0;;1-2,3-8|float;AP
 ship in a bottle;2;;5;2;2;;;1;;0;;1,2-5|fleet;AP
 ship sentinel;7;;5;5;2;;;1;;0;;1;AP
 swordfish;2;;5;5;1;2;;7;;0;;1-2;AP
 tetrolimulus;11;;8;5;6;2;;2;2;0;;1-2;AP
-the Stabbing Beast;15;;8;4,6;9;9,12,43,50;;0;;21;;1u;AP
+the Stabbing Beast;15;;8;4,6;9;9,12,43,51;;0;;21;;1u;AP
 tidepool dragon;3;;6;2;3;2;32;2;3;0;;1-2,3-6|clutch;AP
 tiger fish;1;;5;4;1;2;;9,12;3;0;;1-2,3-5|group,5-20|school;AP
 varisian hagfish;1;;5;2;1;2;;7;2;0;;1-2,3-5|group;AP
@@ -3119,7 +3126,7 @@ chrestomath;6;;5;4;9;12;;0,11,13;;;;1;AP
 croaking bogwiggle;1;;9;3;0;2;;12;2;0;bogwiggle;1-2,3-6|pack;AP
 End's Voice;15;;6;5;9;8,12;;0,11,13,15,43;;2,13;;1u;AP
 filthy bogwiggle;1;;9;3;0;2;;12;2;0;bogwiggle;1-2,3-6|pack;AP
-fleshdreg swarm;2;;8;2;0;52;;10;;0;;1-2,3-5|infestation;AP
+fleshdreg swarm;2;;8;2;0;53;;10;;0;;1-2,3-5|infestation;AP
 Grand Defender;15;;1;6;2;12,43;;0;;14;;1u;AP
 kere;10;;5;4;9;12,31;;0,11,13;;0,13;;1;AP
 Kurshu the Undying\*Kurshu the Undying;15;;7;5;9;9,11,12,43;;0,13;;0;;1u;AP
@@ -3132,7 +3139,7 @@ polevik;5;;8;3;4;;;12,13;;0;;1;AP
 skvader;0;;5;2;6;;32;4,5;2;0;;1-2,3-12|family;AP
 wolpertinger;1;;5;2;6;;32;4,5;2;0;;1-2,3-12|pack;AP
 yamasoth;24;;9;7;9;8,9,12,32;;0,13;;18;;1u;AP
-an array of 1d3+1 [chrestomaths] plus 1d8+4 [caulborn];7,7;;5;4;9;12;;0,13;;;;;AP
+an array of 1d3+1 [chrestomaths\chrestomath] plus 1d8+4 [caulborn];7,7;;5;4;9;12;;0,13;;;;;AP
 a catechumen of 1 [chrestomath] plus 1d3+1 [caulborn];7,4;;5;4;9;12;;0,13;;;;;AP
 a clutch of 1 [bogwid] and 2d4 young bogwids;5,4;;6;3,4;0;;;12,13;;0;bogwid;;AP
 a pack of 1 [wolpertinger] and 1d10+2 [skvaders\skvader];1,5;;5;2;6;;;4,5;2;0;;;AP
@@ -3161,7 +3168,7 @@ a clan of 1d4 [svathurim] plus 2d6 [frost giants\frost giant];11,5;;9;5,6;5,6;3,
 #Wrath of the righteous (73-78)
 Baphomet;27;10;9;5;9;8,9,12,22;4;0,11,13;;18;;1u;AP
 Deskari;29;10;9;7;9;4,8,9,12,22;4;0,11,13;;18;;1u;AP
-drocha swarm;7;;9;2;11;45,52;;0,13;;0;;1,2-5|pack;AP
+drocha swarm;7;;9;2;11;45,53;;0,13;;0;;1,2-5|pack;AP
 herne;6;;6;4;7;;;4;2;0;;1-2,3-6|band;AP
 katpaskir;18;;9;4;9;8,9,12,22;;0,11,13;;18;;1;AP
 labyrinth minotaur;16;;9;5;9;8,9,12;;0,13;;18;;1-2,3-6|gang;AP
@@ -3184,17 +3191,17 @@ cynosphinx;6;;8;5;6;;46;3,5;3;0;;1;AP
 earth ossumental\ossumental (earth);12;;8;5;11;4;;3;3;0;;1,2-8|gang;AP
 elder sphinx;16;;5;7;6;;46;3;3;0;;1;AP
 estuarine worm\estuarine worm (ahket form);10;;5;5,6;6;2;;9,12;3;0;;1-2,3-6|nest;AP
-Festering Ulunat/the Unholy First;24;;9;8;6;51;;0;;0;;1u;AP
+Festering Ulunat/the Unholy First;24;;9;8;6;52;;0;;0;;1u;AP
 fire ossumental\ossumental (fire);12;;8;5;11;6;;3;3;0;;1,2-8|gang;AP
 giant ground wasp;4;;5;3;12;;;3;3;0;;1,2-20|hive;AP
 giant walking stick;5;;5;5;12;;;3,4;3;0;;1-2,3-12|brood;AP
-ground wasp swarm;2;;5;0;12;52;;3,8;3;0;;1-2,3-6|infestation;AP
+ground wasp swarm;2;;5;0;12;53;;3,8;3;0;;1-2,3-6|infestation;AP
 hanshepsu;10;;5;4;2;;;3;3;0;;1,2-20|unit;AP
-living sandstorm\living sandstorm (humanoid);11;;5;0,4;9;4,12,52;;3;;8;;1-2,3-8|gang;AP
+living sandstorm\living sandstorm (humanoid);11;;5;0,4;9;4,12,53;;3;;8;;1-2,3-8|gang;AP
 neshmaal;12;;9;5;9;12,45;;0,11,13,15;;0;;1-2,3-6|congregation;AP
 panthereon golem;11;;5;5;2;;36;0,13;;0;;1,2-4|pride;AP
 panthereon golem shield guardian;13;;5;5;2;;36;0,13;;0;panthereon golem;1-2;AP
-plague locust swarm;8;;5;0;12;52;;3,8;3;0;;1-2,3-64|calamity;AP
+plague locust swarm;8;;5;0;12;53;;3,8;3;0;;1-2,3-64|calamity;AP
 serpopard;7;;6;4;6;;;3,8;3;0;;1-2;AP
 set guardian;13;;5;5;2;;;0,13;;0;;1,2-8|sentinel;AP
 shalkeshka;8;;5;5;6;4;;3,8;2,3;0;;1-2;AP
@@ -3204,35 +3211,35 @@ tekenu;6;;8;3;11;;;10;3;0;;1-2,3-5|stewardship;AP
 water ossumental\ossumental (water);12;;8;5;11;7;;3;3;0;;1,2-8|gang;AP
 
 #Iron gods (85-90)
-collector robot;3;;5;4;2;49;;0,13;;0;;1-2,3-6|unit;AP
-director robot;10;;5;5;2;49;;0,13;;0;;1;AP
-evaluator robot;12;;5;4;2;49;;0,13;;0;;1;AP
+collector robot;3;;5;4;2;50;;0,13;;0;;1-2,3-6|unit;AP
+director robot;10;;5;5;2;50;;0,13;;0;;1;AP
+evaluator robot;12;;5;4;2;50;;0,13;;0;;1;AP
 feranth;14;;9;6;6;;;3,6;3;0;;1-2;AP
 gammenore;8;;5;5;6;3;;0;1;0;;1-2,3-9|cluster;AP
 ghelarn;2;;5;5;0;;;3;1,2;0;;1;AP
 Gravedragger;15;;8;5;9;9;;0,11,13,15,43;;2,19;;1u;AP
 irradiated dead;7;;8;4;11;;;0,13;;0;;1-2,3-6|gang;AP
-juggernaut robot;15;;5;7;2;49;;0,13;;0;;1;AP
+juggernaut robot;15;;5;7;2;50;;0,13;;0;;1;AP
 Latten Mechanism;15;;5;5;2;12;;0,13,43;;21;;1u;AP
 marax;11;;5;5;1;;27;4,8;3;0;;1-2,3-12|pack;AP
-observer robot;2;;5;2;2;49;;0,13;;0;;1,2-12|deployment;AP
-observer robot swarm;10;;5;2;2;49,52;;0,13;;0;;1,2-5|cloud;AP
+observer robot;2;;5;2;2;50;;0,13;;0;;1,2-12|deployment;AP
+observer robot swarm;10;;5;2;2;50,53;;0,13;;0;;1,2-5|cloud;AP
 petromin;-1;;5;2;1;;31;3;;0;;1-2,3-8|gathering;AP
 pilo;2;;5;3;1;;27;3;;0;;1-2;AP
-reclamation robot;12;;5;5;2;49;;0,13;;0;;1-2,3-5|work gang;AP
+reclamation robot;12;;5;5;2;50;;0,13;;0;;1-2,3-5|work gang;AP
 rust-risen;2;;9;4;11;;;0,13;;0;;1-2,3-12|pack;AP
 shipmind;13;;9;6;8;;;0,13;;0;;1;AP
 sorico;1;;5;3;1;;27;3;;0;;1-2,3-36|warren;AP
-surgeon robot;14;;5;4;2;49;;0,13;;0;;1,2-6|team;AP
+surgeon robot;14;;5;4;2;50;;0,13;;0;;1,2-6|team;AP
 thorgothrel;8;;7;5;8;;;0,13;;0;;1;AP
-thought harvester robot;10;;5;4;2;49;;0,13;;0;;1,2-6|squad;AP
+thought harvester robot;10;;5;4;2;50;;0,13;;0;;1,2-6|squad;AP
 ugothokra;7;;9;3;0;;;0,13;;0;;1-2,3-12|pack;AP
-warden robot;9;;5;5;2;49;;0,13;;0;;1-2,3-12|sentry;AP
+warden robot;9;;5;5;2;50;;0,13;;0;;1-2,3-12|sentry;AP
 yah-thelgaad;14;;9;5;0;;;0,13;;0;;1;AP
 yarahkut;14;;4;5;9;11,12,25;;0,11,13,15;;;;1-2,3-6|intervention;AP
-a patrol of 1 [director robot] and 2d4 [gearsmen\gearsman robot];10,1;;5;4,5;2;49;;0,13;;0;;;AP
+a patrol of 1 [director robot] and 2d4 [gearsmen\gearsman robot];10,1;;5;4,5;2;50;;0,13;;0;;;AP
 a team of [Latten Mechanism] plus 1d6 [clockwork soldiers\clockwork soldier] and 1d6 [clockwork servants\clockwork servant];15,0;;5;4,5;2;12,38,43;;0,13;;21;;1u;AP
-a unit of 1 [director robot], 2d6 [gearsmen\gearsman robot] and 1 [myrmidon\myrmidon robot];11,2;;5;4,5;2;49;;0,13;;0;;;AP
+a unit of 1 [director robot], 2d6 [gearsmen\gearsman robot] and 1 [myrmidon\myrmidon robot];11,2;;5;4,5;2;50;;0,13;;0;;;AP
 
 #Giantslayer (91-96)
 Abaddon gigas;17;;8;7;5;9,12,41;35;0;;19;;1;AP
@@ -3255,7 +3262,7 @@ Mindspin ram;2;;5;4;1;;27;6;1;0;;1-2,3-12|herd;AP
 nixudaemon;7;;8;5;9;9,12,20;;0,13;;19;;1-2,3-5|corps;AP
 pyropiscis;8;;5;5;6;6;;6,13;3;0;;1-2,3-6|pack,12-20|school;AP
 skapraun;1;;4;3;4;;;6;1,2;0;;1-2,3-5|patrol,6-12|band;AP
-skeltercat;4;;9;4;6;50;;4,5,6;2;0;;1-2,3-8|clan;AP
+skeltercat;4;;9;4;6;51;;4,5,6;2;0;;1-2,3-8|clan;AP
 skittergoat;0;;5;3;1;;27;5,8;2;0;;1-2,3-12|herd;AP
 storm aurochs;9;;6;6;6;;;11;;0;;1-2,3-30|herd;AP
 thremindyr;9;;9;4;9;1,3,13;;5,6;1;0;;1-2,3-6|blizzard;AP
@@ -3267,20 +3274,20 @@ a warband of 1 [indarugant] and 2d3 [taiga giants\taiga giant];14,3;;6,9;6;5,11;
 apocrisiarius;7;;7;4;9;9,11,12,27;;0,13;;1;;1-2,3-8|company;AP
 cordulegaster;6;;8;5;9;2,9,12;;9;;19;;1,2-4|cluster;AP
 cruciarus;12;;7;4;11;45;;0,13;;0;;1,2-8|torment;AP
-Dottari troop;7;;7;4;5;53;;0;;0;;1-2,3-4|battalion;AP
+Dottari troop;7;;7;4;5;54;;0;;0;;1-2,3-4|battalion;AP
 elder cordulegaster;7;;8;5;9;2,9,12,20;;9;;19;;1;AP
 forsaken arbalester;3;;7;4;11;;;10;;0;;1,2-10|squad;AP
 forsaken defender;4;;7;4;11;;;10;;0;;1,2-10|squad;AP
 forsaken foot soldier;2;;7;4;11;;;10;;0;;1,2-10|squad;AP
 gambling devil/magadaz;4;;7;4;9;9,11,12,23;;0,13;;20;;1-2,3-9|table;AP
 impaler shrike;3;;5;5;1;;27;0;2;0;;1-2;AP
-inquisitor troop;9;;7;4;5;53;;0;;0;;1-2;AP
+inquisitor troop;9;;7;4;5;54;;0;;0;;1-2;AP
 morgodea;4;;9;4;4;;;14;;0;;1-2,3-6|infestation;AP
-nightprowler;10;;9;5;11;12,48;;0;;11;;1-2,3-9|pride;AP
+nightprowler;10;;9;5;11;12,49;;0;;11;;1-2,3-9|pride;AP
 procyal;8;;2;4;9;10,12,15;;14;;15;;1-2,3-4|party;AP
 rust devil/ferrugon;12;;7;4;9;9,11,12,23;;0,11,13;;20;;1-2,3-7|company;AP
 scrivenite;4;;5;4;9;11,12;;0,11,13;;21;;1-2,3-12|collection;AP
-scythe glass swarm;9;;5;1;2;52;;14;;0;;1-2,3-12|gallery;AP
+scythe glass swarm;9;;5;1;2;53;;14;;0;;1-2,3-12|gallery;AP
 shadow golem;14;;5;5;2;;36;0,13;;0;;1,2-4|gang;AP
 shadow golem shield guardian;16;;5;5;2;;36;0,13;;0;shadow golem;1-2;AP
 shell sentinel;5;;7;4;2;;;0,1;;0;;1-2,3-7|gang;AP
@@ -3288,7 +3295,7 @@ telgrodradt;6;;8;5;0;;;13;;0;;1-2,3-12|gathering;AP
 wraithwing;4;;8;4;11;;;6;2;0;;1-2,3-12|warband;AP
 wretchghost;5;;9;4;11;45;;0,13;;0;;1-2,3-8|gang;AP
 yolubilis heron;6;;5;6;1;;27;9,12;2;0;;1-2,3-8|stand;AP
-zephyr;12;;6;5;4;1,50;;0;;0;;1-2,3-8|herd;AP
+zephyr;12;;6;5;4;1,51;;0;;0;;1-2,3-8|herd;AP
 a company of 1d4+2 [forsaken arbalesters\forsaken arbalester], 1d4+2 [forsaken defenders\forsaken defender] and 1d6+6 [forsaken foot soldiers\forsaken foot soldier];4,7;;7;4;11;;;10;;0;;;AP
 a settlement of 1d20+10 [telgrodradts\telgrodradt] and 1d100+50 [zombies\human zombie] and 1d100+50 [skeletons\human skeleton];6,9;;8;4,5;0,11;;;13;;0;;;AP
 
@@ -3297,30 +3304,30 @@ avernus razorback;9;;7;5;9;6,9,11,12;;0;;20;;1-2,3-20|herd,21-100|plague;AP
 bagman;4;;8;4;4;;;14;;0;;1-2,3-5|gang;AP
 centianima;4;;8;5;11;;;10;;0;;1-2;AP
 Chelish hell-bred dog;2;;5;4;1;;;4,8;2,3;0;;1-2,3-8|pack;AP
-devilslayer troop;14;;1;4;5;53;;0;;0;sergeant troop;1,2-6|company;AP
+devilslayer troop;14;;1;4;5;54;;0;;0;sergeant troop;1,2-6|company;AP
 erelim;6;;2;4;9;10,12,16;;0,11,13;;14,15,16;;1-2,3-10|formation,15-120|host;AP
 ez-azael;12;;1;5;9;10,11,13;;0;;0;;1;AP
-field hospital troop;14;;1;4;5;53;;0;;0;sergeant troop;1,2-4|company;AP
+field hospital troop;14;;1;4;5;54;;0;;0;sergeant troop;1,2-4|company;AP
 gale spirit;6;;9;3;11;45;;0,13;;0;;1-2,3-6|pack;AP
 hammer archon;18;;1;5;9;10,11,12,17;;0,11,13;;14;;1-2,3-6|squad;AP
 hiracapath;7;;1;5;9;10,11,12;;0,13;;14;;1-2,3-16|herd;AP
-hound archon troop;16;;1;4;9;10,11,12,17,53;;0,13;;14;;1-2,3-6|army;AP
+hound archon troop;16;;1;4;9;10,11,12,17,54;;0,13;;14;;1-2,3-6|army;AP
 ixion worm;13;;7;5;9;9,11,12;;0,13;;20;;1-2,4-6|caravan;AP
-knights inheritor troop;15;;1;4;5;53;;0;;0;sergeant troop;1,2-6|company;AP
+knights inheritor troop;15;;1;4;5;54;;0;;0;sergeant troop;1,2-6|company;AP
 kuribu;3;;2;3;9;10,12,16;;0,11,13;;14,15,16;;1-2,3-6|flight;AP
 lapsudaemon;14;;8;4;9;9,12,20;;0,11,13;;19;;1,2-11|storm;AP
 lythirium;11;;2;5;10;;;4;1,2;0;;1-2,3-12|pack;AP
 mederach;9;;3;5;9;8,10,12;;0,13;;16;;1-2,3-6|team;AP
 merlucent;3;;6;4;0;2;;7;;0;;1,3-6|hunting group,9-14|clan;AP
-mote archon swarm;15;;1;0;9;10,11,12,17,52;;0,11,13;;14;;1-2,3-6|flock;AP
+mote archon swarm;15;;1;0;9;10,11,12,17,53;;0,11,13;;14;;1-2,3-6|flock;AP
 mustelidal;16;;2;4;9;10,12,15;;13;;15;;1-2,3-6|cete;AP
 nehushtan;2;;2;2;6;;32;3,5;3;0;;1-2;AP
 ninkonda;17;;1;5;9;10,11,12,16;;0,11,13;;14,15,16;;1-2,3-6|squad;AP
 nualidu;5;;3;4;9;7,8,10,12,19;;1;;16;;1-2,3-6|pod;AP
 quillcat;1;;5;3;1;;;4;;0;;1;AP
-rassophore troop;15;;1;4;5;53;;0;;0;sergeant troop;1,2-6|company;AP
-sergeant troop;14;;1;4;5;53;;0;;0;;1,2-4|company,5-10|battalion;AP
-siege engineer troop;14;;1;4;5;53;;0;;0;sergeant troop;1,2-6|company;AP
+rassophore troop;15;;1;4;5;54;;0;;0;sergeant troop;1,2-6|company;AP
+sergeant troop;14;;1;4;5;54;;0;;0;;1,2-4|company,5-10|battalion;AP
+siege engineer troop;14;;1;4;5;54;;0;;0;sergeant troop;1,2-6|company;AP
 spellgorger;12;;5;5;8;;;13;;0;;1-2,3-6|gluttony;AP
 Stygian hot-blooded horse;2;;5;5;1;;;8;2,3;0;;1;AP
 typhilipede;2;;7;2;9;9,11,12;32;13;;20;;1,2-9|mass,10-30|colony;AP
@@ -3336,7 +3343,7 @@ byakhee;4;;9;4;0;;;11;;0;;1-2,3-12|flock;AP
 clockwork vivisectionist;10;;5;4;2;38;;0,13;;0;;1;AP
 drexin;2;;9;3;4;;37;13,14;;0;;1-2,3-6|mob;AP
 druj nasu;8;;8;4;9;9,12,24;;0,11,13;;19;;1;AP
-faceless hulk;9;;9;5;0;50;;5,6;;0;;1-2,3-12|tribe;AP
+faceless hulk;9;;9;5;0;51;;5,6;;0;;1-2,3-12|tribe;AP
 formless spawn;10;;9;6;8;;;10;2;0;;1,2-6|flood;AP
 Ghatanothoa;29;10;8;8;0;8,9,42;;0,1;;0;;1u;AP
 hollow one;10;;5;4;2;;;0,13;;0;;1;AP
@@ -3349,13 +3356,13 @@ kudimmu;16;;8;5;10;;;0;;0;;1;AP
 larva of the outer gods|larvas of the outer gods;15;;6;5;0;;;0,11,13;;0;;1-2,4-6|choir;AP
 Mordiggian;30;10;9;7;0;8,9,42,45;;0,11,13;;0;;1u;AP
 oneirogen;2;;6;4;9;13;;0;;0;;1,2-6|gang;AP
-pallid wriggler swarm;2;;8;1;0;52;;13;;0;;1,2-6|cloud;AP
-patchwork insect swarm;0;;5;1;12;52;;13;;0;;1,2-8|cluster,9-20|epidemic;AP
+pallid wriggler swarm;2;;8;1;0;53;;13;;0;;1,2-6|cloud;AP
+patchwork insect swarm;0;;5;1;12;53;;13;;0;;1,2-8|cluster,9-20|epidemic;AP
 proto-shoggoth;11;;5;4;8;;;0,1,13;;0;;1,2-8|mass;AP
 proto-shoggoth syncytium;14;;6;5;8;;;0,1,13;;0;;1,2-6|mass;AP
 shrike worm;15;;8;6;0;;;0,13;;0;;1-2,3-5|delusion;AP
 star vampire;6;;9;5;0;;;11;;0;;1-2,3-8|clot;AP
-swimming eye swarm;4;;8;2;0;2,52;;1;2,3;0;;1,2-8|bloom;AP
+swimming eye swarm;4;;8;2;0;2,53;;1;2,3;0;;1,2-8|bloom;AP
 Thrushmoor angler;8;;6;4;6;2;;4,9,12;2;0;;1-2,3-8|cloister;AP
 Tsathoggua;29;10;9;5;0;8,9,42;;13;;0;;1u;AP
 wamp;6;;9;4;0;;;10;;0;;1-2,3-9|tangle;AP
@@ -3365,12 +3372,12 @@ Xhamen-Dor;26;10;8;7;10;2,9,42;;0;;0;;1u;AP
 ambergrim;6;;5;4;8;;;4;;0;;1,2-4|cluster;AP
 anhana;3;;3;3;4;;;4;;0;;1-2,3-15|sisterhood;AP
 bore worm monarch;7;;5;5;12;;;13;;0;;1-2;AP
-bore worm swarm;5;;5;0;12;52;;13;;0;;1-2;AP
+bore worm swarm;5;;5;0;12;53;;13;;0;;1-2;AP
 bramblelash;1;;5;4;10;;;4;1,2;0;;1-2,3-6|patch;AP
 burstigeit;3;;5;5;6;;;13;;0;;1-2,3-18|herd;AP
 canopy troll;3;;9;3;5;41;48;4;2,3;0;;1-2,3-4|gang,5-12|troop;AP
 cactus leshy;2;;5;3;10;;40;3;3;0;;1,2-12|patch;AP
-cicada swarm;2;;5;1;12;52;;4;2;0;;1,2-8|infestation;AP
+cicada swarm;2;;5;1;12;53;;4;2;0;;1,2-8|infestation;AP
 clockwork excavator;10;;5;6;2;38;;0,13;;0;;1,2-4|crew;AP
 copsewight;11;;8;6;11;;;4;;0;;1,2-10|grove;AP
 dallo;1;;5;3;1;;27;13;;0;;1-2,6-30|herd;AP
@@ -3385,32 +3392,32 @@ giant cicada;1;;5;3;12;;;0;2,3;0;;1-2,3-12|brood;AP
 glimmerhollow;9;;5;6;8;4,12;;13;;8;;1;AP
 heartrot tree;13;;8;6;10;;;4,13;;0;;1-2,6-12|festering grove;AP
 hobbe hound;2;;5;4;1;;27;5,13;2;0;;1-2,3-6|pack;AP
-hobgoblin phalanx troop;10;;7;4;5;53;;0;;0;;1-2,3-8|legion;AP
-Ironfang magehunter troop;14;;7;4;5;53;;0;;0;;1-2,3-6|division;AP
-Ironfang siege alchemist troop;16;;7;4;5;53;;0;;0;;1-2;AP
-Ironfang yzobu rider troop;18;;7;4;5;53;;0;;0;;1-2,3-6|division;AP
+hobgoblin phalanx troop;10;;7;4;5;54;;0;;0;;1-2,3-8|legion;AP
+Ironfang magehunter troop;14;;7;4;5;54;;0;;0;;1-2,3-6|division;AP
+Ironfang siege alchemist troop;16;;7;4;5;54;;0;;0;;1-2;AP
+Ironfang yzobu rider troop;18;;7;4;5;54;;0;;0;;1-2,3-6|division;AP
 kastamut;6;;4;4;9;11,12,25;;0,13;;;;1-2,3-5|council;AP
 khardajeen;14;;8;4;0;;;13;;0;;1-2,3-12|disassembly;AP
 lich newt;-2;;5;2;1;2;31;8,12;2;0;;1-2,3-12|ning;AP
-lichen leshy;3;;5;3;10;50;40;5,6;;0;;1,2-16|patch;AP
+lichen leshy;3;;5;3;10;51;40;5,6;;0;;1,2-16|patch;AP
 mome rath;2;;5;4;1;;27;4;2;4;;1-2;AP
-morlock swarmer troop;7;;9;4;7;53;;13;;0;;1-2,3-6|tribe;AP
+morlock swarmer troop;7;;9;4;7;54;;13;;0;;1-2,3-6|tribe;AP
 muldnal;3;;2;3;9;10,12,15;;13;;15;;1-2,3-10|labor;AP
 nachzehrer;12;;9;4;11;;;4;;0;;1;AP
 ohancanu;5;;9;5;4;;;4;2;0;;1,2-6|hunting party;AP
 onyx scourge;16;;9;6;9;4,5,12;;13;;8;;1-2;AP
 ringhorn;1;;5;4;1;;27;5,8;2;0;;1-2,10-30|herd;AP
 rock tuatara;-1;;5;2;1;;31;13;;0;;1-2,3-12|nest;AP
-snapdragon leshy;4;;5;3;10;50;40;5,14;2;0;;1,2-8|patch;AP
+snapdragon leshy;4;;5;3;10;51;40;5,14;2;0;;1,2-8|patch;AP
 snark;-2;;5;1;1;;31;0;;4;;1-2,3-10|conspiracy;AP
 sunflower leshy;1;;5;3;10;;40;5,8;3;0;;1-2,3-8|bunch,9-30|field;AP
 switchback jackal;0;;5;3;1;;27;8;2,3;0;;1-2,5-12|pack;AP
 vault giant;17;;7;7;5;2,41;;2;;0;;1-2,3-9|hunting party;AP
 venomroach;3;;5;5;12;;;0;;0;;1-2,3-12|intrusion;AP
-warmaze disciples troop;11;;9;5;7;53;;6,13;;0;;1-2,3-6|force;AP
-wereraptor\wereraptor (human form);3;;4;4;5;50;42;4,6;2;0;;1-2,3-5|flock;AP
+warmaze disciples troop;11;;9;5;7;54;;6,13;;0;;1-2,3-6|force;AP
+wereraptor\wereraptor (human form);3;;4;4;5;51;42;4,6;2;0;;1-2,3-5|flock;AP
 zarxorin;19;;5;8;9;4,5,12;;5,13;;8;;1;AP
-a tremor of 1 [bore worm monarch] plus 1d6 [bore worm swarms\bore worm swarm];7,3;;5;0,5;12;52;;13;;0;;;AP
+a tremor of 1 [bore worm monarch] plus 1d6 [bore worm swarms\bore worm swarm];7,3;;5;0,5;12;53;;13;;0;;;AP
 a warband of 1d3+1 [hobbe hounds\hobbe hound] plus 2d6 [hobgoblins\hobgoblin];2,5;;5,7;4;1,5;;;5;2;0;;;AP
 
 #Ruins of Azlant (121-126)
@@ -3423,14 +3430,14 @@ chelonidal;7;;2;4;9;2,10,12,15;;0,1;;15;;1-2,4-12|phalanx;AP
 clockwork nautiloid;14;;5;6;2;38;;1;;0;;1-2;AP
 clockwork overseer;7;;5;4;2;38;;0,13;;0;;1;AP
 enchanter heron;3;;5;5;1;;27;2,9;2;0;;1,4-12|flock;AP
-enisysian;4;;7;3;0;2,50;;1;;0;;1;AP
+enisysian;4;;7;3;0;2,51;;1;;0;;1;AP
 flotsam terror;4;;8;3;11;;;7;;0;;1-2,3-10|float;AP
 fluxwraith;17;;8;4;11;45;;0,13;;0;;1,2-4|cluster;AP
 giant stargazer;4;;5;4;1;2;;7;;0;;1-2,3-6|school;AP
 gliding turtle;2;;5;5;1;;27;2,4;2;0;;1-2,3-8|den;AP
 ioun golem;17;;5;5;2;;36;0,13;;0;;1;AP
 ioun golem shield guardian;19;;5;5;2;;36;0,13;;0;ioun golem;1;AP
-kigyo;6;;7;4;9;2,13,29,50;;1;;0;;1-2,3-12|band;AP
+kigyo;6;;7;4;9;2,13,29,51;;1;;0;;1-2,3-12|band;AP
 king ragworm;13;;5;7;12;2;;7;;0;;1;AP
 larval chuul;1;;9;3;0;2;;12;2;0;;1-2,3-6|pack;AP
 lesser chuul;4;;9;4;0;2;;12;2;0;;1-2,3-6|pack;AP
@@ -3449,8 +3456,8 @@ smoke sentinel;9;;4;6;2;;;4;2,3;0;;1;AP
 tidewretch;6;;8;4;11;;;2;;0;;1-2,3-8|tangle;AP
 thalassic architect;10;;7;5;0;2;;1;;0;;1-2;AP
 tullimonstrum;1;;5;2;1;2;31;7;;0;;1-2,3-5|group,6-20|school;AP
-warden jack swarm;4;;5;0;2;52;;0;;0;;1,2-5|spill,6-11|disaster;AP
-1 [enisysian] with 1 [veiled master];14,0;;7;3,5;0;2,50;;1;;0;;;AP
+warden jack swarm;4;;5;0;2;53;;0;;0;;1,2-5|spill,6-11|disaster;AP
+1 [enisysian] with 1 [veiled master];14,0;;7;3,5;0;2,51;;1;;0;;;AP
 a court of 1 [portunus] plus 1d4+1 [elder water elementals\elder water elemental];16,1;6;5;6;9;5,7,12,47;;1;;10;;;AP
 a crew of 1 [clockwork overseer] plus 1d4+1 [clockwork servants\clockwork servant];7,1;;5;4;2;38;;0,13;;0;;;AP
 a deployment of 1d2 [clockwork overseers\clockwork overseer] plus 1d4+1 [clockwork soldiers\clockwork soldier];7,4;;5;4;2;38;;0,13;;0;;;AP
@@ -3461,7 +3468,7 @@ axial monitor;15;;4;5;9;11,12;;14;;21;;1,2-4|patrol,5-8|squad,9-16|precint,21-40
 adult edict dragon;16;;4;6;3;11,12;25;0;;21;;1;AP
 ancient edict dragon;21;;4;7;3;11,12;25;0;;21;;1;AP
 black shuck;7;;6;5;6;;;2,12;2;0;;1;AP
-blood algae swarm;8;;5;1;10;52;;9;1,2;0;;1,2-6|colony;AP
+blood algae swarm;8;;5;1;10;53;;9;1,2;0;;1,2-6|colony;AP
 bloodplate burster;9;;5;6;10;;;3,8;2,3;0;;1-2,3-4|frenzy;AP
 bramble throne;16;;5;6;10;;;4;2;0;;1;AP
 carrion creeper;10;;5;5;10;;;4,8;2;0;;1,2-4|tangle;AP
@@ -3496,7 +3503,7 @@ wyrmling edict dragon;8;;4;3;3;11,12;25;0;;21;edict dragon\young edict dragon;1;
 wyrm edict dragon;22;;4;7;3;11,12;25;0;;21;edict dragon\ancient edict dragon;1;AP
 young adult edict dragon;14;;4;6;3;11,12;25;0;;21;edict dragon\adult edict dragon;1;AP
 young edict dragon;12;;4;5;3;11,12;25;0;;21;;1;AP
-zalyakavat;13;;7;4;9;13,33,50;;0;;0;;1-2,3-6|muster;AP
+zalyakavat;13;;7;4;9;13,33,51;;0;;0;;1-2,3-6|muster;AP
 an investigation of 1 [hykariut] plus 1d4+4 [arbiters\arbiter];18,0;;4;2,5;9;11,12,25;;14;;;;;AP
 a mitigation of 1 [hykariut] plus 1d6+4 [arbiters\arbiter] and 2d4 [kolyaruts\kolyarut];18,1;;4;2,4,5;9;11,12,25;;14;;;;;AP
 a mitigation of 1 [hykariut] plus 1d6+4 [arbiters\arbiter] and 2d4 [zelekhuts\zelekhut];18,1;;4;2,5;9;11,12,25;;14;;;;;AP
@@ -3518,7 +3525,7 @@ bolla;14;;8;6;6;;;6;1,2;0;;1;AP
 choking shade;5;;8;4;11;45;;0,13;;0;;1-2,3-6|haunting;AP
 chronogeist;14;;9;4;11;45;;14;;22;;1-2,3-5|keening;AP
 cyphergull;2;;5;2;6;;32;2;2;0;;1-2,3-11|flock,12-36|colony;AP
-glacial sturzstromer;19;;6;2;9;3,5,7,12,52;;6;;8;sturzstromer;1;AP
+glacial sturzstromer;19;;6;2;9;3,5,7,12,53;;6;;8;sturzstromer;1;AP
 great wyrm apocalypse dragon;24;;8;8;3;9,12;25;0;;19;apocalypse dragon\ancient apocalypse dragon;1;AP
 great wyrm apocalypse dragon ravener;26;;8;8;11;9,12;;0;;19;great wyrm apocalypse dragon\ancient apocalypse dragon;1;AP
 great wyrm bliss dragon;24;;2;8;3;10,12;25;0;;15;bliss dragon\ancient bliss dragon;1;AP
@@ -3532,7 +3539,7 @@ japalisura;12;;7;4;9;9,11,12,18;;0,13;;20;;1-2,3-5|foreboding;AP
 juvenile apocalypse dragon;13;;8;5;3;9,12;25;0;;19;apocalypse dragon\young apocalypse dragon;1;AP
 juvenile bliss dragon;13;;2;5;3;10,12;25;0;;15;bliss dragon\young bliss dragon;1;AP
 juvenile tumult dragon;13;;6;5;3;8,12;25;0;;17;tumult dragon\young tumult dragon;1;AP
-kasthezvi;12;;7;4;0;50;;13;;0;;1-2,3-6|cabal;AP
+kasthezvi;12;;7;4;0;51;;13;;0;;1-2,3-6|cabal;AP
 libitinarii;13;;7;4;9;3,9,11,12,27;;0,13;;1;;1,2-5|shiver;AP
 mature adult apocalypse dragon;17;;8;6;3;9,12;25;0;;19;apocalypse dragon\adult apocalypse dragon;1;AP
 mature adult bliss dragon;17;;2;6;3;10,12;25;0;;15;bliss dragon\adult bliss dragon;1;AP
@@ -3543,9 +3550,9 @@ nochlean;3;;9;4;4;;;4;2;0;;1;AP
 old apocalypse dragon;19;;8;7;3;9,12;25;0;;19;apocalypse dragon\adult apocalypse dragon;1;AP
 old bliss dragon;19;;2;7;3;10,12;25;0;;15;bliss dragon\adult bliss dragon;1;AP
 old tumult dragon;19;;6;7;3;8,12;25;0;;17;tumult dragon\adult tumult dragon;1;AP
-pyroclastic sturzstromer;19;;6;2;9;4,5,6,12,52;;6;;8;sturzstromer;1;AP
+pyroclastic sturzstromer;19;;6;2;9;4,5,6,12,53;;6;;8;sturzstromer;1;AP
 shriezyx queen;8;;9;5;0;;;0,13;;0;;1;AP
-sturzstromer;19;;6;2;9;4,5,12,52;;6;;8;;1;AP
+sturzstromer;19;;6;2;9;4,5,12,53;;6;;8;;1;AP
 time dimensional;14;;5;5;9;12;;0,11,13;;6;;1-2,3-12|chronology;AP
 very old apocalypse dragon;20;;8;7;3;9,12;25;0;;19;apocalypse dragon\ancient apocalypse dragon;1;AP
 very old bliss dragon;20;;2;7;3;10,12;25;0;;15;bliss dragon\ancient bliss dragon;1;AP
@@ -3573,7 +3580,18 @@ a family of 1d3+2 [basavans\basavan] plus 1d3 [rocs\roc];15,4;;2,5;6,7;1,7;;;4,6
 a hive of 1 [shriezyx queen] and 1d10+2 [shriezyx];8,3;;9;4,5;0;;;0,13;;0;;;AP
 
 #Tyrant's grasp (139-144)
-#TODO
+angheuvore mortic;2;;8;4;5;48;;0,13;;0;;1-2,3-8|gang;AP
+auwaz couatl;6;;3;5;9;13;;0,13;;0;;1;AP
+bonewrought willow;3;;5;5;10;12;;0;;13;;1-2,3-8|copse;AP
+gurgist mortic;6;;5;4;4;48;;0,13;;0;;1-2,3-5|hunting party;AP
+jitterbone mortic;4;;6;3;5;48;;0,13;;0;;1,2-6|band;AP
+kaicharek;4;;8;4;6;12;;0;;13;;1-2,3-6|cluster;AP
+melacage;5;;8;4;11;45;;0,13;;0;;1,2-5|village,10-20|city;AP
+mix couatl;8;;3;5;9;13;;0,13;;0;;1-2,3-4|flight;AP
+pixie circle;7;;5;6;10;;;4;2;0;;1;AP
+tooth fairy monarch;3;;8;3;4;;;14;;0;;1;AP
+a court of 1 [tooth fairy monarch] plus 2d6 [tooth fairies\tooth fairy];3,2;;8,9;1,3;4;12;;14;;0;;;AP
+#TODO 141-144
 
 ##Adventure modules
 
@@ -3600,10 +3618,10 @@ mute hag;11;;9;4;7;3;38;4,8,12;1;0;;1,3|coven;AM
 shenzuzhou;12;;8;5;11;;;0,13;;0;;1;AM
 
 #No response from Deepmar (5.2012)
-cytillesh zombie;1;;8;4;11;;;0,13;;0;;1-100;AP
+cytillesh zombie;1;;8;4;11;;;0,13;;0;;1-100;AM
 
 #Murder's mark (10.2012)
-panotti;2;;2;4;5;;;0;;0;;1-2,5-11;AP
+panotti;2;;2;4;5;;;0;;0;;1-2,5-11;AM
 
 #Fangwood keep (4.2013)
 barrow hound;6;;5;5;4;;;0;;4;;1,2-5|pack;AM
@@ -3627,7 +3645,7 @@ moon spider;2;;8;4;6;;;4;2;0;;1-2,3-8|colony;AM
 
 #Plunder & peril (11.2014)
 incutilis lord;8;;8;5;0;2;;7;;0;;1-2;AM
-karkinoi brood swarm;4;;9;2;7;2,52;;1;;0;;1-2,3-4|wave;AM
+karkinoi brood swarm;4;;9;2;7;2,53;;1;;0;;1-2,3-4|wave;AM
 onwu azu;1;;5;3;1;2;;1;3;0;;1,4-11|school,13-33|shoal;AM
 a coven of 1d2 [incutilis lords\incutilis lord] plus 1d4+3 [incutilises\incutilis];8,2;;7,8;2,5;0;2;;7;;0;;;AM
 
@@ -3647,7 +3665,7 @@ deeplit;5;;8;4;11;;;13;;0;;1-2,3-12|team;AM
 geomaw;7;;8;5;0;;;13;;0;;1,2-5|frenzy;AM
 gloomwasp;6;;5;3;6;;;13;;0;;1,2-6|cluster,7-24|nest;AM
 narrik;7;;9;4;0;;;13;;0;;1-2,3-6|pack;AM
-occulari;7;;9;1;0;52;;13;;0;;1,2-5|surveillance,6-12|reconnaissance;AM
+occulari;7;;9;1;0;53;;13;;0;;1,2-5|surveillance,6-12|reconnaissance;AM
 orphne;4;;8;4;4;;;13,14;;0;;1-2,3-8|wake;AM
 spiroskek;6;;6;4;6;;;13;;0;;1-2,3-6|nest;AM
 
@@ -3660,7 +3678,7 @@ breathless orchid;2;;5;4;10;;;4;2;0;;1,2-5|patch;AM
 drochtac;1;;9;4;4;;;4;;0;;1-2,3-8|nest;AM
 giant hook fly;2;;5;3;12;;;0,13;;0;;1-2,3-6|cloud;AM
 giant hook fly matriarch;3;;5;3;12;;;0,13;;0;giant hook fly;1;AM
-hook fly swarm;1;;5;1;12;52;;0,13;;0;;1-2,3-6|cloud;AM
+hook fly swarm;1;;5;1;12;53;;0,13;;0;;1-2,3-6|cloud;AM
 katroome;1;;6;3;6;;32;4;;0;;1;AM
 nukkefeen;1;;5;4;4;;;0,13;;0;;1-2,3-4|family;AM
 a cloud of 1 giant hook fly matriarch plus 1d6 [giant hook flies\giant hook fly];3,4;;5;3;12;;;0,13;;0;giant hook fly;;AM
