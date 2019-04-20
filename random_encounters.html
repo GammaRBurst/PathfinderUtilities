@@ -231,6 +231,18 @@ tfoot td {
 				$('#size_min').val(sizes[$('#size_slide').slider('values', 0)]);
 				$('#size_max').val(sizes[$('#size_slide').slider('values', 1)]);
 				
+				//Simple list
+				$('#slist').click(function() {
+					if($(this).prop('checked')) {
+						$('.not_slist').prop('disabled', true);
+						$('#cr_comb_slide').slider('disable');
+					}
+					else {
+						$('.not_slist').prop('disabled', false);
+						$('#cr_comb_slide').slider('enable');
+					}
+				});
+				
 				//CR combination slider
 				$('#cr_comb_slide').slider({
 					range: true,
@@ -1569,10 +1581,10 @@ tfoot td {
 				<h3 class="hide" id="hide_other_options">Other Options</h3>
 				<label for="slist" style="width: auto; padding-bottom: 1.5em;"><input type="checkbox" name="slist" id="slist" value="0" /> Generate only a list of creatures</label> (If checked the following options are ignored.)<br />
 				<label for="variant"><input type="checkbox" name="variants" id="variant" value="0" checked="checked" /> Include variant creatures</label>
-				<label for="mixed"><input type="checkbox" name="mixed" id="mixed" value="0" checked="checked" /> Include mixed groups</label>
+				<label for="mixed"><input type="checkbox" name="mixed" id="mixed" class="not_slist" value="0" checked="checked" /> Include mixed groups</label>
 				<label for="unique"><input type="checkbox" name="unique" id="unique" value="0" checked="checked" /> Include unique creatures</label><br />
-				<label for="numtable" style="margin-top: 1.5em;">Maximum number of creatures in the table: <input name="maxcreatures" id="numtable" value="25" style="width: 4em;" /> (0 indicates all the creatures found)</label><br />
-				<label for="numcolumn">Maximum number in the dice column: <input name="maxdice" id="numcolumn" value="100" style="width: 4em;" /> (0 indicates no dice column)</label><br />
+				<label for="numtable" style="margin-top: 1.5em;">Maximum number of creatures in the table: <input name="maxcreatures" id="numtable" class="not_slist" value="25" style="width: 4em;" /> (0 indicates all the creatures found)</label><br />
+				<label for="numcolumn">Maximum number in the dice column: <input name="maxdice" id="numcolumn" class="not_slist" value="100" style="width: 4em;" /> (0 indicates no dice column)</label><br />
 				<div style="padding-bottom: 1em; margin-top: 1.5em;">CR increase for combination of creatures:</div>
 				<div style="float: left; margin-left: 5%;">
 					<label for="cr_comb_min">Minimum CR increase: <input type="text" name="cr_comb_min" id="cr_comb_min" class="slider_box" readonly="readonly" /></label>
