@@ -47,3 +47,13 @@ Just download the files and double-click on *random_encounters.html*! No install
   * Chronicle of legends (to be published)
 * Adventure Path:
   * Tyrant's grasp #1 - #6 (partly published)
+
+## Next Update
+I'm currently studying a few things that I might add to the database:
+* __Speed__: It may be interesting to be able to filter based on the kind of movements the creatures have. I'm pretty sure I won't add actual speeds, but only if a creature has burrow, climb, fly, land, swim and/or other kind of movements.
+* __Hit dice__
+* __Ability scores__
+
+I'm also studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable. It will need further research.
+
+Finally, I'm also considering how to implement something like a double-valued checkbox, so that with a single click an option can be included in the search, while with a double click it can be excluded (__NOT__ selection mode). This is still only an idea, right now I have no clue how to implement it. We'll se how it goes.
