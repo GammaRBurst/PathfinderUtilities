@@ -39,6 +39,12 @@ Just download the files and double-click on *random_encounters.html*! No install
 
   These are jobs for a human mind, not a machine.
 
+## Bugs and other strange things
+While no bug is known at the moment, I'm pretty sure there are some mistakes here and there.
+* __Wrong link__: While AoN is quite predictable in the way it memorized the creatures' names, it sometimes deviates from its standards. Moreover, the software may create a link for a mythic creature while the creature is non-mythic or vice versa. If you spot a wrong link and you are sure the monster sheet exists, write an issue with the monster name and the correct URL of its sheet.
+* __Wrong plural__: Plurals in English are usually easy to construct, but there are exceptions. Sadly English is not my mother language, so some irregular or special plural may have gone unnoticed. If you find a wrong plural, write an issue with the monster name and the correct plural.
+* __Wrong/missing monster informations__: Most of the informations are translated as numbers to reduce the database's size. It's easy to type some digits instead of some others, and I already found some of these mistakes myself. These are by far the hardest mistakes to find, but if you happen to stuble upon one, write an issue with the monster name and what is wrong or missing.
+
 ## Missing Manuals
 * Campaign Setting:
   * Concordance of rivals (to be published)
@@ -49,11 +55,12 @@ Just download the files and double-click on *random_encounters.html*! No install
   * Tyrant's grasp #1 - #6 (partly published)
 
 ## Next Update
-I'm currently studying a few things that I might add to the database:
-* __Speed__: It may be interesting to be able to filter based on the kind of movements the creatures have. I'm pretty sure I won't add actual speeds, but only if a creature has burrow, climb, fly, land, swim and/or other kind of movements.
-* __Hit dice__
-* __Ability scores__
+* __Hit dice__: Similar to the CR filter. _Software implementation completed, database update in progress._
+* __Speed__: It'll be possible to filter by movement type. The actual speeds, as well as maneuverability for flight speed won't be available though; only movement types (land, burrow, climb, fly, swim, others). _Software implementation completed, database update in progress._
+* __Ability scores__: Similar to the CR filter. _Software implementation completed, database update in progress._
+* __Double-valued checkboxes__: For most options it will be possible to click to select it (green tick), or double-click or right-click to negate it (red cross). As before, an empty checkbox means that the presence or absence of the option is irrelevant. For example it will be possible to select all creature with the _evil_ subtype, but not the _lawful_ and _chaotic_ subtypes. A few other checkboxes, those that include variant creatures, mixed groups and unique creatures, have now the option to show only these creatures (blue circle). _Implementation completed._
+* __Disable links__: It'll be possible to disable links, if so desired.
+* A few corrections to the database and some rearrangement to the software. _In progress._
+I expect this new version to be ready for the second half of May.
 
-I'm also studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable. It will need further research.
-
-Finally, I'm also considering how to implement something like a double-valued checkbox, so that with a single click an option can be included in the search, while with a double click it can be excluded (__NOT__ selection mode). This is still only an idea, right now I have no clue how to implement it. We'll se how it goes.
+I'm also studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable. It will need further research and won't probably be included in the next update.
