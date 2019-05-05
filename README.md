@@ -59,8 +59,9 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
 * __Speed__: It'll be possible to filter by movement type. The actual speeds, as well as maneuverability for flight speed won't be available though; only movement types (land, burrow, climb, fly, swim, others). _Software implementation completed, database update in progress._
 * __Ability scores__: Similar to the CR filter. _Software implementation completed, database update in progress._
 * __Double-valued checkboxes__: For most options it will be possible to click to select it (green tick), or double-click or right-click to negate it (red cross). As before, an empty checkbox means that the presence or absence of the option is irrelevant. For example it will be possible to select all creature with the _evil_ subtype, but not the _lawful_ and _chaotic_ subtypes. A few other checkboxes, those that include variant creatures, mixed groups and unique creatures, have now the option to show only these creatures (blue circle). _Implementation completed._
-* __Disable links__: It'll be possible to disable links, if so desired.
+* __Disable links__: It'll be possible to disable links, if so desired. _Implementation completed._
 * A few corrections to the database and some rearrangement to the software. _In progress._
+
 I expect this new version to be ready for the second half of May.
 
 I'm also studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable. It will need further research and won't probably be included in the next update.
