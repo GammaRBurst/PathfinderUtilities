@@ -35,7 +35,7 @@ Just download the files and double-click on *random_encounters.html*! No install
 * __An automatic system__ to apply templates and/or class levels to existing creatures or playable races was part of the project at the start, but I quickly realized that:
   * Adding class levels to monsters requires the knowledge of the monster role, an information that can be found only in the Bestiaries, which leaves about 1/4 of the material without this information.
   * There are a ton o classes, archetypes and prestige classes. Yes, it's in no way comparable to the number of creatures that can be found in the database, but then there are all the possible combinations of these classes, archetypes and prestige classes, each with its own set of rules and requirements. And the combinations have to be somehow significant.
-  * Templates require a lot of information on the base creature. Informations that are not interesting to narrow down the results, such as the number of hit dice, but that risk to quickly clog the database. And every time a new template requires a new information, I would have to take all the books and look at all of them.
+  * Templates require a lot of information on the base creature. Informations that are not always easy to insert into the database, such as immunity to fire or the presence of an exoskeleton.
 
   These are jobs for a human mind, not a machine.
 
@@ -47,10 +47,10 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
 
 ## Missing Manuals
 * Campaign Setting:
-  * Concordance of rivals (to be published)
-  * Druma, profit & prophecy (to be published)
+  * Concordance of rivals
+  * Druma, profit & prophecy (to be published in June)
 * Player Companion:
-  * Chronicle of legends (to be published)
+  * Chronicle of legends (to be published in May)
 * Adventure Path:
   * Tyrant's grasp #3 - #6 (partly published)
 
@@ -58,10 +58,12 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
 * __Hit dice__: Similar to the CR filter. _Software implementation completed, database update in progress._
 * __Speed__: It'll be possible to filter by movement type. The actual speeds, as well as maneuverability for flight speed won't be available though; only movement types (land, burrow, climb, fly, swim, others). _Software implementation completed, database update in progress._
 * __Ability scores__: Similar to the CR filter. _Software implementation completed, database update in progress._
-* __Double-valued checkboxes__: For most options it will be possible to click to select it (green tick), or double-click or right-click to negate it (red cross). As before, an empty checkbox means that the presence or absence of the option is irrelevant. For example it will be possible to select all creature with the _evil_ subtype, but not the _lawful_ and _chaotic_ subtypes. A few other checkboxes, those that include variant creatures, mixed groups and unique creatures, have now the option to show only these creatures (blue circle). _Implementation completed._
+* __Triple-valued checkboxes__: For most options it will be possible to click to select it (green tick), or double-click or right-click to negate it (red cross). As before, an empty checkbox means that the presence or absence of the option is irrelevant. For example it will be possible to select all creature with the _evil_ subtype, but not the _lawful_ and _chaotic_ subtypes. A few other checkboxes, those that include variant creatures, mixed groups and unique creatures, have now the option to show only these creatures (blue circle). _Implementation completed._
 * __Disable links__: It'll be possible to disable links, if so desired. _Implementation completed._
+* __Sorting__: It'll be possible to sort based on CR/MR (only current possibility), CR/MR and then name, only name or completely random order. _Studying the problem._
+* __New options__: I'm planning to add the _goblinoid_ and _reptilian_ subtypes, as well as a _no racial HD_ group (I'll probably come up with a better name). _Nothing done yet._
 * A few corrections to the database and some rearrangement to the software. _In progress._
 
 I expect this new version to be ready for the second half of May.
 
-I'm also studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable. It will need further research and won't probably be included in the next update.
+I'm also studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable, at least partly. It will need further research and won't probably be included in the next update.
