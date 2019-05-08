@@ -52,7 +52,7 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
 * Player Companion:
   * Chronicle of legends (to be published)
 * Adventure Path:
-  * Tyrant's grasp #1 - #6 (partly published)
+  * Tyrant's grasp #3 - #6 (partly published)
 
 ## Next Update
 * __Hit dice__: Similar to the CR filter. _Software implementation completed, database update in progress._
