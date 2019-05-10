@@ -4,1236 +4,25 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		 <link rel="icon" href="sys/favicon.png" type="image/png" sizes="32x32"> 
+		<link rel="icon" href="sys/favicon.png" type="image/png" sizes="32x32"> 
 		<title>The Ultimate Random Encounter Tables Generator</title>
-		<link rel="stylesheet" href="sys/jquery-ui-1.12.1.min.css" />
-		<script src="sys/jquery-3.4.0.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="sys/jquery-ui-1.12.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="sys/style.css" />
+		<script>
+//Shared variables
+var debug = true; //Alerts in case of double monsters and wrong number of fields, should be false for distribution
+var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
+var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
+var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD', 'UW', 'PA', 'CS', 'PC', 'AP', 'AM'];
+		</script>
+		<script src="sys/jquery-3.4.1.min.js"></script>
 		<script src="sys/jquery-ui-1.12.1.min.js"></script>
 		<script src="sys/dice.js"></script>
-		<style>
-body {
-	margin: 1em 1%;
-	padding: 0;
-}
-
-form {
-	width: 100%;
-	margin: 0;
-	padding: 1px 0 0;
-}
-
-h1 a {
-	color: inherit;
-	text-decoration: none;
-}
-
-h3.hide {
-	width: 98.14%;
-	position: relative;
-	bottom: 0.65em;
-	background-color: #ffffff;
-}
-
-h3.show {
-	width: 95%;
-	margin-top: 0.25em;
-}
-
-h3 {
-	border: 1px solid #aaa;
-	border-radius: 0.3em;
-	padding: 0.1em 0.2%;
-	margin: 0 auto;
-}
-
-.content {
-	border: 1px solid #AAAAAA;
-	border-radius: 1em;
-	padding: 0 0.5% 1em;
-	margin: 1em 1%;
-	display: none;
-}
-
-.center {
-	text-align: center;
-	margin-top: 0.5em;
-}
-
-.right {
-	float: right;
-	margin-right: 0.5em;
-}
-
-:not(.right) > label {
-	white-space: nowrap;
-	display: inline-block;
-	width: 16em;
-}
-
-.slider {
-	width: 90%;
-	margin: 2em auto 0.5em;
-}
-
-.slider_box {
-	width: 2em;
-	border-width: 0;
-	font: inherit;
-	color: inherit;
-}
-
-.show, .hide {
-	cursor: pointer;
-}
-
-table {
-	border; 1 px solid #AAAAAA;
-	border-collapse: collapse;
-	margin: 0 auto;
-	max-width: 95.6%;
-}
-
-td, th {
-	border: 1px solid #AAAAAA;
-	padding: 3px 8px;
-}
-
-th {
-	border-bottom: 3px double #AAAAAA;
-}
-
-th:nth-last-of-type(5) {
-	width: 60px;
-}
-
-th:nth-last-of-type(3) {
-	width: 95px;
-}
-
-th:last-of-type {
-	width: 75px;
-}
-
-td:nth-last-of-type(5), td:nth-last-of-type(3), td:last-of-type {
-	text-align: center;
-}
-
-tfoot td {
-	font-size: 80%;
-	border-top: 3px double #AAAAAA;
-	text-align: left !important;
-}
-
-#suggestions {
-	font-size: 95%;
-	padding: 2em 2% 0;
-}
-
-#footer {
-	font-size: 80%;
-	padding: 2em 7% 1em;
-}
-		</style>
-		<script>
-			$(function() {
-				var debug = false;
-				var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
-				var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
-				$('#tstamp').val(Date.now());
-				var base_link_normal = 'https://www.aonprd.com/MonsterDisplay.aspx?ItemName=';
-				var base_link_mythic = 'https://www.aonprd.com/MythicMonsterDisplay.aspx?ItemName=';
-				
-				//Add arrows
-				$('.show').prepend('<span class="ui-icon ui-icon-triangle-1-e"></span> ');
-				$('.hide').prepend('<span class="ui-icon ui-icon-triangle-1-s"></span> ');
-				
-				//Show/Hide advanced parameters
-				$('.show').click(function() {
-					var name = $(this).attr('id').replace('show_', '');
-					$('#show_' + name).hide();
-					$('#' + name).show();
-				});
-				$('.hide').click(function() {
-					var name = $(this).attr('id').replace('hide_', '');
-					$('#show_' + name).show();
-					$('#' + name).hide();
-				});
-				
-				//Check/Uncheck all
-				$('input.check').click(function() {
-					var type = $(this).attr('name').replace('check', '');
-					$('input[name=' + type + ']').prop('checked', true);
-				});
-				$('input.uncheck').click(function() {
-					var type = $(this).attr('name').replace('uncheck', '');
-					$('input[name=' + type + ']').prop('checked', false);
-				});
-				
-				//Challenge Rating slider
-				$('#cr_slide').slider({
-					range: true,
-					min: -4,
-					max: 30,
-					values: [-4, 30],
-					slide: function(event, ui) {
-						var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
-						if(ui.values[0] <= 0) {
-							$('#cr_min').val(values[-ui.values[0]]);
-						}
-						else {
-							$('#cr_min').val(ui.values[0]);
-						}
-						if(ui.values[1] <= 0) {
-							$('#cr_max').val(values[-ui.values[1]]);
-						}
-						else {
-							$('#cr_max').val(ui.values[1]);
-						}
-					}
-				});
-				if($('#cr_slide').slider('values', 0) <= 0) {
-					$('#cr_min').val(values[-$('#cr_slide').slider('values', 0)]);
-				}
-				else {
-					$('#cr_min').val($('#cr_slide').slider('values', 0));
-				}
-				if($('#cr_slide').slider('values', 1) <= 0) {
-					$('#cr_max').val(values[-$('#cr_slide').slider('values', 1)]);
-				}
-				else {
-					$('#cr_max').val($('#cr_slide').slider('values', 1));
-				}
-				
-				//Mythic Rank slider
-				$('#mr_slide').slider({
-					range: true,
-					min: 0,
-					max: 10,
-					values: [0, 10],
-					slide: function(event, ui) {
-						$('#mr_min').val(ui.values[0]);
-						$('#mr_max').val(ui.values[1]);
-					}
-				});
-				$('#mr_min').val($('#mr_slide').slider('values', 0));
-				$('#mr_max').val($('#mr_slide').slider('values', 1));
-				
-				//Size slider
-				$('#size_slide').slider({
-					range: true,
-					min: 0,
-					max: 8,
-					values: [0, 8],
-					slide: function(event, ui) {
-						$('#size_min').val(sizes[ui.values[0]]);
-						$('#size_max').val(sizes[ui.values[1]]);
-					}
-				});
-				$('#size_min').val(sizes[$('#size_slide').slider('values', 0)]);
-				$('#size_max').val(sizes[$('#size_slide').slider('values', 1)]);
-				
-				//Simple list
-				$('#slist').click(function() {
-					if($(this).prop('checked')) {
-						$('.not_slist').prop('disabled', true);
-						$('#cr_comb_slide').slider('disable');
-					}
-					else {
-						$('.not_slist').prop('disabled', false);
-						$('#cr_comb_slide').slider('enable');
-					}
-				});
-				
-				//CR combination slider
-				$('#cr_comb_slide').slider({
-					range: true,
-					min: 0,
-					max: 10,
-					values: [0, 4],
-					slide: function(event, ui) {
-						$('#cr_comb_min').val(ui.values[0]);
-						$('#cr_comb_max').val(ui.values[1]);
-					}
-				});
-				$('#cr_comb_min').val($('#cr_comb_slide').slider('values', 0));
-				$('#cr_comb_max').val($('#cr_comb_slide').slider('values', 1));
-				
-				//Table generation
-				var url = window.location.href;
-				if(url.indexOf('?') >= 0) {
-					var params = url.split('?')[1].replace('#', '').split('&');
-					var cr = ['', ''];
-					var mr = ['', ''];
-					var alignment = [];
-					var size = ['', ''];
-					var type = [];
-					var subtype = [];
-					var group = [];
-					var environment = [];
-					var climate = [];
-					var planes = [];
-					var source = [];
-					var logic = ['', '', '', ''];
-					var simple_list = false;
-					var add_variants = false;
-					var add_mixed = false;
-					var add_unique = false;
-					var maxcreatures = 0;
-					var maxdice = 0;
-					var cr_comb = ['', ''];
-					
-					//Reading values
-					for(var i = 0; i < params.length; i++) {
-						var key = params[i].split('=')[0];
-						if(key == 'cr_min') {
-							cr[0] = params[i].split('=')[1].replace('%2F', '/');
-							if(cr[0].indexOf('/') >= 0) {
-								cr[0] = -values.indexOf(cr[0]);
-							}
-							else {
-								cr[0] = Number(cr[0]);
-							}
-						}
-						else if(key == 'cr_max') {
-							cr[1] = params[i].split('=')[1].replace('%2F', '/');
-							if(cr[1].indexOf('/') >= 0) {
-								cr[1] = -values.indexOf(cr[1]);
-							}
-							else {
-								cr[1] = Number(cr[1]);
-							}
-						}
-						else if(key == 'mr_min') {
-							mr[0] = Number(params[i].split('=')[1]);
-						}
-						else if(key == 'mr_max') {
-							mr[1] = Number(params[i].split('=')[1]);
-						}
-						else if(key == 'al') {
-							alignment.push(params[i].split('=')[1]);
-						}
-						else if(key == 'size_min') {
-							size[0] = sizes.indexOf(params[i].split('=')[1]);
-						}
-						else if(key == 'size_max') {
-							size[1] = sizes.indexOf(params[i].split('=')[1]);
-						}
-						else if(key == 'type') {
-							type.push(params[i].split('=')[1]);
-						}
-						else if(key == 'st') {
-							subtype.push(params[i].split('=')[1]);
-						}
-						else if(key == 'gr') {
-							group.push(params[i].split('=')[1]);
-						}
-						else if(key == 'env') {
-							environment.push(params[i].split('=')[1]);
-						}
-						else if(key == 'cl') {
-							climate.push(params[i].split('=')[1]);
-						}
-						else if(key == 'pl') {
-							planes.push(params[i].split('=')[1]);
-						}
-						else if(key == 's') {
-							source.push(params[i].split('=')[1]);
-						}
-						else if(key == 'st_logic') {
-							logic[0] = params[i].split('=')[1];
-						}
-						else if(key == 'env_logic') {
-							logic[1] = params[i].split('=')[1];
-						}
-						else if(key == 'cl_logic') {
-							logic[2] = params[i].split('=')[1];
-						}
-						else if(key == 'pl_logic') {
-							logic[3] = params[i].split('=')[1];
-						}
-						else if(key == 'slist') {
-							simple_list = true;
-						}
-						else if(key == 'variants') {
-							add_variants = true;
-						}
-						else if(key == 'mixed') {
-							add_mixed = true;
-						}
-						else if(key == 'unique') {
-							add_unique = true;
-						}
-						else if(key == 'maxcreatures') {
-							maxcreatures = Number(params[i].split('=')[1]);
-						}
-						else if(key == 'maxdice') {
-							maxdice = Number(params[i].split('=')[1]);
-						}
-						else if(key == 'cr_comb_min') {
-							cr_comb[0] = Number(params[i].split('=')[1]);
-						}
-						else if(key == 'cr_comb_max') {
-							cr_comb[1] = Number(params[i].split('=')[1]);
-						}
-					}
-					if(maxdice < 0) {
-						maxdice = 0;
-					}
-					if(maxdice != 0 && maxcreatures > maxdice) {
-						maxcreatures = maxdice;
-					}
-					//Setting values in fields
-					$('#cr_slide').slider({'values': cr});
-					if(cr[0] <= 0) {
-						$('#cr_min').val(values[-cr[0]]);
-					}
-					else {
-						$('#cr_min').val(cr[0]);
-					}
-					if(cr[1] <= 0) {
-						$('#cr_max').val(values[-cr[1]]);
-					}
-					else {
-						$('#cr_max').val(cr[1]);
-					}
-					$('#mr_slide').slider({'values': mr});
-					$('#mr_min').val(mr[0]);
-					$('#mr_max').val(mr[1]);
-					if(alignment.length < $('#alignment').find('input[type="checkbox"]').length) {
-						$('input[name=al]').prop('checked', false);
-						for(var i = 0; i < alignment.length; i++) {
-							$('input#al' + alignment[i]).prop('checked', true);
-						}
-					}
-					$('#size_slide').slider({'values': size});
-					$('#size_min').val(sizes[size[0]]);
-					$('#size_max').val(sizes[size[1]]);
-					if(type.length < $('#types').find('input[type="checkbox"]').length) {
-						$('input[name=type]').prop('checked', false);
-						for(var i = 0; i < type.length; i++) {
-							$('input#type' + type[i]).prop('checked', true);
-						}
-					}
-					if(subtype.length < $('#subtypes').find('input[type="checkbox"]').length) {
-						$('input[name=st]').prop('checked', false);
-						for(var i = 0; i < subtype.length; i++) {
-							$('input#st' + subtype[i]).prop('checked', true);
-						}
-					}
-					if(group.length < $('#groups').find('input[type="checkbox"]').length) {
-						$('input[name=gr]').prop('checked', false);
-						for(var i = 0; i < group.length; i++) {
-							$('input#gr' + group[i]).prop('checked', true);
-						}
-					}
-					if(environment.length < $('#environment').find('input[type="checkbox"]').length) {
-						$('input[name=env]').prop('checked', false);
-						for(var i = 0; i < environment.length; i++) {
-							$('input#env' + environment[i]).prop('checked', true);
-						}
-					}
-					if(climate.length < $('#climate').find('input[type="checkbox"]').length) {
-						$('input[name=cl]').prop('checked', false);
-						for(var i = 0; i < climate.length; i++) {
-							$('input#cl' + climate[i]).prop('checked', true);
-						}
-					}
-					if(planes.length < $('#planes').find('input[type="checkbox"]').length) {
-						$('input[name=pl]').prop('checked', false);
-						for(var i = 0; i < planes.length; i++) {
-							$('input#pl' + planes[i]).prop('checked', true);
-						}
-					}
-					if(source.length < $('#sources').find('input[type="checkbox"]').length) {
-						$('input[name=s]').prop('checked', false);
-						for(var i = 0; i < source.length; i++) {
-							$('input#s' + source[i].toLowerCase()).prop('checked', true);
-						}
-					}
-					$('input[name=st_logic][value=' + logic[0] + ']').prop('checked', true);
-					$('input[name=env_logic][value=' + logic[1] + ']').prop('checked', true);
-					$('input[name=cl_logic][value=' + logic[2] + ']').prop('checked', true);
-					$('input[name=pl_logic][value=' + logic[3] + ']').prop('checked', true);
-					if(simple_list) {
-						$('input#slist').prop('checked', true);
-					}
-					if(!add_variants) {
-						$('input#variant').prop('checked', false);
-					}
-					if(!add_mixed) {
-						$('input#mixed').prop('checked', false);
-					}
-					if(!add_unique) {
-						$('input#unique').prop('checked', false);
-					}
-					$('input#numtable').val(maxcreatures);
-					$('input#numcolumn').val(maxdice);
-					$('#cr_comb_slide').slider({'values': cr_comb})
-					$('#cr_comb_min').val(cr_comb[0]);
-					$('#cr_comb_max').val(cr_comb[1]);
-					//Reading files
-					$.ajax({mimeType: 'text/plain; charset=UTF-8',
-						url: 'creatures.txt',
-						dataType: 'text',
-						success: function(monsters, status, jqxhr) {
-							monsters = monsters.split('\n');
-							for(var i = monsters.length - 1; i >= 0; i--) {
-								if(monsters[i].trim() == '' || monsters[i].indexOf('#') == 0) { //Removing comments and empty lines
-									monsters.splice(i, 1);
-									continue;
-								}
-								else {
-									monsters[i] = monsters[i].split(';');
-									if(monsters[i].length != 14) {
-										if(debug) { //DEBUG: wrong length
-											alert('Wrong number of fields (' + monsters[i].length + '): ' + monsters[i]);
-										}
-										monsters.splice(i, 1);
-										continue;
-									}
-									monsters[i][0] = monsters[i][0].trim().replace('&times', '&times;'); //name
-									monsters[i][1] = monsters[i][1].split(','); //CR
-									for(var j = 0; j < monsters[i][1].length; j++) {
-										monsters[i][1][j] = Number(monsters[i][1][j].trim());
-									}
-									if(monsters[i][2] == '') { //MR
-										monsters[i][2] = 0;
-									}
-									else {
-										monsters[i][2] = Number(monsters[i][2].trim());
-									}
-									monsters[i][3] = monsters[i][3].trim().split(','); //alignment
-									monsters[i][4] = monsters[i][4].trim().split(','); //size
-									for(var j = 0; j < monsters[i][4].length; j++) {
-										monsters[i][4][j] = Number(monsters[i][4][j].trim());
-									}
-									monsters[i][5] = monsters[i][5].trim().split(','); //type
-									monsters[i][6] = monsters[i][6].trim().split(','); //subtype
-									if(monsters[i][6].length == 1 && monsters[i][6][0] == '') {
-										monsters[i][6][0] = ['99'];
-									}
-									monsters[i][7] = monsters[i][7].trim().split(','); //group
-									if(monsters[i][7].length == 1 && monsters[i][7][0] == '') {
-										monsters[i][7][0] = ['99'];
-									}
-									monsters[i][8] = monsters[i][8].trim().split(','); //environment
-									if(monsters[i][8].indexOf('0') >= 0) {
-										monsters[i][8] = monsters[i][8].concat(['2', '3', '4', '5', '6', '8', '10', '12', '14', '16', '17']);
-										monsters[i][8].splice(monsters[i][8].indexOf('0'), 1);
-									}
-									if(monsters[i][8].indexOf('1') >= 0) {
-										monsters[i][8] = monsters[i][8].concat(['7', '9']);
-										monsters[i][8].splice(monsters[i][8].indexOf('1'), 1);
-									}
-									monsters[i][9] = monsters[i][9].trim().split(','); //climate
-									if(monsters[i][9].length == 1 && (monsters[i][9][0] == '' || monsters[i][9][0] == '0')) {
-										monsters[i][9] = ['1', '2', '3'];
-									}
-									monsters[i][10] = monsters[i][10].trim().split(','); //planes
-									monsters[i][11] = monsters[i][11].trim(); //variant of...
-									monsters[i][12] = monsters[i][12].trim().split(','); //number of creatures
-									monsters[i][13] = monsters[i][13].trim(); //source
-								}
-							}
-							var monster_count = monsters.length;
-							if(debug) { //DEBUG: double monster
-								for(var i = 0; i < monsters.length; i++) {
-									for(var j = i + 1; j < monsters.length; j++) {
-										if(monsters[i][0] == monsters[j][0]) {
-											alert('Double monster: ' + monsters[i][0] + ' ' + (i+2) + ' ' + (j+2));
-										}
-									}
-								}
-							}
-							//Filtering 1
-							for(var i = monsters.length - 1; i >= 0; i--) {
-								//CR
-								if(simple_list) {
-									if(monsters[i][1].length == 1) {
-										if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
-											monsters.splice(i, 1);
-											continue;
-										}
-									}
-									else {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								else {
-									if(monsters[i][1].length == 1) {
-										if(monsters[i][1][0] > cr[1]) {
-											monsters.splice(i, 1);
-											continue;
-										}
-										if(cr_comb[0] > 0 && monsters[i][12] == '1u') {
-											monsters.splice(i, 1);
-											continue;
-										}
-									}
-									else {
-										if((monsters[i][1][0] + monsters[i][1][1]) < cr[0] || (monsters[i][1][0] + monsters[i][1][1]) > cr[1] || monsters[i][1][1] < cr_comb[0] || monsters[i][1][1] > cr_comb[1]) {
-											monsters.splice(i, 1);
-											continue;
-										}
-									}
-								}
-								//MR
-								if(monsters[i][2] < mr[0] || monsters[i][2] > mr[1]) {
-									monsters.splice(i, 1);
-									continue;
-								}
-								//Alignment
-								if(alignment.length > 0) {
-									if(monsters[i][3] == '0') {
-										var alignment_found = true;
-									}
-									else {
-										var alignment_found = false;
-										for(var j = 0; j < alignment.length; j++) {
-											if(alignment.indexOf(monsters[i][3][j]) >= 0) {
-												alignment_found = true;
-												break;
-											}
-										}
-									}
-									if(!alignment_found) {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								//Size
-								var spliced = false;
-								for(var j = 0; j < monsters[i][4].length; j++) {
-									if(monsters[i][4][j] < size[0] || monsters[i][4][j] > size[1]) {
-										monsters.splice(i, 1);
-										spliced = true;
-										break;
-									}
-								}
-								if(spliced) {
-									continue;
-								}
-								//Type
-								if(type.length > 0) {
-									var type_found = false;
-									for(var j = 0; j < monsters[i][5].length; j++) {
-										if(type.indexOf(monsters[i][5][j]) >= 0) {
-											type_found = true;
-											break;
-										}
-									}
-									if(!type_found) {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								//Subtype
-								if(subtype.length > 0) {
-									if(logic[0] == '0') { //AND
-										if(monsters[i][6].length < subtype.length) {
-											var subtype_found = false;
-										}
-										else {
-											var subtype_found = true;
-											for(var j = 0; j < subtype.length; j++) {
-												if(monsters[i][6].indexOf(subtype[j]) == -1) {
-													subtype_found = false;
-													break;
-												}
-											}
-										}
-									}
-									else if(logic[0] == '1') { //OR
-										var subtype_found = false;
-										for(var j = 0; j < monsters[i][6].length; j++) {
-											if(subtype.indexOf(monsters[i][6][j]) >= 0) {
-												subtype_found = true;
-												break;
-											}
-										}
-									}
-									else { //XOR
-										var subtype_found = false;
-										for(var j = 0; j < monsters[i][6].length; j++) {
-											if(subtype.indexOf(monsters[i][6][j]) >= 0) {
-												if(!subtype_found) {
-													subtype_found = true;
-													continue;
-												}
-												else {
-													subtype_found = false;
-													break;
-												}
-											}
-										}
-									}
-									if(!subtype_found) {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								//Group
-								if(group.length > 0) {
-									var group_found = false;
-									for(var j = 0; j < monsters[i][7].length; j++) {
-										if(group.indexOf(monsters[i][7][j]) >= 0) {
-											group_found = true;
-											break;
-										}
-									}
-									if(!group_found) {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								//Environment
-								if(environment.length > 0) {
-									if(logic[1] == '0') { //AND
-										var environment_found = true;
-										for(var j = 0; j < environment.length; j++) {
-											if(monsters[i][8].indexOf(environment[j]) == -1) {
-												environment_found = false;
-												break;
-											}
-										}
-									}
-									else { //OR
-										var environment_found = false;
-										for(var j = 0; j < monsters[i][8].length; j++) {
-											if(environment.indexOf(monsters[i][8][j]) >= 0) {
-												environment_found = true;
-												break;
-											}
-										}
-								}
-									if(!environment_found) {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								//Climate
-								if(climate.length > 0) {
-									if(logic[2] == '0') { //OR
-										var climate_found = false;
-										for(var j = 0; j < monsters[i][9].length; j++) {
-											if(climate.indexOf(monsters[i][9][j]) >= 0) {
-												climate_found = true;
-												break;
-											}
-										}
-									}
-									else { //XOR
-										var climate_found = false;
-										for(var j = 0; j < monsters[i][9].length; j++) {
-											if(climate.indexOf(monsters[i][9][j]) >= 0) {
-												if(!climate_found) {
-													climate_found = true;
-													continue;
-												}
-												else {
-													climate_found = false;
-													break;
-												}
-											}
-										}
-									}
-									if(!climate_found) {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								//Planes
-								if(planes.length > 0) {
-									if(logic[3] == '0') { //OR
-										if(monsters[i][10].length == 1 && monsters[i][10][0].trim() == '') {
-											var planes_found = true;
-										}
-										else {
-											var planes_found = false;
-											for(var j = 0; j < monsters[i][10].length; j++) {
-												if(planes.indexOf(monsters[i][10][j]) >= 0) {
-													planes_found = true;
-													break;
-												}
-											}
-										}
-									}
-									else { //XOR
-										if(monsters[i][10].length == 1 && monsters[i][10][0].trim() == '') {
-											if(planes.length == 1) {
-												var planes_found = true;
-											}
-											else {
-												var planes_found = false;
-											}
-										}
-										else {
-											var planes_found = false;
-											for(var j = 0; j < monsters[i][10].length; j++) {
-												if(planes.indexOf(monsters[i][10][j]) >= 0) {
-													if(!planes_found) {
-														planes_found = true;
-														continue;
-													}
-													else {
-														planes_found = false;
-														break;
-													}
-												}
-											}
-										}
-									}
-									if(!planes_found) {
-										monsters.splice(i, 1);
-										continue;
-									}
-								}
-								//Source
-								if(source.length > 0 && source.indexOf(monsters[i][13]) == -1) {
-									monsters.splice(i, 1);
-									continue;
-								}
-								//Variants
-								if(!add_variants && monsters[i][11] != '') {
-									monsters.splice(i, 1);
-									continue;
-								}
-								//Mixed groups
-								if(!add_mixed && monsters[i][1].length != 1) {
-									monsters.splice(i, 1);
-									continue;
-								}
-								//Intervals
-								if(!simple_list && monsters[i][12] == '0') {
-									monsters.splice(i, 1);
-									continue;
-								}
-							}
-							//Creating groups and links
-							monsters2 = [];
-							for(var i = 0; i < monsters.length; i++) {
-								if(monsters[i][0].indexOf('[') >= 0) { //Link generation
-									var temp_name = monsters[i][0].split('[');
-									for(var j = 0; j < temp_name.length; j++) {
-										if(temp_name[j].indexOf(']') >= 0) {
-											if(temp_name[j].split(']')[0].indexOf('\\') >= 0) {
-												if((monsters[i][6].indexOf('47') >= 0 && temp_name[j].split(']')[0].split('\\')[1].slice(0, 1) != '+') || (monsters[i][6].indexOf('47') == -1 && temp_name[j].split(']')[0].split('\\')[1].slice(0, 1) == '+')) {
-													temp_name[j] = '<a target="_blank" href="' + base_link_mythic + adaptName(temp_name[j].split(']')[0].split('\\')[1]) + '">' + temp_name[j].split(']')[0].split('\\')[0] + '</a>' + temp_name[j].split(']')[1];
-												}
-												else {
-													temp_name[j] = '<a target="_blank" href="' + base_link_normal + adaptName(temp_name[j].split(']')[0].split('\\')[1]) + '">' + temp_name[j].split(']')[0].split('\\')[0] + '</a>' + temp_name[j].split(']')[1];
-												}
-											}
-											else {
-												if(monsters[i][6].indexOf('47') >= 0) {
-													temp_name[j] = '<a target="_blank" href="' + base_link_mythic + adaptName(temp_name[j].split(']')[0]) + '">' + temp_name[j].split(']')[0] + '</a>' + temp_name[j].split(']')[1];
-												}
-												else {
-													temp_name[j] = '<a target="_blank" href="' + base_link_normal + adaptName(temp_name[j].split(']')[0]) + '">' + temp_name[j].split(']')[0] + '</a>' + temp_name[j].split(']')[1];
-												}
-											}
-										}
-									}
-									monsters[i][0] = temp_name.join('');
-									var link_name = '';
-								}
-								else if(monsters[i][11] == '') {
-									if(monsters[i][0].indexOf('\\') >= 0) {
-										var link_name = monsters[i][0].split('\\')[1];
-										monsters[i][0] = monsters[i][0].split('\\')[0];
-									}
-									else if(monsters[i][0].indexOf('|') >= 0) {
-										var link_name = monsters[i][0].split('|')[0];
-										if(monsters[i][0].indexOf('/') >= 0) {
-											link_name += ' (' + monsters[i][0].split('/')[1] + ')';
-										}
-									}
-									else if(monsters[i][0].indexOf('/') >= 0) {
-										var link_name = monsters[i][0].split('/')[0] + ' (' + monsters[i][0].split('/')[1] + ')';
-									}
-									else {
-										var link_name = monsters[i][0];
-									}
-									link_name = adaptName(link_name);
-								}
-								else {
-									var link_name = '';
-								}
-								if(monsters[i][11] != '') {
-									if(monsters[i][11].indexOf('[') >= 0) {
-										var temp_name = monsters[i][11].split('[');
-										for(var j = 0; j < temp_name.length; j++) {
-											if(temp_name[j].indexOf(']') >= 0) {
-												if(temp_name[j].split(']')[0].indexOf('\\') >= 0) {
-													if((monsters[i][6].indexOf('47') >= 0 && temp_name[j].split(']')[0].split('\\')[1].slice(0, 1) != '+') || (monsters[i][6].indexOf('47') == -1 && temp_name[j].split(']')[0].split('\\')[1].slice(0, 1) == '+')) {
-														temp_name[j] = '<a target="_blank" href="' + base_link_mythic + adaptName(temp_name[j].split(']')[0].split('\\')[1]) + '">' + temp_name[j].split(']')[0].split('\\')[0] + '</a>' + temp_name[j].split(']')[1];
-													}
-													else {
-														temp_name[j] = '<a target="_blank" href="' + base_link_normal + adaptName(temp_name[j].split(']')[0].split('\\')[1]) + '">' + temp_name[j].split(']')[0].split('\\')[0] + '</a>' + temp_name[j].split(']')[1];
-													}
-												}
-												else {
-													if(monsters[i][6].indexOf('47') >= 0) {
-														temp_name[j] = '<a target="_blank" href="' + base_link_mythic + adaptName(temp_name[j].split(']')[0]) + '">' + temp_name[j].split(']')[0] + '</a>' + temp_name[j].split(']')[1];
-													}
-													else {
-														temp_name[j] = '<a target="_blank" href="' + base_link_normal + adaptName(temp_name[j].split(']')[0]) + '">' + temp_name[j].split(']')[0] + '</a>' + temp_name[j].split(']')[1];
-													}
-												}
-											}
-										}
-										monsters[i][11] = temp_name.join('');
-									}
-									else {
-										if(monsters[i][11].indexOf('\\') >= 0) {
-											if(monsters[i][6].indexOf('47') >= 0) {
-												monsters[i][11] = '<a target="_blank" href="' + base_link_mythic + adaptName(monsters[i][11].split('\\')[1]) + '">' + monsters[i][11].split('\\')[0] + '</a>';
-											}
-											else {
-												monsters[i][11] = '<a target="_blank" href="' + base_link_normal + adaptName(monsters[i][11].split('\\')[1]) + '">' + monsters[i][11].split('\\')[0] + '</a>';
-											}
-										}
-										else {
-											if(monsters[i][6].indexOf('47') >= 0) {
-												monsters[i][11] = '<a target="_blank" href="' + base_link_mythic + adaptName(monsters[i][11]) + '">' + monsters[i][11] + '</a>';
-											}
-											else {
-												monsters[i][11] = '<a target="_blank" href="' + base_link_normal + adaptName(monsters[i][11]) + '">' + monsters[i][11] + '</a>';
-											}
-										}
-									}
-								}
-								var alt_name = '';
-								if(monsters[i][0].indexOf('/') >= 0 && monsters[i][0].indexOf('https://') == -1) { //Alternative name
-									alt_name = monsters[i][0].split('/')[1];
-									monsters[i][0] = monsters[i][0].split('/')[0];
-								}
-								if(simple_list) {
-									if(link_name != '') {
-										if(monsters[i][0].indexOf('|') >= 0) {
-											monsters[i][0] = monsters[i][0].split('|')[0];
-										}
-										if(monsters[i][6].indexOf('47') >= 0) {
-											var monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monsters[i][0] + '</a>';
-										}
-										else {
-											var monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monsters[i][0] + '</a>';
-										}
-										if(alt_name != '') {
-											monster_name += ' (' + alt_name + ')';
-										}
-										monsters2.push([monster_name, monsters[i][1][0], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
-									}
-									else {
-										if(monsters[i][12][j] == '1u' && add_unique) {
-											monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
-										}
-									}
-								}
-								else {
-									for(var j = 0; j < monsters[i][12].length; j++) {
-										if(monsters[i][12][j] == '' || monsters[i][12][j] == '1u') { //Combinations and unique monsters
-											if(link_name != '') {
-												if(monsters[i][6].indexOf('47') >= 0) {
-													var monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monsters[i][0] + '</a>';
-												}
-												else {
-													var monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monsters[i][0] + '</a>';
-												}
-												monsters2.push([monster_name, monsters[i][1], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
-											}
-											else {
-												if(monsters[i][12][j] == '' || (monsters[i][12][j] == '1u' && add_unique)) {
-													monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
-												}
-											}
-										}
-										else {
-											if(monsters[i][12][j].indexOf('|') >= 0) { //Extracting group name
-												var interval = monsters[i][12][j].split('|')[0];
-												var description = monsters[i][12][j].split('|')[1];
-												if(['a', 'e', 'i', 'o'].indexOf(description.slice(0, 1)) >= 0) {
-													description = 'an ' + description + ' of ';
-												}
-												else {
-													description = 'a ' + description + ' of ';
-												}
-											}
-											else {
-												var interval = monsters[i][12][j];
-												var description = '';
-											}
-											if(monsters[i][1].length == 1) {
-												if(monsters[i][1][0] == -4 || monsters[i][1][0] == -2 || monsters[i][1][0] == 0) {
-													var index_cr = 0;
-												}
-												else if(monsters[i][1][0] == -3) {
-													var index_cr = 1;
-												}
-												else if(monsters[i][1][0] == -1) {
-													var index_cr = 2;
-												}
-												else if(monsters[i][1][0] % 2 == 1) {
-													var index_cr = 3;
-												}
-												else {
-													var index_cr = 4;
-												}
-											}
-											else {
-												if((monsters[i][1][0] + monsters[i][1][1]) <= 0) {
-													var index_cr = monsters[i][1][0] + monsters[i][1][1] + 4;
-												}
-												else {
-													var index_cr = 6 - ((monsters[i][1][0] + monsters[i][1][1]) % 2);
-												}
-											}
-											var dice2 = genDice(interval, index_cr, cr_comb);
-											for(var k = cr_comb[0]; k <= cr_comb[1]; k++) {
-												if(dice2[k].length > 0) { //Choosing one of the possible dice
-													index_dice = Math.floor(Math.random() * dice2[k].length);
-													if(dice2[k][index_dice] == '1') {
-														if(monsters[i][0].indexOf('|') >= 0) {
-															var monster_name = monsters[i][0].split('|')[0];
-														}
-														else {
-															var monster_name = monsters[i][0];
-														}
-													}
-													else { //Constructing plural
-														if(monsters[i][0].indexOf('|') >= 0) {
-															if(monsters[i][0].split('|')[1].length > 0 && monsters[i][0].split('|')[1].slice(0, 1) == '-') {
-																var monster_name = monsters[i][0].split('|')[0] + monsters[i][0].split('|')[1].slice(1);
-															}
-															else {
-																var monster_name = monsters[i][0].split('|')[1];
-															}
-														}
-														else {
-															if(monsters[i][0].slice(-1) == 's' || monsters[i][0].slice(-1) == 'x' || monsters[i][0].slice(-2) == 'ch') {
-																var monster_name = monsters[i][0] + 'es';
-															}
-															else if(monsters[i][0].slice(-1) == 'y') {
-																var monster_name = monsters[i][0].slice(0, -1) + 'ies';
-															}
-															else if(monsters[i][0].slice(-3) == 'man' && !(monsters[i][0].slice(-5) == 'human')) {
-																var monster_name = monsters[i][0].slice(0, -3) + 'men';
-															}
-															else {
-																var monster_name = monsters[i][0] + 's';
-															}
-														}
-													}
-													if(link_name != '') {
-														if(monsters[i][6].indexOf('47') >= 0) {
-															monster_name = '<a target="_blank" href="' + base_link_mythic + link_name + '">' + monster_name + '</a>';
-														}
-														else {
-															monster_name = '<a target="_blank" href="' + base_link_normal + link_name + '">' + monster_name + '</a>';
-														}
-													}
-													if(alt_name != '') {
-														monster_name += ' (' + alt_name + ')';
-													}
-													monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][3], monsters[i][4], monsters[i][5], monsters[i][6], monsters[i][7], monsters[i][8], monsters[i][9], monsters[i][10], monsters[i][11], monsters[i][13]]);
-												}
-											}
-										}
-									}
-								}
-							}
-							monsters = monsters2;
-							//Filtering 2
-							if(!simple_list) {
-								for(var i = monsters.length - 1; i >= 0; i--) {
-									//CR
-									if(monsters[i][1].length == 1) {
-										if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
-											monsters.splice(i, 1);
-											continue;
-										}
-										else {
-											monsters[i][1] = monsters[i][1][0];
-										}
-									}
-									else {
-										monsters[i][1] = monsters[i][1][0] + monsters[i][1][1];
-									}
-								}
-							}
-							//Creating table
-							var foot_msg = '...out of ' + monster_count + ' different creatures and multiple creature combinations.<br />';
-							if(monsters.length == 1) {
-								foot_msg +=  monsters.length + ' entry matched your criteria.'
-							}
-							else {
-								foot_msg +=  monsters.length + ' entries matched your criteria.'
-							}
-							if(maxdice == 0) {
-								$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
-							}
-							else if(simple_list) {
-								$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Creatures</th><th id="tcr">CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
-							}
-							else {
-								$('#table').append('<table id="random_table"><thead><tr><th id="tdice">dice</th><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="5">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
-							}
-							if(maxcreatures == 0 || simple_list) {
-								maxcreatures = monsters.length;
-								if(maxcreatures > maxdice) {
-									maxdice = maxcreatures;
-								}
-							}
-							var monsters2 = [];
-							if(simple_list) {
-								for(var i = 0; i < monsters.length; i++) {
-									monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][11], monsters[i][12]]);
-								}
-							}
-							else {
-								for(var i = 0; i < maxcreatures && monsters.length > 0; i++) { //Random selection
-									random_index = Math.floor(Math.random() * monsters.length);
-									monsters2.push([monsters[random_index][0], monsters[random_index][1], monsters[random_index][2], monsters[random_index][11], monsters[random_index][12]]);
-									monsters.splice(random_index, 1);
-								}
-							}
-							monsters = monsters2;
-							for(var i = 0; i < monsters.length; i++) { //Sorting
-								for(var j = 0; j < monsters.length - 1; j++) {
-									if(monsters[j][1] > monsters[j + 1][1] || (monsters[j][1] == monsters[j + 1][1] && monsters[j][2] > monsters[j + 1][2])) {
-										var tmp = monsters[j];
-										monsters[j] = monsters[j + 1];
-										monsters[j + 1] = tmp;
-									}
-								}
-							}
-							for(var i = 0; i < monsters.length; i++) { //Filling table
-								var interval_min = Math.floor(maxdice * i / monsters.length) + 1;
-								var interval_max = Math.floor(maxdice * (i + 1) / monsters.length);
-								if(interval_min == interval_max) {
-									var interval = interval_min;
-								}
-								else {
-									var interval = interval_min + '-' + interval_max;
-								}
-								if(monsters[i][1] == 0) {
-									var temp_cr = '1/2';
-								}
-								else if(monsters[i][1] == -1) {
-									var temp_cr = '1/3';
-								}
-								else if(monsters[i][1] == -2) {
-									var temp_cr = '1/4';
-								}
-								else if(monsters[i][1] == -3) {
-									var temp_cr = '1/6';
-								}
-								else if(monsters[i][1] == -4) {
-									var temp_cr = '1/8';
-								}
-								else {
-									var temp_cr = monsters[i][1];
-								}
-								if(monsters[i][2] > 0) {
-									temp_cr += ' / MR ' + monsters[i][2];
-								}
-								if(maxdice == 0 || simple_list) {
-									$('#random_table tbody').append('<tr><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + monsters[i][4] + '</td></tr>');
-								}
-								else {
-									$('#random_table tbody').append('<tr><td>' + interval + '</td><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + monsters[i][4] + '</td></tr>');
-								}
-							}
-						}
-					});
-				}
-			});
-			
-			function genDice(interval, cr, incr) {
-				var possibilities = {2: '1d2', 3: '1d3', 4: '1d4', 5: '2d3', 6: '1d6', 7: '2d4', 8: '1d8', 9: '4d3', 10: '1d10', 11: '2d6', 12: '1d12', 13: '4d4', 15: '2d8', 16: '3d6', 19: '2d10', 20: '1d20', 21: '4d6', 22: '3d8', 23: '2d12', 26: '5d6', 28: '3d10', 29: '4d8', 31: '6d6', 34: '3d12', 36: '5d8', 37: '4d10', 39: '2d20', 43: '6d8', 45: '4d12', 46: '5d10', 55: '6d10', 56: '5d12', 58: '3d20', 67: '6d12', 77: '4d20', 96: '5d20', 100: '1d100'}; //spans with associated dice
-				result = [[], [], [], [], [], [], [], [], [], [], []];
-				if(interval.indexOf('-') >= 0) {
-					var minValue = Number(interval.split('-')[0]);
-					var maxValue = Number(interval.split('-')[1]);
-					var span = maxValue - minValue + 1;
-					var possKeys = Object.keys(possibilities);
-					for(var i = 0; i < possKeys.length; i++) {
-						possKeys[i] = Number(possKeys[i]);
-					}
-					for(var i = minValue; i <= maxValue; i++) {
-						for(var k = incr[0]; k <= incr[1]; k++) {
-							if(dice[cr][k].indexOf(String(i)) >= 0) {
-								result[k].push(String(i));
-								break;
-							}
-						}
-					}
-					for(var i = 2; i <= Math.min(span, Math.max(...possKeys)); i++) {
-						if(possKeys.indexOf(i) >= 0) {
-							var minDice = Number(possibilities[i].split('d')[0]);
-							var maxDice = minDice * Number(possibilities[i].split('d')[1]);
-							for(var j = minValue - minDice; j <= maxValue - maxDice; j++) {
-								if(j < 0) {
-									var tempDice = possibilities[i] + String(j);
-								}
-								else if(j == 0) {
-									var tempDice = possibilities[i];
-								}
-								else {
-									var tempDice = possibilities[i] + '+' + String(j);
-								}
-								for(var k = incr[0]; k <= incr[1]; k++) {
-									if(dice[cr][k].indexOf(tempDice) >= 0) {
-										result[k].push(tempDice);
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
-				else {
-					for(var k = incr[0]; k <= incr[1]; k++) {
-						if(dice[cr][k].indexOf(interval) >= 0) {
-							result[k].push(interval);
-							break;
-						}
-					}
-				}
-				return result;
-			}
-			
-			function adaptName(name) {
-				if(name.slice(0, 1) == '*') {
-					if(name.slice(1, 2) == '+') {
-						return name.slice(2);
-					}
-					else {
-						return name.slice(1);
-					}
-				}
-				else {
-					if(name.slice(0, 1) == '+') {
-						name = name.slice(1);
-					}
-					name = name.split(' ');
-					for(var i = 0; i < name.length; i++) {
-						name[i] = name[i].split('-');
-						for(var j = 0; j < name[i].length; j++) {
-							if(name[i][j].slice(0, 1) == '(') {
-								name[i][j] = name[i][j].slice(0, 1) + name[i][j].slice(1, 2).toUpperCase() + name[i][j].slice(2).toLowerCase();
-							}
-							else {
-								name[i][j] = name[i][j].slice(0, 1).toUpperCase() + name[i][j].slice(1).toLowerCase();
-							}
-						}
-						name[i] = name[i].join('-');
-					}
-					return name.join(' ');
-				}
-			}
-		</script>
+		<script src="sys/gendice.js"></script>
+		<script src="sys/ajax.js"></script>
+		<script src="sys/readypage.js"></script>
+		<script src="sys/genlink.js"></script>
+		<script src="sys/init.js"></script>
 	</head>
 	<body>
 		<h1><a href="random_encounters.html">The Ultimate Random Encounter Tables Generator</a></h1>
@@ -1242,10 +31,10 @@ tfoot td {
 			<div class="content" id="challenge_rating">
 				<h3 class="hide" id="hide_challenge_rating">Challenge Rating</h3>
 				<div style="float: left; margin-left: 5%;">
-					<label for="cr_min">Minimum CR: <input type="text" name="cr_min" id="cr_min" class="slider_box" readonly="readonly" /></label>
+					<label for="cr_min">Minimum CR: <input type="hidden" name="cr_min" id="cr_min" /><span id="cr_min2"></span></label>
 				</div>
 				<div style="float: right; margin-right: 5%; text-align: right;">
-					<label for="cr_max">Maximum CR: <input type="text" name="cr_max" id="cr_max" class="slider_box" readonly="readonly" /></label>
+					<label for="cr_max">Maximum CR: <input type="hidden" name="cr_max" id="cr_max" /><span id="cr_max2"></span></label>
 				</div>
 				<div id="cr_slide" class="slider"></div>
 			</div>
@@ -1253,58 +42,58 @@ tfoot td {
 			<div class="content" id="mythic_rank">
 				<h3 class="hide" id="hide_mythic_rank">Mythic Rank</h3>
 				<div style="float: left; margin-left: 5%;">
-					<label for="mr_min">Minimum MR: <input type="text" name="mr_min" id="mr_min" class="slider_box" readonly="readonly" /></label>
+					<label for="mr_min">Minimum MR: <input type="hidden" name="mr_min" id="mr_min" /><span id="mr_min2"></span></label>
 				</div>
 				<div style="float: right; margin-right: 5%; text-align: right;">
-					<label for="mr_max">Maximum MR: <input type="text" name="mr_max" id="mr_max" class="slider_box" readonly="readonly" /></label>
+					<label for="mr_max">Maximum MR: <input type="hidden" name="mr_max" id="mr_max" /><span id="mr_max2"></span></label>
 				</div>
 				<div id="mr_slide" class="slider"></div>
 			</div>
 			<h3 class="show" id="show_alignment">Alignment</h3>
 			<div class="content" id="alignment">
 				<h3 class="hide" id="hide_alignment">Alignment</h3>
-				<label for="al1"><input type="checkbox" name="al" id="al1" value="1" /> Lawful Good (LG)</label>
-				<label for="al2"><input type="checkbox" name="al" id="al2" value="2" /> Neutral Good (NG)</label>
-				<label for="al3"><input type="checkbox" name="al" id="al3" value="3" /> Chaotic Good (CG)</label>
-				<label for="al4"><input type="checkbox" name="al" id="al4" value="4" /> Lawful Neutral (LN)</label>
-				<label for="al5"><input type="checkbox" name="al" id="al5" value="5" /> True Neutral (N)</label>
-				<label for="al6"><input type="checkbox" name="al" id="al6" value="6" /> Chaotic Neutral (CN)</label>
-				<label for="al7"><input type="checkbox" name="al" id="al7" value="7" /> Lawful Evil (LE)</label>
-				<label for="al8"><input type="checkbox" name="al" id="al8" value="8" /> Neutral Evil (NE)</label>
-				<label for="al9"><input type="checkbox" name="al" id="al9" value="9" /> Chaotic Evil (CE)</label>
+				<input type="checkbox" name="al" id="al1" class="cbox_yesno" value="1" /><label for="al1">Lawful Good (LG)</label>
+				<input type="checkbox" name="al" id="al2" class="cbox_yesno" value="2" /><label for="al2">Neutral Good (NG)</label>
+				<input type="checkbox" name="al" id="al3" class="cbox_yesno" value="3" /><label for="al3">Chaotic Good (CG)</label>
+				<input type="checkbox" name="al" id="al4" class="cbox_yesno" value="4" /><label for="al4">Lawful Neutral (LN)</label>
+				<input type="checkbox" name="al" id="al5" class="cbox_yesno" value="5" /><label for="al5">True Neutral (N)</label>
+				<input type="checkbox" name="al" id="al6" class="cbox_yesno" value="6" /><label for="al6">Chaotic Neutral (CN)</label>
+				<input type="checkbox" name="al" id="al7" class="cbox_yesno" value="7" /><label for="al7">Lawful Evil (LE)</label>
+				<input type="checkbox" name="al" id="al8" class="cbox_yesno" value="8" /><label for="al8">Neutral Evil (NE)</label>
+				<input type="checkbox" name="al" id="al9" class="cbox_yesno" value="9" /><label for="al9">Chaotic Evil (CE)</label>
 				<div class="center">
-					<input type="button" name="alcheck" class="check" value="Check All" /> <input type="button" name="aluncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="alcheck" class="check" value="Check All" /> <input type="button" name="alnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="aluncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
 			<h3 class="show" id="show_size">Size</h3>
 			<div class="content" id="size">
 				<h3 class="hide" id="hide_size">Size</h3>
 				<div style="float: left; margin-left: 5%;">
-					<label for="size_min">Minimum size: <input type="text" name="size_min" id="size_min" class="slider_box" readonly="readonly" style="width: 7em;" /></label>
+					<label for="size_min">Minimum size: <input type="hidden" name="size_min" id="size_min" /><span id="size_min2"></span></label>
 				</div>
 				<div style="float: right; margin-right: 5%; text-align: right;">
-					<label for="size_max">Maximum size: <input type="text" name="size_max" id="size_max" class="slider_box" readonly="readonly" style="width: 7em;" /></label>
+					<label for="size_max">Maximum size: <input type="hidden" name="size_max" id="size_max" /><span id="size_max2"></span></label>
 				</div>
 				<div id="size_slide" class="slider"></div>
 			</div>
 			<h3 class="show" id="show_types">Types</h3>
 			<div class="content" id="types">
 				<h3 class="hide" id="hide_types">Types</h3>
-				<label for="type0"><input type="checkbox" name="type" id="type0" value="0" /> Aberration</label>
-				<label for="type1"><input type="checkbox" name="type" id="type1" value="1" /> Animal</label>
-				<label for="type2"><input type="checkbox" name="type" id="type2" value="2" /> Construct</label>
-				<label for="type3"><input type="checkbox" name="type" id="type3" value="3" /> Dragon</label>
-				<label for="type4"><input type="checkbox" name="type" id="type4" value="4" /> Fey</label>
-				<label for="type5"><input type="checkbox" name="type" id="type5" value="5" /> Humanoid</label>
-				<label for="type6"><input type="checkbox" name="type" id="type6" value="6" /> Magical Beast</label>
-				<label for="type7"><input type="checkbox" name="type" id="type7" value="7" /> Monstrous Humanoid</label>
-				<label for="type8"><input type="checkbox" name="type" id="type8" value="8" /> Ooze</label>
-				<label for="type9"><input type="checkbox" name="type" id="type9" value="9" /> Outsider</label>
-				<label for="type10"><input type="checkbox" name="type" id="type10" value="10" /> Plant</label>
-				<label for="type11"><input type="checkbox" name="type" id="type11" value="11" /> Undead</label>
-				<label for="type12"><input type="checkbox" name="type" id="type12" value="12" /> Vermin</label>
+				<input type="checkbox" name="type" id="type1" class="cbox_yesno" value="1" /><label for="type1">Aberration</label>
+				<input type="checkbox" name="type" id="type2" class="cbox_yesno" value="2" /><label for="type2">Animal</label>
+				<input type="checkbox" name="type" id="type3" class="cbox_yesno" value="3" /><label for="type3">Construct</label>
+				<input type="checkbox" name="type" id="type4" class="cbox_yesno" value="4" /><label for="type4">Dragon</label>
+				<input type="checkbox" name="type" id="type5" class="cbox_yesno" value="5" /><label for="type5">Fey</label>
+				<input type="checkbox" name="type" id="type6" class="cbox_yesno" value="6" /><label for="type6">Humanoid</label>
+				<input type="checkbox" name="type" id="type7" class="cbox_yesno" value="7" /><label for="type7">Magical Beast</label>
+				<input type="checkbox" name="type" id="type8" class="cbox_yesno" value="8" /><label for="type8">Monstrous Humanoid</label>
+				<input type="checkbox" name="type" id="type9" class="cbox_yesno" value="9" /><label for="type9">Ooze</label>
+				<input type="checkbox" name="type" id="type10" class="cbox_yesno" value="10" /><label for="type10">Outsider</label>
+				<input type="checkbox" name="type" id="type11" class="cbox_yesno" value="11" /><label for="type11">Plant</label>
+				<input type="checkbox" name="type" id="type12" class="cbox_yesno" value="12" /><label for="type12">Undead</label>
+				<input type="checkbox" name="type" id="type13" class="cbox_yesno" value="13" /><label for="type13">Vermin</label>
 				<div class="center">
-					<input type="button" name="typecheck" class="check" value="Check All" /> <input type="button" name="typeuncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="typecheck" class="check" value="Check All" /> <input type="button" name="typenotcheck" class="notcheck" value="Negate All" /> <input type="button" name="typeuncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
 			<h3 class="show" id="show_subtypes">Subtypes</h3>
@@ -1317,75 +106,75 @@ tfoot td {
 				</div>
 				<div>
 					<h4>Element Subtypes</h4>
-					<label for="st0"><input type="checkbox" name="st" id="st0" value="0" /> Aether</label>
-					<label for="st1"><input type="checkbox" name="st" id="st1" value="1" /> Air</label>
-					<label for="st2"><input type="checkbox" name="st" id="st2" value="2" /> Aquatic</label>
-					<label for="st3"><input type="checkbox" name="st" id="st3" value="3" /> Cold</label>
-					<label for="st4"><input type="checkbox" name="st" id="st4" value="4" /> Earth</label>
-					<label for="st5"><input type="checkbox" name="st" id="st5" value="5" /> Elemental</label>
-					<label for="st6"><input type="checkbox" name="st" id="st6" value="6" /> Fire</label>
-					<label for="st7"><input type="checkbox" name="st" id="st7" value="7" /> Water</label>
+					<input type="checkbox" name="st" id="st1" class="cbox_yesno" value="1" /><label for="st1">Aether</label>
+					<input type="checkbox" name="st" id="st2" class="cbox_yesno" value="2" /><label for="st2">Air</label>
+					<input type="checkbox" name="st" id="st3" class="cbox_yesno" value="3" /><label for="st3">Aquatic</label>
+					<input type="checkbox" name="st" id="st4" class="cbox_yesno" value="4" /><label for="st4">Cold</label>
+					<input type="checkbox" name="st" id="st5" class="cbox_yesno" value="5" /><label for="st5">Earth</label>
+					<input type="checkbox" name="st" id="st6" class="cbox_yesno" value="6" /><label for="st6">Elemental</label>
+					<input type="checkbox" name="st" id="st7" class="cbox_yesno" value="7" /><label for="st7">Fire</label>
+					<input type="checkbox" name="st" id="st8" class="cbox_yesno" value="8" /><label for="st8">Water</label>
 				</div>
 				<div>
 					<h4>Alignment Subtypes</h4>
-					<label for="st8"><input type="checkbox" name="st" id="st8" value="8" /> Chaotic</label>
-					<label for="st9"><input type="checkbox" name="st" id="st9" value="9" /> Evil</label>
-					<label for="st10"><input type="checkbox" name="st" id="st10" value="10" /> Good</label>
-					<label for="st11"><input type="checkbox" name="st" id="st11" value="11" /> Lawful</label>
+					<input type="checkbox" name="st" id="st9" class="cbox_yesno" value="9" /><label for="st9">Chaotic</label>
+					<input type="checkbox" name="st" id="st10" class="cbox_yesno" value="10" /><label for="st10">Evil</label>
+					<input type="checkbox" name="st" id="st11" class="cbox_yesno" value="11" /><label for="st11">Good</label>
+					<input type="checkbox" name="st" id="st12" class="cbox_yesno" value="12" /><label for="st12">Lawful</label>
 				</div>
 				<div>
 					<h4>Outsider Subtypes</h4>
-					<label for="st12"><input type="checkbox" name="st" id="st12" value="12" /> Extraplanar</label>
-					<label for="st13"><input type="checkbox" name="st" id="st13" value="13" /> Native</label>
-					<label for="st14"><input type="checkbox" name="st" id="st14" value="14" /> Aeon</label>
-					<label for="st15"><input type="checkbox" name="st" id="st15" value="15" /> Agathion</label>
-					<label for="st16"><input type="checkbox" name="st" id="st16" value="16" /> Angel</label>
-					<label for="st17"><input type="checkbox" name="st" id="st17" value="17" /> Archon</label>
-					<label for="st18"><input type="checkbox" name="st" id="st18" value="18" /> Asura</label>
-					<label for="st19"><input type="checkbox" name="st" id="st19" value="19" /> Azata</label>
-					<label for="st20"><input type="checkbox" name="st" id="st20" value="20" /> Daemon</label>
-					<label for="st21"><input type="checkbox" name="st" id="st21" value="21" /> Demodand</label>
-					<label for="st22"><input type="checkbox" name="st" id="st22" value="22" /> Demon</label>
-					<label for="st23"><input type="checkbox" name="st" id="st23" value="23" /> Devil</label>
-					<label for="st24"><input type="checkbox" name="st" id="st24" value="24" /> Div</label>
-					<label for="st25"><input type="checkbox" name="st" id="st25" value="25" /> Inevitable</label>
-					<label for="st26"><input type="checkbox" name="st" id="st26" value="26" /> Kami</label>
-					<label for="st27"><input type="checkbox" name="st" id="st27" value="27" /> Kyton</label>
-					<label for="st28"><input type="checkbox" name="st" id="st28" value="28" /> Manasaputra</label>
-					<label for="st29"><input type="checkbox" name="st" id="st29" value="29" /> Oni</label>
-					<label for="st30"><input type="checkbox" name="st" id="st30" value="30" /> Protean</label>
-					<label for="st31"><input type="checkbox" name="st" id="st31" value="31" /> Psychopomp</label>
-					<label for="st32"><input type="checkbox" name="st" id="st32" value="32" /> Qlippoth</label>
-					<label for="st33"><input type="checkbox" name="st" id="st33" value="33" /> Rakshasa</label>
-					<label for="st34"><input type="checkbox" name="st" id="st34" value="34" /> Sahkil</label>
+					<input type="checkbox" name="st" id="st13" class="cbox_yesno" value="13" /><label for="st13">Extraplanar</label>
+					<input type="checkbox" name="st" id="st14" class="cbox_yesno" value="14" /><label for="st14">Native</label>
+					<input type="checkbox" name="st" id="st15" class="cbox_yesno" value="15" /><label for="st15">Aeon</label>
+					<input type="checkbox" name="st" id="st16" class="cbox_yesno" value="16" /><label for="st16">Agathion</label>
+					<input type="checkbox" name="st" id="st17" class="cbox_yesno" value="17" /><label for="st17">Angel</label>
+					<input type="checkbox" name="st" id="st18" class="cbox_yesno" value="18" /><label for="st18">Archon</label>
+					<input type="checkbox" name="st" id="st19" class="cbox_yesno" value="19" /><label for="st19">Asura</label>
+					<input type="checkbox" name="st" id="st20" class="cbox_yesno" value="20" /><label for="st20">Azata</label>
+					<input type="checkbox" name="st" id="st21" class="cbox_yesno" value="21" /><label for="st21">Daemon</label>
+					<input type="checkbox" name="st" id="st22" class="cbox_yesno" value="22" /><label for="st22">Demodand</label>
+					<input type="checkbox" name="st" id="st23" class="cbox_yesno" value="23" /><label for="st23">Demon</label>
+					<input type="checkbox" name="st" id="st24" class="cbox_yesno" value="24" /><label for="st24">Devil</label>
+					<input type="checkbox" name="st" id="st25" class="cbox_yesno" value="25" /><label for="st25">Div</label>
+					<input type="checkbox" name="st" id="st26" class="cbox_yesno" value="26" /><label for="st26">Inevitable</label>
+					<input type="checkbox" name="st" id="st27" class="cbox_yesno" value="27" /><label for="st27">Kami</label>
+					<input type="checkbox" name="st" id="st28" class="cbox_yesno" value="28" /><label for="st28">Kyton</label>
+					<input type="checkbox" name="st" id="st29" class="cbox_yesno" value="29" /><label for="st29">Manasaputra</label>
+					<input type="checkbox" name="st" id="st30" class="cbox_yesno" value="30" /><label for="st30">Oni</label>
+					<input type="checkbox" name="st" id="st31" class="cbox_yesno" value="31" /><label for="st31">Protean</label>
+					<input type="checkbox" name="st" id="st32" class="cbox_yesno" value="32" /><label for="st32">Psychopomp</label>
+					<input type="checkbox" name="st" id="st33" class="cbox_yesno" value="33" /><label for="st33">Qlippoth</label>
+					<input type="checkbox" name="st" id="st34" class="cbox_yesno" value="34" /><label for="st34">Rakshasa</label>
+					<input type="checkbox" name="st" id="st35" class="cbox_yesno" value="35" /><label for="st35">Sahkil</label>
 				</div>
 				<div>
 					<h4>Other Subtypes</h4>
-					<label for="st35"><input type="checkbox" name="st" id="st35" value="35" /> Automaton</label>
-					<label for="st36"><input type="checkbox" name="st" id="st36" value="36" /> Behemoth</label>
-					<label for="st37"><input type="checkbox" name="st" id="st37" value="37" /> Blight</label>
-					<label for="st38"><input type="checkbox" name="st" id="st38" value="38" /> Clockwork</label>
-					<label for="st39"><input type="checkbox" name="st" id="st39" value="39" /> Colossus</label>
-					<label for="st40"><input type="checkbox" name="st" id="st40" value="40" /> Dark Folk</label>
-					<label for="st41"><input type="checkbox" name="st" id="st41" value="41" /> Giant</label>
-					<label for="st42"><input type="checkbox" name="st" id="st42" value="42" /> Great Old One</label>
-					<label for="st43"><input type="checkbox" name="st" id="st43" value="43" /> Herald</label>
-					<label for="st44"><input type="checkbox" name="st" id="st44" value="44" /> Hive</label>
-					<label for="st45"><input type="checkbox" name="st" id="st45" value="45" /> Incorporeal</label>
-					<label for="st46"><input type="checkbox" name="st" id="st46" value="46" /> Kaiju</label>
-					<label for="st47"><input type="checkbox" name="st" id="st47" value="47" /> Mythic</label>
-					<label for="st48"><input type="checkbox" name="st" id="st48" value="48" /> Mortic</label>
-					<label for="st49"><input type="checkbox" name="st" id="st49" value="49" /> Nightshade</label>
-					<label for="st50"><input type="checkbox" name="st" id="st50" value="50" /> Robot</label>
-					<label for="st51"><input type="checkbox" name="st" id="st51" value="51" /> Shapechanger</label>
-					<label for="st52"><input type="checkbox" name="st" id="st52" value="52" /> Spawn of Rovagug</label>
-					<label for="st53"><input type="checkbox" name="st" id="st53" value="53" /> Swarm</label>
-					<label for="st54"><input type="checkbox" name="st" id="st54" value="54" /> Troop</label>
-					<label for="st55"><input type="checkbox" name="st" id="st55" value="55" /> Wild Hunt</label>
-					<label for="st99"><input type="checkbox" name="st" id="st99" value="99" /> None/Others</label>
+					<input type="checkbox" name="st" id="st36" class="cbox_yesno" value="36" /><label for="st36">Automaton</label>
+					<input type="checkbox" name="st" id="st37" class="cbox_yesno" value="37" /><label for="st37">Behemoth</label>
+					<input type="checkbox" name="st" id="st38" class="cbox_yesno" value="38" /><label for="st38">Blight</label>
+					<input type="checkbox" name="st" id="st39" class="cbox_yesno" value="39" /><label for="st39">Clockwork</label>
+					<input type="checkbox" name="st" id="st40" class="cbox_yesno" value="40" /><label for="st40">Colossus</label>
+					<input type="checkbox" name="st" id="st41" class="cbox_yesno" value="41" /><label for="st41">Dark Folk</label>
+					<input type="checkbox" name="st" id="st42" class="cbox_yesno" value="42" /><label for="st42">Giant</label>
+					<input type="checkbox" name="st" id="st43" class="cbox_yesno" value="43" /><label for="st43">Great Old One</label>
+					<input type="checkbox" name="st" id="st44" class="cbox_yesno" value="44" /><label for="st44">Herald</label>
+					<input type="checkbox" name="st" id="st45" class="cbox_yesno" value="45" /><label for="st45">Hive</label>
+					<input type="checkbox" name="st" id="st46" class="cbox_yesno" value="46" /><label for="st46">Incorporeal</label>
+					<input type="checkbox" name="st" id="st47" class="cbox_yesno" value="47" /><label for="st47">Kaiju</label>
+					<input type="checkbox" name="st" id="st48" class="cbox_yesno" value="48" /><label for="st48">Mythic</label>
+					<input type="checkbox" name="st" id="st49" class="cbox_yesno" value="49" /><label for="st49">Mortic</label>
+					<input type="checkbox" name="st" id="st50" class="cbox_yesno" value="50" /><label for="st50">Nightshade</label>
+					<input type="checkbox" name="st" id="st51" class="cbox_yesno" value="51" /><label for="st51">Robot</label>
+					<input type="checkbox" name="st" id="st52" class="cbox_yesno" value="52" /><label for="st52">Shapechanger</label>
+					<input type="checkbox" name="st" id="st53" class="cbox_yesno" value="53" /><label for="st53">Spawn of Rovagug</label>
+					<input type="checkbox" name="st" id="st54" class="cbox_yesno" value="54" /><label for="st54">Swarm</label>
+					<input type="checkbox" name="st" id="st55" class="cbox_yesno" value="55" /><label for="st55">Troop</label>
+					<input type="checkbox" name="st" id="st56" class="cbox_yesno" value="56" /><label for="st56">Wild Hunt</label>
+					<input type="checkbox" name="st" id="st99" class="cbox_yesno" value="99" /><label for="st99">None/Others</label>
 				</div>
 				<div class="center">
-					<input type="button" name="stcheck" class="check" value="Check All" /> <input type="button" name="stuncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="stcheck" class="check" value="Check All" /> <input type="button" name="stnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="stuncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
 			<h3 class="show" id="show_groups">Creature Groups</h3>
@@ -1393,69 +182,144 @@ tfoot td {
 				<h3 class="hide" id="hide_groups">Creature Groups</h3>
 				<div>
 					<h4>Semidivine Outsiders</h4>
-					<label for="gr0"><input type="checkbox" name="gr" id="gr0" value="0" /> Archdaemon</label>
-					<label for="gr1"><input type="checkbox" name="gr" id="gr1" value="1" /> Archdevil</label>
-					<label for="gr2"><input type="checkbox" name="gr" id="gr2" value="2" /> Asura Rana</label>
-					<label for="gr3"><input type="checkbox" name="gr" id="gr3" value="3" /> Daemon Harbinger</label>
-					<label for="gr4"><input type="checkbox" name="gr" id="gr4" value="4" /> Demon Lord</label>
-					<label for="gr5"><input type="checkbox" name="gr" id="gr5" value="5" /> Div Lord</label>
-					<label for="gr6"><input type="checkbox" name="gr" id="gr6" value="6" /> Elemental Lord</label>
-					<label for="gr7"><input type="checkbox" name="gr" id="gr7" value="7" /> Empyreal Lord</label>
-					<label for="gr8"><input type="checkbox" name="gr" id="gr8" value="8" /> Kami Lord</label>
-					<label for="gr9"><input type="checkbox" name="gr" id="gr9" value="9" /> Kyton Demagogue</label>
-					<label for="gr10"><input type="checkbox" name="gr" id="gr10" value="10" /> Manasaputra Kumara</label>
-					<label for="gr11"><input type="checkbox" name="gr" id="gr11" value="11" /> Oni Daimyo</label>
-					<label for="gr12"><input type="checkbox" name="gr" id="gr12" value="12" /> Primal Inevitable</label>
-					<label for="gr13"><input type="checkbox" name="gr" id="gr13" value="13" /> Protean Lord</label>
-					<label for="gr14"><input type="checkbox" name="gr" id="gr14" value="14" /> Psychopomp Usher</label>
-					<label for="gr15"><input type="checkbox" name="gr" id="gr15" value="15" /> Qlippoth Lord</label>
-					<label for="gr16"><input type="checkbox" name="gr" id="gr16" value="16" /> Rakshasa Immortal</label>
-					<label for="gr17"><input type="checkbox" name="gr" id="gr17" value="17" /> Sahkil Tormentor</label>
-					<label for="gr18"><input type="checkbox" name="gr" id="gr18" value="18" /> Titan</label>
-					<label for="gr19"><input type="checkbox" name="gr" id="gr19" value="19" /> Tsukumogami</label>
+					<input type="checkbox" name="gr" id="gr1" class="cbox_yesno" value="1" /><label for="gr1">Archdaemon</label>
+					<input type="checkbox" name="gr" id="gr2" class="cbox_yesno" value="2" /><label for="gr2">Archdevil</label>
+					<input type="checkbox" name="gr" id="gr3" class="cbox_yesno" value="3" /><label for="gr3">Asura Rana</label>
+					<input type="checkbox" name="gr" id="gr4" class="cbox_yesno" value="4" /><label for="gr4">Daemon Harbinger</label>
+					<input type="checkbox" name="gr" id="gr5" class="cbox_yesno" value="5" /><label for="gr5">Demon Lord</label>
+					<input type="checkbox" name="gr" id="gr6" class="cbox_yesno" value="6" /><label for="gr6">Div Lord</label>
+					<input type="checkbox" name="gr" id="gr7" class="cbox_yesno" value="7" /><label for="gr7">Elemental Lord</label>
+					<input type="checkbox" name="gr" id="gr8" class="cbox_yesno" value="8" /><label for="gr8">Empyreal Lord</label>
+					<input type="checkbox" name="gr" id="gr9" class="cbox_yesno" value="9" /><label for="gr9">Kami Lord</label>
+					<input type="checkbox" name="gr" id="gr10" class="cbox_yesno" value="10" /><label for="gr10">Kyton Demagogue</label>
+					<input type="checkbox" name="gr" id="gr11" class="cbox_yesno" value="11" /><label for="gr11">Manasaputra Kumara</label>
+					<input type="checkbox" name="gr" id="gr12" class="cbox_yesno" value="12" /><label for="gr12">Oni Daimyo</label>
+					<input type="checkbox" name="gr" id="gr13" class="cbox_yesno" value="13" /><label for="gr13">Primal Inevitable</label>
+					<input type="checkbox" name="gr" id="gr14" class="cbox_yesno" value="14" /><label for="gr14">Protean Lord</label>
+					<input type="checkbox" name="gr" id="gr15" class="cbox_yesno" value="15" /><label for="gr15">Psychopomp Usher</label>
+					<input type="checkbox" name="gr" id="gr16" class="cbox_yesno" value="16" /><label for="gr16">Qlippoth Lord</label>
+					<input type="checkbox" name="gr" id="gr17" class="cbox_yesno" value="17" /><label for="gr17">Rakshasa Immortal</label>
+					<input type="checkbox" name="gr" id="gr18" class="cbox_yesno" value="18" /><label for="gr18">Sahkil Tormentor</label>
+					<input type="checkbox" name="gr" id="gr19" class="cbox_yesno" value="19" /><label for="gr19">Titan</label>
+					<input type="checkbox" name="gr" id="gr20" class="cbox_yesno" value="20" /><label for="gr20">Tsukumogami</label>
 				</div>
 				<div>
 					<h4>True Dragons</h4>
-					<label for="gr20"><input type="checkbox" name="gr" id="gr20" value="20" /> Chromatic Dragon</label>
-					<label for="gr21"><input type="checkbox" name="gr" id="gr21" value="21" /> Esoteric Dragon</label>
-					<label for="gr22"><input type="checkbox" name="gr" id="gr22" value="22" /> Imperial Dragon</label>
-					<label for="gr23"><input type="checkbox" name="gr" id="gr23" value="23" /> Metallic Dragon</label>
-					<label for="gr24"><input type="checkbox" name="gr" id="gr24" value="24" /> Outer Dragon</label>
-					<label for="gr25"><input type="checkbox" name="gr" id="gr25" value="25" /> Planar Dragon</label>
-					<label for="gr26"><input type="checkbox" name="gr" id="gr26" value="26" /> Primal Dragon</label>
+					<input type="checkbox" name="gr" id="gr21" class="cbox_yesno" value="21" /><label for="gr21">Chromatic Dragon</label>
+					<input type="checkbox" name="gr" id="gr22" class="cbox_yesno" value="22" /><label for="gr22">Esoteric Dragon</label>
+					<input type="checkbox" name="gr" id="gr23" class="cbox_yesno" value="23" /><label for="gr23">Imperial Dragon</label>
+					<input type="checkbox" name="gr" id="gr24" class="cbox_yesno" value="24" /><label for="gr24">Metallic Dragon</label>
+					<input type="checkbox" name="gr" id="gr25" class="cbox_yesno" value="25" /><label for="gr25">Outer Dragon</label>
+					<input type="checkbox" name="gr" id="gr26" class="cbox_yesno" value="26" /><label for="gr26">Planar Dragon</label>
+					<input type="checkbox" name="gr" id="gr27" class="cbox_yesno" value="27" /><label for="gr27">Primal Dragon</label>
 				</div>
 				<div>
 					<h4>Other Groups</h4>
-					<label for="gr27"><input type="checkbox" name="gr" id="gr27" value="27" /> Companions</label>
-					<label for="gr28"><input type="checkbox" name="gr" id="gr28" value="28" /> Dinosaur</label>
-					<label for="gr29"><input type="checkbox" name="gr" id="gr29" value="29" /> Drake</label>
-					<label for="gr30"><input type="checkbox" name="gr" id="gr30" value="30" /> Entothrope</label>
-					<label for="gr31"><input type="checkbox" name="gr" id="gr31" value="31" /> Familiar</label>
-					<label for="gr32"><input type="checkbox" name="gr" id="gr32" value="32" /> Familiar, Improved</label>
-					<label for="gr33"><input type="checkbox" name="gr" id="gr33" value="33" /> Fleshwarp</label>
-					<label for="gr34"><input type="checkbox" name="gr" id="gr34" value="34" /> Formian</label>
-					<label for="gr35"><input type="checkbox" name="gr" id="gr35" value="35" /> Gigas</label>
-					<label for="gr36"><input type="checkbox" name="gr" id="gr36" value="36" /> Golem</label>
-					<label for="gr37"><input type="checkbox" name="gr" id="gr37" value="37" /> Gremlin</label>
-					<label for="gr38"><input type="checkbox" name="gr" id="gr38" value="38" /> Hag</label>
-					<label for="gr39"><input type="checkbox" name="gr" id="gr39" value="39" /> Herd Animal</label>
-					<label for="gr40"><input type="checkbox" name="gr" id="gr40" value="40" /> Leshy</label>
-					<label for="gr41"><input type="checkbox" name="gr" id="gr41" value="41" /> Linnorm</label>
-					<label for="gr42"><input type="checkbox" name="gr" id="gr42" value="42" /> Lycanthrope</label>
-					<label for="gr43"><input type="checkbox" name="gr" id="gr43" value="43" /> Mephit</label>
-					<label for="gr44"><input type="checkbox" name="gr" id="gr44" value="44" /> Megafauna</label>
-					<label for="gr45"><input type="checkbox" name="gr" id="gr45" value="45" /> Naga</label>
-					<label for="gr46"><input type="checkbox" name="gr" id="gr46" value="46" /> Sphinx</label>
-					<label for="gr47"><input type="checkbox" name="gr" id="gr47" value="47" /> Thriae</label>
-					<label for="gr48"><input type="checkbox" name="gr" id="gr48" value="48" /> Troll</label>
-					<label for="gr49"><input type="checkbox" name="gr" id="gr49" value="49" /> Vampie</label>
-					<label for="gr50"><input type="checkbox" name="gr" id="gr50" value="50" /> Veela</label>
-					<label for="gr51"><input type="checkbox" name="gr" id="gr51" value="51" /> Wysp</label>
-					<label for="gr99"><input type="checkbox" name="gr" id="gr99" value="99" /> None/Others</label>
+					<input type="checkbox" name="gr" id="gr28" class="cbox_yesno" value="28" /><label for="gr28">Companions</label>
+					<input type="checkbox" name="gr" id="gr29" class="cbox_yesno" value="29" /><label for="gr29">Dinosaur</label>
+					<input type="checkbox" name="gr" id="gr30" class="cbox_yesno" value="30" /><label for="gr30">Drake</label>
+					<input type="checkbox" name="gr" id="gr31" class="cbox_yesno" value="31" /><label for="gr31">Entothrope</label>
+					<input type="checkbox" name="gr" id="gr32" class="cbox_yesno" value="32" /><label for="gr32">Familiar</label>
+					<input type="checkbox" name="gr" id="gr33" class="cbox_yesno" value="33" /><label for="gr33">Familiar, Improved</label>
+					<input type="checkbox" name="gr" id="gr34" class="cbox_yesno" value="34" /><label for="gr34">Fleshwarp</label>
+					<input type="checkbox" name="gr" id="gr35" class="cbox_yesno" value="35" /><label for="gr35">Formian</label>
+					<input type="checkbox" name="gr" id="gr36" class="cbox_yesno" value="36" /><label for="gr36">Gigas</label>
+					<input type="checkbox" name="gr" id="gr37" class="cbox_yesno" value="37" /><label for="gr37">Golem</label>
+					<input type="checkbox" name="gr" id="gr38" class="cbox_yesno" value="38" /><label for="gr38">Gremlin</label>
+					<input type="checkbox" name="gr" id="gr39" class="cbox_yesno" value="39" /><label for="gr39">Hag</label>
+					<input type="checkbox" name="gr" id="gr40" class="cbox_yesno" value="40" /><label for="gr40">Herd Animal</label>
+					<input type="checkbox" name="gr" id="gr41" class="cbox_yesno" value="41" /><label for="gr41">Leshy</label>
+					<input type="checkbox" name="gr" id="gr42" class="cbox_yesno" value="42" /><label for="gr42">Linnorm</label>
+					<input type="checkbox" name="gr" id="gr43" class="cbox_yesno" value="43" /><label for="gr43">Lycanthrope</label>
+					<input type="checkbox" name="gr" id="gr44" class="cbox_yesno" value="44" /><label for="gr44">Mephit</label>
+					<input type="checkbox" name="gr" id="gr45" class="cbox_yesno" value="45" /><label for="gr45">Megafauna</label>
+					<input type="checkbox" name="gr" id="gr46" class="cbox_yesno" value="46" /><label for="gr46">Naga</label>
+					<input type="checkbox" name="gr" id="gr47" class="cbox_yesno" value="47" /><label for="gr47">Sphinx</label>
+					<input type="checkbox" name="gr" id="gr48" class="cbox_yesno" value="48" /><label for="gr48">Thriae</label>
+					<input type="checkbox" name="gr" id="gr49" class="cbox_yesno" value="49" /><label for="gr49">Troll</label>
+					<input type="checkbox" name="gr" id="gr50" class="cbox_yesno" value="50" /><label for="gr50">Vampie</label>
+					<input type="checkbox" name="gr" id="gr51" class="cbox_yesno" value="51" /><label for="gr51">Veela</label>
+					<input type="checkbox" name="gr" id="gr52" class="cbox_yesno" value="52" /><label for="gr52">Wysp</label>
+					<input type="checkbox" name="gr" id="gr99" class="cbox_yesno" value="99" /><label for="gr99">None/Others</label>
 				</div>
 				<div class="center">
-					<input type="button" name="grcheck" class="check" value="Check All" /> <input type="button" name="gruncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="grcheck" class="check" value="Check All" /> <input type="button" name="grnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="gruncheck" class="uncheck" value="Uncheck All" />
 				</div>
+			</div>
+			<h3 class="show" id="show_hd">Hit Dice</h3>
+			<div class="content" id="hd">
+				<h3 class="hide" id="hide_hd">Hit Dice</h3>
+				<div style="float: left; margin-left: 5%;">
+					<label for="hd_min">Minimum HD: <input type="hidden" name="hd_min" id="hd_min" /><span id="hd_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="hd_max">Maximum HD: <input type="hidden" name="hd_max" id="hd_max" /><span id="hd_max2"></span></label>
+				</div>
+				<div id="hd_slide" class="slider"></div>
+			</div>
+			<h3 class="show" id="show_speeds">Movement Types</h3>
+			<div class="content" id="speeds">
+				<h3 class="hide" id="hide_speeds">Movement Types</h3>
+				<div class="right">
+					<label for="sp_and"><input type="radio" name="sp_logic" id="sp_and" value="0" /> AND</label>
+					<label for="sp_or"><input type="radio" name="sp_logic" id="sp_or" value="1" checked="checked" /> OR</label>
+					<label for="sp_xor"><input type="radio" name="sp_logic" id="sp_xor" value="2" /> XOR</label>
+				</div>
+				<input type="checkbox" name="sp" id="sp1" class="cbox_yesno" value="1" /><label for="sp1">Land</label>
+				<input type="checkbox" name="sp" id="sp2" class="cbox_yesno" value="2" /><label for="sp2">Burrow</label>
+				<input type="checkbox" name="sp" id="sp3" class="cbox_yesno" value="3" /><label for="sp3">Climb</label>
+				<input type="checkbox" name="sp" id="sp4" class="cbox_yesno" value="4" /><label for="sp4">Fly</label>
+				<input type="checkbox" name="sp" id="sp5" class="cbox_yesno" value="5" /><label for="sp5">Swim</label>
+				<input type="checkbox" name="sp" id="sp6" class="cbox_yesno" value="6" /><label for="sp6">Others</label>
+				<div class="center">
+					<input type="button" name="spcheck" class="check" value="Check All" /> <input type="button" name="spnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="spuncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_abilities">Ability Scores</h3>
+			<div class="content" id="abilities">
+				<h3 class="hide" id="hide_abilities">Ability Scores</h3>
+				<div style="float: left; margin-left: 5%;">
+					<label for="str_min">Minimum Str: <input type="hidden" name="str_min" id="str_min" /><span id="str_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="str_max">Maximum Str: <input type="hidden" name="str_max" id="str_max" /><span id="str_max2"></span></label>
+				</div>
+				<div id="str_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="dex_min">Minimum Dex: <input type="hidden" name="dex_min" id="dex_min" /><span id="dex_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="dex_max">Maximum Dex: <input type="hidden" name="dex_max" id="dex_max" /><span id="dex_max2"></span></label>
+				</div>
+				<div id="dex_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="con_min">Minimum Con: <input type="hidden" name="con_min" id="con_min" /><span id="con_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="con_max">Maximum Con: <input type="hidden" name="con_max" id="con_max" /><span id="con_max2"></span></label>
+				</div>
+				<div id="con_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="int_min">Minimum Int: <input type="hidden" name="int_min" id="int_min" /><span id="int_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="int_max">Maximum Int: <input type="hidden" name="int_max" id="int_max" /><span id="int_max2"></span></label>
+				</div>
+				<div id="int_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="wis_min">Minimum Wis: <input type="hidden" name="wis_min" id="wis_min" /><span id="wis_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="wis_max">Maximum Wis: <input type="hidden" name="wis_max" id="wis_max" /><span id="wis_max2"></span></label>
+				</div>
+				<div id="wis_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="cha_min">Minimum Cha: <input type="hidden" name="cha_min" id="cha_min" /><span id="cha_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="cha_max">Maximum Cha: <input type="hidden" name="cha_max" id="cha_max" /><span id="cha_max2"></span></label>
+				</div>
+				<div id="cha_slide" class="slider"></div>
 			</div>
 			<h3 class="show" id="show_environment">Environment</h3>
 			<div class="content" id="environment">
@@ -1464,24 +328,24 @@ tfoot td {
 					<label for="env_and"><input type="radio" name="env_logic" id="env_and" value="0" /> AND</label>
 					<label for="env_or"><input type="radio" name="env_logic" id="env_or" value="1" checked="checked" /> OR</label>
 				</div>
-				<label for="env2"><input type="checkbox" name="env" id="env2" value="2" /> Coastlines</label>
-				<label for="env3"><input type="checkbox" name="env" id="env3" value="3" /> Deserts</label>
-				<label for="env4"><input type="checkbox" name="env" id="env4" value="4" /> Forests</label>
-				<label for="env16"><input type="checkbox" name="env" id="env16" value="16" /> Glaciers</label>
-				<label for="env5"><input type="checkbox" name="env" id="env5" value="5" /> Hills</label>
-				<label for="env6"><input type="checkbox" name="env" id="env6" value="6" /> Mountains</label>
-				<label for="env7"><input type="checkbox" name="env" id="env7" value="7" /> Oceans</label>
-				<label for="env8"><input type="checkbox" name="env" id="env8" value="8" /> Plains</label>
-				<label for="env9"><input type="checkbox" name="env" id="env9" value="9" /> Rivers/Lakes</label>
-				<label for="env10"><input type="checkbox" name="env" id="env10" value="10" /> Ruins</label>
-				<label for="env11"><input type="checkbox" name="env" id="env11" value="11" /> Sky</label>
-				<label for="env12"><input type="checkbox" name="env" id="env12" value="12" /> Swamps</label>
-				<label for="env13"><input type="checkbox" name="env" id="env13" value="13" /> Underground</label>
-				<label for="env14"><input type="checkbox" name="env" id="env14" value="14" /> Urban</label>
-				<label for="env15"><input type="checkbox" name="env" id="env15" value="15" /> Vacuum</label>
-				<label for="env17"><input type="checkbox" name="env" id="env17" value="17" /> Volcanoes</label>
+				<input type="checkbox" name="env" id="env2" class="cbox_yesno" value="2" /><label for="env2">Coastlines</label>
+				<input type="checkbox" name="env" id="env3" class="cbox_yesno" value="3" /><label for="env3">Deserts</label>
+				<input type="checkbox" name="env" id="env4" class="cbox_yesno" value="4" /><label for="env4">Forests</label>
+				<input type="checkbox" name="env" id="env5" class="cbox_yesno" value="5" /><label for="env5">Glaciers</label>
+				<input type="checkbox" name="env" id="env6" class="cbox_yesno" value="6" /><label for="env6">Hills</label>
+				<input type="checkbox" name="env" id="env7" class="cbox_yesno" value="7" /><label for="env7">Mountains</label>
+				<input type="checkbox" name="env" id="env8" class="cbox_yesno" value="8" /><label for="env8">Oceans</label>
+				<input type="checkbox" name="env" id="env9" class="cbox_yesno" value="9" /><label for="env9">Plains</label>
+				<input type="checkbox" name="env" id="env10" class="cbox_yesno" value="10" /><label for="env10">Rivers/Lakes</label>
+				<input type="checkbox" name="env" id="env11" class="cbox_yesno" value="11" /><label for="env11">Ruins</label>
+				<input type="checkbox" name="env" id="env12" class="cbox_yesno" value="12" /><label for="env12">Sky</label>
+				<input type="checkbox" name="env" id="env13" class="cbox_yesno" value="13" /><label for="env13">Swamps</label>
+				<input type="checkbox" name="env" id="env14" class="cbox_yesno" value="14" /><label for="env14">Underground</label>
+				<input type="checkbox" name="env" id="env15" class="cbox_yesno" value="15" /><label for="env15">Urban</label>
+				<input type="checkbox" name="env" id="env16" class="cbox_yesno" value="16" /><label for="env16">Vacuum</label>
+				<input type="checkbox" name="env" id="env17" class="cbox_yesno" value="17" /><label for="env17">Volcanoes</label>
 				<div class="center">
-					<input type="button" name="envcheck" class="check" value="Check All" /> <input type="button" name="envuncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="envcheck" class="check" value="Check All" /> <input type="button" name="envnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="envuncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
 			<h3 class="show" id="show_climate">Climate</h3>
@@ -1491,11 +355,11 @@ tfoot td {
 					<label for="cl_or"><input type="radio" name="cl_logic" id="cl_or" value="0" checked="checked" /> OR</label>
 					<label for="cl_xor"><input type="radio" name="cl_logic" id="cl_xor" value="1" /> XOR</label>
 				</div>
-				<label for="cl1"><input type="checkbox" name="cl" id="cl1" value="1" /> Cold</label>
-				<label for="cl2"><input type="checkbox" name="cl" id="cl2" value="2" /> Temperate</label>
-				<label for="cl3"><input type="checkbox" name="cl" id="cl3" value="3" /> Warm</label>
+				<input type="checkbox" name="cl" id="cl1" class="cbox_yesno" value="1" /><label for="cl1">Cold</label>
+				<input type="checkbox" name="cl" id="cl2" class="cbox_yesno" value="2" /><label for="cl2">Temperate</label>
+				<input type="checkbox" name="cl" id="cl3" class="cbox_yesno" value="3" /><label for="cl3">Warm</label>
 				<div class="center">
-					<input type="button" name="clcheck" class="check" value="Check All" /> <input type="button" name="cluncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="clcheck" class="check" value="Check All" /> <input type="button" name="clnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="cluncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
 			<h3 class="show" id="show_planes">Planes</h3>
@@ -1505,43 +369,43 @@ tfoot td {
 					<label for="pl_or"><input type="radio" name="pl_logic" id="pl_or" value="0" checked="checked" /> OR</label>
 					<label for="pl_xor"><input type="radio" name="pl_logic" id="pl_xor" value="1" /> XOR</label>
 				</div>
-				<label for="pl0" style="margin-top: 2em;"><input type="checkbox" name="pl" id="pl0" value="0" /> Material Plane</label>
+				<input type="checkbox" name="pl" id="pl1" class="cbox_yesno" value="1" /><label for="pl1" style="margin-top: 2em;">Material Plane</label>
 				<div>
 					<h4>Transitive Planes</h4>
-					<label for="pl1"><input type="checkbox" name="pl" id="pl1" value="1" /> Plane of Shadow</label>
-					<label for="pl2"><input type="checkbox" name="pl" id="pl2" value="2" /> Astral Plane</label>
-					<label for="pl3"><input type="checkbox" name="pl" id="pl3" value="3" /> Ethereal Plane</label>
+					<input type="checkbox" name="pl" id="pl2" class="cbox_yesno" value="2" /><label for="pl2">Plane of Shadow</label>
+					<input type="checkbox" name="pl" id="pl3" class="cbox_yesno" value="3" /><label for="pl3">Astral Plane</label>
+					<input type="checkbox" name="pl" id="pl4" class="cbox_yesno" value="4" /><label for="pl4">Ethereal Plane</label>
 				</div>
 				<div>
 					<h4>Inner Planes</h4>
-					<label for="pl7"><input type="checkbox" name="pl" id="pl7" value="7" /> Plane of Air</label>
-					<label for="pl8"><input type="checkbox" name="pl" id="pl8" value="8" /> Plane of Earth</label>
-					<label for="pl9"><input type="checkbox" name="pl" id="pl9" value="9" /> Plane of Fire</label>
-					<label for="pl10"><input type="checkbox" name="pl" id="pl10" value="10" /> Plane of Water</label>
-					<label for="pl11"><input type="checkbox" name="pl" id="pl11" value="11" /> Negative Energy Plane</label>
-					<label for="pl12"><input type="checkbox" name="pl" id="pl12" value="12" /> Positive Energy Plane</label>
+					<input type="checkbox" name="pl" id="pl8" class="cbox_yesno" value="8" /><label for="pl8">Plane of Air</label>
+					<input type="checkbox" name="pl" id="pl9" class="cbox_yesno" value="9" /><label for="pl9">Plane of Earth</label>
+					<input type="checkbox" name="pl" id="pl10" class="cbox_yesno" value="10" /><label for="pl10">Plane of Fire</label>
+					<input type="checkbox" name="pl" id="pl11" class="cbox_yesno" value="11" /><label for="pl11">Plane of Water</label>
+					<input type="checkbox" name="pl" id="pl12" class="cbox_yesno" value="12" /><label for="pl12">Negative Energy Plane</label>
+					<input type="checkbox" name="pl" id="pl13" class="cbox_yesno" value="13" /><label for="pl13">Positive Energy Plane</label>
 				</div>
 				<div>
 					<h4>Outer Planes</h4>
-					<label for="pl13"><input type="checkbox" name="pl" id="pl13" value="13" /> Boneyard/Purgatory (N)</label>
-					<label for="pl14"><input type="checkbox" name="pl" id="pl14" value="14" /> Heaven (LG)</label>
-					<label for="pl15"><input type="checkbox" name="pl" id="pl15" value="15" /> Nirvana (NG)</label>
-					<label for="pl16"><input type="checkbox" name="pl" id="pl16" value="16" /> Elysium (CG)</label>
-					<label for="pl17"><input type="checkbox" name="pl" id="pl17" value="17" /> Limbo/Maelstrom (CN)</label>
-					<label for="pl18"><input type="checkbox" name="pl" id="pl18" value="18" /> Abyss (CE)</label>
-					<label for="pl19"><input type="checkbox" name="pl" id="pl19" value="19" /> Abaddon (NE)</label>
-					<label for="pl20"><input type="checkbox" name="pl" id="pl20" value="20" /> Hell (LE)</label>
-					<label for="pl21"><input type="checkbox" name="pl" id="pl21" value="21" /> Utopia (LN)</label>
+					<input type="checkbox" name="pl" id="pl14" class="cbox_yesno" value="14" /><label for="pl14">Boneyard/Purgatory (N)</label>
+					<input type="checkbox" name="pl" id="pl15" class="cbox_yesno" value="15" /><label for="pl15">Heaven (LG)</label>
+					<input type="checkbox" name="pl" id="pl16" class="cbox_yesno" value="16" /><label for="pl16">Nirvana (NG)</label>
+					<input type="checkbox" name="pl" id="pl17" class="cbox_yesno" value="17" /><label for="pl17">Elysium (CG)</label>
+					<input type="checkbox" name="pl" id="pl18" class="cbox_yesno" value="18" /><label for="pl18">Limbo/Maelstrom (CN)</label>
+					<input type="checkbox" name="pl" id="pl19" class="cbox_yesno" value="19" /><label for="pl19">Abyss (CE)</label>
+					<input type="checkbox" name="pl" id="pl20" class="cbox_yesno" value="20" /><label for="pl20">Abaddon (NE)</label>
+					<input type="checkbox" name="pl" id="pl21" class="cbox_yesno" value="21" /><label for="pl21">Hell (LE)</label>
+					<input type="checkbox" name="pl" id="pl22" class="cbox_yesno" value="22" /><label for="pl22">Utopia (LN)</label>
 				</div>
 				<div>
 					<h4>Other Planes</h4>
-					<label for="pl4"><input type="checkbox" name="pl" id="pl4" value="4" /> First World</label>
-					<label for="pl5"><input type="checkbox" name="pl" id="pl5" value="5" /> Dimension of Dreams</label>
-					<label for="pl6"><input type="checkbox" name="pl" id="pl6" value="6" /> Dimension of Time</label>
-					<label for="pl22"><input type="checkbox" name="pl" id="pl22" value="22" /> Others</label>
+					<input type="checkbox" name="pl" id="pl5" class="cbox_yesno" value="5" /><label for="pl5">First World</label>
+					<input type="checkbox" name="pl" id="pl6" class="cbox_yesno" value="6" /><label for="pl6">Dimension of Dreams</label>
+					<input type="checkbox" name="pl" id="pl7" class="cbox_yesno" value="7" /><label for="pl7">Dimension of Time</label>
+					<input type="checkbox" name="pl" id="pl23" class="cbox_yesno" value="23" /><label for="pl23">Others</label>
 				</div>
 				<div class="center">
-					<input type="button" name="plcheck" class="check" value="Check All" /> <input type="button" name="pluncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="plcheck" class="check" value="Check All" /> <input type="button" name="plnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="pluncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
 			<h3 class="show" id="show_sources">Sources</h3>
@@ -1549,49 +413,54 @@ tfoot td {
 				<h3 class="hide" id="hide_sources">Sources</h3>
 				<div>
 					<h4>Bestiaries</h4>
-					<label for="sb1"><input type="checkbox" name="s" id="sb1" value="B1" /> Bestiary 1 (B1)</label>
-					<label for="sb2"><input type="checkbox" name="s" id="sb2" value="B2" /> Bestiary 2 (B2)</label>
-					<label for="sb3"><input type="checkbox" name="s" id="sb3" value="B3" /> Bestiary 3 (B3)</label>
-					<label for="sb4"><input type="checkbox" name="s" id="sb4" value="B4" /> Bestiary 4 (B4)</label>
-					<label for="sb5"><input type="checkbox" name="s" id="sb5" value="B5" /> Bestiary 5 (B5)</label>
-					<label for="sb6"><input type="checkbox" name="s" id="sb6" value="B6" /> Bestiary 6 (B6)</label>
+					<input type="checkbox" name="s" id="s1" class="cbox_yesno" value="1" /><label for="s1">Bestiary 1 (B1)</label>
+					<input type="checkbox" name="s" id="s2" class="cbox_yesno" value="2" /><label for="s2">Bestiary 2 (B2)</label>
+					<input type="checkbox" name="s" id="s3" class="cbox_yesno" value="3" /><label for="s3">Bestiary 3 (B3)</label>
+					<input type="checkbox" name="s" id="s4" class="cbox_yesno" value="4" /><label for="s4">Bestiary 4 (B4)</label>
+					<input type="checkbox" name="s" id="s5" class="cbox_yesno" value="5" /><label for="s5">Bestiary 5 (B5)</label>
+					<input type="checkbox" name="s" id="s6" class="cbox_yesno" value="6" /><label for="s6">Bestiary 6 (B6)</label>
 				</div>
 				<div>
 					<h4>Other Core Rulebooks</h4>
-					<label for="sum"><input type="checkbox" name="s" id="sum" value="UM" /> Ultimate Magic (UM)</label>
-					<label for="sma"><input type="checkbox" name="s" id="sma" value="MA" /> Mythic Adventures (MA)</label>
-					<label for="smc"><input type="checkbox" name="s" id="smc" value="MC" /> Monster Codex (MC)</label>
-					<label for="sha"><input type="checkbox" name="s" id="sha" value="HA" /> Horror Adventures (HA)</label>
-					<label for="sbd"><input type="checkbox" name="s" id="sbd" value="BD" /> Book of the Damned (BD)</label>
-					<label for="suw"><input type="checkbox" name="s" id="suw" value="UW" /> Ultimate Wilderness (UW)</label>
-					<label for="spa"><input type="checkbox" name="s" id="spa" value="PA" /> Planar Adventures (PA)</label>
+					<input type="checkbox" name="s" id="s7" class="cbox_yesno" value="7" /><label for="s7">Ultimate Magic (UM)</label>
+					<input type="checkbox" name="s" id="s8" class="cbox_yesno" value="8" /><label for="s8">Mythic Adventures (MA)</label>
+					<input type="checkbox" name="s" id="s9" class="cbox_yesno" value="9" /><label for="s9">Monster Codex (MC)</label>
+					<input type="checkbox" name="s" id="s10" class="cbox_yesno" value="10" /><label for="s10">Horror Adventures (HA)</label>
+					<input type="checkbox" name="s" id="s11" class="cbox_yesno" value="11" /><label for="s11">Book of the Damned (BD)</label>
+					<input type="checkbox" name="s" id="s12" class="cbox_yesno" value="12" /><label for="s12">Ultimate Wilderness (UW)</label>
+					<input type="checkbox" name="s" id="s13" class="cbox_yesno" value="13" /><label for="s13">Planar Adventures (PA)</label>
 				</div>
 				<div>
 					<h4>Other Books</h4>
-					<label for="scs"><input type="checkbox" name="s" id="scs" value="CS" /> Campaign Settings (CS)</label>
-					<label for="spc"><input type="checkbox" name="s" id="spc" value="PC" /> Player Companions (PC)</label>
-					<label for="sap"><input type="checkbox" name="s" id="sap" value="AP" /> Adventure Paths (AP)</label>
-					<label for="sam"><input type="checkbox" name="s" id="sam" value="AM" /> Adventure Modules (AM)</label>
+					<input type="checkbox" name="s" id="s14" class="cbox_yesno" value="14" /><label for="s14">Campaign Settings (CS)</label>
+					<input type="checkbox" name="s" id="s15" class="cbox_yesno" value="15" /><label for="s15">Player Companions (PC)</label>
+					<input type="checkbox" name="s" id="s16" class="cbox_yesno" value="16" /><label for="s16">Adventure Paths (AP)</label>
+					<input type="checkbox" name="s" id="s17" class="cbox_yesno" value="17" /><label for="s17">Adventure Modules (AM)</label>
 				</div>
 				<div class="center">
-					<input type="button" name="scheck" class="check" value="Check All" /> <input type="button" name="suncheck" class="uncheck" value="Uncheck All" />
+					<input type="button" name="scheck" class="check" value="Check All" /> <input type="button" name="snotcheck" class="notcheck" value="Negate All" /> <input type="button" name="suncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
 			<h3 class="show" id="show_other_options">Other Options</h3>
 			<div class="content" id="other_options">
 				<h3 class="hide" id="hide_other_options">Other Options</h3>
-				<label for="slist" style="width: auto; padding-bottom: 1.5em;"><input type="checkbox" name="slist" id="slist" value="0" /> Generate only a list of creatures</label> (If checked the following options are ignored.)<br />
-				<label for="variant"><input type="checkbox" name="variants" id="variant" value="0" checked="checked" /> Include variant creatures</label>
-				<label for="mixed"><input type="checkbox" name="mixed" id="mixed" class="not_slist" value="0" checked="checked" /> Include mixed groups</label>
-				<label for="unique"><input type="checkbox" name="unique" id="unique" value="0" checked="checked" /> Include unique creatures</label><br />
+				<div style="padding-bottom: 1.5em;">
+					<input type="checkbox" name="slist" id="slist" class="cbox_trad" value="0" /><label for="slist" style="width: auto;">Generate only a list of creatures</label> (If checked the following options are ignored.)
+				</div>
+				<div style="padding-bottom: 1.5em;">
+					<input type="checkbox" name="links" id="links" class="cbox_trad" value="0" checked="checked" /><label for="links" style="width: auto;">Enable links</label> (Warning: some links may not work.)
+				</div>
+				<input type="checkbox" name="variants" id="variant" class="cbox_yesonly" value="1" checked="checked" /><label for="variant">Include variant creatures</label>
+				<input type="checkbox" name="mixed" id="mixed" class="cbox_yesonly not_slist" value="1" checked="checked" /><label for="mixed">Include mixed groups</label>
+				<input type="checkbox" name="unique" id="unique" class="cbox_yesonly" value="1" checked="checked" /><label for="unique">Include unique creatures</label><br />
 				<label for="numtable" style="margin-top: 1.5em;">Maximum number of creatures in the table: <input name="maxcreatures" id="numtable" class="not_slist" value="25" style="width: 4em;" /> (0 indicates all the creatures found)</label><br />
 				<label for="numcolumn">Maximum number in the dice column: <input name="maxdice" id="numcolumn" class="not_slist" value="100" style="width: 4em;" /> (0 indicates no dice column)</label><br />
 				<div style="padding-bottom: 1em; margin-top: 1.5em;">CR increase for combination of creatures:</div>
 				<div style="float: left; margin-left: 5%;">
-					<label for="cr_comb_min">Minimum CR increase: <input type="text" name="cr_comb_min" id="cr_comb_min" class="slider_box" readonly="readonly" /></label>
+					<label for="cr_comb_min">Minimum CR increase: <input type="hidden" name="cr_comb_min" id="cr_comb_min" /><span id="cr_comb_min2"></span></label>
 				</div>
 				<div style="float: right; margin-right: 5%; text-align: right;">
-					<label for="cr_comb_max">Maximum CR increase: <input type="text" name="cr_comb_max" id="cr_comb_max" class="slider_box" readonly="readonly" /></label>
+					<label for="cr_comb_max">Maximum CR increase: <input type="hidden" name="cr_comb_max" id="cr_comb_max" /><span id="cr_comb_max2"></span></label>
 				</div>
 				<div id="cr_comb_slide" class="slider"></div>
 				<p>Warning: CR increase is calculated only on the total amount of experience points. For a high number of creature it doesn't necessarily reflect the real challenge posed by the creature. Consider using <a target="_blank" href="https://www.aonprd.com/MonsterSubtypes.aspx?ItemName=Troop">troops</a> instead, or split the encounter into many smaller ones.</p>
