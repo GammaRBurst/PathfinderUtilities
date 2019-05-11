@@ -208,8 +208,8 @@ function readyPage(values, sizes) {
 	$('#hd_slide').slider({
 		range: true,
 		min: 1,
-		max: 50,
-		values: [1, 50],
+		max: 40,
+		values: [1, 40],
 		slide: function(event, ui) {
 			setSlider('hd', ui.values);
 		}
