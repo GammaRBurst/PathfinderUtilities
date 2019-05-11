@@ -11,11 +11,15 @@ Just download the files and double-click on *random_encounters.html*! No install
 * __Types__: The canonical 12 types, such as _Aberration_, _Dragon_ or _Undead_. __OR__ selection mode is applied.
 * __Subtypes__: Most _Humanoid_ subtypes, such as _Elf_ or _Dwarf_ are excluded, but almost anything else is available. The search can be executed in __OR__ selection mode, as well as __AND__ selection mode (creatures are considered ad valid if they have all the selected subtypes) and __XOR__ selection mode (creatures are considered ad valid if they have only one of the selected subtypes).
 * __Creature groups__: Some creatures have much in common, and yet no subtype was created for them. __OR__ selection mode is applied.
+* __Hit dice__: Similar to Challenge rating, a double slider between _1_ and _40_. (No creature has more than 36 HD at the moment.)
+* __Movement types__: How the creature moves. You can choose between _land_, _burrow_, _climb_, _fly_, _swim_ and _other_ speeds, but it's not possible to select the actual speed, nor the flight maneuverability. __AND__, __OR__ and __XOR__ selection modes are available.
+* __Ability scores__: Six double sliders that range between _0_ (no ability score, represented by _-_) and _60_. (Though no creature has scores as high.)
 * __Environment__: The place where the creatures live. __AND__ and __OR__ selection modes are available.
 * __Climate__: The temperature the creatures are used to. Some combinations of environment and climate may be contradictory, e.g. warm glaciers. __OR__ and __XOR__ selection modes are available.
 * __Planes__: The plane of origin. __OR__ and __XOR__ selection modes are available.
 * __Sources__: The books the creatures come from. Those under _Other books_ are actually groups of manuals, because have usually too little material to justify an entire category. __OR__ selection mode is applied.
 * __List of creatures__: Creates a list of all the creatures that match the criteria, without creating groups. Disables _mixed groups_, _CR increase_ as well as table settings.
+* __Enable links__: Adds links to monster sheets on [Archives of Nethys](https://www.aonprd.com/). __Warning__: Part of Bestiary 5 and most of Bestiary 6 are still to be imported on the site, so these link may generate an error.
 * __Variant creatures__: Some creatures don't have their own personal sheet, but are defined as variations of other creatures and may require some more work to use them. Disable this option if you don't like the idea.
 * __Mixed groups__: Most of the groups generated are simply a certain amount of a creature. Mixed groups however contain two or more different creatures and may require some more study. Disable this option if you don't like the idea.
 * __Unique creatures__: Some monsters are simply unique, and thus not necessarely suited for a random encounter. Disable this option if you don't like the idea.
@@ -23,9 +27,12 @@ Just download the files and double-click on *random_encounters.html*! No install
 * __Dice colum__: Used if you want to roll a die to select a creature. 0 indicates to remove the dice column.
 * __CR increase__: A double slider to select how big is the CR of a group compared to the CR of a member of this group (the strongest for mixed groups).
 
+All checkboxes, except those in the last panel, have a triple value. An unchecked box means that the property is indifferent, i.e. it can be present or absent. A green tick means the property must be present, the search mode is further defined by the selection mode (__AND__, __OR__, __XOR__), if available. A red cross means that the property has to be absent.
+
+Similarly, the __Variant creatures__, __Mixed groups__ and __Unique creatures__ have a triple value, but with different meanings. An empty checkbox means the option is disabled and all creatures that match the criteria are excluded. A green tick means the option is enabled and no creature is excluded. A blue ring means only the creatures that match the search are included.
+
 ## Other Features
-* Contains almost 3500 unique creatures and mixed groups.
-* Each creature links to its sheet on [Archives of Nethys](https://www.aonprd.com/). __Warning__: Part of Bestiary 5 and most of Bestiary 6 are still to be imported on the site, so these link will generate an error.
+* Contains around 3500 unique creatures and mixed groups.
 * Creatures are ordered based on their _Challenge rating_ and then on their _Mythic rank_. Other than that, their order is random.
 
 ## Things you Won't Find Here
@@ -44,6 +51,7 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
 * __Wrong link__: While AoN is quite predictable in the way it memorized the creatures' names, it sometimes deviates from its standards. Moreover, the software may create a link for a mythic creature while the creature is non-mythic or vice versa. If you spot a wrong link and you are sure the monster sheet exists, write an issue with the monster name and the correct URL of its sheet.
 * __Wrong plural__: Plurals in English are usually easy to construct, but there are exceptions. Sadly English is not my mother language, so some irregular or special plural may have gone unnoticed. If you find a wrong plural, write an issue with the monster name and the correct plural.
 * __Wrong/missing monster informations__: Most of the informations are translated as numbers to reduce the database's size. It's easy to type some digits instead of some others, and I already found some of these mistakes myself. These are by far the hardest mistakes to find, but if you happen to stuble upon one, write an issue with the monster name and what is wrong or missing.
+* __Everything else__: Be as specific as possible, it's much easier to find and correct the problem this way.
 
 ## Missing Manuals
 * Campaign Setting:
@@ -55,14 +63,8 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
   * Tyrant's grasp #3 - #6 (partly published)
 
 ## Next Update
-* __Hit dice__: Similar to the CR filter. _Software implementation completed, database update in progress._
-* __Speed__: It'll be possible to filter by movement type. The actual speeds, as well as maneuverability for flight speed won't be available though; only movement types (land, burrow, climb, fly, swim, others). _Software implementation completed, database update in progress._
-* __Ability scores__: Similar to the CR filter. _Software implementation completed, database update in progress._
-* __Triple-valued checkboxes__: For most options it will be possible to click to select it (green tick), or double-click or right-click to negate it (red cross). As before, an empty checkbox means that the presence or absence of the option is irrelevant. For example it will be possible to select all creature with the _evil_ subtype, but not the _lawful_ and _chaotic_ subtypes. A few other checkboxes, those that include variant creatures, mixed groups and unique creatures, have now the option to show only these creatures (blue circle). _Implementation completed._
-* __Disable links__: It'll be possible to disable links, if so desired. _Implementation completed._
 * __Sorting__: It'll be possible to sort based on CR/MR (only current possibility), CR/MR and then name, only name or completely random order. _Studying the problem._
-* __New options__: I'm planning to add the _goblinoid_ and _reptilian_ subtypes, as well as a _no racial HD_ group (I'll probably come up with a better name). _Nothing done yet._
-* A few corrections to the database and some rearrangement to the software. _In progress._
+* __New options__: I'm planning to add the  _no racial HD_ group (Sorry, I couldn't find a better name). _Software implemented, database not yet updated._
 
 I expect this new version to be ready for the second half of May.
 
