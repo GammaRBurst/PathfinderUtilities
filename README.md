@@ -26,6 +26,7 @@ Just download the files and double-click on *random_encounters.html*! No install
 * __Creatures in the table__: How many rows (at most) will the generated table have. 0 indicates to list every creature.
 * __Dice colum__: Used if you want to roll a die to select a creature. 0 indicates to remove the dice column.
 * __CR increase__: A double slider to select how big is the CR of a group compared to the CR of a member of this group (the strongest for mixed groups).
+* __Sorting options__: You can choose to sort the results _by CR and then MR_, or _alphabetically_. If you choose both, the alphabetical filter is applied to the creature that share the same _CR_ and _MR_. If you choose neither, the order is completely random.
 
 All checkboxes, except those in the last panel, have a triple value. An unchecked box means that the property is indifferent, i.e. it can be present or absent. A green tick means the property must be present, the search mode is further defined by the selection mode (__AND__, __OR__, __XOR__), if available. A red cross means that the property has to be absent.
 
@@ -63,9 +64,4 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
   * Tyrant's grasp #3 - #6 (partly published)
 
 ## Next Update
-* __Sorting__: It'll be possible to sort based on CR/MR (only current possibility), CR/MR and then name, only name or completely random order. _Studying the problem._
-* __New options__: I'm planning to add the  _no racial HD_ group (Sorry, I couldn't find a better name). _Software implemented, database not yet updated._
-
-I expect this new version to be ready for the second half of May.
-
-I'm also studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable, at least partly. It will need further research and won't probably be included in the next update.
+I'm studying templates more closely, in particular what are the requisites and what are the effects on the creatures. I was right when I said there are a lot of things to consider, but maybe it's doable, at least partially. The major obstacles at this moment seem to be properties that are not included in the database, such as immunities or having a skeleton, and the freedom to assign bonus to abilities.
