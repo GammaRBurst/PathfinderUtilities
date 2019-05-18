@@ -42,6 +42,7 @@ $(function() {
 		var maxcreatures = 0;
 		var maxdice = 0;
 		var cr_comb = []; cr_comb.length = 2;
+		var sort = 0;
 		
 		//Reading values
 		for(var i = 0; i < params.length; i++) {
@@ -243,6 +244,10 @@ $(function() {
 			}
 			else if(key == 'cr_comb_max') {
 				cr_comb[1] = Number(val);
+			}
+			//Sorting
+			else if(key == 'sort') {
+				sort += Number(val);
 			}
 		}
 		if(maxdice < 0) {
@@ -483,10 +488,18 @@ $(function() {
 			$('input#unique').removeClass('cbox_only');
 			$('input#unique').val(Math.abs($('input#unique').val()));
 		}
-		//Others
+		//Table size
 		$('input#numtable').val(maxcreatures);
 		$('input#numcolumn').val(maxdice);
+		//CR combination
 		setSlider('cr_comb', cr_comb);
+		//Sorting
+		if(sort & 1) {
+			$('input#sort1').prop('checked', true);
+		}
+		if(sort & 2) {
+			$('input#sort2').prop('checked', true);
+		}
 		
 		//Reading monsters file
 		$.when(ajaxCreatures()).done(function(monsters) {
@@ -1156,6 +1169,7 @@ $(function() {
 			//Creating groups and links
 			monsters2 = [];
 			for(var i = 0; i < monsters.length; i++) {
+				monsters[i].push(cleanLink(monsters[i][0]).toLowerCase());
 				if(links) { //Link generation
 					if(monsters[i][0].indexOf('[') >= 0) { //Groups
 						var temp_name = monsters[i][0].split('[');
@@ -1186,41 +1200,16 @@ $(function() {
 						linked = true;
 					}
 				}
-				else {
-					if(monsters[i][0].indexOf('[') >= 0) { //Cleaning link syntax
-						var temp_name = monsters[i][0].split('[');
-						for(var j = 0; j < temp_name.length; j++) {
-							if(temp_name[j].indexOf(']') >= 0) {
-								if(temp_name[j].split(']')[0].indexOf('\\') >= 0) {
-									temp_name[j] = temp_name[j].split('\\')[0] + temp_name[j].split(']')[1];
-								}
-								else {
-									temp_name[j] = temp_name[j].replace(']', '');
-								}
-							}
-							if(temp_name[j].slice(0, 1) == '+') {
-								temp_name[j] = temp_name[j].slice(1);
-							}
-						}
-						monsters[i][0] = temp_name.join('');
+				else { //Cleaning link syntax
+					if(monsters[i][0].indexOf('[') >= 0) {
+						monsters[i][0] = cleanLink(monsters[i][0]);
 					}
 					else if(monsters[i][19] == '' && monsters[i][0].indexOf('\\') >= 0) {
 						monsters[i][0] = monsters[i][0].split('\\')[0];
 					}
 					if(monsters[i][19] != '') {
 						if(monsters[i][19].indexOf('[') >= 0) {
-							var temp_name = monsters[i][19].split('[');
-							for(var j = 0; j < temp_name.length; j++) {
-								if(temp_name[j].indexOf(']') >= 0) {
-									if(temp_name[j].split(']')[0].indexOf('\\') >= 0) {
-										temp_name[j] = temp_name[j].split('\\')[0] + temp_name[j].split(']')[1];
-									}
-									else {
-										temp_name[j] = temp_name[j].replace(']', '');
-									}
-								}
-							}
-							monsters[i][19] = temp_name.join('');
+							monsters[i][19] = cleanLink(monsters[i][19]);
 						}
 						else if(monsters[i][19].indexOf('\\') >= 0) {
 							monsters[i][19] = monsters[i][19].split('\\')[0];
@@ -1244,7 +1233,7 @@ $(function() {
 						monsters[i][0] = genLink(monsters[i][0], monsters[i][6]);
 						linked = true;
 					}
-					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21]]);
+					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
 				}
 				else {
 					for(var j = 0; j < monsters[i][20].length; j++) {
@@ -1344,7 +1333,7 @@ $(function() {
 									if(!linked && monsters[i][19] == '') {
 										monster_name = genLink(monster_name, monsters[i][6]);
 									}
-									monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][19], monsters[i][21]]);
+									monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
 								}
 							}
 						}
@@ -1396,22 +1385,46 @@ $(function() {
 			if(!simple_list) {
 				var monsters2 = [];
 				for(var i = 0; i < maxcreatures && monsters.length > 0; i++) { //Random selection
-					random_index = Math.floor(Math.random() * monsters.length);
+					var random_index = Math.floor(Math.random() * monsters.length);
 					monsters2.push(monsters[random_index]);
 					monsters.splice(random_index, 1);
 				}
 				monsters = monsters2;
 			}
-			for(var i = 0; i < monsters.length; i++) { //Sorting
-				for(var j = 0; j < monsters.length - 1; j++) {
-					if(monsters[j][1] > monsters[j + 1][1] || (monsters[j][1] == monsters[j + 1][1] && monsters[j][2] > monsters[j + 1][2])) {
-						var tmp = monsters[j];
-						monsters[j] = monsters[j + 1];
-						monsters[j + 1] = tmp;
+			//Sorting
+			if(sort & 2) {
+				for(var i = 0; i < monsters.length; i++) {
+					for(var j = 0; j < monsters.length - 1; j++) {
+						if(monsters[j][5] > monsters[j + 1][5]) {
+							var tmp = monsters[j];
+							monsters[j] = monsters[j + 1];
+							monsters[j + 1] = tmp;
+						}
 					}
 				}
 			}
-			for(var i = 0; i < monsters.length; i++) { //Filling table
+			if(sort & 1) {
+				for(var i = 0; i < monsters.length; i++) {
+					for(var j = 0; j < monsters.length - 1; j++) {
+						if(monsters[j][1] > monsters[j + 1][1] || (monsters[j][1] == monsters[j + 1][1] && monsters[j][2] > monsters[j + 1][2])) {
+							var tmp = monsters[j];
+							monsters[j] = monsters[j + 1];
+							monsters[j + 1] = tmp;
+						}
+					}
+				}
+			}
+			if((sort & 1) + (sort & 2) == 0 && simple_list) {
+				var monsters2 = [];
+				while(monsters.length > 0) {
+					var random_index = Math.floor(Math.random() * monsters.length);
+					monsters2.push(monsters[random_index]);
+					monsters.splice(random_index, 1);
+				}
+				monsters = monsters2;
+			}
+			//Filling table
+			for(var i = 0; i < monsters.length; i++) {
 				var interval_min = Math.floor(maxdice * i / monsters.length) + 1;
 				var interval_max = Math.floor(maxdice * (i + 1) / monsters.length);
 				if(interval_min == interval_max) {

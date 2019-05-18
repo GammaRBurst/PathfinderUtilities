@@ -44,6 +44,24 @@ function genLink(name, subtypes) {
 	}
 }
 
+function cleanLink(name) {
+	var temp_name = name.split('[');
+	for(var j = 0; j < temp_name.length; j++) {
+		if(temp_name[j].indexOf(']') >= 0) {
+			if(temp_name[j].split(']')[0].indexOf('\\') >= 0) {
+				temp_name[j] = temp_name[j].split('\\')[0] + temp_name[j].split(']')[1];
+			}
+			else {
+				temp_name[j] = temp_name[j].replace(']', '');
+			}
+		}
+		if(temp_name[j].slice(0, 1) == '+') {
+			temp_name[j] = temp_name[j].slice(1);
+		}
+	}
+	return temp_name.join('');
+}
+
 function adaptName(name) {
 	if(name.slice(0, 1) == '*') {
 		if(name.slice(1, 2) == '+') {
