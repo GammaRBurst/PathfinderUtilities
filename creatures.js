@@ -3073,7 +3073,7 @@ a tribe of 1 [obambo] plus 1d3 [shambling mounds~shambling mound];13,0;;5,7;4,5;
 #Carrion crown (#43-#48 - 2.2011-7.2011)
 boruta;9;;5;4;11;;;14;1;17;15;16;13;17;16;0;;1;;1,2-4|party;16
 choleric ooze swarm;2;;5;2;9;56;;3;1;16;1;19;;1;1;14;;1;;1-2,3-7|mass;16
-dark young of Shub-Nigurrath~*Dark Young of Shub-Niggurath;12;;9;6;1;;;14;1;30;17;24;16;19;21;4,13;2;1;;1-2,3-6|grove;16
+dark young of Shub-Nigurrath|dark youngs of Shub-Nigurrath~*Dark Young of Shub-Niggurath;12;;9;6;1;;;14;1;30;17;24;16;19;21;4,13;2;1;;1-2,3-6|grove;16
 dimensional shambler;8;;9;4;10;9,10;;9;1;21;16;20;7;14;13;0,14;;;;1-2,3-9|gang;16
 flaming skull;0;;8;2;12;;;1;4;9;12;;;10;13;0,14;;1;;1-2,3-6|patrol;16
 forsaken lich;12;;8;4;12;;;11;1;20;10;;13;21;18;0,14;;1;;1;16
@@ -3144,7 +3144,7 @@ oracular cyclops|oracular cyclopes;7;;8;5;6;42;;14;1;21;12;15;12;17;10;0;2,3;1;;
 ravenous urchin swarm;2;;8;2;13;3,56;;4;1,5;1;13;10;;13;9;2,8;;1;;1,2-5|pool,11-20|red tide;16
 sahuagin malenti|-~malenti;2;;7;4;8;3;;2;1,5;14;17;14;14;13;13;8;2,3;1;;1-2;16
 saltwater crocodile;5;;5;6;2;;;6;1,5;23;10;20;1;13;2;2,10;3;1;;1-2,3-8|float;16
-ship in a bottle~*Ship in a Bottle;2;;5;2;3;;;3;4;12;15;;5;10;13;1;;1;;1,2-5|fleet;16
+ship in a bottle|ships in a bottle~*Ship in a Bottle;2;;5;2;3;;;3;4;12;15;;5;10;13;1;;1;;1,2-5|fleet;16
 ship sentinel;7;;5;5;3;;;7;1,5;19;21;;;23;16;1;;1;;1;16
 swordfish;2;;5;5;2;3;;4;5;15;14;13;1;12;2;8;;1;;1-2;16
 tetrolimulus;11;;8;5;7;3;;14;1,5;22;18;21;3;12;9;2;2;1;;1-2;16
@@ -3388,7 +3388,7 @@ hooded harbinger;12;;9;4;1;;;17;1;26;18;21;16;13;17;0,14;;1;;1;16
 hunting horror;14;;9;7;7;;;15;1,4;34;20;27;15;23;20;0,12,14;;1;;1-2,3-6|pack;16
 Ib shade;4;;9;4;12;47;;5;4;;16;;11;13;19;13;2;1;;1-2,3-12|haunting;16
 Ithaqua;28;10;9;7;8;2,4,9,10,44;;32;1,4;46;31;42;29;31;30;0;1;1;;1u;16
-keeper of the yellow sign~*Keeper of the Yellow Sign;6;;9;4;12;;;7;1;22;15;;13;10;19;0;;1;;1-2,3-6|cult;16
+keeper of the yellow sign|keepers of the yellow sign~*Keeper of the Yellow Sign;6;;9;4;12;;;7;1;22;15;;13;10;19;0;;1;;1-2,3-6|cult;16
 kudimmu;16;;8;5;11;;;24;1,2;32;22;22;13;21;17;0;;1;;1;16
 larva of the outer gods|larvas of the outer gods~*Larva of the Outer Gods;15;;6;5;1;;;18;1,4;20;26;23;11;20;23;0,12,14;;1;;1-2,4-6|choir;16
 Mordiggian;30;10;9;7;1;9,10,44,47;;35;4;;40;44;33;34;37;0,12,14;;1;;1u;16
