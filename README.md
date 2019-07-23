@@ -35,6 +35,7 @@ Similarly, the __Variant creatures__, __Mixed groups__ and __Unique creatures__ 
 
 ## Other Features
 * Contains more than 3500 unique creatures and mixed groups.
+* It now avoids AJAX calls. It turned out I was unconsciously exloiting a bug that was corrected recently...
 
 ## Things you Won't Find Here
 * __Creatures with class levels__ rarely entered the creature database. Most of them are playable races (e.g _drow_, _strix_) or creatures with a template (e.g. _lich_, _vampire_).
