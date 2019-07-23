@@ -561,7 +561,7 @@ $(function() {
 				}
 				//Subtype
 				if(monsters[i][6].trim() == '') {
-					monsters[i][6] = [99];
+					monsters[i][6] = [0];
 				}
 				else {
 					monsters[i][6] = monsters[i][6].trim().split(',');
@@ -571,7 +571,7 @@ $(function() {
 				}
 				//Group
 				if(monsters[i][7].trim() == '') {
-					monsters[i][7] = [99];
+					monsters[i][7] = [0];
 				}
 				else {
 					monsters[i][7] = monsters[i][7].trim().split(',');
