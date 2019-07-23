@@ -8,7 +8,7 @@ Just download the files and double-click on *random_encounters.html*! No install
 * __Mythic rank__: Same as before, between _0_ (non-mythic) and _10_.
 * __Alignment__: You can choose one or more alignments. The software will search any creature with _at least_ one of the alignments selected. (__OR__ selection mode)
 * __Size__: Another double slider, this time the values range between _Fine_ and _Colossal_.
-* __Types__: The canonical 12 types, such as _Aberration_, _Dragon_ or _Undead_. __OR__ selection mode is applied.
+* __Types__: The canonical 13 types, such as _Aberration_, _Dragon_ or _Undead_. __OR__ selection mode is applied.
 * __Subtypes__: Most _Humanoid_ subtypes, such as _Elf_ or _Dwarf_ are excluded, but almost anything else is available. The search can be executed in __OR__ selection mode, as well as __AND__ selection mode (creatures are considered valid if they have all the selected subtypes) and __XOR__ selection mode (creatures are considered valid if they have only one of the selected subtypes).
 * __Creature groups__: Some creatures have much in common, and yet no subtype was created for them. __OR__ selection mode is applied.
 * __Hit dice__: Similar to Challenge rating, a double slider between _1_ and _40_.
