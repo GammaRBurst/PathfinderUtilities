@@ -2,10 +2,10 @@ $(function() {
 	//Initializing variables
 	$('#tstamp').val(Date.now());
 	var fields_number = 22;
-	
+
 	//Page construction
 	readyPage(values, sizes);
-	
+
 	//Table generation
 	var url = window.location.href;
 	if(url.indexOf('?') >= 0) {
@@ -41,9 +41,10 @@ $(function() {
 		var add_unique = 0;
 		var maxcreatures = 0;
 		var maxdice = 0;
+		var amount = []; amount.length = 2;
 		var cr_comb = []; cr_comb.length = 2;
 		var sort = 0;
-		
+
 		//Reading values
 		for(var i = 0; i < params.length; i++) {
 			var key = params[i].split('=')[0];
@@ -238,6 +239,13 @@ $(function() {
 			else if(key == 'maxdice') {
 				maxdice = Number(val);
 			}
+			//Amounts of creatures
+			else if(key == 'amount_min') {
+				amount[0] = Number(val);
+			}
+			else if(key == 'amount_max') {
+				amount[1] = Number(val);
+			}
 			//CR increase
 			else if(key == 'cr_comb_min') {
 				cr_comb[0] = Number(val);
@@ -256,7 +264,7 @@ $(function() {
 		if(maxdice != 0 && maxcreatures > maxdice) {
 			maxcreatures = maxdice;
 		}
-		
+
 		//Setting values in fields
 		//CR
 		setCR(cr);
@@ -491,6 +499,8 @@ $(function() {
 		//Table size
 		$('input#numtable').val(maxcreatures);
 		$('input#numcolumn').val(maxdice);
+		//Amount of creatures
+		setAmount(amount);
 		//CR combination
 		setSlider('cr_comb', cr_comb);
 		//Sorting
@@ -500,976 +510,1041 @@ $(function() {
 		if(sort & 2) {
 			$('input#sort2').prop('checked', true);
 		}
-		
-		//Reading monsters file
-		$.when(ajaxCreatures()).done(function(monsters) {
-			monsters = monsters.split('\n');
-			for(var i = monsters.length - 1; i >= 0; i--) {
-				if(monsters[i].trim() == '' || monsters[i].trim().indexOf('#') == 0) { //Removing comments and empty lines
+
+		//Working on monsters file
+		monsters = monsters.split('\n');
+		for(var i = monsters.length - 1; i >= 0; i--) {
+			if(monsters[i].trim() == '' || monsters[i].trim().indexOf('#') == 0) { //Removing comments and empty lines
+				monsters.splice(i, 1);
+				continue;
+			}
+			else {
+				monsters[i] = monsters[i].split(';');
+				if(monsters[i].length != fields_number) {
+					if(debug) { //DEBUG: wrong length
+						alert('Wrong number of fields (' + monsters[i].length + '): ' + monsters[i]);
+					}
 					monsters.splice(i, 1);
 					continue;
 				}
-				else {
-					monsters[i] = monsters[i].split(';');
-					if(monsters[i].length != fields_number) {
-						if(debug) { //DEBUG: wrong length
-							alert('Wrong number of fields (' + monsters[i].length + '): ' + monsters[i]);
-						}
-						monsters.splice(i, 1);
-						continue;
-					}
-					//Name
-					monsters[i][0] = monsters[i][0].trim().replace('&times', '&times;');
-					//CR
-					monsters[i][1] = monsters[i][1].split(',');
-					for(var j = 0; j < monsters[i][1].length; j++) {
-						monsters[i][1][j] = Number(monsters[i][1][j].trim());
-					}
-					//MR
-					if(monsters[i][2].trim() == '') {
-						monsters[i][2] = 0;
-					}
-					else {
-						monsters[i][2] = Number(monsters[i][2].trim());
-					}
-					//Alignment
-					monsters[i][3] = monsters[i][3].trim().split(',');
-					for(var j = 0; j < monsters[i][3].length; j++) {
-						monsters[i][3][j] = Number(monsters[i][3][j].trim());
-					}
-					if(monsters[i][3].indexOf(0) >= 0) {
-						monsters[i][3] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-					}
-					//Size
-					monsters[i][4] = monsters[i][4].trim().split(',');
-					for(var j = 0; j < monsters[i][4].length; j++) {
-						monsters[i][4][j] = Number(monsters[i][4][j].trim());
-					}
-					//Type
-					monsters[i][5] = monsters[i][5].trim().split(',');
-					for(var j = 0; j < monsters[i][5].length; j++) {
-						monsters[i][5][j] = Number(monsters[i][5][j].trim());
-					}
-					//Subtype
-					if(monsters[i][6].trim() == '') {
-						monsters[i][6] = [99];
-					}
-					else {
-						monsters[i][6] = monsters[i][6].trim().split(',');
-						for(var j = 0; j < monsters[i][6].length; j++) {
-							monsters[i][6][j] = Number(monsters[i][6][j].trim());
-						}
-					}
-					//Group
-					if(monsters[i][7].trim() == '') {
-						monsters[i][7] = [99];
-					}
-					else {
-						monsters[i][7] = monsters[i][7].trim().split(',');
-						for(var j = 0; j < monsters[i][7].length; j++) {
-							monsters[i][7][j] = Number(monsters[i][7][j].trim());
-						}
-					}
-					//HD
-					monsters[i][8] = monsters[i][8].split(',');
-					for(var j = 0; j < monsters[i][8].length; j++) {
-						monsters[i][8][j] = Number(monsters[i][8][j].trim());
-					}
-					//Speed
-					monsters[i][9] = monsters[i][9].trim().split(',');
-					for(var j = 0; j < monsters[i][9].length; j++) {
-						monsters[i][9][j] = Number(monsters[i][9][j].trim());
-					}
-					//Ability scores
-					monsters[i][10] = monsters[i][10].split(',');
-					for(var j = 0; j < monsters[i][10].length; j++) {
-						if(monsters[i][10][j].trim() == '') {
-							monsters[i][10][j] = 0;
-						}
-						else {
-							monsters[i][10][j] = Number(monsters[i][10][j].trim());
-						}
-					}
-					monsters[i][11] = monsters[i][11].split(',');
-					for(var j = 0; j < monsters[i][11].length; j++) {
-						if(monsters[i][11][j].trim() == '') {
-							monsters[i][11][j] = 0;
-						}
-						else {
-							monsters[i][11][j] = Number(monsters[i][11][j].trim());
-						}
-					}
-					monsters[i][12] = monsters[i][12].split(',');
-					for(var j = 0; j < monsters[i][12].length; j++) {
-						if(monsters[i][12][j].trim() == '') {
-							monsters[i][12][j] = 0;
-						}
-						else {
-							monsters[i][12][j] = Number(monsters[i][12][j].trim());
-						}
-					}
-					monsters[i][13] = monsters[i][13].split(',');
-					for(var j = 0; j < monsters[i][13].length; j++) {
-						if(monsters[i][13][j].trim() == '') {
-							monsters[i][13][j] = 0;
-						}
-						else {
-							monsters[i][13][j] = Number(monsters[i][13][j].trim());
-						}
-					}
-					monsters[i][14] = monsters[i][14].split(',');
-					for(var j = 0; j < monsters[i][14].length; j++) {
-						if(monsters[i][14][j].trim() == '') {
-							monsters[i][14][j] = 0;
-						}
-						else {
-							monsters[i][14][j] = Number(monsters[i][14][j].trim());
-						}
-					}
-					monsters[i][15] = monsters[i][15].split(',');
-					for(var j = 0; j < monsters[i][15].length; j++) {
-						if(monsters[i][15][j].trim() == '') {
-							monsters[i][15][j] = 0;
-						}
-						else {
-							monsters[i][15][j] = Number(monsters[i][15][j].trim());
-						}
-					}
-					//Environment
-					monsters[i][16] = monsters[i][16].trim().split(',');
-					for(var j = 0; j < monsters[i][16].length; j++) {
-						monsters[i][16][j] = Number(monsters[i][16][j].trim());
-					}
-					if(monsters[i][16].indexOf(0) >= 0) {
-						monsters[i][16] = monsters[i][16].concat([2, 3, 4, 5, 6, 7, 9, 11, 13, 15, 17]);
-						monsters[i][16].splice(monsters[i][16].indexOf(0), 1);
-					}
-					if(monsters[i][16].indexOf(1) >= 0) {
-						monsters[i][16] = monsters[i][16].concat([8, 10]);
-						monsters[i][16].splice(monsters[i][16].indexOf(1), 1);
-					}
-					//Climate
-					if(monsters[i][17].trim() == '' || monsters[i][17].trim() == '0') {
-						monsters[i][17] = [1, 2, 3];
-					}
-					else {
-						monsters[i][17] = monsters[i][17].trim().split(',');
-						for(var j = 0; j < monsters[i][17].length; j++) {
-							monsters[i][17][j] = Number(monsters[i][17][j].trim());
-						}
-					}
-					//Planes
-					if(monsters[i][18].trim() == '' || monsters[i][18].trim() == '0') {
-						monsters[i][18] =[0];
-					}
-					else {
-						monsters[i][18] = monsters[i][18].trim().split(',');
-						for(var j = 0; j < monsters[i][18].length; j++) {
-							monsters[i][18][j] = Number(monsters[i][18][j].trim());
-						}
-					}
-					//Variant creatures
-					monsters[i][19] = monsters[i][19].trim();
-					//Number of creatures
-					monsters[i][20] = monsters[i][20].trim().split(',');
-					//Source
-					monsters[i][21] = monsters[i][21].trim().split(',');
-					for(var j = 0; j < monsters[i][21].length; j++) {
-						monsters[i][21][j] = Number(monsters[i][21][j].trim());
-					}
-				}
-			}
-			var monster_count = monsters.length;
-			if(debug) { //DEBUG: double monster
-				for(var i = 0; i < monsters.length; i++) {
-					for(var j = i + 1; j < monsters.length; j++) {
-						if(monsters[i][0] == monsters[j][0]) {
-							alert('Double monster: ' + monsters[i][0] + ' ' + (i + 2) + ' ' + (j + 2));
-						}
-					}
-				}
-			}
-			//Filtering 1
-			for(var i = monsters.length - 1; i >= 0; i--) {
+				//Name
+				monsters[i][0] = monsters[i][0].trim().replace('&times', '&times;');
 				//CR
-				if(simple_list) {
-					if(monsters[i][1].length == 1) { //Removes monsters outside the CR interval
-						if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
-							monsters.splice(i, 1);
-							continue;
-						}
-					}
-					else { //Removes mixed groups
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-				else {
-					if(monsters[i][1].length == 1) { //Removes monsters outside the CR interval; further filtering will happen after groups formation
-						if(monsters[i][1][0] + cr_comb[1] < cr[0] || monsters[i][1][0] > cr[1]) {
-							monsters.splice(i, 1);
-							continue;
-						}
-						if(cr_comb[0] > 0 && monsters[i][20] == '1u') { //Removes unique monsters if minimum CR increment is > 0
-							monsters.splice(i, 1);
-							continue;
-						}
-					}
-					else {
-						if((monsters[i][1][0] + monsters[i][1][1]) < cr[0] || (monsters[i][1][0] + monsters[i][1][1]) > cr[1] || monsters[i][1][1] < cr_comb[0] || monsters[i][1][1] > cr_comb[1]) { //Removes groups outside the CR interval
-							monsters.splice(i, 1);
-							continue;
-						}
-					}
+				monsters[i][1] = monsters[i][1].split(',');
+				for(var j = 0; j < monsters[i][1].length; j++) {
+					monsters[i][1][j] = Number(monsters[i][1][j].trim());
 				}
 				//MR
-				if(monsters[i][2] < mr[0] || monsters[i][2] > mr[1]) {
-					monsters.splice(i, 1);
-					continue;
+				if(monsters[i][2].trim() == '') {
+					monsters[i][2] = 0;
+				}
+				else {
+					monsters[i][2] = Number(monsters[i][2].trim());
 				}
 				//Alignment
-				if(monsters[i][1].length == 1 && nalignment.length > 0 && nalignment.length >= monsters[i][3].length) {
-					var nalignment_found = true;
-					for(var j = 0; j < monsters[i][3].length; j++) {
-						if(nalignment.indexOf(monsters[i][3][j]) == -1) {
-							nalignment_found = false;
-							break;
-						}
-					}
-					if(nalignment_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				monsters[i][3] = monsters[i][3].trim().split(',');
+				for(var j = 0; j < monsters[i][3].length; j++) {
+					monsters[i][3][j] = Number(monsters[i][3][j].trim());
 				}
-				else if(monsters[i][1].length == 2 && nalignment.length > 0) {
-					var nalignment_found = false;
-					for(var j = 0; j < monsters[i][3].length; j++) {
-						if(nalignment.indexOf(monsters[i][3][j]) >= 0) {
-							nalignment_found = true;
-							break;
-						}
-					}
-					if(nalignment_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-				if(alignment.length > 0) {
-					var alignment_found = false;
-					for(var j = 0; j < alignment.length; j++) {
-						if(alignment.indexOf(monsters[i][3][j]) >= 0) {
-							alignment_found = true;
-							break;
-						}
-					}
-					if(!alignment_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				if(monsters[i][3].indexOf(0) >= 0) {
+					monsters[i][3] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 				}
 				//Size
-				if(Math.min(...monsters[i][4]) < size[0] || Math.max(...monsters[i][4]) > size[1]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][4] = monsters[i][4].trim().split(',');
+				for(var j = 0; j < monsters[i][4].length; j++) {
+					monsters[i][4][j] = Number(monsters[i][4][j].trim());
 				}
 				//Type
-				if(ntype.length > 0) {
-					var ntype_found = false;
-					for(var j = 0; j < monsters[i][5].length; j++) {
-						if(ntype.indexOf(monsters[i][5][j]) >= 0) {
-							ntype_found = true;
-							break;
-						}
-					}
-					if(ntype_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-				if(type.length > 0) {
-					var type_found = false;
-					for(var j = 0; j < monsters[i][5].length; j++) {
-						if(type.indexOf(monsters[i][5][j]) >= 0) {
-							type_found = true;
-							break;
-						}
-					}
-					if(!type_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				monsters[i][5] = monsters[i][5].trim().split(',');
+				for(var j = 0; j < monsters[i][5].length; j++) {
+					monsters[i][5][j] = Number(monsters[i][5][j].trim());
 				}
 				//Subtype
-				if(nsubtype.length > 0) {
-					var nsubtype_found = false;
-					for(var j = 0; j < monsters[i][6].length; j++) {
-						if(nsubtype.indexOf(monsters[i][6][j]) >= 0) {
-							nsubtype_found = true;
-							break;
-						}
-					}
-					if(nsubtype_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				if(monsters[i][6].trim() == '') {
+					monsters[i][6] = [99];
 				}
-				if(subtype.length > 0) {
-					if(logic[0] == 0) { //AND
-						if(monsters[i][6].length < subtype.length) {
-							var subtype_found = false;
-						}
-						else {
-							var subtype_found = true;
-							for(var j = 0; j < subtype.length; j++) {
-								if(monsters[i][6].indexOf(subtype[j]) == -1) {
-									subtype_found = false;
-									break;
-								}
-							}
-						}
-					}
-					else if(logic[0] == 1) { //OR
-						var subtype_found = false;
-						for(var j = 0; j < monsters[i][6].length; j++) {
-							if(subtype.indexOf(monsters[i][6][j]) >= 0) {
-								subtype_found = true;
-								break;
-							}
-						}
-					}
-					else { //XOR
-						var subtype_found = false;
-						for(var j = 0; j < monsters[i][6].length; j++) {
-							if(subtype.indexOf(monsters[i][6][j]) >= 0) {
-								if(!subtype_found) {
-									subtype_found = true;
-									continue;
-								}
-								else {
-									subtype_found = false;
-									break;
-								}
-							}
-						}
-					}
-					if(!subtype_found) {
-						monsters.splice(i, 1);
-						continue;
+				else {
+					monsters[i][6] = monsters[i][6].trim().split(',');
+					for(var j = 0; j < monsters[i][6].length; j++) {
+						monsters[i][6][j] = Number(monsters[i][6][j].trim());
 					}
 				}
 				//Group
-				if(ngroup.length > 0) {
-					var ngroup_found = false;
-					for(var j = 0; j < monsters[i][7].length; j++) {
-						if(ngroup.indexOf(monsters[i][7][j]) >= 0) {
-							ngroup_found = true;
-							break;
-						}
-					}
-					if(ngroup_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				if(monsters[i][7].trim() == '') {
+					monsters[i][7] = [99];
 				}
-				if(group.length > 0) {
-					var group_found = false;
+				else {
+					monsters[i][7] = monsters[i][7].trim().split(',');
 					for(var j = 0; j < monsters[i][7].length; j++) {
-						if(group.indexOf(monsters[i][7][j]) >= 0) {
-							group_found = true;
-							break;
-						}
-					}
-					if(!group_found) {
-						monsters.splice(i, 1);
-						continue;
+						monsters[i][7][j] = Number(monsters[i][7][j].trim());
 					}
 				}
 				//HD
-				if(Math.min(...monsters[i][8]) < hd[0] || Math.max(...monsters[i][8]) > hd[1]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][8] = monsters[i][8].split(',');
+				for(var j = 0; j < monsters[i][8].length; j++) {
+					monsters[i][8][j] = Number(monsters[i][8][j].trim());
 				}
 				//Speed
-				if(nspeed.length > 0) {
-					var nspeed_found = false;
-					for(var j = 0; j < monsters[i][9].length; j++) {
-						if(nspeed.indexOf(monsters[i][9][j]) >= 0) {
-							nspeed_found = true;
-							break;
-						}
-					}
-					if(nspeed_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-				if(speed.length > 0) {
-					if(logic[1] == 0) { //AND
-						if(monsters[i][9].length < speed.length) {
-							var speed_found = false;
-						}
-						else {
-							var speed_found = true;
-							for(var j = 0; j < speed.length; j++) {
-								if(monsters[i][9].indexOf(speed[j]) == -1) {
-									speed_found = false;
-									break;
-								}
-							}
-						}
-					}
-					else if(logic[1] == 1) { //OR
-						var speed_found = false;
-						for(var j = 0; j < monsters[i][9].length; j++) {
-							if(speed.indexOf(monsters[i][9][j]) >= 0) {
-								speed_found = true;
-								break;
-							}
-						}
-					}
-					else { //XOR
-						var speed_found = false;
-						for(var j = 0; j < monsters[i][9].length; j++) {
-							if(speed.indexOf(monsters[i][9][j]) >= 0) {
-								if(!speed_found) {
-									speed_found = true;
-									continue;
-								}
-								else {
-									speed_found = false;
-									break;
-								}
-							}
-						}
-					}
-					if(!speed_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				monsters[i][9] = monsters[i][9].trim().split(',');
+				for(var j = 0; j < monsters[i][9].length; j++) {
+					monsters[i][9][j] = Number(monsters[i][9][j].trim());
 				}
 				//Ability scores
-				if(Math.min(...monsters[i][10]) < abilities[0] || Math.max(...monsters[i][10]) > abilities[1]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][10] = monsters[i][10].split(',');
+				for(var j = 0; j < monsters[i][10].length; j++) {
+					if(monsters[i][10][j].trim() == '') {
+						monsters[i][10][j] = 0;
+					}
+					else {
+						monsters[i][10][j] = Number(monsters[i][10][j].trim());
+					}
 				}
-				if(Math.min(...monsters[i][11]) < abilities[2] || Math.max(...monsters[i][11]) > abilities[3]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][11] = monsters[i][11].split(',');
+				for(var j = 0; j < monsters[i][11].length; j++) {
+					if(monsters[i][11][j].trim() == '') {
+						monsters[i][11][j] = 0;
+					}
+					else {
+						monsters[i][11][j] = Number(monsters[i][11][j].trim());
+					}
 				}
-				if(Math.min(...monsters[i][12]) < abilities[4] || Math.max(...monsters[i][12]) > abilities[5]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][12] = monsters[i][12].split(',');
+				for(var j = 0; j < monsters[i][12].length; j++) {
+					if(monsters[i][12][j].trim() == '') {
+						monsters[i][12][j] = 0;
+					}
+					else {
+						monsters[i][12][j] = Number(monsters[i][12][j].trim());
+					}
 				}
-				if(Math.min(...monsters[i][13]) < abilities[6] || Math.max(...monsters[i][13]) > abilities[7]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][13] = monsters[i][13].split(',');
+				for(var j = 0; j < monsters[i][13].length; j++) {
+					if(monsters[i][13][j].trim() == '') {
+						monsters[i][13][j] = 0;
+					}
+					else {
+						monsters[i][13][j] = Number(monsters[i][13][j].trim());
+					}
 				}
-				if(Math.min(...monsters[i][14]) < abilities[8] || Math.max(...monsters[i][14]) > abilities[9]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][14] = monsters[i][14].split(',');
+				for(var j = 0; j < monsters[i][14].length; j++) {
+					if(monsters[i][14][j].trim() == '') {
+						monsters[i][14][j] = 0;
+					}
+					else {
+						monsters[i][14][j] = Number(monsters[i][14][j].trim());
+					}
 				}
-				if(Math.min(...monsters[i][15]) < abilities[10] || Math.max(...monsters[i][15]) > abilities[11]) {
-					monsters.splice(i, 1);
-					continue;
+				monsters[i][15] = monsters[i][15].split(',');
+				for(var j = 0; j < monsters[i][15].length; j++) {
+					if(monsters[i][15][j].trim() == '') {
+						monsters[i][15][j] = 0;
+					}
+					else {
+						monsters[i][15][j] = Number(monsters[i][15][j].trim());
+					}
 				}
 				//Environment
-				if(nenvironment.length > 0) {
-					var nenvironment_found = false;
-					for(var j = 0; j < monsters[i][16].length; j++) {
-						if(nenvironment.indexOf(monsters[i][16][j]) >= 0) {
-							nenvironment_found = true;
-							break;
-						}
-					}
-					if(nenvironment_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				monsters[i][16] = monsters[i][16].trim().split(',');
+				for(var j = 0; j < monsters[i][16].length; j++) {
+					monsters[i][16][j] = Number(monsters[i][16][j].trim());
 				}
-				if(environment.length > 0) {
-					if(logic[2] == 0) { //AND
-						var environment_found = true;
-						for(var j = 0; j < environment.length; j++) {
-							if(monsters[i][16].indexOf(environment[j]) == -1) {
-								environment_found = false;
-								break;
-							}
-						}
-					}
-					else { //OR
-						var environment_found = false;
-						for(var j = 0; j < monsters[i][16].length; j++) {
-							if(environment.indexOf(monsters[i][16][j]) >= 0) {
-								environment_found = true;
-								break;
-							}
-						}
+				if(monsters[i][16].indexOf(0) >= 0) {
+					monsters[i][16] = monsters[i][16].concat([2, 3, 4, 5, 6, 7, 9, 11, 13, 15, 17]);
+					monsters[i][16].splice(monsters[i][16].indexOf(0), 1);
 				}
-					if(!environment_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				if(monsters[i][16].indexOf(1) >= 0) {
+					monsters[i][16] = monsters[i][16].concat([8, 10]);
+					monsters[i][16].splice(monsters[i][16].indexOf(1), 1);
 				}
 				//Climate
-				if(nclimate.length > 0) {
-					var nclimate_found = false;
-					for(var j = 0; j < monsters[i][17].length; j++) {
-						if(nclimate.indexOf(monsters[i][17][j]) >= 0) {
-							nclimate_found = true;
-							break;
-						}
-					}
-					if(nclimate_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
+				if(monsters[i][17].trim() == '' || monsters[i][17].trim() == '0') {
+					monsters[i][17] = [1, 2, 3];
 				}
-				if(climate.length > 0) {
-					if(logic[3] == 0) { //OR
-						var climate_found = false;
-						for(var j = 0; j < monsters[i][17].length; j++) {
-							if(climate.indexOf(monsters[i][17][j]) >= 0) {
-								climate_found = true;
-								break;
-							}
-						}
-					}
-					else { //XOR
-						var climate_found = false;
-						for(var j = 0; j < monsters[i][17].length; j++) {
-							if(climate.indexOf(monsters[i][17][j]) >= 0) {
-								if(!climate_found) {
-									climate_found = true;
-									continue;
-								}
-								else {
-									climate_found = false;
-									break;
-								}
-							}
-						}
-					}
-					if(!climate_found) {
-						monsters.splice(i, 1);
-						continue;
+				else {
+					monsters[i][17] = monsters[i][17].trim().split(',');
+					for(var j = 0; j < monsters[i][17].length; j++) {
+						monsters[i][17][j] = Number(monsters[i][17][j].trim());
 					}
 				}
 				//Planes
-				if(nplanes.length > 0) {
-					if(monsters[i][18].length == 1 && monsters[i][18][0] == 0) {
-						var nplanes_found = true;
+				if(monsters[i][18].trim() == '' || monsters[i][18].trim() == '0') {
+					monsters[i][18] =[0];
+				}
+				else {
+					monsters[i][18] = monsters[i][18].trim().split(',');
+					for(var j = 0; j < monsters[i][18].length; j++) {
+						monsters[i][18][j] = Number(monsters[i][18][j].trim());
 					}
-					else {
-						var nplanes_found = false;
-						for(var j = 0; j < monsters[i][18].length; j++) {
-							if(nplanes.indexOf(monsters[i][18][j]) >= 0) {
-								nplanes_found = true;
-								break;
-							}
-						}
+				}
+				//Variant creatures
+				monsters[i][19] = monsters[i][19].trim();
+				//Number of creatures
+				monsters[i][20] = monsters[i][20].trim().split(',');
+				//Source
+				monsters[i][21] = monsters[i][21].trim().split(',');
+				for(var j = 0; j < monsters[i][21].length; j++) {
+					monsters[i][21][j] = Number(monsters[i][21][j].trim());
+				}
+			}
+		}
+		var monster_count = monsters.length;
+		if(debug) { //DEBUG: double monster
+			for(var i = 0; i < monsters.length; i++) {
+				for(var j = i + 1; j < monsters.length; j++) {
+					if(monsters[i][0] == monsters[j][0]) {
+						alert('Double monster: ' + monsters[i][0] + ' ' + (i + 2) + ' ' + (j + 2));
 					}
-					if(nplanes_found) {
+				}
+			}
+		}
+		//Filtering 1
+		for(var i = monsters.length - 1; i >= 0; i--) {
+			//CR
+			if(simple_list) {
+				if(monsters[i][1].length == 1) { //Removes monsters outside the CR interval
+					if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
 						monsters.splice(i, 1);
 						continue;
 					}
 				}
-				if(planes.length > 0) {
-					if(logic[4] == 0) { //OR
-						if(monsters[i][18].length == 1 && monsters[i][18][0] == 0) {
+				else { //Removes mixed groups
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			else {
+				if(monsters[i][1].length == 1) { //Removes monsters outside the CR interval; further filtering will happen after groups formation
+					if(monsters[i][1][0] + cr_comb[1] < cr[0] || monsters[i][1][0] > cr[1]) {
+						monsters.splice(i, 1);
+						continue;
+					}
+					if(cr_comb[0] > 0 && monsters[i][20].split('|')[0].indexOf('u') >= 0) { //Removes unique monsters if minimum CR increment is > 0
+						monsters.splice(i, 1);
+						continue;
+					}
+				}
+				else {
+					if((monsters[i][1][0] + monsters[i][1][1]) < cr[0] || (monsters[i][1][0] + monsters[i][1][1]) > cr[1] || monsters[i][1][1] < cr_comb[0] || monsters[i][1][1] > cr_comb[1]) { //Removes groups outside the CR interval
+						monsters.splice(i, 1);
+						continue;
+					}
+				}
+			}
+			//MR
+			if(monsters[i][2] < mr[0] || monsters[i][2] > mr[1]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Alignment
+			if(monsters[i][1].length == 1 && nalignment.length > 0 && nalignment.length >= monsters[i][3].length) {
+				var nalignment_found = true;
+				for(var j = 0; j < monsters[i][3].length; j++) {
+					if(nalignment.indexOf(monsters[i][3][j]) == -1) {
+						nalignment_found = false;
+						break;
+					}
+				}
+				if(nalignment_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			else if(monsters[i][1].length == 2 && nalignment.length > 0) {
+				var nalignment_found = false;
+				for(var j = 0; j < monsters[i][3].length; j++) {
+					if(nalignment.indexOf(monsters[i][3][j]) >= 0) {
+						nalignment_found = true;
+						break;
+					}
+				}
+				if(nalignment_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(alignment.length > 0) {
+				var alignment_found = false;
+				for(var j = 0; j < alignment.length; j++) {
+					if(alignment.indexOf(monsters[i][3][j]) >= 0) {
+						alignment_found = true;
+						break;
+					}
+				}
+				if(!alignment_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Size
+			if(Math.min(...monsters[i][4]) < size[0] || Math.max(...monsters[i][4]) > size[1]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Type
+			if(ntype.length > 0) {
+				var ntype_found = false;
+				for(var j = 0; j < monsters[i][5].length; j++) {
+					if(ntype.indexOf(monsters[i][5][j]) >= 0) {
+						ntype_found = true;
+						break;
+					}
+				}
+				if(ntype_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(type.length > 0) {
+				var type_found = false;
+				for(var j = 0; j < monsters[i][5].length; j++) {
+					if(type.indexOf(monsters[i][5][j]) >= 0) {
+						type_found = true;
+						break;
+					}
+				}
+				if(!type_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Subtype
+			if(nsubtype.length > 0) {
+				var nsubtype_found = false;
+				for(var j = 0; j < monsters[i][6].length; j++) {
+					if(nsubtype.indexOf(monsters[i][6][j]) >= 0) {
+						nsubtype_found = true;
+						break;
+					}
+				}
+				if(nsubtype_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(subtype.length > 0) {
+				if(logic[0] == 0) { //AND
+					if(monsters[i][6].length < subtype.length) {
+						var subtype_found = false;
+					}
+					else {
+						var subtype_found = true;
+						for(var j = 0; j < subtype.length; j++) {
+							if(monsters[i][6].indexOf(subtype[j]) == -1) {
+								subtype_found = false;
+								break;
+							}
+						}
+					}
+				}
+				else if(logic[0] == 1) { //OR
+					var subtype_found = false;
+					for(var j = 0; j < monsters[i][6].length; j++) {
+						if(subtype.indexOf(monsters[i][6][j]) >= 0) {
+							subtype_found = true;
+							break;
+						}
+					}
+				}
+				else { //XOR
+					var subtype_found = false;
+					for(var j = 0; j < monsters[i][6].length; j++) {
+						if(subtype.indexOf(monsters[i][6][j]) >= 0) {
+							if(!subtype_found) {
+								subtype_found = true;
+								continue;
+							}
+							else {
+								subtype_found = false;
+								break;
+							}
+						}
+					}
+				}
+				if(!subtype_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Group
+			if(ngroup.length > 0) {
+				var ngroup_found = false;
+				for(var j = 0; j < monsters[i][7].length; j++) {
+					if(ngroup.indexOf(monsters[i][7][j]) >= 0) {
+						ngroup_found = true;
+						break;
+					}
+				}
+				if(ngroup_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(group.length > 0) {
+				var group_found = false;
+				for(var j = 0; j < monsters[i][7].length; j++) {
+					if(group.indexOf(monsters[i][7][j]) >= 0) {
+						group_found = true;
+						break;
+					}
+				}
+				if(!group_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//HD
+			if(Math.min(...monsters[i][8]) < hd[0] || Math.max(...monsters[i][8]) > hd[1]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Speed
+			if(nspeed.length > 0) {
+				var nspeed_found = false;
+				for(var j = 0; j < monsters[i][9].length; j++) {
+					if(nspeed.indexOf(monsters[i][9][j]) >= 0) {
+						nspeed_found = true;
+						break;
+					}
+				}
+				if(nspeed_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(speed.length > 0) {
+				if(logic[1] == 0) { //AND
+					if(monsters[i][9].length < speed.length) {
+						var speed_found = false;
+					}
+					else {
+						var speed_found = true;
+						for(var j = 0; j < speed.length; j++) {
+							if(monsters[i][9].indexOf(speed[j]) == -1) {
+								speed_found = false;
+								break;
+							}
+						}
+					}
+				}
+				else if(logic[1] == 1) { //OR
+					var speed_found = false;
+					for(var j = 0; j < monsters[i][9].length; j++) {
+						if(speed.indexOf(monsters[i][9][j]) >= 0) {
+							speed_found = true;
+							break;
+						}
+					}
+				}
+				else { //XOR
+					var speed_found = false;
+					for(var j = 0; j < monsters[i][9].length; j++) {
+						if(speed.indexOf(monsters[i][9][j]) >= 0) {
+							if(!speed_found) {
+								speed_found = true;
+								continue;
+							}
+							else {
+								speed_found = false;
+								break;
+							}
+						}
+					}
+				}
+				if(!speed_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Ability scores
+			if(Math.min(...monsters[i][10]) < abilities[0] || Math.max(...monsters[i][10]) > abilities[1]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			if(Math.min(...monsters[i][11]) < abilities[2] || Math.max(...monsters[i][11]) > abilities[3]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			if(Math.min(...monsters[i][12]) < abilities[4] || Math.max(...monsters[i][12]) > abilities[5]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			if(Math.min(...monsters[i][13]) < abilities[6] || Math.max(...monsters[i][13]) > abilities[7]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			if(Math.min(...monsters[i][14]) < abilities[8] || Math.max(...monsters[i][14]) > abilities[9]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			if(Math.min(...monsters[i][15]) < abilities[10] || Math.max(...monsters[i][15]) > abilities[11]) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Environment
+			if(nenvironment.length > 0) {
+				var nenvironment_found = false;
+				for(var j = 0; j < monsters[i][16].length; j++) {
+					if(nenvironment.indexOf(monsters[i][16][j]) >= 0) {
+						nenvironment_found = true;
+						break;
+					}
+				}
+				if(nenvironment_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(environment.length > 0) {
+				if(logic[2] == 0) { //AND
+					var environment_found = true;
+					for(var j = 0; j < environment.length; j++) {
+						if(monsters[i][16].indexOf(environment[j]) == -1) {
+							environment_found = false;
+							break;
+						}
+					}
+				}
+				else { //OR
+					var environment_found = false;
+					for(var j = 0; j < monsters[i][16].length; j++) {
+						if(environment.indexOf(monsters[i][16][j]) >= 0) {
+							environment_found = true;
+							break;
+						}
+					}
+			}
+				if(!environment_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Climate
+			if(nclimate.length > 0) {
+				var nclimate_found = false;
+				for(var j = 0; j < monsters[i][17].length; j++) {
+					if(nclimate.indexOf(monsters[i][17][j]) >= 0) {
+						nclimate_found = true;
+						break;
+					}
+				}
+				if(nclimate_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(climate.length > 0) {
+				if(logic[3] == 0) { //OR
+					var climate_found = false;
+					for(var j = 0; j < monsters[i][17].length; j++) {
+						if(climate.indexOf(monsters[i][17][j]) >= 0) {
+							climate_found = true;
+							break;
+						}
+					}
+				}
+				else { //XOR
+					var climate_found = false;
+					for(var j = 0; j < monsters[i][17].length; j++) {
+						if(climate.indexOf(monsters[i][17][j]) >= 0) {
+							if(!climate_found) {
+								climate_found = true;
+								continue;
+							}
+							else {
+								climate_found = false;
+								break;
+							}
+						}
+					}
+				}
+				if(!climate_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Planes
+			if(nplanes.length > 0) {
+				if(monsters[i][18].length == 1 && monsters[i][18][0] == 0) {
+					var nplanes_found = true;
+				}
+				else {
+					var nplanes_found = false;
+					for(var j = 0; j < monsters[i][18].length; j++) {
+						if(nplanes.indexOf(monsters[i][18][j]) >= 0) {
+							nplanes_found = true;
+							break;
+						}
+					}
+				}
+				if(nplanes_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(planes.length > 0) {
+				if(logic[4] == 0) { //OR
+					if(monsters[i][18].length == 1 && monsters[i][18][0] == 0) {
+						var planes_found = true;
+					}
+					else {
+						var planes_found = false;
+						for(var j = 0; j < monsters[i][18].length; j++) {
+							if(planes.indexOf(monsters[i][18][j]) >= 0) {
+								planes_found = true;
+								break;
+							}
+						}
+					}
+				}
+				else { //XOR
+					if(monsters[i][18].length == 1 && monsters[i][18][0] == 0) {
+						if(planes.length == 1) {
 							var planes_found = true;
 						}
 						else {
 							var planes_found = false;
-							for(var j = 0; j < monsters[i][18].length; j++) {
-								if(planes.indexOf(monsters[i][18][j]) >= 0) {
+						}
+					}
+					else {
+						var planes_found = false;
+						for(var j = 0; j < monsters[i][18].length; j++) {
+							if(planes.indexOf(monsters[i][18][j]) >= 0) {
+								if(!planes_found) {
 									planes_found = true;
+									continue;
+								}
+								else {
+									planes_found = false;
 									break;
 								}
 							}
 						}
 					}
-					else { //XOR
-						if(monsters[i][18].length == 1 && monsters[i][18][0] == 0) {
-							if(planes.length == 1) {
-								var planes_found = true;
-							}
-							else {
-								var planes_found = false;
-							}
-						}
-						else {
-							var planes_found = false;
-							for(var j = 0; j < monsters[i][18].length; j++) {
-								if(planes.indexOf(monsters[i][18][j]) >= 0) {
-									if(!planes_found) {
-										planes_found = true;
-										continue;
-									}
-									else {
-										planes_found = false;
-										break;
-									}
-								}
-							}
-						}
-					}
-					if(!planes_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
 				}
-				//Source
-				if(nsource.length > 0) {
-					var nsource_found = false;
-					for(var j = 0; j < monsters[i][21].length; j++) {
-						if(nsource.indexOf(monsters[i][21][j]) >= 0) {
-							nsource_found = true;
-							break;
-						}
-					}
-					if(nsource_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-				if(source.length > 0) {
-					var source_found = false;
-					for(var j = 0; j < monsters[i][21].length; j++) {
-						if(source.indexOf(monsters[i][21][j]) >= 0) {
-							source_found = true;
-							break;
-						}
-					}
-					if(!source_found) {
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-				//Variants
-				if((add_variants == 0 && monsters[i][19] != '') || (add_variants == -1 && monsters[i][19] == '')) {
-					monsters.splice(i, 1);
-					continue;
-				}
-				//Mixed groups
-				if(((add_mixed == 0 || simple_list) && monsters[i][1].length != 1) || (add_mixed == -1 && monsters[i][1].length == 1)) {
-					monsters.splice(i, 1);
-					continue;
-				}
-				//Unique monsters
-				if((add_unique == 0 && monsters[i][20].length == 1 && monsters[i][20][0] == '1u') || (add_unique == -1 && (monsters[i][20].length != 1 || monsters[i][20][0] != '1u'))) {
-					monsters.splice(i, 1);
-					continue;
-				}
-				//Intervals
-				if(!simple_list && monsters[i][20].length == 1 && monsters[i][20][0] == '0') {
+				if(!planes_found) {
 					monsters.splice(i, 1);
 					continue;
 				}
 			}
-			//Creating groups and links
-			monsters2 = [];
-			for(var i = 0; i < monsters.length; i++) {
-				monsters[i].push(cleanLink(monsters[i][0]).toLowerCase());
-				if(links) { //Link generation
-					if(monsters[i][0].indexOf('[') >= 0) { //Groups
-						var temp_name = monsters[i][0].split('[');
+			//Source
+			if(nsource.length > 0) {
+				var nsource_found = false;
+				for(var j = 0; j < monsters[i][21].length; j++) {
+					if(nsource.indexOf(monsters[i][21][j]) >= 0) {
+						nsource_found = true;
+						break;
+					}
+				}
+				if(nsource_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(source.length > 0) {
+				var source_found = false;
+				for(var j = 0; j < monsters[i][21].length; j++) {
+					if(source.indexOf(monsters[i][21][j]) >= 0) {
+						source_found = true;
+						break;
+					}
+				}
+				if(!source_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Variants
+			if((add_variants == 0 && monsters[i][19] != '') || (add_variants == -1 && monsters[i][19] == '')) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Mixed groups
+			if(((add_mixed == 0 || simple_list) && monsters[i][1].length != 1) || (add_mixed == -1 && monsters[i][1].length == 1)) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Unique monsters
+			if((add_unique == 0 && monsters[i][20].length == 1 && monsters[i][20][0].split('|')[0].indexOf('u') >= 0) || (add_unique == -1 && (monsters[i][20].length != 1 || monsters[i][20][0].split('|')[0].indexOf('u') == -1))) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Amount of creatures
+			if(amount[0] > 1 || amount[1] < maximum_amount) {
+				if(monsters[i][20].length == 1 && monsters[i][20][0].split('|')[0].indexOf('u') >= 0 && monsters[i][20][0].indexOf('*') != 0) {
+					var single_number = Number(monsters[i][20][0].split('u')[0]);
+					if(single_number < amount[0] || single_number > amount[1]) {
+						monsters.splice(i, 1);
+						continue;
+					}
+				}
+				else if(monsters[i][20].length == 1 & monsters[i][20][0].indexOf('*') == 0) {
+					if(monsters[i][20][0].indexOf('-') >= 0) {
+						var min_number = Number(monsters[i][20][0].split('*', 2)[1].split('-', 2)[0]);
+						var max_number = Number(monsters[i][20][0].split('-', 2)[1].replace('u', ''));
+						if(min_number < amount[0] || (max_number > amount[1] && amount[1] < maximum_amount)) {
+							monsters.splice(i, 1);
+							continue;
+						}
+					}
+					else {
+						var single_number = Number(monsters[i][20][0].split('*', 2)[1].replace('u', ''));
+						if(single_number < amount[0] || single_number > amount[1]) {
+							monsters.splice(i, 1);
+							continue;
+						}
+					}
+				}
+				else {
+					for(var j = monsters[i][20].length - 1; j >= 0; j--) {
+						if(monsters[i][20][j].indexOf('-') >= 0) {
+							var min_number = Number(monsters[i][20][j].split('-', 2)[0]);
+							var max_number = Number(monsters[i][20][j].split('|')[0].split('-', 2)[1]);
+							if(amount[1] < min_number || (amount[0] > max_number && amount[1] < maximum_amount)) {
+								monsters[i][20].splice(j, 1);
+							}
+							else if(min_number < amount[0] && (max_number <= amount[1] || amount[1] == maximum_amount)) {
+								monsters[i][20][j] = amount[0] + '-' + monsters[i][20][j].split('-', 2)[1];
+							}
+							else if(min_number >= amount[0] && max_number > amount[1] && amount[1] < maximum_amount) {
+								if(monsters[i][20][j].indexOf('|') >= 0) {
+									monsters[i][20][j] = monsters[i][20][j].split('-', 2)[0] + '-' + amount[1] + '|' + monsters[i][20][j].split('|')[1];
+								}
+								else {
+									monsters[i][20][j] = monsters[i][20][j].split('-', 2)[0] + '-' + amount[1];
+								}
+							}
+							else if(min_number < amount[0] && max_number > amount[1] && amount[1] < maximum_amount) {
+								if(monsters[i][20][j].indexOf('|') >= 0) {
+									monsters[i][20][j] = amount[0] + '-' + amount[1] + '|' + monsters[i][20][j].split('|')[1];
+								}
+								else {
+									monsters[i][20][j] = amount[0] + '-' + amount[1];
+								}
+							}
+						}
+						else {
+							var single_number = Number(monsters[i][20][j].split('|')[0]);
+							if(single_number < amount[0] || single_number > amount[1]) {
+								monsters[i][20].splice(j, 1);
+							}
+						}
+					}
+					if(monsters[i][20].length == 0) {
+						monsters.splice(i, 1);
+						continue;
+					}
+				}
+			}
+			//Intervals
+			if(!simple_list && monsters[i][20].length == 1 && monsters[i][20][0] == '0') {
+				monsters.splice(i, 1);
+				continue;
+			}
+		}
+		//Creating groups and links
+		monsters2 = [];
+		for(var i = 0; i < monsters.length; i++) {
+			monsters[i].push(cleanLink(monsters[i][0]).toLowerCase());
+			if(links) { //Link generation
+				if(monsters[i][0].indexOf('[') >= 0) { //Groups
+					var temp_name = monsters[i][0].split('[');
+					for(var j = 0; j < temp_name.length; j++) {
+						if(temp_name[j].indexOf(']') >= 0) {
+							temp_name[j] = genLink(temp_name[j], monsters[i][6]);
+						}
+					}
+					monsters[i][0] = temp_name.join('');
+					var linked = true;
+				}
+				else {
+					var linked = false;
+				}
+				if(monsters[i][19] != '') { //Variant creatures
+					if(monsters[i][19].indexOf('[') >= 0) {
+						var temp_name = monsters[i][19].split('[');
 						for(var j = 0; j < temp_name.length; j++) {
 							if(temp_name[j].indexOf(']') >= 0) {
 								temp_name[j] = genLink(temp_name[j], monsters[i][6]);
 							}
 						}
-						monsters[i][0] = temp_name.join('');
-						var linked = true;
+						monsters[i][19] = temp_name.join('');
 					}
 					else {
-						var linked = false;
-					}
-					if(monsters[i][19] != '') { //Variant creatures
-						if(monsters[i][19].indexOf('[') >= 0) {
-							var temp_name = monsters[i][19].split('[');
-							for(var j = 0; j < temp_name.length; j++) {
-								if(temp_name[j].indexOf(']') >= 0) {
-									temp_name[j] = genLink(temp_name[j], monsters[i][6]);
-								}
-							}
-							monsters[i][19] = temp_name.join('');
-						}
-						else {
-							monsters[i][19] = genLink(monsters[i][19], monsters[i][6]);
-						}
-						linked = true;
-					}
-				}
-				else { //Cleaning link syntax
-					if(monsters[i][0].indexOf('[') >= 0) {
-						monsters[i][0] = cleanLink(monsters[i][0]);
-					}
-					else if(monsters[i][19] == '' && monsters[i][0].indexOf('\\') >= 0) {
-						monsters[i][0] = monsters[i][0].split('\\')[0];
-					}
-					if(monsters[i][19] != '') {
-						if(monsters[i][19].indexOf('[') >= 0) {
-							monsters[i][19] = cleanLink(monsters[i][19]);
-						}
-						else if(monsters[i][19].indexOf('\\') >= 0) {
-							monsters[i][19] = monsters[i][19].split('\\')[0];
-						}
+						monsters[i][19] = genLink(monsters[i][19], monsters[i][6]);
 					}
 					linked = true;
 				}
-				if(simple_list) {
-					if(!linked) {
-						if(monsters[i][0].indexOf('|') >= 0) {
-							if(monsters[i][0].indexOf('/') >= 0) {
-								monsters[i][0] = monsters[i][0].split('|')[0] + '/' + monsters[i][0].split('/')[1];
-							}
-							else if(monsters[i][0].indexOf('\\') >= 0) {
-								monsters[i][0] = monsters[i][0].split('|')[0] + '\\' + monsters[i][0].split('\\')[1];
-							}
-							else {
-								monsters[i][0] = monsters[i][0].split('|')[0];
-							}
-						}
-						monsters[i][0] = genLink(monsters[i][0], monsters[i][6]);
-						linked = true;
-					}
-					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
+			}
+			else { //Cleaning link syntax
+				if(monsters[i][0].indexOf('[') >= 0) {
+					monsters[i][0] = cleanLink(monsters[i][0]);
 				}
-				else {
-					for(var j = 0; j < monsters[i][20].length; j++) {
-						if(monsters[i][20][j] == '' || monsters[i][20][j] == '1u') { //Combinations and unique monsters
-							if(!linked) {
-								monsters[i][0] = genLink(monsters[i][0], monsters[i][6]);
-								linked = true;
-							}
-							monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21]]);
-						}
-						else {
-							if(monsters[i][20][j].indexOf('|') >= 0) { //Extracting group name
-								var interval = monsters[i][20][j].split('|')[0];
-								var description = monsters[i][20][j].split('|')[1];
-								if(['a', 'e', 'i', 'o'].indexOf(description.slice(0, 1)) >= 0) {
-									description = 'an ' + description + ' of ';
-								}
-								else {
-									description = 'a ' + description + ' of ';
-								}
-							}
-							else {
-								var interval = monsters[i][20][j];
-								var description = '';
-							}
-							if(monsters[i][1].length == 1) {
-								if(monsters[i][1][0] == -4 || monsters[i][1][0] == -2 || monsters[i][1][0] == 0) {
-									var index_cr = 0;
-								}
-								else if(monsters[i][1][0] == -3) {
-									var index_cr = 1;
-								}
-								else if(monsters[i][1][0] == -1) {
-									var index_cr = 2;
-								}
-								else if(monsters[i][1][0] % 2 == 1) {
-									var index_cr = 3;
-								}
-								else {
-									var index_cr = 4;
-								}
-							}
-							else {
-								if(monsters[i][1][0] + monsters[i][1][1] == -4 || monsters[i][1][0] + monsters[i][1][1] == -2 || monsters[i][1][0] + monsters[i][1][1] == 0) {
-									var index_cr = 0;
-								}
-								else if(monsters[i][1][0] + monsters[i][1][1] == -3) {
-									var index_cr = 1;
-								}
-								else if(monsters[i][1][0] + monsters[i][1][1] == -1) {
-									var index_cr = 2;
-								}
-								else if((monsters[i][1][0] + monsters[i][1][1]) % 2 == 1) {
-									var index_cr = 3;
-								}
-								else {
-									var index_cr = 4;
-								}
-							}
-							var dice2 = genDice(interval, index_cr, cr_comb);
-							for(var k = cr_comb[0]; k <= cr_comb[1]; k++) {
-								if(dice2[k].length > 0) { //Choosing one of the possible dice
-									index_dice = Math.floor(Math.random() * dice2[k].length);
-									if(dice2[k][index_dice] == '1') {
-										if(monsters[i][0].indexOf('|') >= 0) {
-											if(monsters[i][0].indexOf('/') >= 0) {
-												var monster_name = monsters[i][0].split('|')[0] + '/' + monsters[i][0].split('/');
-											}
-											else if(monsters[i][0].indexOf('\\') >= 0) {
-												var monster_name = monsters[i][0].split('|')[0] + '\\' + monsters[i][0].split('\\');
-											}
-											else {
-												var monster_name = monsters[i][0].split('|')[0];
-											}
-										}
-										else {
-											var monster_name = monsters[i][0];
-										}
-									}
-									else { //Constructing plural
-										if(monsters[i][0].indexOf('/') >= 0) {
-											var monster_name = plural(monsters[i][0].split('/')[0]) + '/' + monsters[i][0].split('/')[1];
-											if(monsters[i][19] == '' && monster_name.indexOf('\\') == -1) {
-												monster_name += '\\' + monsters[i][0];
-											}
-										}
-										else if(monsters[i][0].indexOf('\\') >= 0) {
-											var monster_name = plural(monsters[i][0].split('\\')[0]) + '\\' + monsters[i][0].split('\\')[1];
-										}
-										else {
-											var monster_name = plural(monsters[i][0]);
-											if(monsters[i][19] == '') {
-												monster_name += '\\' + monsters[i][0];
-											}
-										}
-									}
-									if(!linked && monsters[i][19] == '') {
-										monster_name = genLink(monster_name, monsters[i][6]);
-									}
-									monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
-								}
-							}
-						}
+				else if(monsters[i][19] == '' && monsters[i][0].indexOf('~') >= 0) {
+					monsters[i][0] = monsters[i][0].split('~')[0];
+				}
+				if(monsters[i][19] != '') {
+					if(monsters[i][19].indexOf('[') >= 0) {
+						monsters[i][19] = cleanLink(monsters[i][19]);
+					}
+					else if(monsters[i][19].indexOf('~') >= 0) {
+						monsters[i][19] = monsters[i][19].split('~')[0];
 					}
 				}
-			}
-			monsters = monsters2;
-			//Filtering 2
-			if(!simple_list) {
-				for(var i = monsters.length - 1; i >= 0; i--) {
-					//CR
-					if(monsters[i][1].length == 1) {
-						if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
-							monsters.splice(i, 1);
-							continue;
-						}
-						else {
-							monsters[i][1] = monsters[i][1][0];
-						}
-					}
-					else {
-						monsters[i][1] = monsters[i][1][0] + monsters[i][1][1];
-					}
-				}
-			}
-			//Creating table
-			var foot_msg = '...out of ' + monster_count + ' different creatures and mixed groups.<br />';
-			if(monsters.length == 1) {
-				foot_msg +=  monsters.length + ' entry matched your criteria.'
-			}
-			else {
-				foot_msg +=  monsters.length + ' entries matched your criteria.'
+				linked = true;
 			}
 			if(simple_list) {
-				$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Creatures</th><th id="tcr">CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
-			}
-			else if(maxdice == 0) {
-				$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
+				if(!linked) {
+					if(monsters[i][0].indexOf('|') >= 0) {
+						if(monsters[i][0].indexOf('/') >= 0) {
+							monsters[i][0] = monsters[i][0].split('|')[0] + '/' + monsters[i][0].split('/')[1];
+						}
+						else if(monsters[i][0].indexOf('~') >= 0) {
+							monsters[i][0] = monsters[i][0].split('|')[0] + '~' + monsters[i][0].split('~')[1];
+						}
+						else {
+							monsters[i][0] = monsters[i][0].split('|')[0];
+						}
+					}
+					monsters[i][0] = genLink(monsters[i][0], monsters[i][6]);
+					linked = true;
+				}
+				monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
 			}
 			else {
-				$('#table').append('<table id="random_table"><thead><tr><th id="tdice">dice</th><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="5">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
-			}
-			if(maxcreatures == 0 || simple_list) {
-				maxcreatures = monsters.length;
-				if(maxcreatures > maxdice && maxdice != 0) {
-					maxdice = maxcreatures;
-				}
-			}
-			if(!simple_list) {
-				var monsters2 = [];
-				for(var i = 0; i < maxcreatures && monsters.length > 0; i++) { //Random selection
-					var random_index = Math.floor(Math.random() * monsters.length);
-					monsters2.push(monsters[random_index]);
-					monsters.splice(random_index, 1);
-				}
-				monsters = monsters2;
-			}
-			//Sorting
-			if(sort & 2) {
-				for(var i = 0; i < monsters.length; i++) {
-					for(var j = 0; j < monsters.length - 1; j++) {
-						if(monsters[j][5] > monsters[j + 1][5]) {
-							var tmp = monsters[j];
-							monsters[j] = monsters[j + 1];
-							monsters[j + 1] = tmp;
+				for(var j = 0; j < monsters[i][20].length; j++) {
+					if(monsters[i][20][j].indexOf('*') == 0 || monsters[i][20][j].split('|')[0].indexOf('u') >= 0) { //Combinations and unique monsters
+						if(!linked) {
+							monsters[i][0] = genLink(monsters[i][0], monsters[i][6]);
+							linked = true;
 						}
-					}
-				}
-			}
-			if(sort & 1) {
-				for(var i = 0; i < monsters.length; i++) {
-					for(var j = 0; j < monsters.length - 1; j++) {
-						if(monsters[j][1] > monsters[j + 1][1] || (monsters[j][1] == monsters[j + 1][1] && monsters[j][2] > monsters[j + 1][2])) {
-							var tmp = monsters[j];
-							monsters[j] = monsters[j + 1];
-							monsters[j + 1] = tmp;
-						}
-					}
-				}
-			}
-			if((sort & 1) + (sort & 2) == 0 && simple_list) {
-				var monsters2 = [];
-				while(monsters.length > 0) {
-					var random_index = Math.floor(Math.random() * monsters.length);
-					monsters2.push(monsters[random_index]);
-					monsters.splice(random_index, 1);
-				}
-				monsters = monsters2;
-			}
-			//Filling table
-			for(var i = 0; i < monsters.length; i++) {
-				var interval_min = Math.floor(maxdice * i / monsters.length) + 1;
-				var interval_max = Math.floor(maxdice * (i + 1) / monsters.length);
-				if(interval_min == interval_max) {
-					var interval = interval_min;
-				}
-				else {
-					var interval = interval_min + '-' + interval_max;
-				}
-				if(monsters[i][1] == 0) {
-					var temp_cr = '1/2';
-				}
-				else if(monsters[i][1] == -1) {
-					var temp_cr = '1/3';
-				}
-				else if(monsters[i][1] == -2) {
-					var temp_cr = '1/4';
-				}
-				else if(monsters[i][1] == -3) {
-					var temp_cr = '1/6';
-				}
-				else if(monsters[i][1] == -4) {
-					var temp_cr = '1/8';
-				}
-				else {
-					var temp_cr = monsters[i][1];
-				}
-				if(monsters[i][2] > 0) {
-					temp_cr += ' / MR ' + monsters[i][2];
-				}
-				var temp_source = '';
-				for(var j = 0; j < monsters[i][4].length; j++) {
-					if(temp_source == '') {
-						temp_source = sources[monsters[i][4][j] - 1];
+						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21]]);
 					}
 					else {
-						temp_source += ', ' + sources[monsters[i][4][j] - 1];
+						if(monsters[i][20][j].indexOf('|') >= 0) { //Extracting group name
+							var interval = monsters[i][20][j].split('|')[0];
+							var description = monsters[i][20][j].split('|')[1];
+							if(['a', 'e', 'i', 'o'].indexOf(description.slice(0, 1)) >= 0) {
+								description = 'an ' + description + ' of ';
+							}
+							else {
+								description = 'a ' + description + ' of ';
+							}
+						}
+						else {
+							var interval = monsters[i][20][j];
+							var description = '';
+						}
+						if(monsters[i][1].length == 1) {
+							if(monsters[i][1][0] == -4 || monsters[i][1][0] == -2 || monsters[i][1][0] == 0) {
+								var index_cr = 0;
+							}
+							else if(monsters[i][1][0] == -3) {
+								var index_cr = 1;
+							}
+							else if(monsters[i][1][0] == -1) {
+								var index_cr = 2;
+							}
+							else if(monsters[i][1][0] % 2 == 1) {
+								var index_cr = 3;
+							}
+							else {
+								var index_cr = 4;
+							}
+						}
+						else {
+							if(monsters[i][1][0] + monsters[i][1][1] == -4 || monsters[i][1][0] + monsters[i][1][1] == -2 || monsters[i][1][0] + monsters[i][1][1] == 0) {
+								var index_cr = 0;
+							}
+							else if(monsters[i][1][0] + monsters[i][1][1] == -3) {
+								var index_cr = 1;
+							}
+							else if(monsters[i][1][0] + monsters[i][1][1] == -1) {
+								var index_cr = 2;
+							}
+							else if((monsters[i][1][0] + monsters[i][1][1]) % 2 == 1) {
+								var index_cr = 3;
+							}
+							else {
+								var index_cr = 4;
+							}
+						}
+						var dice2 = genDice(interval, index_cr, cr_comb);
+						for(var k = cr_comb[0]; k <= cr_comb[1]; k++) {
+							if(dice2[k].length > 0) { //Choosing one of the possible dice
+								index_dice = Math.floor(Math.random() * dice2[k].length);
+								if(dice2[k][index_dice] == '1') {
+									if(monsters[i][0].indexOf('|') >= 0) {
+										if(monsters[i][0].indexOf('/') >= 0) {
+											var monster_name = monsters[i][0].split('|')[0] + '/' + monsters[i][0].split('/');
+										}
+										else if(monsters[i][0].indexOf('~') >= 0) {
+											var monster_name = monsters[i][0].split('|')[0] + '~' + monsters[i][0].split('~');
+										}
+										else {
+											var monster_name = monsters[i][0].split('|')[0];
+										}
+									}
+									else {
+										var monster_name = monsters[i][0];
+									}
+								}
+								else { //Constructing plural
+									if(monsters[i][0].indexOf('/') >= 0) {
+										var monster_name = plural(monsters[i][0].split('/')[0]) + '/' + monsters[i][0].split('/')[1];
+										if(monsters[i][19] == '' && monster_name.indexOf('~') == -1) {
+											monster_name += '~' + monsters[i][0];
+										}
+									}
+									else if(monsters[i][0].indexOf('~') >= 0) {
+										var monster_name = plural(monsters[i][0].split('~')[0]) + '~' + monsters[i][0].split('~')[1];
+									}
+									else {
+										var monster_name = plural(monsters[i][0]);
+										if(monsters[i][19] == '') {
+											monster_name += '~' + monsters[i][0];
+										}
+									}
+								}
+								if(!linked && monsters[i][19] == '') {
+									monster_name = genLink(monster_name, monsters[i][6]);
+								}
+								monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
+							}
+						}
 					}
 				}
-				if(maxdice == 0 || simple_list) {
-					$('#random_table tbody').append('<tr><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + temp_source + '</td></tr>');
+			}
+		}
+		monsters = monsters2;
+		//Filtering 2
+		if(!simple_list) {
+			for(var i = monsters.length - 1; i >= 0; i--) {
+				//CR
+				if(monsters[i][1].length == 1) {
+					if(monsters[i][1][0] < cr[0] || monsters[i][1][0] > cr[1]) {
+						monsters.splice(i, 1);
+						continue;
+					}
+					else {
+						monsters[i][1] = monsters[i][1][0];
+					}
 				}
 				else {
-					$('#random_table tbody').append('<tr><td>' + interval + '</td><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + temp_source + '</td></tr>');
+					monsters[i][1] = monsters[i][1][0] + monsters[i][1][1];
 				}
 			}
-		});
+		}
+		//Creating table
+		var foot_msg = '...out of ' + monster_count + ' different creatures and mixed groups.<br />';
+		if(monsters.length == 1) {
+			foot_msg +=  monsters.length + ' entry matched your criteria.'
+		}
+		else {
+			foot_msg +=  monsters.length + ' entries matched your criteria.'
+		}
+		if(simple_list) {
+			$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Creatures</th><th id="tcr">CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
+		}
+		else if(maxdice == 0) {
+			$('#table').append('<table id="random_table"><thead><tr><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="4">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
+		}
+		else {
+			$('#table').append('<table id="random_table"><thead><tr><th id="tdice">dice</th><th id="tenc">Encounter</th><th id="tcr">Avg. CR</th><th id="tnote">Variation of</th><th id="tsource">Source</th></tr></thead><tfoot><tr><td colspan="5">' + foot_msg + '</td></tr></tfoot><tbody></tbody></table>');
+		}
+		if(maxcreatures == 0 || simple_list) {
+			maxcreatures = monsters.length;
+			if(maxcreatures > maxdice && maxdice != 0) {
+				maxdice = maxcreatures;
+			}
+		}
+		if(!simple_list) {
+			var monsters2 = [];
+			for(var i = 0; i < maxcreatures && monsters.length > 0; i++) { //Random selection
+				var random_index = Math.floor(Math.random() * monsters.length);
+				monsters2.push(monsters[random_index]);
+				monsters.splice(random_index, 1);
+			}
+			monsters = monsters2;
+		}
+		//Sorting
+		if(sort & 2) {
+			for(var i = 0; i < monsters.length; i++) {
+				for(var j = 0; j < monsters.length - 1; j++) {
+					if(monsters[j][5] > monsters[j + 1][5]) {
+						var tmp = monsters[j];
+						monsters[j] = monsters[j + 1];
+						monsters[j + 1] = tmp;
+					}
+				}
+			}
+		}
+		if(sort & 1) {
+			for(var i = 0; i < monsters.length; i++) {
+				for(var j = 0; j < monsters.length - 1; j++) {
+					if(monsters[j][1] > monsters[j + 1][1] || (monsters[j][1] == monsters[j + 1][1] && monsters[j][2] > monsters[j + 1][2])) {
+						var tmp = monsters[j];
+						monsters[j] = monsters[j + 1];
+						monsters[j + 1] = tmp;
+					}
+				}
+			}
+		}
+		if((sort & 1) + (sort & 2) == 0 && simple_list) {
+			var monsters2 = [];
+			while(monsters.length > 0) {
+				var random_index = Math.floor(Math.random() * monsters.length);
+				monsters2.push(monsters[random_index]);
+				monsters.splice(random_index, 1);
+			}
+			monsters = monsters2;
+		}
+		//Filling table
+		for(var i = 0; i < monsters.length; i++) {
+			var interval_min = Math.floor(maxdice * i / monsters.length) + 1;
+			var interval_max = Math.floor(maxdice * (i + 1) / monsters.length);
+			if(interval_min == interval_max) {
+				var interval = interval_min;
+			}
+			else {
+				var interval = interval_min + '-' + interval_max;
+			}
+			if(monsters[i][1] == 0) {
+				var temp_cr = '1/2';
+			}
+			else if(monsters[i][1] == -1) {
+				var temp_cr = '1/3';
+			}
+			else if(monsters[i][1] == -2) {
+				var temp_cr = '1/4';
+			}
+			else if(monsters[i][1] == -3) {
+				var temp_cr = '1/6';
+			}
+			else if(monsters[i][1] == -4) {
+				var temp_cr = '1/8';
+			}
+			else {
+				var temp_cr = monsters[i][1];
+			}
+			if(monsters[i][2] > 0) {
+				temp_cr += ' / MR ' + monsters[i][2];
+			}
+			var temp_source = '';
+			for(var j = 0; j < monsters[i][4].length; j++) {
+				if(temp_source == '') {
+					temp_source = sources[monsters[i][4][j] - 1];
+				}
+				else {
+					temp_source += ', ' + sources[monsters[i][4][j] - 1];
+				}
+			}
+			if(maxdice == 0 || simple_list) {
+				$('#random_table tbody').append('<tr><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + temp_source + '</td></tr>');
+			}
+			else {
+				$('#random_table tbody').append('<tr><td>' + interval + '</td><td>' + monsters[i][0] + '</td><td>' + temp_cr + '</td><td>' + monsters[i][3] + '</td><td>' + temp_source + '</td></tr>');
+			}
+		}
 	}
 });

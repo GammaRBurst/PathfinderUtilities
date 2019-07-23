@@ -1,16 +1,16 @@
 function genLink(name, subtypes) {
 	var base_link_normal = 'https://www.aonprd.com/MonsterDisplay.aspx?ItemName=';
 	var base_link_mythic = 'https://www.aonprd.com/MythicMonsterDisplay.aspx?ItemName=';
-	var mythic_subtype = 48;
+	var mythic_subtype = 49;
 	
 	if(name.indexOf(']') >= 0) { //Link + other text
 		var aftername = name.split(']')[1];
 		name = name.split(']')[0];
 	}
 	else if(name.indexOf('/') >= 0 && name.indexOf('https://') == -1) {
-		if(name.indexOf('\\') >= 0) {
-			var aftername = ' (' + name.split('\\')[0].split('/')[1] + ')';
-			name = name.split('/')[0] + '\\' + name.split('\\')[1];
+		if(name.indexOf('~') >= 0) {
+			var aftername = ' (' + name.split('~')[0].split('/')[1] + ')';
+			name = name.split('/')[0] + '~' + name.split('~')[1];
 		}
 		else {
 			var aftername = ' (' + name.split('/')[1] + ')';
@@ -20,12 +20,12 @@ function genLink(name, subtypes) {
 	else {
 		var aftername = '';
 	}
-	if(name.indexOf('\\') >= 0) {
-		if((subtypes.indexOf(mythic_subtype) >= 0 && name.split('\\')[1].slice(0, 1) != '+') || (subtypes.indexOf(mythic_subtype) == -1 && name.split('\\')[1].slice(0, 1) == '+')) {
-			return '<a target="_blank" href="' + base_link_mythic + adaptName(name.split('\\')[1]) + '">' + name.split('\\')[0] + '</a>' + aftername;
+	if(name.indexOf('~') >= 0) {
+		if((subtypes.indexOf(mythic_subtype) >= 0 && name.split('~')[1].slice(0, 1) != '+') || (subtypes.indexOf(mythic_subtype) == -1 && name.split('~')[1].slice(0, 1) == '+')) {
+			return '<a target="_blank" href="' + base_link_mythic + adaptName(name.split('~')[1]) + '">' + name.split('~')[0] + '</a>' + aftername;
 		}
 		else {
-			return '<a target="_blank" href="' + base_link_normal + adaptName(name.split('\\')[1]) + '">' + name.split('\\')[0] + '</a>' + aftername;
+			return '<a target="_blank" href="' + base_link_normal + adaptName(name.split('~')[1]) + '">' + name.split('~')[0] + '</a>' + aftername;
 		}
 	}
 	else {
@@ -33,13 +33,13 @@ function genLink(name, subtypes) {
 			if(name.slice(0, 1) == '+') {
 				name = name.slice(1);
 			}
-			return '<a target="_blank" href="' + base_link_mythic + adaptName(name) + '">' + name + '</a>' + aftername;
+			return '<a target="_blank" href="' + base_link_mythic + adaptName(name, aftername) + '">' + name + '</a>' + aftername;
 		}
 		else {
 			if(name.slice(0, 1) == '+') {
 				name = name.slice(1);
 			}
-			return '<a target="_blank" href="' + base_link_normal + adaptName(name) + '">' + name + '</a>' + aftername;
+			return '<a target="_blank" href="' + base_link_normal + adaptName(name, aftername) + '">' + name + '</a>' + aftername;
 		}
 	}
 }
@@ -48,8 +48,8 @@ function cleanLink(name) {
 	var temp_name = name.split('[');
 	for(var j = 0; j < temp_name.length; j++) {
 		if(temp_name[j].indexOf(']') >= 0) {
-			if(temp_name[j].split(']')[0].indexOf('\\') >= 0) {
-				temp_name[j] = temp_name[j].split('\\')[0] + temp_name[j].split(']')[1];
+			if(temp_name[j].split(']')[0].indexOf('~') >= 0) {
+				temp_name[j] = temp_name[j].split('~')[0] + temp_name[j].split(']')[1];
 			}
 			else {
 				temp_name[j] = temp_name[j].replace(']', '');
@@ -62,13 +62,13 @@ function cleanLink(name) {
 	return temp_name.join('');
 }
 
-function adaptName(name) {
+function adaptName(name, aftername = '') {
 	if(name.slice(0, 1) == '*') {
 		if(name.slice(1, 2) == '+') {
-			return name.slice(2);
+			name = name.slice(2);
 		}
 		else {
-			return name.slice(1);
+			name = name.slice(1);
 		}
 	}
 	else {
@@ -88,8 +88,12 @@ function adaptName(name) {
 			}
 			name[i] = name[i].join('-');
 		}
-		return name.join(' ');
+		name = name.join(' ');
 	}
+	if(aftername != '') {
+		name += ' (' + aftername.slice(2, 3).toUpperCase() + aftername.slice(3).toLowerCase();
+	}
+	return name;
 }
 
 function plural(name) {

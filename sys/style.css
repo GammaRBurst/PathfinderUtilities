@@ -68,12 +68,12 @@ label { /* Source: csscheckbox.com */
 }
 
 input[type=checkbox] { /* Source: csscheckbox.com */
-	position: absolute; 
-	overflow: hidden; 
-	clip: rect(0 0 0 0); 
-	height: 1px; 
-	width: 1px; 
-	margin: -1px; 
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
 	padding: 0;
 	border: 0;
 }
@@ -146,7 +146,7 @@ th:nth-last-of-type(3) {
 }
 
 th:last-of-type {
-	width: 75px;
+	width: 90px;
 }
 
 td:nth-last-of-type(5), td:nth-last-of-type(3), td:last-of-type {

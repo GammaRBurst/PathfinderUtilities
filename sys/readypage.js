@@ -50,11 +50,29 @@ function setScore(score, values) {
 	}
 }
 
+function setAmount(values) {
+	$('#amount_slide').slider({'values': values});
+	$('#amount_min').val(values[0]);
+	if(values[0] == maximum_amount) {
+		$('#amount_min2').html(maximum_amount + '+');
+	}
+	else {
+		$('#amount_min2').html(values[0]);
+	}
+	$('#amount_max').val(values[1]);
+	if(values[1] == maximum_amount) {
+		$('#amount_max2').html(maximum_amount + '+');
+	}
+	else {
+		$('#amount_max2').html(values[1]);
+	}
+}
+
 function readyPage(values, sizes) {
 	//Add arrows
 	$('.show').prepend('<span class="ui-icon ui-icon-triangle-1-e"></span> ');
 	$('.hide').prepend('<span class="ui-icon ui-icon-triangle-1-s"></span> ');
-	
+
 	//Show/Hide advanced parameters
 	$('.show').click(function() {
 		var name = $(this).attr('id').replace('show_', '');
@@ -66,7 +84,7 @@ function readyPage(values, sizes) {
 		$('#show_' + name).show();
 		$('#' + name).hide();
 	});
-	
+
 	//Checkbox behaviour
 	$('input.cbox_trad + label, input.cbox_yesno + label, input.cbox_yesonly + label').contextmenu(function() { //Disables right click context menu on labels
 		return false;
@@ -141,7 +159,7 @@ function readyPage(values, sizes) {
 			}
 		}
 	});
-	
+
 	//Check/Notcheck/Uncheck all
 	$('input.check').click(function() {
 		var type = $(this).attr('name').replace('check', '');
@@ -167,7 +185,7 @@ function readyPage(values, sizes) {
 			$(this).val(Math.abs($(this).val()));
 		});
 	});
-	
+
 	//Challenge Rating slider
 	$('#cr_slide').slider({
 		range: true,
@@ -179,7 +197,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setCR($('#cr_slide').slider('values'));
-	
+
 	//Mythic Rank slider
 	$('#mr_slide').slider({
 		range: true,
@@ -191,7 +209,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setSlider('mr', $('#mr_slide').slider('values'));
-	
+
 	//Size slider
 	$('#size_slide').slider({
 		range: true,
@@ -203,7 +221,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setSize($('#size_slide').slider('values'));
-	
+
 	//HD slider
 	$('#hd_slide').slider({
 		range: true,
@@ -215,7 +233,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setSlider('hd', $('#hd_slide').slider('values'));
-	
+
 	//Ability scores sliders
 	$('#str_slide').slider({
 		range: true,
@@ -227,7 +245,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setScore('str', $('#str_slide').slider('values'));
-	
+
 	$('#dex_slide').slider({
 		range: true,
 		min: 0,
@@ -238,7 +256,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setScore('dex', $('#dex_slide').slider('values'));
-	
+
 	$('#con_slide').slider({
 		range: true,
 		min: 0,
@@ -249,7 +267,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setScore('con', $('#con_slide').slider('values'));
-	
+
 	$('#int_slide').slider({
 		range: true,
 		min: 0,
@@ -260,7 +278,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setScore('int', $('#int_slide').slider('values'));
-	
+
 	$('#wis_slide').slider({
 		range: true,
 		min: 0,
@@ -271,7 +289,7 @@ function readyPage(values, sizes) {
 		}
 	});
 	setScore('wis', $('#wis_slide').slider('values'));
-	
+
 	$('#cha_slide').slider({
 		range: true,
 		min: 0,
@@ -282,19 +300,33 @@ function readyPage(values, sizes) {
 		}
 	});
 	setScore('cha', $('#cha_slide').slider('values'));
-	
+
 	//Simple list
 	$('#slist').click(function() {
 		if($(this).prop('checked')) {
 			$('.not_slist').prop('disabled', true);
+			$('#amount_slide').slider('disable');
 			$('#cr_comb_slide').slider('disable');
 		}
 		else {
 			$('.not_slist').prop('disabled', false);
+			$('#amount_slide').slider('enable');
 			$('#cr_comb_slide').slider('enable');
 		}
 	});
-	
+
+	//Amount of creatures slider
+	$('#amount_slide').slider({
+		range: true,
+		min: 1,
+		max: maximum_amount,
+		values: [1, maximum_amount],
+		slide: function(event, ui) {
+			setAmount(ui.values);
+		}
+	});
+	setAmount($('#amount_slide').slider('values'));
+
 	//CR combination slider
 	$('#cr_comb_slide').slider({
 		range: true,

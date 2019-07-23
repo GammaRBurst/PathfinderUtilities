@@ -4,22 +4,23 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="sys/favicon.png" type="image/png" sizes="32x32"> 
+		<link rel="icon" href="sys/favicon.png" type="image/png" sizes="32x32">
 		<title>The Ultimate Random Encounter Tables Generator</title>
 		<link rel="stylesheet" type="text/css" href="sys/jquery-ui-1.12.1.min.css" />
 		<link rel="stylesheet" type="text/css" href="sys/style.css" />
 		<script>
-//Shared variables
-var debug = true; //Alerts in case of double monsters and wrong number of fields, should be false for distribution
-var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
-var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
-var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD', 'UW', 'PA', 'CS', 'PC', 'AP', 'AM'];
+			//Shared variables
+			var debug = true; //Alerts in case of double monsters and wrong number of fields, should be false for distribution
+			var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
+			var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
+			var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD', 'UW', 'PA', 'CS', 'PC', 'AP', 'AM'];
+			var maximum_amount = 50;
 		</script>
 		<script src="sys/jquery-3.4.1.min.js"></script>
 		<script src="sys/jquery-ui-1.12.1.min.js"></script>
+		<script src="creatures.js"></script>
 		<script src="sys/dice.js"></script>
 		<script src="sys/gendice.js"></script>
-		<script src="sys/ajax.js"></script>
 		<script src="sys/readypage.js"></script>
 		<script src="sys/genlink.js"></script>
 		<script src="sys/init.js"></script>
@@ -203,46 +204,48 @@ var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD',
 					<input type="checkbox" name="gr" id="gr17" class="cbox_yesno" value="17" /><label for="gr17">Rakshasa Immortal</label>
 					<input type="checkbox" name="gr" id="gr18" class="cbox_yesno" value="18" /><label for="gr18">Sahkil Tormentor</label>
 					<input type="checkbox" name="gr" id="gr19" class="cbox_yesno" value="19" /><label for="gr19">Titan</label>
-					<input type="checkbox" name="gr" id="gr20" class="cbox_yesno" value="20" /><label for="gr20">Tsukumogami</label>
 				</div>
 				<div>
 					<h4>True Dragons</h4>
-					<input type="checkbox" name="gr" id="gr21" class="cbox_yesno" value="21" /><label for="gr21">Chromatic Dragon</label>
-					<input type="checkbox" name="gr" id="gr22" class="cbox_yesno" value="22" /><label for="gr22">Esoteric Dragon</label>
-					<input type="checkbox" name="gr" id="gr23" class="cbox_yesno" value="23" /><label for="gr23">Imperial Dragon</label>
-					<input type="checkbox" name="gr" id="gr24" class="cbox_yesno" value="24" /><label for="gr24">Metallic Dragon</label>
-					<input type="checkbox" name="gr" id="gr25" class="cbox_yesno" value="25" /><label for="gr25">Outer Dragon</label>
-					<input type="checkbox" name="gr" id="gr26" class="cbox_yesno" value="26" /><label for="gr26">Planar Dragon</label>
-					<input type="checkbox" name="gr" id="gr27" class="cbox_yesno" value="27" /><label for="gr27">Primal Dragon</label>
+					<input type="checkbox" name="gr" id="gr20" class="cbox_yesno" value="20" /><label for="gr20">Chromatic Dragon</label>
+					<input type="checkbox" name="gr" id="gr21" class="cbox_yesno" value="21" /><label for="gr21">Esoteric Dragon</label>
+					<input type="checkbox" name="gr" id="gr22" class="cbox_yesno" value="22" /><label for="gr22">Imperial Dragon</label>
+					<input type="checkbox" name="gr" id="gr23" class="cbox_yesno" value="23" /><label for="gr23">Metallic Dragon</label>
+					<input type="checkbox" name="gr" id="gr24" class="cbox_yesno" value="24" /><label for="gr24">Outer Dragon</label>
+					<input type="checkbox" name="gr" id="gr25" class="cbox_yesno" value="25" /><label for="gr25">Planar Dragon</label>
+					<input type="checkbox" name="gr" id="gr26" class="cbox_yesno" value="26" /><label for="gr26">Primal Dragon</label>
 				</div>
 				<div>
 					<h4>Other Groups</h4>
-					<input type="checkbox" name="gr" id="gr28" class="cbox_yesno" value="28" /><label for="gr28">Companions</label>
-					<input type="checkbox" name="gr" id="gr29" class="cbox_yesno" value="29" /><label for="gr29">Dinosaur</label>
-					<input type="checkbox" name="gr" id="gr30" class="cbox_yesno" value="30" /><label for="gr30">Drake</label>
-					<input type="checkbox" name="gr" id="gr31" class="cbox_yesno" value="31" /><label for="gr31">Entothrope</label>
-					<input type="checkbox" name="gr" id="gr32" class="cbox_yesno" value="32" /><label for="gr32">Familiar</label>
-					<input type="checkbox" name="gr" id="gr33" class="cbox_yesno" value="33" /><label for="gr33">Familiar, Improved</label>
-					<input type="checkbox" name="gr" id="gr34" class="cbox_yesno" value="34" /><label for="gr34">Fleshwarp</label>
-					<input type="checkbox" name="gr" id="gr35" class="cbox_yesno" value="35" /><label for="gr35">Formian</label>
-					<input type="checkbox" name="gr" id="gr36" class="cbox_yesno" value="36" /><label for="gr36">Gigas</label>
-					<input type="checkbox" name="gr" id="gr37" class="cbox_yesno" value="37" /><label for="gr37">Golem</label>
-					<input type="checkbox" name="gr" id="gr38" class="cbox_yesno" value="38" /><label for="gr38">Gremlin</label>
-					<input type="checkbox" name="gr" id="gr39" class="cbox_yesno" value="39" /><label for="gr39">Hag</label>
-					<input type="checkbox" name="gr" id="gr40" class="cbox_yesno" value="40" /><label for="gr40">Herd Animal</label>
-					<input type="checkbox" name="gr" id="gr41" class="cbox_yesno" value="41" /><label for="gr41">Leshy</label>
-					<input type="checkbox" name="gr" id="gr42" class="cbox_yesno" value="42" /><label for="gr42">Linnorm</label>
-					<input type="checkbox" name="gr" id="gr43" class="cbox_yesno" value="43" /><label for="gr43">Lycanthrope</label>
-					<input type="checkbox" name="gr" id="gr44" class="cbox_yesno" value="44" /><label for="gr44">Mephit</label>
-					<input type="checkbox" name="gr" id="gr45" class="cbox_yesno" value="45" /><label for="gr45">Megafauna</label>
-					<input type="checkbox" name="gr" id="gr46" class="cbox_yesno" value="46" /><label for="gr46">Naga</label>
-					<input type="checkbox" name="gr" id="gr47" class="cbox_yesno" value="47" /><label for="gr47">No Racial HD</label>
-					<input type="checkbox" name="gr" id="gr48" class="cbox_yesno" value="48" /><label for="gr48">Sphinx</label>
-					<input type="checkbox" name="gr" id="gr49" class="cbox_yesno" value="49" /><label for="gr49">Thriae</label>
-					<input type="checkbox" name="gr" id="gr50" class="cbox_yesno" value="50" /><label for="gr50">Troll</label>
-					<input type="checkbox" name="gr" id="gr51" class="cbox_yesno" value="51" /><label for="gr51">Vampie</label>
-					<input type="checkbox" name="gr" id="gr52" class="cbox_yesno" value="52" /><label for="gr52">Veela</label>
-					<input type="checkbox" name="gr" id="gr53" class="cbox_yesno" value="53" /><label for="gr53">Wysp</label>
+					<input type="checkbox" name="gr" id="gr27" class="cbox_yesno" value="27" /><label for="gr27">Axiomite</label>
+					<input type="checkbox" name="gr" id="gr28" class="cbox_yesno" value="28" /><label for="gr28">Companion</label>
+					<input type="checkbox" name="gr" id="gr29" class="cbox_yesno" value="29" /><label for="gr29">Couatl</label>
+					<input type="checkbox" name="gr" id="gr30" class="cbox_yesno" value="30" /><label for="gr30">Dinosaur</label>
+					<input type="checkbox" name="gr" id="gr31" class="cbox_yesno" value="31" /><label for="gr31">Drake</label>
+					<input type="checkbox" name="gr" id="gr32" class="cbox_yesno" value="32" /><label for="gr32">Entothrope</label>
+					<input type="checkbox" name="gr" id="gr33" class="cbox_yesno" value="33" /><label for="gr33">Familiar</label>
+					<input type="checkbox" name="gr" id="gr34" class="cbox_yesno" value="34" /><label for="gr34">Familiar, Improved</label>
+					<input type="checkbox" name="gr" id="gr35" class="cbox_yesno" value="35" /><label for="gr35">Fleshwarp</label>
+					<input type="checkbox" name="gr" id="gr36" class="cbox_yesno" value="36" /><label for="gr36">Formian</label>
+					<input type="checkbox" name="gr" id="gr37" class="cbox_yesno" value="37" /><label for="gr37">Gigas</label>
+					<input type="checkbox" name="gr" id="gr38" class="cbox_yesno" value="38" /><label for="gr38">Golem</label>
+					<input type="checkbox" name="gr" id="gr39" class="cbox_yesno" value="39" /><label for="gr39">Gremlin</label>
+					<input type="checkbox" name="gr" id="gr40" class="cbox_yesno" value="40" /><label for="gr40">Hag</label>
+					<input type="checkbox" name="gr" id="gr41" class="cbox_yesno" value="41" /><label for="gr41">Herd Animal</label>
+					<input type="checkbox" name="gr" id="gr42" class="cbox_yesno" value="42" /><label for="gr42">Leshy</label>
+					<input type="checkbox" name="gr" id="gr43" class="cbox_yesno" value="43" /><label for="gr43">Linnorm</label>
+					<input type="checkbox" name="gr" id="gr44" class="cbox_yesno" value="44" /><label for="gr44">Lycanthrope</label>
+					<input type="checkbox" name="gr" id="gr45" class="cbox_yesno" value="45" /><label for="gr45">Mephit</label>
+					<input type="checkbox" name="gr" id="gr46" class="cbox_yesno" value="46" /><label for="gr46">Megafauna</label>
+					<input type="checkbox" name="gr" id="gr47" class="cbox_yesno" value="47" /><label for="gr47">Naga</label>
+					<input type="checkbox" name="gr" id="gr48" class="cbox_yesno" value="48" /><label for="gr48">No Racial HD</label>
+					<input type="checkbox" name="gr" id="gr49" class="cbox_yesno" value="49" /><label for="gr49">Sphinx</label>
+					<input type="checkbox" name="gr" id="gr50" class="cbox_yesno" value="50" /><label for="gr50">Thriae</label>
+					<input type="checkbox" name="gr" id="gr51" class="cbox_yesno" value="51" /><label for="gr51">Troll</label>
+					<input type="checkbox" name="gr" id="gr52" class="cbox_yesno" value="52" /><label for="gr52">Tsukumogami</label>
+					<input type="checkbox" name="gr" id="gr53" class="cbox_yesno" value="53" /><label for="gr53">Vampire</label>
+					<input type="checkbox" name="gr" id="gr54" class="cbox_yesno" value="54" /><label for="gr54">Veela</label>
+					<input type="checkbox" name="gr" id="gr55" class="cbox_yesno" value="55" /><label for="gr55">Wysp</label>
 					<input type="checkbox" name="gr" id="gr99" class="cbox_yesno" value="99" /><label for="gr99">None/Others</label>
 				</div>
 				<div class="center">
@@ -375,7 +378,7 @@ var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD',
 				<input type="checkbox" name="pl" id="pl1" class="cbox_yesno" value="1" /><label for="pl1" style="margin-top: 2em;">Material Plane</label>
 				<div>
 					<h4>Transitive Planes</h4>
-					<input type="checkbox" name="pl" id="pl2" class="cbox_yesno" value="2" /><label for="pl2">Plane of Shadow</label>
+					<input type="checkbox" name="pl" id="pl2" class="cbox_yesno" value="2" /><label for="pl2">Shadow Plane</label>
 					<input type="checkbox" name="pl" id="pl3" class="cbox_yesno" value="3" /><label for="pl3">Astral Plane</label>
 					<input type="checkbox" name="pl" id="pl4" class="cbox_yesno" value="4" /><label for="pl4">Ethereal Plane</label>
 				</div>
@@ -458,6 +461,14 @@ var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD',
 				<input type="checkbox" name="unique" id="unique" class="cbox_yesonly" value="1" checked="checked" /><label for="unique">Include unique creatures</label><br />
 				<label for="numtable" style="margin-top: 1.5em;">Maximum number of creatures in the table: <input name="maxcreatures" id="numtable" class="not_slist" value="25" style="width: 4em;" /> (0 indicates all the creatures found)</label><br />
 				<label for="numcolumn">Maximum number in the dice column: <input name="maxdice" id="numcolumn" class="not_slist" value="100" style="width: 4em;" /> (0 indicates no dice column)</label><br />
+				<div style="padding-bottom: 1em; margin-top: 1.5em;">Number of creatures in a group:</div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="amount_min">Minimum number: <input type="hidden" name="amount_min" id="amount_min" /><span id="amount_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="amount_max">Maximum number: <input type="hidden" name="amount_max" id="amount_max" /><span id="amount_max2"></span></label>
+				</div>
+				<div id="amount_slide" class="slider"></div>
 				<div style="padding-bottom: 1em; margin-top: 1.5em;">CR increase for combination of creatures:</div>
 				<div style="float: left; margin-left: 5%;">
 					<label for="cr_comb_min">Minimum CR increase: <input type="hidden" name="cr_comb_min" id="cr_comb_min" /><span id="cr_comb_min2"></span></label>
@@ -492,7 +503,7 @@ var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD',
 			The Random Encounter Generator belongs to GammaRayBurst and is distributed freely under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 International License</a>. <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br />
 			If you like the software, consider a <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CQ895MAZ4URBU&currency_code=EUR&source=url">small donation</a> to show your appreciation.
 			<!-- Please do not remove the footer. You can freely modify the rest of the page, and can add your own copyright conditions, as long as they are coherent with the CC ShareAlike condition. You can also add a donation link or something similar if you modify the software or the database significantly (for example if you port it for another game), but the software must remain free. Thanks! GRB -->
-			<br /><br />Version 190518
+			<br /><br />Version 190723
 		</div>
 	</body>
 </html>
