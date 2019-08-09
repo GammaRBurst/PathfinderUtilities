@@ -59,11 +59,15 @@ Clacking Skull Swarm, Gliding Turtle, Greater Verdurous Ooze, Kamaitachi, Magnet
 
 ## Missing Manuals
 * Campaign Setting:
-  * Druma, profit & prophecy (to be published in August)
+  * Druma, profit & prophecy
 * Adventure Path:
-  * Tyrant's grasp #6 (to be published in August)
+  * Tyrant's grasp #6
 
 ## Next Update
-I'm stuck with templates. If I'm ever going to release anything about templates, it's highly probable that it will only contain a small selection of them, the easiest to apply and most common to use. We'll see what comes out of this.
+I'm working on implementing templates. As of now 46 templates have been implemented because they require minor modifications to the creatures. They are divided into 3 major categories: physical modifications (e.g. Advanced, Giant, ...), planar adaptations (e.g. Aerial, Entropic, ...) and class templates (e.g. Ranger, Wizard, ...), although I plan to add more of them (both categories and templates), if it's possible. The system took me a lot of time and hundreds of lines of code, which I haven't tested yet. I foresee a lot of bug testing in the future...
 
-Next month I'll release a small database update to include the creatures of the last two books to be published.
+I'm also studying the possibility to implement a generic system to create NPCs with class levels. At the moment I'm planning to use only the creatures with no racial hit dice, but maybe in the future I could extend the system to other monsters as well. The idea is to give the most basic informations in a side page, things like race, class, level, CR, ability scores and money to buy equipment. I don't plan to add archetypes, to generate the whole sheet, and all these details that require too much information to be practical.
+
+On a related note, this would also let me use some templates like Lich or Vampire to create more custom monsters. I'm not sure yet if I want to apply them only to NPCs or to any monster, I'll have to study the problem a bit more.
+
+There will also be a lot of bug fixes, and the last database update to include the creatures of the last two missing books.
