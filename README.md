@@ -71,3 +71,5 @@ I'm also studying the possibility to implement a generic system to create NPCs w
 On a related note, this would also let me use some templates like Lich or Vampire to create more custom monsters. I'm not sure yet if I want to apply them only to NPCs or to any monster, I'll have to study the problem a bit more.
 
 There will also be a lot of bug fixes, and the last database update to include the creatures of the last two missing books.
+
+Finally, I'm studying the possibility of adding a thumbnail column in the table. Many monsters have a nice picture and I find valuable being able to see them. I'm not sure though if this is completely legal, and even if it is, it will take me __a lot__ of time to rip all the images from the manuals.
