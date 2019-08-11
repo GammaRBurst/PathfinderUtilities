@@ -18,6 +18,7 @@ Just download the files and double-click on *random_encounters.html*! No install
 * __Climate__: The temperature the creatures are used to. Some combinations of environment and climate may result in strange contradictions, such as warm glaciers. __OR__ and __XOR__ selection modes are available.
 * __Planes__: The plane of origin. __OR__ and __XOR__ selection modes are available.
 * __Sources__: The books the creatures come from. Those under _Other books_ are actually groups of manuals, because they usually have too little material to justify an entire category. __OR__ selection mode is applied.
+* __Templates__: What kind of templates are applied randomly to the creature. A high overall probability may slow considerably the generation of the table. Physical modification templates can be applied up to 3 times per creatures, all other categories only once per creature. Different categories don't limit each other though.
 * __List of creatures__: Creates a list of all the creatures that match the criteria, without creating groups. Disables _mixed groups_, _Number of creatures_, _CR increase_ as well as table settings.
 * __Enable links__: Adds links to monster sheets on [Archives of Nethys](https://www.aonprd.com/).
 * __Variant creatures__: Some creatures don't have their own personal sheet, but are defined as variations of other creatures and may require some more work to use them. Disable this option if you don't like the idea.
@@ -34,19 +35,7 @@ All checkboxes, except those in the last panel, have a triple value. An unchecke
 Similarly, the __Variant creatures__, __Mixed groups__ and __Unique creatures__ have a triple value, but with different meanings. An empty checkbox means the option is disabled and all creatures that match the criteria are excluded. A green tick means the option is enabled and no creature is excluded. A blue ring means only the creatures that match the search are included.
 
 ## Other Features
-* Contains more than 3500 unique creatures and mixed groups.
-* It now avoids AJAX calls. It turned out I was unconsciously exloiting a bug that was corrected recently...
-
-## Things you Won't Find Here
-* __Creatures with class levels__ rarely entered the creature database. Most of them are playable races (e.g _drow_, _strix_) or creatures with a template (e.g. _lich_, _vampire_).
-* __Creatures with templates__ are included only if they looked significant and/or iconic enough to me. Most undead are, as well as lycanthropes and many others. Other creatures looked too specific, e.g. the _half-celestial unicorn_.
-* __Variants with too broad a definition__ are never included. The variants that found their way into the database should be fairly easy to construct. Monsters like e.g. the _balor lord_ that don't have a fixed CR, usually have class levels and the like are practically impossible to define in a way that will work with the software.
-* __An automatic system__ to apply templates and/or class levels to existing creatures or playable races was part of the project at the start, but I quickly realized that:
-  * Adding class levels to monsters requires the knowledge of the monster role, an information that can be found only in the Bestiaries, which leaves about 1/4 of the material without this information.
-  * There are a ton o classes, archetypes and prestige classes. Yes, it's in no way comparable to the number of creatures that can be found in the database, but then there are all the possible combinations of these classes, archetypes and prestige classes, each with its own set of rules and requirements. And the combinations have to be somehow significant.
-  * Templates require a lot of information on the base creature. Informations that are not always easy to insert into the database, such as immunity to fire or the presence of an exoskeleton.
-
-  Sadly these are jobs for a human mind, not a machine.
+* Contains more than 3500 unique creatures and mixed groups and almost 50 templates.
 
 ## Bugs and other strange things
 While no bug is known at the moment, I'm pretty sure there are some mistakes here and there.
@@ -55,6 +44,7 @@ While no bug is known at the moment, I'm pretty sure there are some mistakes her
 Clacking Skull Swarm, Gliding Turtle, Greater Verdurous Ooze, Kamaitachi, Magnetite Golem, Oaur-Ooung, Proto-Shoggoth Syncytium, Skirk Nettle, Sodden Draugr Troop, Stymphalidies Swarm, Treerazer). At the moment the misspelled names are accounted for, but if and when they are corrected, the links to their sheets may not work anymore.
 * __Wrong plural__: Plurals in English are usually easy to construct, but there are exceptions. Sadly English is not my mother language, so some irregular or special plural may have gone unnoticed. If you find a wrong plural, write an issue with the monster name and the correct plural.
 * __Wrong/missing monster informations__: Most of the informations are translated as numbers to reduce the database's size. It's easy to type some digits instead of some others, and I already found some of these mistakes myself. These are by far the hardest mistakes to find, but if you happen to stuble upon one, write an issue with the monster name and what is wrong or missing.
+* __Strange combination of templates__: Templates have to obey some simple rules to be applied to a creature, but this not always makes sense in the end. The conditions are already much more restrictive than originally though to avoid a lot of nonsense, but it can sometimes happen that a template shouldn't have been applied to a specific creature or a combination of templates produces absurd results. This is not really a bug in general, but if you think a particular combination shouldn't exist, report it and, if possible, I'll try to add some more conditions to avoid this result.
 * __Everything else__: Be as specific as possible, it's much easier to find and correct the problem this way.
 
 ## Missing Manuals
@@ -64,12 +54,16 @@ Clacking Skull Swarm, Gliding Turtle, Greater Verdurous Ooze, Kamaitachi, Magnet
   * Tyrant's grasp #6
 
 ## Next Update
-I'm working on implementing templates. As of now 46 templates have been implemented because they require minor modifications to the creatures. They are divided into 3 major categories: physical modifications (e.g. Advanced, Giant, ...), planar adaptations (e.g. Aerial, Entropic, ...) and class templates (e.g. Ranger, Wizard, ...), although I plan to add more of them (both categories and templates), if it's possible. The system took me a lot of time and hundreds of lines of code, which I haven't tested yet. I foresee a lot of bug testing in the future...
+I'm still waiting for AoN to publish the new monsters, so they will have to wait for the next update.
 
-I'm also studying the possibility to implement a generic system to create NPCs with class levels. At the moment I'm planning to use only the creatures with no racial hit dice, but maybe in the future I could extend the system to other monsters as well. The idea is to give the most basic informations in a side page, things like race, class, level, CR, ability scores and money to buy equipment. I don't plan to add archetypes, to generate the whole sheet, and all these details that require too much information to be practical.
+Templates are implemented and working, finally, but I feel like this topic is far from closed. There are quite a few more templates that I discarded for the first test because they looked harder to implement, but now it may be a good moment to look at them more closely. Not all of them will make it to the end, but if I manage to squeeze in a few more, all the better. In particular I'll add a new category in the next update, mythic templates.
 
-On a related note, this would also let me use some templates like Lich or Vampire to create more custom monsters. I'm not sure yet if I want to apply them only to NPCs or to any monster, I'll have to study the problem a bit more.
+I'm also studying the possibility to implement a generic system to create NPCs with class levels. I'm planning to use only the creatures with no racial hit dice, since everything else requires knowing the monster role, and this would mean updating more than 5000 monsters. The idea is to give the most basic informations in a side page, things like race, class, level, CR, ability scores and money to buy equipment. I don't plan to add archetypes, multiple classes and prestige classes, to generate the whole sheet, an automatic system to generate equipment and all these details that require too much information and thousands of lines of code.
 
-There will also be a lot of bug fixes, and the last database update to include the creatures of the last two missing books.
+On a related note, this would also let me use some templates like Lich or Vampire to create more custom monsters. I'm not sure yet if I want to apply them only to NPCs or to any monster, I'll have to study the problem a bit more. The first alternative seems the easiest though, so it will be implemented first.
+
+There are also a few monsters I'd like to list somewhere, those with a definition too vague or broad, such as the _balor lord_. They deserve to be listed somewhere, but this whill require me to read every monster entry in every manual to seek for any kind of variations I missed previously. It will take me some time before I do this.
 
 Finally, I'm studying the possibility of adding a thumbnail column in the table. Many monsters have a nice picture and I find valuable being able to see them. I'm not sure though if this is completely legal, and even if it is, it will take me __a lot__ of time to rip all the images from the manuals.
+
+I noticed I planned to implement (and managed to implement in one case) every point of my __Things You Won't Find Here__ list, all the things I discarded at the beginning of this project because the seemed too difficult to realize. Maybe I was wrong, we'll see.
