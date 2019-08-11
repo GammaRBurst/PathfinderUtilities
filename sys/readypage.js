@@ -24,12 +24,18 @@ function setSize(size) {
 	$('#size_max2').html(sizes[size[1]]);
 }
 
-function setSlider(name, values) {
+function setDoubleSlider(name, values) {
 	$('#' + name + '_slide').slider({'values': values});
 	$('#' + name + '_min').val(values[0]);
 	$('#' + name + '_min2').html(values[0]);
 	$('#' + name + '_max').val(values[1]);
 	$('#' + name + '_max2').html(values[1]);
+}
+
+function setSingleSlider(name, value) {
+	$('#' + name + '_slide').slider({'value': value});
+	$('#t_' + name).val(value);
+	$('#t_' + name + '2').html(value);
 }
 
 function setScore(score, values) {
@@ -205,10 +211,10 @@ function readyPage(values, sizes) {
 		max: 10,
 		values: [0, 10],
 		slide: function(event, ui) {
-			setSlider('mr', ui.values);
+			setDoubleSlider('mr', ui.values);
 		}
 	});
-	setSlider('mr', $('#mr_slide').slider('values'));
+	setDoubleSlider('mr', $('#mr_slide').slider('values'));
 
 	//Size slider
 	$('#size_slide').slider({
@@ -229,77 +235,119 @@ function readyPage(values, sizes) {
 		max: 40,
 		values: [1, 40],
 		slide: function(event, ui) {
-			setSlider('hd', ui.values);
+			setDoubleSlider('hd', ui.values);
 		}
 	});
-	setSlider('hd', $('#hd_slide').slider('values'));
+	setDoubleSlider('hd', $('#hd_slide').slider('values'));
 
 	//Ability scores sliders
 	$('#str_slide').slider({
 		range: true,
 		min: 0,
-		max: 60,
-		values: [0, 60],
+		max: maximum_ability,
+		values: [0, maximum_ability],
 		slide: function(event, ui) {
 			setScore('str', ui.values);
 		}
 	});
 	setScore('str', $('#str_slide').slider('values'));
-
 	$('#dex_slide').slider({
 		range: true,
 		min: 0,
-		max: 60,
-		values: [0, 60],
+		max: maximum_ability,
+		values: [0, maximum_ability],
 		slide: function(event, ui) {
 			setScore('dex', ui.values);
 		}
 	});
 	setScore('dex', $('#dex_slide').slider('values'));
-
 	$('#con_slide').slider({
 		range: true,
 		min: 0,
-		max: 60,
-		values: [0, 60],
+		max: maximum_ability,
+		values: [0, maximum_ability],
 		slide: function(event, ui) {
 			setScore('con', ui.values);
 		}
 	});
 	setScore('con', $('#con_slide').slider('values'));
-
 	$('#int_slide').slider({
 		range: true,
 		min: 0,
-		max: 60,
-		values: [0, 60],
+		max: maximum_ability,
+		values: [0, maximum_ability],
 		slide: function(event, ui) {
 			setScore('int', ui.values);
 		}
 	});
 	setScore('int', $('#int_slide').slider('values'));
-
 	$('#wis_slide').slider({
 		range: true,
 		min: 0,
-		max: 60,
-		values: [0, 60],
+		max: maximum_ability,
+		values: [0, maximum_ability],
 		slide: function(event, ui) {
 			setScore('wis', ui.values);
 		}
 	});
 	setScore('wis', $('#wis_slide').slider('values'));
-
 	$('#cha_slide').slider({
 		range: true,
 		min: 0,
-		max: 60,
-		values: [0, 60],
+		max: maximum_ability,
+		values: [0, maximum_ability],
 		slide: function(event, ui) {
 			setScore('cha', ui.values);
 		}
 	});
 	setScore('cha', $('#cha_slide').slider('values'));
+
+	//Templates
+	$('#over_slide').slider({
+		min: 0,
+		max: 100,
+		value: 15,
+		slide: function(event, ui) {
+			setSingleSlider('over', ui.value);
+		}
+	});
+	setSingleSlider('over', $('#over_slide').slider('value'));
+	$('#phys_slide').slider({
+		min: 0,
+		max: 50,
+		value: 20,
+		slide: function(event, ui) {
+			setSingleSlider('phys', ui.value);
+		}
+	});
+	setSingleSlider('phys', $('#phys_slide').slider('value'));
+	$('#plan_slide').slider({
+		min: 0,
+		max: 50,
+		value: 20,
+		slide: function(event, ui) {
+			setSingleSlider('plan', ui.value);
+		}
+	});
+	setSingleSlider('plan', $('#plan_slide').slider('value'));
+	$('#class_slide').slider({
+		min: 0,
+		max: 50,
+		value: 20,
+		slide: function(event, ui) {
+			setSingleSlider('class', ui.value);
+		}
+	});
+	setSingleSlider('class', $('#class_slide').slider('value'));
+	$('#var_slide').slider({
+		min: 0,
+		max: 10,
+		value: 1,
+		slide: function(event, ui) {
+			setSingleSlider('var', ui.value);
+		}
+	});
+	setSingleSlider('var', $('#var_slide').slider('value'));
 
 	//Simple list
 	$('#slist').click(function() {
@@ -334,8 +382,8 @@ function readyPage(values, sizes) {
 		max: 10,
 		values: [0, 4],
 		slide: function(event, ui) {
-			setSlider('cr_comb', ui.values);
+			setDoubleSlider('cr_comb', ui.values);
 		}
 	});
-	setSlider('cr_comb', $('#cr_comb_slide').slider('values'));
+	setDoubleSlider('cr_comb', $('#cr_comb_slide').slider('values'));
 }

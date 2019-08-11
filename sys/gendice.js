@@ -51,3 +51,67 @@ function genDice(interval, cr, incr) {
 	}
 	return result;
 }
+
+function genGroups(interval, cr, singular, plural, cr_comb) {
+	var results = [];
+	if(interval.indexOf('|') >= 0) { //Extracting group name
+		var description = interval.split('|')[1];
+		interval = interval.split('|')[0];
+		if(['a', 'e', 'i', 'o'].indexOf(description.slice(0, 1)) >= 0) {
+			description = 'an ' + description + ' of ';
+		}
+		else {
+			description = 'a ' + description + ' of ';
+		}
+	}
+	else {
+		var description = '';
+	}
+	if(cr.length == 1) {
+		if(cr[0] == -4 || cr[0] == -2 || cr[0] == 0) {
+			var index_cr = 0;
+		}
+		else if(cr[0] == -3) {
+			var index_cr = 1;
+		}
+		else if(cr[0] == -1) {
+			var index_cr = 2;
+		}
+		else if(cr[0] % 2 == 1) {
+			var index_cr = 3;
+		}
+		else {
+			var index_cr = 4;
+		}
+	}
+	else {
+		if(cr[0] + cr[1] == -4 || cr[0] + cr[1] == -2 || cr[0] + cr[1] == 0) {
+			var index_cr = 0;
+		}
+		else if(cr[0] + cr[1] == -3) {
+			var index_cr = 1;
+		}
+		else if(cr[0] + cr[1] == -1) {
+			var index_cr = 2;
+		}
+		else if((cr[0] + cr[1]) % 2 == 1) {
+			var index_cr = 3;
+		}
+		else {
+			var index_cr = 4;
+		}
+	}
+	var dice = genDice(interval, index_cr, cr_comb);
+	for(var i = cr_comb[0]; i <= cr_comb[1]; i++) {
+		if(dice[i].length > 0) { //Choosing one of the possible dice
+			index_dice = randInt(0, dice[i].length - 1);
+			if(dice[i][index_dice] == '1') {
+				results.push([description + dice[i][index_dice] + ' ' + singular, [cr[0] + i]]);
+			}
+			else {
+				results.push([description + dice[i][index_dice] + ' ' + plural, [cr[0] + i]]);
+			}
+		}
+	}
+	return results;
+}

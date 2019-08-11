@@ -1,14 +1,48 @@
 $(function() {
 	//Initializing variables
 	$('#tstamp').val(Date.now());
-	var fields_number = 22;
+	var fields_number_creatures = 22;
+	var fields_number_templates = 4;
 
 	//Page construction
 	readyPage(values, sizes);
+	
+	//Reading templates
+	var templ = templates.split('\n');
+	templates = [[], [], []];
+	for(var i = templ.length - 1; i >= 0; i--) {
+		if(templ[i].trim() == '' || templ[i].trim().indexOf('#') == 0) { //Removing comments and empty lines
+			templ.splice(i, 1);
+			continue;
+		}
+		else {
+			templ[i] = templ[i].split(';');
+			if(templ[i].length != fields_number_templates) {
+				if(debug) { //DEBUG: wrong length
+					alert('Wrong number of fields (' + templ[i].length + '): ' + templ[i]);
+				}
+				templ.splice(i, 1);
+				continue
+			}
+			templ[i][0] = templ[i][0].trim();
+			templ[i][1] = templ[i][1].split('&');
+			for(var j = 0; j < templ[i][1].length; j++) {
+				templ[i][1][j] = templ[i][1][j].trim();
+			}
+			var index = Number(templ[i][2]) - 1;
+			templ[i][3] = templ[i][3].split('&');
+			for(var j = 0; j < templ[i][3].length; j++) {
+				templ[i][3][j] = templ[i][3][j].trim();
+			}
+			templ[i].splice(2, 1);
+			templates[index].push(templ[i]);
+		}
+	}
 
 	//Table generation
 	var url = window.location.href;
 	if(url.indexOf('?') >= 0) {
+		//Definition of the many, many variables
 		var params = url.split('?')[1].replace('#', '').split('&');
 		var cr = []; cr.length = 2;
 		var mr = []; mr.length = 2;
@@ -33,6 +67,9 @@ $(function() {
 		var nplanes = [];
 		var source = [];
 		var nsource = [];
+		var templ_prob = 0;
+		var templ = []; templ.length = 3;
+		var templ_amount = 0;
 		var logic = []; logic.length = 5;
 		var simple_list = false;
 		var links = false;
@@ -195,6 +232,22 @@ $(function() {
 					source.push(Number(val));
 				}
 			}
+			//Templates
+			else if(key == 't_over') {
+				templ_prob = Number(val);
+			}
+			else if(key == 't_phys') {
+				templ[0] = Number(val);
+			}
+			else if(key == 't_plan') {
+				templ[1] = Number(val);
+			}
+			else if(key == 't_class') {
+				templ[2] = Number(val);
+			}
+			else if(key == 't_var') {
+				templ_amount = Number(val);
+			}
 			//Logic
 			else if(key == 'st_logic') {
 				logic[0] = Number(val);
@@ -269,7 +322,7 @@ $(function() {
 		//CR
 		setCR(cr);
 		//MR
-		setSlider('mr', mr);
+		setDoubleSlider('mr', mr);
 		//Alignment
 		$('input[name=aluncheck]').click();
 		if(alignment.length < $('#alignment').find('input[type="checkbox"]').length) {
@@ -341,7 +394,7 @@ $(function() {
 			}
 		}
 		//HD
-		setSlider('hd', hd);
+		setDoubleSlider('hd', hd);
 		//Speed
 		$('input[name=spuncheck]').click();
 		if((logic[1] == 1 && speed.length < $('#speeds').find('input[type="checkbox"]').length) || (logic[1] != 1 && speed.length > 0)) {
@@ -434,6 +487,13 @@ $(function() {
 				$('input#s' + nsource[i]).val($('input#s' + nsource[i]).val() * -1);
 			}
 		}
+		//Templates
+		setSingleSlider('over', templ_prob);
+		setSingleSlider('phys', templ[0]);
+		setSingleSlider('plan', templ[1]);
+		setSingleSlider('class', templ[2]);
+		setSingleSlider('var', templ_amount);
+		templ_prob /= 100; templ[0] /= 100; templ[1] /= 100; templ[2] /= 100;
 		//Logic
 		$('input[name=st_logic][value=' + logic[0] + ']').prop('checked', true);
 		$('input[name=sp_logic][value=' + logic[1] + ']').prop('checked', true);
@@ -502,7 +562,7 @@ $(function() {
 		//Amount of creatures
 		setAmount(amount);
 		//CR combination
-		setSlider('cr_comb', cr_comb);
+		setDoubleSlider('cr_comb', cr_comb);
 		//Sorting
 		if(sort & 1) {
 			$('input#sort1').prop('checked', true);
@@ -520,7 +580,7 @@ $(function() {
 			}
 			else {
 				monsters[i] = monsters[i].split(';');
-				if(monsters[i].length != fields_number) {
+				if(monsters[i].length != fields_number_creatures) {
 					if(debug) { //DEBUG: wrong length
 						alert('Wrong number of fields (' + monsters[i].length + '): ' + monsters[i]);
 					}
@@ -699,6 +759,205 @@ $(function() {
 			}
 		}
 		//Filtering 1
+		for(var i = monsters.length - 1; i >= 0; i--) {
+			//Source
+			if(nsource.length > 0) {
+				var nsource_found = false;
+				for(var j = 0; j < monsters[i][21].length; j++) {
+					if(nsource.indexOf(monsters[i][21][j]) >= 0) {
+						nsource_found = true;
+						break;
+					}
+				}
+				if(nsource_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			if(source.length > 0) {
+				var source_found = false;
+				for(var j = 0; j < monsters[i][21].length; j++) {
+					if(source.indexOf(monsters[i][21][j]) >= 0) {
+						source_found = true;
+						break;
+					}
+				}
+				if(!source_found) {
+					monsters.splice(i, 1);
+					continue;
+				}
+			}
+			//Variants
+			if((add_variants == 0 && monsters[i][19] != '') || (add_variants == -1 && monsters[i][19] == '')) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Mixed groups
+			if(((add_mixed == 0 || simple_list) && monsters[i][1].length != 1) || (add_mixed == -1 && monsters[i][1].length == 1)) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Unique monsters
+			if((add_unique == 0 && monsters[i][20].length == 1 && monsters[i][20][0].split('|')[0].indexOf('u') >= 0) || (add_unique == -1 && (monsters[i][20].length != 1 || monsters[i][20][0].split('|')[0].indexOf('u') == -1))) {
+				monsters.splice(i, 1);
+				continue;
+			}
+			//Amount of creatures
+			if(amount[0] > 1 || amount[1] < maximum_amount) {
+				if(monsters[i][20].length == 1 && monsters[i][20][0].split('|')[0].indexOf('u') >= 0 && monsters[i][20][0].indexOf('*') != 0) {
+					var single_number = Number(monsters[i][20][0].split('u')[0]);
+					if(single_number < amount[0] || single_number > amount[1]) {
+						monsters.splice(i, 1);
+						continue;
+					}
+				}
+				else if(monsters[i][20].length == 1 & monsters[i][20][0].indexOf('*') == 0) {
+					if(monsters[i][20][0].indexOf('-') >= 0) {
+						var min_number = Number(monsters[i][20][0].split('*', 2)[1].split('-', 2)[0]);
+						var max_number = Number(monsters[i][20][0].split('-', 2)[1].replace('u', ''));
+						if(min_number < amount[0] || (max_number > amount[1] && amount[1] < maximum_amount)) {
+							monsters.splice(i, 1);
+							continue;
+						}
+					}
+					else {
+						var single_number = Number(monsters[i][20][0].split('*', 2)[1].replace('u', ''));
+						if(single_number < amount[0] || single_number > amount[1]) {
+							monsters.splice(i, 1);
+							continue;
+						}
+					}
+				}
+				else {
+					for(var j = monsters[i][20].length - 1; j >= 0; j--) {
+						if(monsters[i][20][j].indexOf('-') >= 0) {
+							var min_number = Number(monsters[i][20][j].split('-', 2)[0]);
+							var max_number = Number(monsters[i][20][j].split('|')[0].split('-', 2)[1]);
+							if(amount[1] < min_number || (amount[0] > max_number && amount[1] < maximum_amount)) {
+								monsters[i][20].splice(j, 1);
+							}
+							else if(min_number < amount[0] && (max_number <= amount[1] || amount[1] == maximum_amount)) {
+								monsters[i][20][j] = amount[0] + '-' + monsters[i][20][j].split('-', 2)[1];
+							}
+							else if(min_number >= amount[0] && max_number > amount[1] && amount[1] < maximum_amount) {
+								if(monsters[i][20][j].indexOf('|') >= 0) {
+									monsters[i][20][j] = monsters[i][20][j].split('-', 2)[0] + '-' + amount[1] + '|' + monsters[i][20][j].split('|')[1];
+								}
+								else {
+									monsters[i][20][j] = monsters[i][20][j].split('-', 2)[0] + '-' + amount[1];
+								}
+							}
+							else if(min_number < amount[0] && max_number > amount[1] && amount[1] < maximum_amount) {
+								if(monsters[i][20][j].indexOf('|') >= 0) {
+									monsters[i][20][j] = amount[0] + '-' + amount[1] + '|' + monsters[i][20][j].split('|')[1];
+								}
+								else {
+									monsters[i][20][j] = amount[0] + '-' + amount[1];
+								}
+							}
+						}
+						else {
+							var single_number = Number(monsters[i][20][j].split('|')[0]);
+							if(single_number < amount[0] || single_number > amount[1]) {
+								monsters[i][20].splice(j, 1);
+							}
+						}
+					}
+					if(monsters[i][20].length == 0) {
+						monsters.splice(i, 1);
+						continue;
+					}
+				}
+			}
+		}
+		//Applying templates
+		if(!simple_list) {
+			for(var i = monsters.length - 1; i >= 0; i--) { //Check all creatures
+				if(monsters[i][19] == '' && monsters[i][20][0].indexOf('u') == -1 && monsters[i][20][0].indexOf('*') == -1) { //No variants, unique creatures and mixed groups
+					var apply_templ = Math.random();
+					if(apply_templ < templ_prob) {
+						var amount_vars = randInt(0, templ_amount);
+						var templ_order = shuffle([0, 1, 2]);
+						for(var j = 0; j < amount_vars; j++) { //Create variants
+							var temp_monster = monsters[i].slice(0);
+							for(var k = 0; k < templ_order.length; k++) { //Cycle through template categories
+								if(templ[templ_order[k]] > 0) {
+									var random_choice = Math.random();
+									if(templ_order[k] == 0) { //More than one template of this category
+										if(random_choice < templ[templ_order[k]]) { //One template
+											var valid_templ = [];
+											for(var m = 0; m < templates[templ_order[k]].length; m++) {
+												if(parseConditions(templates[templ_order[k]][m][1], monsters[i])) {
+													valid_templ.push(templates[templ_order[k]][m]);
+												}
+											}
+											if(valid_templ.length > 0) {
+												random_index = randInt(0, valid_templ.length - 1);
+												temp_monster = applyTemplate(valid_templ[random_index][0], valid_templ[random_index][2], temp_monster.slice(0));
+											}
+										}
+										else if(random_choice < (templ[templ_order[k]] + Math.pow(templ[templ_order[k]], 2))) { //Two templates
+											var used_templ = [];
+											for(var l = 0; l < 2; l++) {
+												var valid_templ = [];
+												for(var m = 0; m < templates[templ_order[k]].length; m++) {
+													if(parseConditions(templates[templ_order[k]][m][1], temp_monster)) {
+														valid_templ.push(templates[templ_order[k]][m]);
+													}
+												}
+												if(valid_templ.length > 0) {
+													random_index = randInt(0, valid_templ.length - 1);
+													if(used_templ.indexOf(valid_templ[random_index]) == -1) { //Don't apply the same template twice - No retry, could generate infinite cycles
+														used_templ.push(valid_templ[random_index]);
+														temp_monster = applyTemplate(valid_templ[random_index][0], valid_templ[random_index][2], temp_monster.slice(0));
+													}
+												}
+											}
+										}
+										else if(random_choice < (templ[templ_order[k]] + Math.pow(templ[templ_order[k]], 2) + Math.pow(templ[templ_order[k]], 3))) { //Three templates; more would be too much
+											var used_templ = [];
+											for(var l = 0; l < 3; l++) {
+												var valid_templ = [];
+												for(var m = 0; m < templates[templ_order[k]].length; m++) {
+													if(parseConditions(templates[templ_order[k]][m][1], temp_monster)) {
+														valid_templ.push(templates[templ_order[k]][m]);
+													}
+												}
+												if(valid_templ.length > 0) {
+													random_index = randInt(0, valid_templ.length - 1);
+													if(used_templ.indexOf(valid_templ[random_index]) == -1) { //Don't apply the same template twice - No retry, could generate infinite cycles
+														used_templ.push(valid_templ[random_index]);
+														temp_monster = applyTemplate(valid_templ[random_index][0], valid_templ[random_index][2], temp_monster.slice(0));
+													}
+												}
+											}
+										}
+									}
+									else { //Only one template for this category
+										if(random_choice < templ[templ_order[k]]) {
+											var valid_templ = [];
+											for(var m = 0; m < templates[templ_order[k]].length; m++) {
+												if(parseConditions(templates[templ_order[k]][m][1], monsters[i])) {
+													valid_templ.push(templates[templ_order[k]][m]);
+												}
+											}
+											if(valid_templ.length > 0) {
+												random_index = randInt(0, valid_templ.length - 1);
+												temp_monster = applyTemplate(valid_templ[random_index][0], valid_templ[random_index][2], temp_monster.slice(0));
+											}
+										}
+									}
+								}
+							}
+							if(monsters.toString().indexOf(temp_monster.toString()) == -1) {
+								monsters.push(temp_monster);
+							}
+						}
+					}
+				}
+			}
+		}
+		//Filtering 2
 		for(var i = monsters.length - 1; i >= 0; i--) {
 			//CR
 			if(simple_list) {
@@ -1127,115 +1386,6 @@ $(function() {
 					continue;
 				}
 			}
-			//Source
-			if(nsource.length > 0) {
-				var nsource_found = false;
-				for(var j = 0; j < monsters[i][21].length; j++) {
-					if(nsource.indexOf(monsters[i][21][j]) >= 0) {
-						nsource_found = true;
-						break;
-					}
-				}
-				if(nsource_found) {
-					monsters.splice(i, 1);
-					continue;
-				}
-			}
-			if(source.length > 0) {
-				var source_found = false;
-				for(var j = 0; j < monsters[i][21].length; j++) {
-					if(source.indexOf(monsters[i][21][j]) >= 0) {
-						source_found = true;
-						break;
-					}
-				}
-				if(!source_found) {
-					monsters.splice(i, 1);
-					continue;
-				}
-			}
-			//Variants
-			if((add_variants == 0 && monsters[i][19] != '') || (add_variants == -1 && monsters[i][19] == '')) {
-				monsters.splice(i, 1);
-				continue;
-			}
-			//Mixed groups
-			if(((add_mixed == 0 || simple_list) && monsters[i][1].length != 1) || (add_mixed == -1 && monsters[i][1].length == 1)) {
-				monsters.splice(i, 1);
-				continue;
-			}
-			//Unique monsters
-			if((add_unique == 0 && monsters[i][20].length == 1 && monsters[i][20][0].split('|')[0].indexOf('u') >= 0) || (add_unique == -1 && (monsters[i][20].length != 1 || monsters[i][20][0].split('|')[0].indexOf('u') == -1))) {
-				monsters.splice(i, 1);
-				continue;
-			}
-			//Amount of creatures
-			if(amount[0] > 1 || amount[1] < maximum_amount) {
-				if(monsters[i][20].length == 1 && monsters[i][20][0].split('|')[0].indexOf('u') >= 0 && monsters[i][20][0].indexOf('*') != 0) {
-					var single_number = Number(monsters[i][20][0].split('u')[0]);
-					if(single_number < amount[0] || single_number > amount[1]) {
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-				else if(monsters[i][20].length == 1 & monsters[i][20][0].indexOf('*') == 0) {
-					if(monsters[i][20][0].indexOf('-') >= 0) {
-						var min_number = Number(monsters[i][20][0].split('*', 2)[1].split('-', 2)[0]);
-						var max_number = Number(monsters[i][20][0].split('-', 2)[1].replace('u', ''));
-						if(min_number < amount[0] || (max_number > amount[1] && amount[1] < maximum_amount)) {
-							monsters.splice(i, 1);
-							continue;
-						}
-					}
-					else {
-						var single_number = Number(monsters[i][20][0].split('*', 2)[1].replace('u', ''));
-						if(single_number < amount[0] || single_number > amount[1]) {
-							monsters.splice(i, 1);
-							continue;
-						}
-					}
-				}
-				else {
-					for(var j = monsters[i][20].length - 1; j >= 0; j--) {
-						if(monsters[i][20][j].indexOf('-') >= 0) {
-							var min_number = Number(monsters[i][20][j].split('-', 2)[0]);
-							var max_number = Number(monsters[i][20][j].split('|')[0].split('-', 2)[1]);
-							if(amount[1] < min_number || (amount[0] > max_number && amount[1] < maximum_amount)) {
-								monsters[i][20].splice(j, 1);
-							}
-							else if(min_number < amount[0] && (max_number <= amount[1] || amount[1] == maximum_amount)) {
-								monsters[i][20][j] = amount[0] + '-' + monsters[i][20][j].split('-', 2)[1];
-							}
-							else if(min_number >= amount[0] && max_number > amount[1] && amount[1] < maximum_amount) {
-								if(monsters[i][20][j].indexOf('|') >= 0) {
-									monsters[i][20][j] = monsters[i][20][j].split('-', 2)[0] + '-' + amount[1] + '|' + monsters[i][20][j].split('|')[1];
-								}
-								else {
-									monsters[i][20][j] = monsters[i][20][j].split('-', 2)[0] + '-' + amount[1];
-								}
-							}
-							else if(min_number < amount[0] && max_number > amount[1] && amount[1] < maximum_amount) {
-								if(monsters[i][20][j].indexOf('|') >= 0) {
-									monsters[i][20][j] = amount[0] + '-' + amount[1] + '|' + monsters[i][20][j].split('|')[1];
-								}
-								else {
-									monsters[i][20][j] = amount[0] + '-' + amount[1];
-								}
-							}
-						}
-						else {
-							var single_number = Number(monsters[i][20][j].split('|')[0]);
-							if(single_number < amount[0] || single_number > amount[1]) {
-								monsters[i][20].splice(j, 1);
-							}
-						}
-					}
-					if(monsters[i][20].length == 0) {
-						monsters.splice(i, 1);
-						continue;
-					}
-				}
-			}
 			//Intervals
 			if(!simple_list && monsters[i][20].length == 1 && monsters[i][20][0] == '0') {
 				monsters.splice(i, 1);
@@ -1245,21 +1395,7 @@ $(function() {
 		//Creating groups and links
 		monsters2 = [];
 		for(var i = 0; i < monsters.length; i++) {
-			monsters[i].push(cleanLink(monsters[i][0]).toLowerCase());
-			if(links) { //Link generation
-				if(monsters[i][0].indexOf('[') >= 0) { //Groups
-					var temp_name = monsters[i][0].split('[');
-					for(var j = 0; j < temp_name.length; j++) {
-						if(temp_name[j].indexOf(']') >= 0) {
-							temp_name[j] = genLink(temp_name[j], monsters[i][6]);
-						}
-					}
-					monsters[i][0] = temp_name.join('');
-					var linked = true;
-				}
-				else {
-					var linked = false;
-				}
+			if(links) {
 				if(monsters[i][19] != '') { //Variant creatures
 					if(monsters[i][19].indexOf('[') >= 0) {
 						var temp_name = monsters[i][19].split('[');
@@ -1273,143 +1409,77 @@ $(function() {
 					else {
 						monsters[i][19] = genLink(monsters[i][19], monsters[i][6]);
 					}
-					linked = true;
+				}
+				if(simple_list) {
+					monsters[i][0] = parseLink(monsters[i][0], monsters[i][6], monsters[i][19])[0];
+					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+				}
+				else {
+					if(monsters[i][20].length == 1 && monsters[i][20][0].indexOf('*') >= 0) { //Mixed groups, don't require plural nor dice
+						var temp_name = monsters[i][0].split('[');
+						for(var j = 0; j < temp_name.length; j++) {
+							if(temp_name[j].indexOf(']') >= 0) {
+								temp_name[j] = genLink(temp_name[j], monsters[i][6]);
+							}
+						}
+						monsters[i][0] = temp_name.join('');
+						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+					}
+					else {
+						var parsedLinks = parseLink(monsters[i][0], monsters[i][6], monsters[i][19]);
+						for(var j = 0; j < monsters[i][20].length; j++) {
+							var temp_groups = genGroups(monsters[i][20][j], monsters[i][1], parsedLinks[0], parsedLinks[1], cr_comb);
+							for(var k = 0; k < temp_groups.length; k++) {
+								monsters2.push([temp_groups[k][0], temp_groups[k][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+							}
+						}
+					}
 				}
 			}
 			else { //Cleaning link syntax
-				if(monsters[i][0].indexOf('[') >= 0) {
-					monsters[i][0] = cleanLink(monsters[i][0]);
-				}
-				else if(monsters[i][19] == '' && monsters[i][0].indexOf('~') >= 0) {
-					monsters[i][0] = monsters[i][0].split('~')[0];
-				}
-				if(monsters[i][19] != '') {
-					if(monsters[i][19].indexOf('[') >= 0) {
-						monsters[i][19] = cleanLink(monsters[i][19]);
-					}
-					else if(monsters[i][19].indexOf('~') >= 0) {
-						monsters[i][19] = monsters[i][19].split('~')[0];
-					}
-				}
-				linked = true;
-			}
-			if(simple_list) {
-				if(!linked) {
+				monsters[i][0] = cleanLink(monsters[i][0]);
+				monsters[i][19] = cleanLink(monsters[i][19]);
+				if(simple_list) {
 					if(monsters[i][0].indexOf('|') >= 0) {
-						if(monsters[i][0].indexOf('/') >= 0) {
-							monsters[i][0] = monsters[i][0].split('|')[0] + '/' + monsters[i][0].split('/')[1];
-						}
-						else if(monsters[i][0].indexOf('~') >= 0) {
-							monsters[i][0] = monsters[i][0].split('|')[0] + '~' + monsters[i][0].split('~')[1];
+						if(monsters[i][0].split('|')[1].indexOf('/') >= 0) {
+							monsters[i][0] = monsters[i][0].split('|')[0] + ' (' + monsters[i][0].split('/')[1] + ')';
 						}
 						else {
 							monsters[i][0] = monsters[i][0].split('|')[0];
 						}
 					}
-					monsters[i][0] = genLink(monsters[i][0], monsters[i][6]);
-					linked = true;
+					else if(monsters[i][0].indexOf('/') >= 0) {
+						monsters[i][0] = monsters[i][0].split('/')[0] + ' (' + monsters[i][0].split('/')[1] + ')';
+					}
+					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
 				}
-				monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
-			}
-			else {
-				for(var j = 0; j < monsters[i][20].length; j++) {
-					if(monsters[i][20][j].indexOf('*') == 0 || monsters[i][20][j].split('|')[0].indexOf('u') >= 0) { //Combinations and unique monsters
-						if(!linked) {
-							monsters[i][0] = genLink(monsters[i][0], monsters[i][6]);
-							linked = true;
-						}
-						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21]]);
+				else {
+					if(monsters[i][20].length == 1 && monsters[i][20].indexOf('*') >= 0) { //Mixed groups, don't require plural nor dice
+						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
 					}
 					else {
-						if(monsters[i][20][j].indexOf('|') >= 0) { //Extracting group name
-							var interval = monsters[i][20][j].split('|')[0];
-							var description = monsters[i][20][j].split('|')[1];
-							if(['a', 'e', 'i', 'o'].indexOf(description.slice(0, 1)) >= 0) {
-								description = 'an ' + description + ' of ';
+						if(monsters[i][0].indexOf('|') >= 0) {
+							if(monsters[i][0].split('|')[1].indexOf('/') >= 0) {
+								var singular = monsters[i][0].split('|')[0] + ' (' + monsters[i][0].split('/')[1] + ')';
+								var plural = genPlural(monsters[i][0].split('/')[0]) + ' (' + monsters[i][0].split('/')[1] + ')';
 							}
 							else {
-								description = 'a ' + description + ' of ';
+								var singular = monsters[i][0].split('|')[0];
+								var plural = genPlural(monsters[i][0]);
 							}
+						}
+						else if(monsters[i][0].indexOf('/') >= 0) {
+							var singular = monsters[i][0].split('/')[0] + ' (' + monsters[i][0].split('/')[1] + ')';
+							var plural = genPlural(monsters[i][0].split('/')[0]) + ' (' + monsters[i][0].split('/')[1] + ')';
 						}
 						else {
-							var interval = monsters[i][20][j];
-							var description = '';
+							var singular = monsters[i][0];
+							var plural = genPlural(monsters[i][0]);
 						}
-						if(monsters[i][1].length == 1) {
-							if(monsters[i][1][0] == -4 || monsters[i][1][0] == -2 || monsters[i][1][0] == 0) {
-								var index_cr = 0;
-							}
-							else if(monsters[i][1][0] == -3) {
-								var index_cr = 1;
-							}
-							else if(monsters[i][1][0] == -1) {
-								var index_cr = 2;
-							}
-							else if(monsters[i][1][0] % 2 == 1) {
-								var index_cr = 3;
-							}
-							else {
-								var index_cr = 4;
-							}
-						}
-						else {
-							if(monsters[i][1][0] + monsters[i][1][1] == -4 || monsters[i][1][0] + monsters[i][1][1] == -2 || monsters[i][1][0] + monsters[i][1][1] == 0) {
-								var index_cr = 0;
-							}
-							else if(monsters[i][1][0] + monsters[i][1][1] == -3) {
-								var index_cr = 1;
-							}
-							else if(monsters[i][1][0] + monsters[i][1][1] == -1) {
-								var index_cr = 2;
-							}
-							else if((monsters[i][1][0] + monsters[i][1][1]) % 2 == 1) {
-								var index_cr = 3;
-							}
-							else {
-								var index_cr = 4;
-							}
-						}
-						var dice2 = genDice(interval, index_cr, cr_comb);
-						for(var k = cr_comb[0]; k <= cr_comb[1]; k++) {
-							if(dice2[k].length > 0) { //Choosing one of the possible dice
-								index_dice = Math.floor(Math.random() * dice2[k].length);
-								if(dice2[k][index_dice] == '1') {
-									if(monsters[i][0].indexOf('|') >= 0) {
-										if(monsters[i][0].indexOf('/') >= 0) {
-											var monster_name = monsters[i][0].split('|')[0] + '/' + monsters[i][0].split('/');
-										}
-										else if(monsters[i][0].indexOf('~') >= 0) {
-											var monster_name = monsters[i][0].split('|')[0] + '~' + monsters[i][0].split('~');
-										}
-										else {
-											var monster_name = monsters[i][0].split('|')[0];
-										}
-									}
-									else {
-										var monster_name = monsters[i][0];
-									}
-								}
-								else { //Constructing plural
-									if(monsters[i][0].indexOf('/') >= 0) {
-										var monster_name = plural(monsters[i][0].split('/')[0]) + '/' + monsters[i][0].split('/')[1];
-										if(monsters[i][19] == '' && monster_name.indexOf('~') == -1) {
-											monster_name += '~' + monsters[i][0];
-										}
-									}
-									else if(monsters[i][0].indexOf('~') >= 0) {
-										var monster_name = plural(monsters[i][0].split('~')[0]) + '~' + monsters[i][0].split('~')[1];
-									}
-									else {
-										var monster_name = plural(monsters[i][0]);
-										if(monsters[i][19] == '') {
-											monster_name += '~' + monsters[i][0];
-										}
-									}
-								}
-								if(!linked && monsters[i][19] == '') {
-									monster_name = genLink(monster_name, monsters[i][6]);
-								}
-								monsters2.push([description + dice2[k][index_dice] + ' ' + monster_name, [monsters[i][1][0] + k], monsters[i][2], monsters[i][19], monsters[i][21], monsters[i][22]]);
+						for(var j = 0; j < monsters[i][20].length; j++) {
+							var temp_groups = genGroups(monsters[i][20][j], monsters[i][1], singular, plural, cr_comb);
+							for(var k = 0; k < temp_groups.length; k++) {
+								monsters2.push([temp_groups[k][0], temp_groups[k][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
 							}
 						}
 					}
@@ -1417,7 +1487,7 @@ $(function() {
 			}
 		}
 		monsters = monsters2;
-		//Filtering 2
+		//Filtering 3
 		if(!simple_list) {
 			for(var i = monsters.length - 1; i >= 0; i--) {
 				//CR

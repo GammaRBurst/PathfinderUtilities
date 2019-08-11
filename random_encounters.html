@@ -14,15 +14,19 @@
 			var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
 			var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
 			var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD', 'UW', 'PA', 'CS', 'PC', 'AP', 'AM'];
-			var maximum_amount = 50;
+			var sub_mythic = 49;
+			var maximum_amount = 50; var maximum_ability = 60;
 		</script>
 		<script src="sys/jquery-3.4.1.min.js"></script>
 		<script src="sys/jquery-ui-1.12.1.min.js"></script>
-		<script src="creatures.js"></script>
+		<script src="dbs/creatures.js"></script>
+		<script src="dbs/templates.js"></script>
 		<script src="sys/dice.js"></script>
 		<script src="sys/gendice.js"></script>
 		<script src="sys/readypage.js"></script>
 		<script src="sys/genlink.js"></script>
+		<script src="sys/funcs.js"></script>
+		<script src="sys/templfunc.js"></script>
 		<script src="sys/init.js"></script>
 	</head>
 	<body>
@@ -447,6 +451,30 @@
 					<input type="button" name="scheck" class="check" value="Check All" /> <input type="button" name="snotcheck" class="notcheck" value="Negate All" /> <input type="button" name="suncheck" class="uncheck" value="Uncheck All" />
 				</div>
 			</div>
+			<h3 class="show" id="show_templates">Templates</h3>
+			<div <div class="content" id="templates">
+				<h3 class="hide" id="hide_templates">Templates</h3>
+				<h4>Overall Probability</h4>
+				<p>Warning: Keep this number low, unless you don't mind waiting a few minutes.</p>
+				<label for="t_over">Apply templates to <input type="hidden" name="t_over" id="t_over" style="width: 4em;" /><span id="t_over2"></span>% of the creatures.</label><br />
+				<div id="over_slide" class="slider"></div>
+				<h4>Physical Modification Templates</h4>
+				<p>More than one template can be applied. The probability is used each template that meets the requisites.</p>
+				<label for="t_phys">Probability to apply a physical modification or planar template: <input type="hidden" name="t_phys" id="t_phys" style="width: 4em;" /><span id="t_phys2"></span>%</label><br />
+				<div id="phys_slide" class="slider"></div>
+				<h4>Planar Templates</h4>
+				<p>Only one planar template can be applied.</p>
+				<label for="t_plan">Probability to apply a physical modification or planar template: <input type="hidden" name="t_plan" id="t_plan" style="width: 4em;" /><span id="t_plan2"></span>%</label><br />
+				<div id="plan_slide" class="slider"></div>
+				<h4>Class Templates</h4>
+				<p>Only one class template can be applied.</p>
+				<label for="t_class">Probability to apply a class template: <input type="hidden" name="t_class" id="t_class" style="width: 4em;" /><span id="t_class2"></span>%</label><br />
+				<div id="class_slide" class="slider"></div>
+				<h4>Amount of Variants Generated</h4>
+				<p>Warning: Large amounts of variants may require time to generate, particularly if the probabilities are low.</p>
+				<label for="t_var">Maximum amount of variants generated per creature: <input type="hidden" name="t_var" id="t_var" style="width: 4em;" /><span id="t_var2"></span></label><br />
+				<div id="var_slide" class="slider" style="margin-top: 3em;"></div>
+			</div>
 			<h3 class="show" id="show_other_options">Other Options</h3>
 			<div class="content" id="other_options">
 				<h3 class="hide" id="hide_other_options">Other Options</h3>
@@ -484,6 +512,7 @@
 				<input type="hidden" name="timestamp" id="tstamp" value="" />
 			</div>
 			<input type="submit" value="Generate Table" style="display: block; width: 95.7%; height: 3em; margin: 0.5em auto;" />
+			<div id="debug"></div>
 			<div id="table"></div>
 		</form>
 		<div id="suggestions">
@@ -503,7 +532,7 @@
 			The Random Encounter Generator belongs to GammaRayBurst and is distributed freely under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 International License</a>. <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br />
 			If you like the software, consider a <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CQ895MAZ4URBU&currency_code=EUR&source=url">small donation</a> to show your appreciation.
 			<!-- Please do not remove the footer. You can freely modify the rest of the page, and can add your own copyright conditions, as long as they are coherent with the CC ShareAlike condition. You can also add a donation link or something similar if you modify the software or the database significantly (for example if you port it for another game), but the software must remain free. Thanks! GRB -->
-			<br /><br />Version 190723
+			<br /><br />Version 190811
 		</div>
 	</body>
 </html>
