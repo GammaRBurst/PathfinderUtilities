@@ -119,6 +119,9 @@ function genLink(name, subtypes) {
 	var base_link_template = 'https://www.aonprd.com/MonsterTemplates.aspx?ItemName=';
 	
 	if(name.indexOf('~http://') >= 0 || name.indexOf('~https://') >= 0) { //Custom link
+		if(subtypes.indexOf(-1) >= 0) {
+			return name;
+		}
 		if(name.indexOf(']') >= 0) {
 			var aftername = name.split(']')[1];
 			name = name.split(']')[0];
@@ -136,7 +139,13 @@ function genLink(name, subtypes) {
 	}
 	else if(subtypes.indexOf(-1) >= 0) { //Templates
 		if(name.indexOf('~') >= 0) {
-			return '[' + name.split('~')[0] + '~' + base_link_template + adaptName(name.split('~')[1]) + ']';
+			var link = name.split('~')[1].trim();
+			if(link == '') {
+				return name;
+			}
+			else {
+				return '[' + name.split('~')[0] + '~' + base_link_template + adaptName(link) + ']';
+			}
 		}
 		else {
 			return '[' + name + '~' + base_link_template + adaptName(name) + ']';
@@ -153,7 +162,7 @@ function genLink(name, subtypes) {
 		if(name.indexOf('/') >= 0) {
 			if(name.indexOf('~') >= 0) {
 				aftername = ' (' + name.split('~')[0].split('/')[1] + ')' + aftername;
-				var link = name.split('~')[1];
+				var link = name.split('~')[1].trim();
 				name = name.split('/')[0];
 			}
 			else {
