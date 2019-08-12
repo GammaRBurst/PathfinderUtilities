@@ -339,6 +339,15 @@ function readyPage(values, sizes) {
 		}
 	});
 	setSingleSlider('class', $('#class_slide').slider('value'));
+	$('#myth_slide').slider({
+		min: 0,
+		max: 50,
+		value: 20,
+		slide: function(event, ui) {
+			setSingleSlider('myth', ui.value);
+		}
+	});
+	setSingleSlider('myth', $('#myth_slide').slider('value'));
 	$('#var_slide').slider({
 		min: 0,
 		max: 10,

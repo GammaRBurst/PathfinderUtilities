@@ -9,7 +9,7 @@ $(function() {
 	
 	//Reading templates
 	var templ = templates.split('\n');
-	templates = [[], [], []];
+	templates = [[], [], [], []];
 	for(var i = templ.length - 1; i >= 0; i--) {
 		if(templ[i].trim() == '' || templ[i].trim().indexOf('#') == 0) { //Removing comments and empty lines
 			templ.splice(i, 1);
@@ -68,7 +68,7 @@ $(function() {
 		var source = [];
 		var nsource = [];
 		var templ_prob = 0;
-		var templ = []; templ.length = 3;
+		var templ = []; templ.length = 4;
 		var templ_amount = 0;
 		var logic = []; logic.length = 5;
 		var simple_list = false;
@@ -244,6 +244,9 @@ $(function() {
 			}
 			else if(key == 't_class') {
 				templ[2] = Number(val);
+			}
+			else if(key == 't_myth') {
+				templ[3] = Number(val);
 			}
 			else if(key == 't_var') {
 				templ_amount = Number(val);
@@ -492,8 +495,12 @@ $(function() {
 		setSingleSlider('phys', templ[0]);
 		setSingleSlider('plan', templ[1]);
 		setSingleSlider('class', templ[2]);
+		setSingleSlider('myth', templ[3]);
 		setSingleSlider('var', templ_amount);
-		templ_prob /= 100; templ[0] /= 100; templ[1] /= 100; templ[2] /= 100;
+		templ_prob /= 100;
+		for(var i = 0; i < templ.length; i++) {
+			templ[i] /= 100;
+		}
 		//Logic
 		$('input[name=st_logic][value=' + logic[0] + ']').prop('checked', true);
 		$('input[name=sp_logic][value=' + logic[1] + ']').prop('checked', true);
@@ -871,13 +878,13 @@ $(function() {
 			}
 		}
 		//Applying templates
-		if(!simple_list) {
+		if(!simple_list && add_variants) {
 			for(var i = monsters.length - 1; i >= 0; i--) { //Check all creatures
 				if(monsters[i][19] == '' && monsters[i][20][0].indexOf('u') == -1 && monsters[i][20][0].indexOf('*') == -1) { //No variants, unique creatures and mixed groups
 					var apply_templ = Math.random();
 					if(apply_templ < templ_prob) {
 						var amount_vars = randInt(0, templ_amount);
-						var templ_order = shuffle([0, 1, 2]);
+						var templ_order = shuffle([0, 1, 2, 3]);
 						for(var j = 0; j < amount_vars; j++) { //Create variants
 							var temp_monster = monsters[i].slice(0);
 							for(var k = 0; k < templ_order.length; k++) { //Cycle through template categories

@@ -120,7 +120,7 @@ function genLink(name, subtypes) {
 	
 	if(name.indexOf('~http://') >= 0 || name.indexOf('~https://') >= 0) { //Custom link
 		if(subtypes.indexOf(-1) >= 0) {
-			return name;
+			return '[' + name + ']';
 		}
 		if(name.indexOf(']') >= 0) {
 			var aftername = name.split(']')[1];
@@ -141,7 +141,7 @@ function genLink(name, subtypes) {
 		if(name.indexOf('~') >= 0) {
 			var link = name.split('~')[1].trim();
 			if(link == '') {
-				return name;
+				return '[' + name + ']';
 			}
 			else {
 				return '[' + name.split('~')[0] + '~' + base_link_template + adaptName(link) + ']';

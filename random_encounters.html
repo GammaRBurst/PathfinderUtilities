@@ -15,7 +15,7 @@
 			var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
 			var sources = ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD', 'UW', 'PA', 'CS', 'PC', 'AP', 'AM'];
 			var sub_mythic = 49;
-			var maximum_amount = 50; var maximum_ability = 60;
+			var maximum_amount = 50; var maximum_ability = 70;
 		</script>
 		<script src="sys/jquery-3.4.1.min.js"></script>
 		<script src="sys/jquery-ui-1.12.1.min.js"></script>
@@ -470,6 +470,10 @@
 				<p>Only one class template can be applied.</p>
 				<label for="t_class">Probability to apply a class template: <input type="hidden" name="t_class" id="t_class" style="width: 4em;" /><span id="t_class2"></span>%</label><br />
 				<div id="class_slide" class="slider"></div>
+				<h4>Mythic Templates</h4>
+				<p>Only one mythic template can be applied.</p>
+				<label for="t_myth">Probability to apply a class template: <input type="hidden" name="t_myth" id="t_myth" style="width: 4em;" /><span id="t_myth2"></span>%</label><br />
+				<div id="myth_slide" class="slider"></div>
 				<h4>Amount of Variants Generated</h4>
 				<p>Warning: Large amounts of variants may require time to generate, particularly if the probabilities are low.</p>
 				<label for="t_var">Maximum amount of variants generated per creature: <input type="hidden" name="t_var" id="t_var" style="width: 4em;" /><span id="t_var2"></span></label><br />

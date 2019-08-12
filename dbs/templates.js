@@ -51,4 +51,11 @@ ranger;$12>5&$14>2;3;$1~$1 archer ranger&$2~$9>9?$2+2:$2+1&$12~$12+4
 rogue;$12>5&$14>2;3;$1~$1 rogue&$2~$9>9?$2+2:$2+1&$12~$12+4
 sorcerer;$14>2&$9<5?$16>6:$9<8?$16>7:$9<11?$16>8:$9<14?$16>9:$9<17?$16>10:$9<20?$16>11:$9<23?$16>12:$9<26?$16>13:$16>14;3;$1~$1 sorcerer&$2~$9<8?$2+1:$9>13?$2+3:$2+2&$16~$16+4
 wizard;$9<4?$14>6:$9<7?$14>7:$9<10?$14>8:$9<13?$14>9:$9<16?$14>10:$9<19?$14>11:$9<22?$14>12:$9<25?$14>13:$14>14;3;$1~$1 wizard&$2~$9<7?$2+1:$9>12?$2+3:$2+2&$14~$14+4
+
+#Mythic templates
+agile creature~https://www.aonprd.com/Rules.aspx?Name=Mythic%20Monster%20Advancement&Category=Mythic%20Monsters;$3=0;4;$1~agile $1&$2~$2+1&$3~$3+1
+arcane creature~https://www.aonprd.com/Rules.aspx?Name=Mythic%20Monster%20Advancement&Category=Mythic%20Monsters;$3=0&$14>2&$14>9?$14>9:$16>9;4;$1~arcane $1&$2~$2+1&$3~$9>10?$3+2:$3+1
+divine creature~https://www.aonprd.com/Rules.aspx?Name=Mythic%20Monster%20Advancement&Category=Mythic%20Monsters;$3=0&$14>2&$15>9?$15>9:$16>9;4;$1~divine $1&$2~$2+1&$3~$9>10?$3+2:$3+1
+invincible creature~https://www.aonprd.com/Rules.aspx?Name=Mythic%20Monster%20Advancement&Category=Mythic%20Monsters;$3=0;4;$1~invincible $1&$2~$2+1&$3~$9>10?$3+2:$3+1
+savage creature~https://www.aonprd.com/Rules.aspx?Name=Mythic%20Monster%20Advancement&Category=Mythic%20Monsters;$3=0;4;$1~savage $1&$2~$2+1&$3~$9>10?$3+2:$3+1
 `;
