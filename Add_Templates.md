@@ -35,6 +35,7 @@ You can edit *templates.js* with any text editor. I would advise against program
     1. *Physical modification templates* are templates that change the body of a creature. Up to 3 of these templates can be applied together to a creature.
     1. *Planar templates* are templates that transform a creature of the Material Plane into an inhabitant of another plane. Only one of these templates can be applied to a creature.
     1. *Class templates* are templates that confer some of the abilities given by the core classes. These are the ones that can give the most absurd results. Only one of these templates can be applied to a creature.
+    1. *Mythic templates* are templates that transform non-mythic creatures into mythic creatures. Only one of these templates can be applied to a creature.
 1. __Rebuild Rules__: A list of changes applied to the creature. Not all the rules listed in the manuals are inserted into this list, only those that change the value of an existing field. E.g. changes in AC or additional attacks have not to be added. The syntax is very similar to the one for the conditions.
     * Rules are always separated by *&*.
     * To indicate which field to edit, use *$* followed by the field number and then by *~*. This last character is the *assign value* operator.
