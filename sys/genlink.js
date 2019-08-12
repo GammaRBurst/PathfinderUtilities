@@ -20,7 +20,7 @@ function parseLink(name, subtypes, variant) {
 					var plural = name.split('[')[0] + '[' + genPlural(name.split('[')[1].split('/')[0]) + '/' + name.split('/')[1];
 				}
 				else {
-					var plural = name.split('[')[0] + '[' + genPlural(name.split('[')[1].split('/')[0]) + '/' + name.split('/')[1].split(']')[0] + '~' + name.split('[')[1].split('|')[0].split('/')[0] + ']';
+					var plural = name.split('[')[0] + '[' + genPlural(name.split('[')[1].split('/')[0]) + '/' + name.split('/')[1].split(']')[0] + '~' + name.split('[')[1].split('|')[0].split('/')[0] + ' (' + name.split('/')[1].split(']')[0] + ')' + ']';
 				}
 			}
 			else if(name.indexOf('~') >= 0) {
@@ -77,7 +77,7 @@ function parseLink(name, subtypes, variant) {
 						var plural = genPlural(name.split('/')[0]) + '/' + name.split('/')[1];
 					}
 					else {
-						var plural = genPlural(name.split('/')[0]) + '/' + name.split('/')[1] + '~' + name.split('|')[0];
+						var plural = genPlural(name.split('/')[0]) + '/' + name.split('/')[1] + '~' + name.split('|')[0] + ' (' + name.split('/')[1] + ')';
 					}
 				}
 				else if(name.indexOf('~') >= 0) {
@@ -95,7 +95,7 @@ function parseLink(name, subtypes, variant) {
 					var plural = genPlural(name.split('/')[0]) + '/' + name.split('/')[1];
 				}
 				else {
-					var plural = genPlural(name.split('/')[0]) + '/' + name.split('/')[1] + '~' + name.split('/')[0];
+					var plural = genPlural(name.split('/')[0]) + '/' + name.split('/')[1] + '~' + name.split('/')[0] + ' (' + name.split('/')[1] + ')';
 				}
 			}
 			else if(name.indexOf('~') >= 0) {
@@ -167,8 +167,8 @@ function genLink(name, subtypes) {
 			}
 			else {
 				aftername = ' (' + name.split('/')[1] + ')' + aftername;
+				var link = name.split('/')[0] + ' (' + name.split('/')[1] + ')';
 				name = name.split('/')[0];
-				var link = name;
 			}
 		}
 		else if(name.indexOf('~') >= 0) {
