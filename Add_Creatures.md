@@ -1,10 +1,10 @@
 # Database Structure for *creatures.js*
 
-If you are interested to add your creatures to the database, here is how you can write them in.
+If you are interested in adding your creatures to the database, here is how you can write them in.
 
 __Warning__: The following values may change in future updates. I like to have everything in order, usually alphabetical based on the property's name, the numerical values should mirror that order, so whenever I add/move/remove some values (particularly subtypes and groups) I shift all the numbers appropriately. If you would like to add new values, remember to edit *random_encounters.html* too to add a checkbox in the appropriate place. Just copy and paste an existing checkbox and edit its value and ID (you should edit that number 3 times in total), as well as the property name.
 
-The database is organized as a CSV (comma-separated values) file, with the first and last line to transform everything into a javascript variable. There are 22 values, separated by a semicolon (;). The semicolon can't be used for anything else. If the number of fields is different from 22, the entry is not processed by the software.
+The database is organized as a CSV (comma-separated values) file, with the first and last line to transform everything into a javascript variable. There are 22 values, separated by a semicolon (;). The semicolon can't be used for anything else. If the number of fields is different from 22, the entry is discarded by the software.
 
 If not indicated differently, every field is mandatory. An empty field looks like this: ;; (between the two semicolons).
 
@@ -17,18 +17,19 @@ You can edit *creatures.js* with any text editor. I would advise against program
 ## Fields
 
 1. __Name__: Any sequence of letters, numbers, symbols and spaces, excluded ; and the following reserved characters:
-    * *|* is used for non-standard plural forms. (__Note__: constructing plural for solitary or unique creatures is not necessary)
+    * *|* is used for non-standard plural forms. (__Note__: constructing plural for solitary or unique creatures and mixed groups is not necessary)
         * Standard plural forms, handled automatically, are:
-            1. Words ending in *s*, *x* and *ch* add *-es*. (e.g. *sphinx*)
-            1. Words ending in *y* replace it with *-ies*. (e.g. *harpy*)
-            1. Words ending with *man* replace it with *-men*. (e.g. *gillman*)
-            1. Everything else adds *-s*. (e.g. *ghost*)
+            1. Words ending in *s*, *x* and *ch* add *-es*. (e.g. *sphinx* becomes *sphinxes*)
+            1. Words ending in *y* replace it with *-ies*. (e.g. *harpy* becomes *harpies*)
+            1. Words ending with *man* replace it with *-men*. (e.g. *gillman* becomes *gillmen*)
+            1. Everything else adds *-s*. (e.g. *ghost* becomes *ghosts*)
         * If the word has a non-standard ending, write *|-* followed by the ending (e.g. *monkey|-s*).
-        * If the plural form doesn't change, just write *|-* (e.g. *drow|-*).
-        * If the plural is no so simple to construct, write the plural form after *|* (e.g. *djinni|djinn*).
+        * If the plural form is equal to the singual, just write *|-* (e.g. *drow|-*).
+        * If the plural is not so simple to construct, write the whole plural form after *|* (e.g. *djinni|djinn*).
+        * To summarize, substitutions and elimination of parts of text are not possible, the only operations permitted are concatenation and complete rewriting of the text.
     * */* is used for alternative names. These names are shown in parentheses outside of the link (if enabled) and are not considered for plural. They are however inserted in the links. (e.g. *bearded devil/barbazu*)
     * *~* is used for alternative link names. While most of the pages are named following a standard, some are not, or maybe some creatures are just special cases of a generic monster. (e.g. *air mephit~mephit*)
-        * The first letter after each space, open parenthesis and dash in a creature's name is capitalized for the link, but that's not always the case. If the link requires some special capitalization, use _~*_ instead. (e.g. _colour out of space~*Colour Out of Space_)
+        * The first letter after each space, open parenthesis and dash in a creature's name is automatically capitalized for the link generation, but that's not always how the page is named on AoN. If the link requires some special capitalization, use _~*_ instead. (e.g. _colour out of space~*Colour Out of Space_)
     * These special characters can be used in any combination, but have to be used in the order given above. (e.g. _lurker in light|lurkers in light~*Lurker in Light_)
     * Sometimes the apostrophe in a name has to be replaced with *%u2019* in the link. There's no rule for that, just check if it's a straight vertical apostrophe (no change needed) or if it's rounded. (e.g. _will-o'-wisp~*Will-o%u2019-Wisp_)
     * Names are usually all lower-case. The only exception are unique creatures, that should be capitalized appropriately, since the name is not the species' name but their proper noun. (e.g. *Ragathiel*)
@@ -40,7 +41,7 @@ You can edit *creatures.js* with any text editor. I would advise against program
 1. __Challenge rating__:
     * If CR is a whole number (1, 2, ...) just write it in this field.
     * If CR is fractional, use the following conversion: 1/2 = 0, 1/3 = -1, 1/4 = -2, 1/6 = -3, 1/8 = -4.
-    * For mixed groups you need two values, separated by a comma. The first value is the CR of the creature with the highest CR in the group. The second is the (average) CR increase from this value. To know the total CR of a group (and thus the CR increase), you need to sum all the experience from the single creatures (look [here](https://www.aonprd.com/Rules.aspx?Name=Designing%20Encounters&Category=Building%20an%20Adventure) for the values). Where the number of creatures is defined by a dice roll, just take the mean value of the dice roll. For a single die with *K* faces its mean value is *(K+1)/2* (if the number is not whole, use it as it is, it doesn't have to be whole) or, if you prefer a more general formula, for a *N*d*K*+*B* roll, the mean value is *N (K+1)/2 + B*. Then look on the same experience table linked above and find the two numbers between which you can put you value. If your value is closer to the smaller number, use that row as the CR, otherwise use the bigger number's row. __Example__: Consider a group of *1d4+1 gnolls and 1d2 dire hyenas*. Gnolls are CR 1, dire hyenas CR 3, so the first value in the CR field is 3. Then the total experience is 3.5 times the gnoll's experience (400 XP) plus 1.5 times the dire hyena's experience (800 XP). The total average experience from this encounter is 2600 XP. This value is between CR 6 and 7, and closer to CR 6 (2400 XP), so this encounter has CR 6. The CR increase, i.e. the second value to insert in the CR field, is then 3. This encounter will thus have a CR value of *3,3*.
+    * For mixed groups you need two values, separated by a comma. The first value is the CR of the creature with the highest CR in the group. The second is the (average) CR increase from this value. To know the total CR of a group (and thus the CR increase), you need to sum all the experience from the single creatures (look [here](https://www.aonprd.com/Rules.aspx?Name=Designing%20Encounters&Category=Building%20an%20Adventure) for the values). Where the number of creatures is defined by a dice roll, just take the mean value of the dice roll. For a single die with *K* faces its mean value is *(K+1)/2* (if the number is not whole, use it as it is, it doesn't have to be whole) or, if you prefer a more general formula, for a *N*d*K*+*B* roll, the mean value is *N (K+1)/2 + B*. Then look on the same experience table linked above and find the two numbers between which you can put your value. If your value is closer to the smaller number, use that row as the CR, otherwise use the bigger number's row. __Example__: Consider a group of *1d4+1 gnolls and 1d2 dire hyenas*. Gnolls are CR 1, dire hyenas CR 3, so the first value in the CR field is 3. Then the total experience is 3.5 times the gnoll's experience (400 XP) plus 1.5 times the dire hyena's experience (800 XP). The total average experience from this encounter is 2600 XP. This value is between CR 6 (2400 XP) and 7 (3200 XP), and closer to CR 6, so this encounter has an average CR of 6. The CR increase, i.e. the second value to insert in the CR field, is then 6-3=3. This encounter will thus have a CR value of *3,3*.
 1. __Mythic rank__: A number between 0 (non-mythic monster) and 10. If omitted, this value is considered 0. For mixed groups with more than one mythic creature, just insert the highest MR value of the group.
 1. __Alignment__: One or more numbers separated by commas to indicate all the possible alignments of a creature or group of creatures. A value of 0 indicates that any alignment is possible for this creature. <table><tr><td>LG: 1</td><td>NG: 2</td><td>CG: 3</td></tr><tr><td>LN: 4</td><td>N: 5</td><td>CN: 6</td></tr><tr><td>LE: 7</td><td>NE: 8</td><td>CE: 9</td></tr></table>
 1. __Size__: One or more numbers separated by commas to indicate all the possible sizes of a creature (for creatures that can usually change size) or group of creatures. <table><tr><td>Fine: 0</td><td>Diminutive: 1</td><td>Tiny: 2</td></tr><tr><td>Small: 3</td><td>Medium: 4</td><td>Large: 5</td></tr><tr><td>Huge: 6</td><td>Gargantuan: 7</td><td>Colossal: 8</td></tr></table>
