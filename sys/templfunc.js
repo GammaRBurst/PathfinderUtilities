@@ -286,7 +286,7 @@ function applyInstruction(field, instruction, monster) {
 			for(var i = 0; i < added.length; i++) {
 				added[i] = Number(added[i]);
 			}
-			monster[field] = monster[oldField].concat(added);
+			monster[field] = [...new Set(monster[oldField].concat(added))]; //also removes duplicates
 			monster[field].sort();
 		}
 		else if(fArrayNumberSum.indexOf(field) >= 0) { //Add to array of summable numbers
