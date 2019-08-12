@@ -56,7 +56,7 @@ Clacking Skull Swarm, Gliding Turtle, Greater Verdurous Ooze, Kamaitachi, Magnet
 ## Next Update
 I'm still waiting for AoN to publish the new monsters, so they will have to wait for the next update.
 
-Templates are implemented and working, finally, but I feel like this topic is far from closed. There are quite a few more templates that I discarded for the first test because they looked harder to implement, but now it may be a good moment to look at them more closely. Not all of them will make it to the end, but if I manage to squeeze in a few more, all the better. In particular I'll add a new category in the next update, mythic templates.
+Templates are implemented and working, finally, but I feel like this topic is far from closed. There are quite a few more templates that I discarded for the first test because they looked harder to implement, but now it may be a good moment to look at them more closely. Not all of them will make it to the end, but if I manage to squeeze in a few more, all the better.
 
 I'm also studying the possibility to implement a generic system to create NPCs with class levels. I'm planning to use only the creatures with no racial hit dice, since everything else requires knowing the monster role, and this would mean updating more than 3500 monsters. The idea is to give the most basic informations in a side page, things like race, class, level, CR, ability scores and money to buy equipment. I don't plan to add archetypes, multiple classes and prestige classes, to generate the whole sheet, an automatic system to generate equipment and all these details that require too much information and thousands of lines of code.
 
