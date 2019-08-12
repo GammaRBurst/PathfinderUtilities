@@ -30,6 +30,8 @@ You can edit *creatures.js* with any text editor. I would advise against program
     * */* is used for alternative names. These names are shown in parentheses outside of the link (if enabled) and are not considered for plural. They are however inserted in the links. (e.g. *bearded devil/barbazu*)
     * *~* is used for alternative link names. While most of the pages are named following a standard, some are not, or maybe some creatures are just special cases of a generic monster. (e.g. *air mephit~mephit*)
         * The first letter after each space, open parenthesis and dash in a creature's name is automatically capitalized for the link generation, but that's not always how the page is named on AoN. If the link requires some special capitalization, use _~*_ instead. (e.g. _colour out of space~*Colour Out of Space_)
+        * If the creature's sheet is not available on AoN, but can be found elsewhere, you can write the whole sheet's URL after *~*.
+        * If the creature's sheet is not available anywhere on the web, you can force the creature to have no link by adding *~* followed by nothing else.
     * These special characters can be used in any combination, but have to be used in the order given above. (e.g. _lurker in light|lurkers in light~*Lurker in Light_)
     * Sometimes the apostrophe in a name has to be replaced with *%u2019* in the link. There's no rule for that, just check if it's a straight vertical apostrophe (no change needed) or if it's rounded. (e.g. _will-o'-wisp~*Will-o%u2019-Wisp_)
     * Names are usually all lower-case. The only exception are unique creatures, that should be capitalized appropriately, since the name is not the species' name but their proper noun. (e.g. *Ragathiel*)
