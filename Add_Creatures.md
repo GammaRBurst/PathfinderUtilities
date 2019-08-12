@@ -8,7 +8,7 @@ The database is organized as a CSV (comma-separated values) file, with the first
 
 If not indicated differently, every field is mandatory. An empty field looks like this: ;; (between the two semicolons).
 
-Empty lines, or lines containing only spaces and tabulations, and lines beginning with # are ignored. You can separate your content with as many empty lines as you wish and add comments with # to better identify everything. Spaces around values are ignored, so you don't need to, say, add a space after every semicolon. It's not much, but it helps keep the database lighter.
+Empty lines, or lines containing only spaces and tabulations, as well as lines beginning with # are ignored. You can separate your content with as many empty lines as you wish and add comments with # to better identify everything. Spaces around values are ignored, so you don't need to, say, add a space after every semicolon. It's not much, but it helps keep the database lighter.
 
 Don't edit in any way the first and last lines of the database. Insert everything after the first line and before the last. If you don't, the software will generate an error and stop working.
 
