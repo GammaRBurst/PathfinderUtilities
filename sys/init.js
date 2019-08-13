@@ -1402,6 +1402,7 @@ $(function() {
 		//Creating groups and links
 		monsters2 = [];
 		for(var i = 0; i < monsters.length; i++) {
+			var clean_name = cleanLink(monsters[i][0]).split('/')[0].split('|')[0].toLowerCase(); //Used for sorting alphabetically
 			if(links) {
 				if(monsters[i][19] != '') { //Variant creatures
 					if(monsters[i][19].indexOf('[') >= 0) {
@@ -1419,7 +1420,7 @@ $(function() {
 				}
 				if(simple_list) {
 					monsters[i][0] = parseLink(monsters[i][0], monsters[i][6], monsters[i][19])[0];
-					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21], clean_name]); //name, CR, MR, variant, source
 				}
 				else {
 					if(monsters[i][20].length == 1 && monsters[i][20][0].indexOf('*') >= 0) { //Mixed groups, don't require plural nor dice
@@ -1430,14 +1431,14 @@ $(function() {
 							}
 						}
 						monsters[i][0] = temp_name.join('');
-						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21], clean_name]); //name, CR, MR, variant, source
 					}
 					else {
 						var parsedLinks = parseLink(monsters[i][0], monsters[i][6], monsters[i][19]);
 						for(var j = 0; j < monsters[i][20].length; j++) {
 							var temp_groups = genGroups(monsters[i][20][j], monsters[i][1], parsedLinks[0], parsedLinks[1], cr_comb);
 							for(var k = 0; k < temp_groups.length; k++) {
-								monsters2.push([temp_groups[k][0], temp_groups[k][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+								monsters2.push([temp_groups[k][0], temp_groups[k][1], monsters[i][2], monsters[i][19], monsters[i][21], clean_name]); //name, CR, MR, variant, source
 							}
 						}
 					}
@@ -1458,11 +1459,11 @@ $(function() {
 					else if(monsters[i][0].indexOf('/') >= 0) {
 						monsters[i][0] = monsters[i][0].split('/')[0] + ' (' + monsters[i][0].split('/')[1] + ')';
 					}
-					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+					monsters2.push([monsters[i][0], monsters[i][1][0], monsters[i][2], monsters[i][19], monsters[i][21], clean_name]); //name, CR, MR, variant, source
 				}
 				else {
 					if(monsters[i][20].length == 1 && monsters[i][20].indexOf('*') >= 0) { //Mixed groups, don't require plural nor dice
-						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+						monsters2.push([monsters[i][0], monsters[i][1], monsters[i][2], monsters[i][19], monsters[i][21], clean_name]); //name, CR, MR, variant, source
 					}
 					else {
 						if(monsters[i][0].indexOf('|') >= 0) {
@@ -1486,7 +1487,7 @@ $(function() {
 						for(var j = 0; j < monsters[i][20].length; j++) {
 							var temp_groups = genGroups(monsters[i][20][j], monsters[i][1], singular, plural, cr_comb);
 							for(var k = 0; k < temp_groups.length; k++) {
-								monsters2.push([temp_groups[k][0], temp_groups[k][1], monsters[i][2], monsters[i][19], monsters[i][21]]); //name, CR, MR, variant, source
+								monsters2.push([temp_groups[k][0], temp_groups[k][1], monsters[i][2], monsters[i][19], monsters[i][21], clean_name]); //name, CR, MR, variant, source
 							}
 						}
 					}
