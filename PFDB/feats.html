@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="sys/favicon.png" type="image/png" sizes="32x32">
+		<title>GammaRayBurst's Feats List</title>
+		<link rel="stylesheet" type="text/css" href="sys/jquery-ui-1.12.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="sys/style.css" />
+		<link rel="stylesheet" type="text/css" href="sys/feats/tables.css" />
+		<script>
+			//Shared variables
+			var types = ['Achievement', 'Alignment', 'Armor Mastery', 'Betrayal', 'Blood Hex', 'Called Shot', 'Combat', 'Combination', 'Conduit', 'Coven', 'Critical', 'Damnation', 'Esoteric', 'Faction', 'Familiar', 'Gathlain Court Title', 'General', 'Grit', 'Hero Point', 'Item Creation', 'Item Mastery', 'Meditation', 'Metamagic', 'Monster', 'Mythic', 'Origin', 'Panache', 'Performance', 'Possession', 'Shield Mastery', 'Stare', 'Story', 'Style', 'Targeting', 'Teamwork', 'Trick', 'Weapon Mastery', 'Words Of Power'];
+			var sources = ['CR', 'Be', 'APG', 'UM', 'UC', 'ARG', 'UCA', 'MA', 'ACG', 'MC', 'PU', 'OA', 'UI', 'HA', 'VC', 'AG', 'BD', 'UW', 'PA', 'CS', 'PC', 'AP', 'AM', 'OP'];
+		</script>
+		<script src="sys/global_vars.js"></script>
+		<script src="sys/jquery-3.6.0.min.js"></script>
+		<script src="sys/jquery-ui-1.12.1.min.js"></script>
+		<script src="dbs/feats/acronyms.js"></script>
+		<script src="dbs/feats/feats.js"></script>
+		<script src="dbs/feats/manuals.js"></script>
+		<script src="dbs/feats/tables.js"></script>
+		<script src="sys/feats/readypage.js"></script>
+		<script src="sys/feats/funcs.js"></script>
+		<script src="sys/feats/init.js"></script>
+	</head>
+	<body>
+		<h1><a href="feats.html">GammaRayBurst's Feat List</a></h1>
+		<form action="#" method="get">
+			<h3 class="show" id="show_filters">Filters</h3>
+			<div class="content" id="filters">
+				<h3 class="hide" id="hide_filters">Filters</h3>
+				<label for="tl_tree"><input type="radio" name="tl" id="tl_tree" value="0" checked="checked" /> Feat Tree</label>
+				<label for="tl_list"><input type="radio" name="tl" id="tl_list" value="1" /> Feat List</label>
+				<hr />
+				<input type="checkbox" name="grey" id="grey" class="cbox_trad" value="0" checked="checked" /><label for="grey" style="width: auto;">Feats for which you may qualify in the future are shown in <span class="greyed">grey</span>.</label> If unchecked, they are hidden. This option includes filters on ability scores, class levels and related values, and skill ranks. Other filters always hide the content.<br />
+				<input type="checkbox" name="orphan" id="orphan" class="cbox_trad" value="0" checked="checked" /><label for="orphan" style="width: auto;">Remove orphan feats (List mode only).</label> All feats that depend on a feat removed by a filter is removed or shown in <span class="greyed">grey</span>.
+				<hr />
+				<h4><input type="checkbox" name="f_as" id="f_as" class="cbox_trad" value="0" /><label for="f_as" style="width: auto;">Ability Scores</label></h4>
+				<label class="width2" for="str">Strength (Str) <input type="number" name="str" id="str" min="0" max="100" value="10" /></label>
+				<label class="width2" for="dex">Dexterity (Dex) <input type="number" name="dex" id="dex" min="0" max="100" value="10" /></label>
+				<label class="width2" for="con">Constitution (Con) <input type="number" name="con" id="con" min="0" max="100" value="10" /></label><br />
+				<label class="width2" for="int">Intelligence (Int) <input type="number" name="int" id="int" min="0" max="100" value="10" /></label>
+				<label class="width2" for="wis">Wisdom (Wis) <input type="number" name="wis" id="wis" min="0" max="100" value="10" /></label>
+				<label class="width2" for="cha">Charisma (Cha) <input type="number" name="cha" id="cha" min="0" max="100" value="10" /></label>
+				<hr />
+				<h4><input type="checkbox" name="f_race" id="f_race" class="cbox_trad" value="0" /><label for="f_race" style="width: auto;">Race</label></h4>
+				<label for="race">Race 
+					<select name="race" id="race">
+						<option value="0" selected="selected">Unspecified</option>
+						<optgroup label="Core Races">
+							<option value="1">Dwarf</option>
+							<option value="2">Elf</option>
+							<option value="3">Gnome</option>
+							<option value="4">Half-Elf</option>
+							<option value="5">Halfling</option>
+							<option value="6">Half-Orc</option>
+							<option value="7">Human</option>
+						</optgroup>
+						<optgroup label="Other Races">
+							<option value="8">Aasimar</option>
+							<option value="9">Android</option>
+							<option value="10">Aphorite</option>
+							<option value="11">Catfolk</option>
+							<option value="12">Changeling</option>
+							<option value="13">Dhampir</option>
+							<option value="14">Drow</option>
+							<option value="15">Duergar</option>
+							<option value="16">Duskwalker</option>
+							<option value="17">Fetchling</option>
+							<option value="18">Ganzi</option>
+							<option value="19">Gathlain</option>
+							<option value="20">Ghoran</option>
+							<option value="21">Gillman</option>
+							<option value="22">Goblin</option>
+							<option value="23">Grippli</option>
+							<option value="24">Hobgoblin</option>
+							<option value="25">Ifrit</option>
+							<option value="26">Kasatha</option>
+							<option value="27">Kitsune</option>
+							<option value="28">Kobold</option>
+							<option value="29">Lashunta</option>
+							<option value="30">Merfolk</option>
+							<option value="31">Nagaji</option>
+							<option value="32">Orc</option>
+							<option value="33">Oread</option>
+							<option value="34">Ratfolk</option>
+							<option value="35">Samsaran</option>
+							<option value="36">Shabti</option>
+							<option value="37">Skinwalker</option>
+							<option value="38">Strix</option>
+							<option value="39">Suli</option>
+							<option value="40">Svirfneblin</option>
+							<option value="41">Sylph</option>
+							<option value="42">Tengu</option>
+							<option value="43">Tiefling</option>
+							<option value="44">Triaxian</option>
+							<option value="45">Triton</option>
+							<option value="46">Undine</option>
+							<option value="47">Vanara</option>
+							<option value="48">Vine Leshy</option>
+							<option value="49">Vishkanya</option>
+							<option value="50">Wayang</option>
+							<option value="51">Wyrwood</option>
+							<option value="52">Wyvaran</option>
+							<option value="99">Other Races</option>
+						</optgroup>
+					</select>
+				</label>
+				<hr />
+				<h4><input type="checkbox" name="f_cl" id="f_cl" class="cbox_trad" value="0" /><label for="f_cl" style="width: auto;">Classes and Level</label></h4>
+				<label class="width2" for="cl_01">Alchemist <input type="number" name="cl_01" id="cl_01" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_02">Antipaladin <input type="number" name="cl_02" id="cl_02" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_03">Arcanist <input type="number" name="cl_03" id="cl_03" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_04">Barbarian <input type="number" name="cl_04" id="cl_04" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_05">Bard <input type="number" name="cl_05" id="cl_05" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_06">Bloodrager <input type="number" name="cl_06" id="cl_06" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_07">Brawler <input type="number" name="cl_07" id="cl_07" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_08">Cavalier <input type="number" name="cl_08" id="cl_08" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_09">Cleric <input type="number" name="cl_09" id="cl_09" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_10">Druid <input type="number" name="cl_10" id="cl_10" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_11">Fighter <input type="number" name="cl_11" id="cl_11" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_12">Gunslinger <input type="number" name="cl_12" id="cl_12" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_13">Hunter <input type="number" name="cl_13" id="cl_13" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_14">Inquisitor <input type="number" name="cl_14" id="cl_14" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_15">Investigator <input type="number" name="cl_15" id="cl_15" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_16">Kineticist <input type="number" name="cl_16" id="cl_16" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_17">Magus <input type="number" name="cl_17" id="cl_17" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_18">Medium <input type="number" name="cl_18" id="cl_18" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_19">Mesmerist <input type="number" name="cl_19" id="cl_19" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_20">Monk <input type="number" name="cl_20" id="cl_20" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_21">Ninja <input type="number" name="cl_21" id="cl_21" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_22">Occultist <input type="number" name="cl_22" id="cl_22" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_23">Oracle <input type="number" name="cl_23" id="cl_23" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_24">Paladin <input type="number" name="cl_24" id="cl_24" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_25">Psychic <input type="number" name="cl_25" id="cl_25" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_26">Ranger <input type="number" name="cl_26" id="cl_26" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_27">Rogue <input type="number" name="cl_27" id="cl_27" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_28">Samurai <input type="number" name="cl_28" id="cl_28" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_29">Shaman <input type="number" name="cl_29" id="cl_29" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_30">Shifter <input type="number" name="cl_30" id="cl_30" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_31">Skald <input type="number" name="cl_31" id="cl_31" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_32">Slayer <input type="number" name="cl_32" id="cl_32" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_33">Sorcerer <input type="number" name="cl_33" id="cl_33" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_34">Spiritualist <input type="number" name="cl_34" id="cl_34" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_35">Summoner <input type="number" name="cl_35" id="cl_35" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_36">Swashbuckler <input type="number" name="cl_36" id="cl_36" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_37">Vigilante <input type="number" name="cl_37" id="cl_37" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_38">Warpriest <input type="number" name="cl_38" id="cl_38" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_39">Witch <input type="number" name="cl_39" id="cl_39" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cl_40" style="margin-bottom: 0.7em">Wizard <input type="number" name="cl_40" id="cl_40" min="0" max="20" value="0" /></label><br />
+				<label class="width2" for="cas_1">Arcane Caster Level <input type="number" name="cas_1" id="cas_1" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cas_2">Divine Caster Level <input type="number" name="cas_2" id="cas_2" min="0" max="20" value="0" /></label>
+				<label class="width2" for="cas_3" style="margin-bottom: 0.7em">Psychic Caster Level <input type="number" name="cas_3" id="cas_3" min="0" max="20" value="0" /></label><br />
+				<label class="width2" for="level">Character Level <input type="number" name="level" id="level" min="0" max="20" value="0" /></label>
+				<label class="width2" for="level">Mythic Tier <input type="number" name="mtier" id="level" min="0" max="10" value="0" /></label>
+				<label class="width2" for="bab">BAB <input type="number" name="bab" id="bab" min="0" max="20" value="0" /></label>
+				<hr />
+				<h4><input type="checkbox" name="f_sk" id="f_sk" class="cbox_trad" value="0" /><label for="f_sk" style="width: auto;">Skill Ranks</label></h4>
+				<label class="width3" for="sk_01">Acrobatics <input type="number" name="sk_01" id="sk_01" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_02">Appraise <input type="number" name="sk_02" id="sk_02" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_03">Bluff <input type="number" name="sk_03" id="sk_03" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_04">Climb <input type="number" name="sk_04" id="sk_04" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_05">Craft <input type="number" name="sk_05" id="sk_05" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_06">Diplomacy <input type="number" name="sk_06" id="sk_06" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_07">Disable Device <input type="number" name="sk_07" id="sk_07" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_08">Disguise <input type="number" name="sk_08" id="sk_08" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_09">Escape Artist <input type="number" name="sk_09" id="sk_09" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_10">Fly <input type="number" name="sk_10" id="sk_10" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_11">Handle Animal <input type="number" name="sk_11" id="sk_11" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_12">Heal <input type="number" name="sk_12" id="sk_12" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_13">Intimidate <input type="number" name="sk_13" id="sk_13" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_14">Knowledge (Arcana) <input type="number" name="sk_14" id="sk_14" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_15">Knowledge (Dungeoneering) <input type="number" name="sk_15" id="sk_15" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_16">Knowledge (Engineering) <input type="number" name="sk_16" id="sk_16" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_17">Knowledge (Geography) <input type="number" name="sk_17" id="sk_17" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_18">Knowledge (History) <input type="number" name="sk_18" id="sk_18" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_19">Knowledge (Local) <input type="number" name="sk_19" id="sk_19" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_20">Knowledge (Nature) <input type="number" name="sk_20" id="sk_20" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_21">Knowledge (Nobility) <input type="number" name="sk_21" id="sk_21" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_22">Knowledge (Planes) <input type="number" name="sk_22" id="sk_22" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_23">Knowledge (Religion) <input type="number" name="sk_23" id="sk_23" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_24">Linguistics <input type="number" name="sk_24" id="sk_24" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_25">Perception <input type="number" name="sk_25" id="sk_25" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_26">Perform <input type="number" name="sk_26" id="sk_26" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_27">Profession <input type="number" name="sk_27" id="sk_27" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_28">Ride <input type="number" name="sk_28" id="sk_28" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_29">Sense Motive <input type="number" name="sk_29" id="sk_29" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_30">Sleight Of Hand <input type="number" name="sk_30" id="sk_30" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_31">Spellcraft <input type="number" name="sk_31" id="sk_31" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_32">Stealth <input type="number" name="sk_32" id="sk_32" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_33">Survival <input type="number" name="sk_33" id="sk_33" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_34">Swim <input type="number" name="sk_34" id="sk_34" min="0" max="20" value="0" /></label>
+				<label class="width3" for="sk_35">Use Magic Device <input type="number" name="sk_35" id="sk_35" min="0" max="20" value="0" /></label>
+				<hr />
+				<h4>Feat Types</h4>
+				<input type="checkbox" name="type" id="type_01" class="cbox_yesno" value="1" /><label class="width1" for="type_01">Achievement</label>
+				<input type="checkbox" name="type" id="type_02" class="cbox_yesno" value="2" /><label class="width1" for="type_02">Alignment</label>
+				<input type="checkbox" name="type" id="type_03" class="cbox_yesno" value="3" /><label class="width1" for="type_03">Armor Mastery</label>
+				<input type="checkbox" name="type" id="type_04" class="cbox_yesno" value="4" /><label class="width1" for="type_04">Betrayal</label>
+				<input type="checkbox" name="type" id="type_05" class="cbox_yesno" value="5" /><label class="width1" for="type_05">Blood Hex</label>
+				<input type="checkbox" name="type" id="type_06" class="cbox_yesno" value="6" /><label class="width1" for="type_06">Called Shot</label>
+				<input type="checkbox" name="type" id="type_07" class="cbox_yesno" value="7" /><label class="width1" for="type_07">Combat</label>
+				<input type="checkbox" name="type" id="type_08" class="cbox_yesno" value="8" /><label class="width1" for="type_08">Combination</label>
+				<input type="checkbox" name="type" id="type_09" class="cbox_yesno" value="9" /><label class="width1" for="type_09">Conduit</label>
+				<input type="checkbox" name="type" id="type_10" class="cbox_yesno" value="10" /><label class="width1" for="type_10">Coven</label>
+				<input type="checkbox" name="type" id="type_11" class="cbox_yesno" value="11" /><label class="width1" for="type_11">Critical</label>
+				<input type="checkbox" name="type" id="type_12" class="cbox_yesno" value="12" /><label class="width1" for="type_12">Damnation</label>
+				<input type="checkbox" name="type" id="type_13" class="cbox_yesno" value="13" /><label class="width1" for="type_13">Esoteric</label>
+				<input type="checkbox" name="type" id="type_14" class="cbox_yesno" value="14" /><label class="width1" for="type_14">Faction</label>
+				<input type="checkbox" name="type" id="type_15" class="cbox_yesno" value="15" /><label class="width1" for="type_15">Familiar</label>
+				<input type="checkbox" name="type" id="type_16" class="cbox_yesno" value="16" /><label class="width1" for="type_16">Gathlain Court Title</label>
+				<input type="checkbox" name="type" id="type_17" class="cbox_yesno" value="17" /><label class="width1" for="type_17">General</label>
+				<input type="checkbox" name="type" id="type_18" class="cbox_yesno" value="18" /><label class="width1" for="type_18">Grit</label>
+				<input type="checkbox" name="type" id="type_19" class="cbox_yesno" value="19" /><label class="width1" for="type_19">Hero Point</label>
+				<input type="checkbox" name="type" id="type_20" class="cbox_yesno" value="20" /><label class="width1" for="type_20">Item Creation</label>
+				<input type="checkbox" name="type" id="type_21" class="cbox_yesno" value="21" /><label class="width1" for="type_21">Item Mastery</label>
+				<input type="checkbox" name="type" id="type_22" class="cbox_yesno" value="22" /><label class="width1" for="type_22">Meditation</label>
+				<input type="checkbox" name="type" id="type_23" class="cbox_yesno" value="23" /><label class="width1" for="type_23">Metamagic</label>
+				<input type="checkbox" name="type" id="type_24" class="cbox_yesno" value="24" /><label class="width1" for="type_24">Monster</label>
+				<input type="checkbox" name="type" id="type_25" class="cbox_yesno" value="25" /><label class="width1" for="type_25">Mythic</label>
+				<input type="checkbox" name="type" id="type_26" class="cbox_yesno" value="26" /><label class="width1" for="type_26">Origin</label>
+				<input type="checkbox" name="type" id="type_27" class="cbox_yesno" value="27" /><label class="width1" for="type_27">Panache</label>
+				<input type="checkbox" name="type" id="type_28" class="cbox_yesno" value="28" /><label class="width1" for="type_28">Performance</label>
+				<input type="checkbox" name="type" id="type_29" class="cbox_yesno" value="29" /><label class="width1" for="type_29">Possession</label>
+				<input type="checkbox" name="type" id="type_30" class="cbox_yesno" value="30" /><label class="width1" for="type_30">Shield Mastery</label>
+				<input type="checkbox" name="type" id="type_31" class="cbox_yesno" value="31" /><label class="width1" for="type_31">Stare</label>
+				<input type="checkbox" name="type" id="type_32" class="cbox_yesno" value="32" /><label class="width1" for="type_32">Story</label>
+				<input type="checkbox" name="type" id="type_33" class="cbox_yesno" value="33" /><label class="width1" for="type_33">Style</label>
+				<input type="checkbox" name="type" id="type_34" class="cbox_yesno" value="34" /><label class="width1" for="type_34">Targeting</label>
+				<input type="checkbox" name="type" id="type_35" class="cbox_yesno" value="35" /><label class="width1" for="type_35">Teamwork</label>
+				<input type="checkbox" name="type" id="type_36" class="cbox_yesno" value="36" /><label class="width1" for="type_36">Trick</label>
+				<input type="checkbox" name="type" id="type_37" class="cbox_yesno" value="37" /><label class="width1" for="type_37">Weapon Mastery</label>
+				<input type="checkbox" name="type" id="type_38" class="cbox_yesno" value="38" /><label class="width1" for="type_38">Words Of Power</label>
+				<div class="center">
+					<input type="button" name="type_check" class="check" value="Check All" /> <input type="button" name="type_notcheck" class="notcheck" value="Negate All" /> <input type="button" name="type_uncheck" class="uncheck" value="Uncheck All" />
+				</div>
+				<hr />
+				<h4>Sources</h4>
+				<input type="checkbox" name="s" id="s_01" class="cbox_yesno" value="1" /><label class="width1" for="s_01">Core Rulebook (CR)</label>
+				<input type="checkbox" name="s" id="s_02" class="cbox_yesno" value="2" /><label class="width1" for="s_02">Bestiaries (Be)</label>
+				<input type="checkbox" name="s" id="s_03" class="cbox_yesno" value="3" /><label class="width1" for="s_03">Advanced Player's Guide (APG)</label>
+				<input type="checkbox" name="s" id="s_04" class="cbox_yesno" value="4" /><label class="width1" for="s_04">Ultimate Magic (UM)</label>
+				<input type="checkbox" name="s" id="s_05" class="cbox_yesno" value="5" /><label class="width1" for="s_05">Ultimate Combat (UC)</label>
+				<input type="checkbox" name="s" id="s_06" class="cbox_yesno" value="6" /><label class="width1" for="s_06">Advanced Race Guide (ARG)</label>
+				<input type="checkbox" name="s" id="s_07" class="cbox_yesno" value="7" /><label class="width1" for="s_07">Ultimate Campaign (UCA)</label>
+				<input type="checkbox" name="s" id="s_08" class="cbox_yesno" value="8" /><label class="width1" for="s_08">Mythic Adventures (MA)</label>
+				<input type="checkbox" name="s" id="s_09" class="cbox_yesno" value="9" /><label class="width1" for="s_09">Advanced Class Guide (ACG)</label>
+				<input type="checkbox" name="s" id="s_10" class="cbox_yesno" value="10" /><label class="width1" for="s_10">Monster Codex (MC)</label>
+				<input type="checkbox" name="s" id="s_11" class="cbox_yesno" value="11" /><label class="width1" for="s_11">Pathfinder Unchained (PU)</label>
+				<input type="checkbox" name="s" id="s_12" class="cbox_yesno" value="12" /><label class="width1" for="s_12">Occult Adventures (OA)</label>
+				<input type="checkbox" name="s" id="s_13" class="cbox_yesno" value="13" /><label class="width1" for="s_13">Ultimate Intrigue (UI)</label>
+				<input type="checkbox" name="s" id="s_14" class="cbox_yesno" value="14" /><label class="width1" for="s_14">Horror Adventures (HA)</label>
+				<input type="checkbox" name="s" id="s_15" class="cbox_yesno" value="15" /><label class="width1" for="s_15">Villain Codex (VC)</label>
+				<input type="checkbox" name="s" id="s_16" class="cbox_yesno" value="16" /><label class="width1" for="s_16">Adventurer's Guide (AG)</label>
+				<input type="checkbox" name="s" id="s_17" class="cbox_yesno" value="17" /><label class="width1" for="s_17">Book of the Damned (BD)</label>
+				<input type="checkbox" name="s" id="s_18" class="cbox_yesno" value="18" /><label class="width1" for="s_18">Ultimate Wilderness (UW)</label>
+				<input type="checkbox" name="s" id="s_19" class="cbox_yesno" value="19" /><label class="width1" for="s_19">Planar Adventures (PA)</label>
+				<input type="checkbox" name="s" id="s_20" class="cbox_yesno" value="20" /><label class="width1" for="s_20">Campaign Settings (CS)</label>
+				<input type="checkbox" name="s" id="s_21" class="cbox_yesno" value="21" /><label class="width1" for="s_21">Player Companions (PC)</label>
+				<input type="checkbox" name="s" id="s_22" class="cbox_yesno" value="22" /><label class="width1" for="s_22">Adventure Paths (AP)</label>
+				<input type="checkbox" name="s" id="s_23" class="cbox_yesno" value="23" /><label class="width1" for="s_23">Adventure Modules (AM)</label>
+				<input type="checkbox" name="s" id="s_99" class="cbox_yesno" value="99" /><label class="width1" for="s_99">Others Paizo (OP)</label>
+				<div class="center">
+					<input type="button" name="s_check" class="check" value="Check All" /> <input type="button" name="s_notcheck" class="notcheck" value="Negate All" /> <input type="button" name="s_uncheck" class="uncheck" value="Uncheck All" />
+				</div>
+				<input type="hidden" name="timestamp" id="tstamp" value="" />
+			</div>
+			<h3 class="show" id="show_removed" style="display: none;">Removed Feats</h3>
+			<div class="content" id="removed">
+				<h3 class="hide" id="hide_removed">Removed Feats</h3>
+			</div>
+			<input type="submit" value="Generate List" style="display: block; width: 95.7%; height: 3em; margin: 0.5em auto;" />
+			<div id="debug"></div>
+			<div id="feats_list"></div>
+		</form>
+		<div id="footer">
+			All the material belongs to <a target="_blank" href="https://paizo.com">Paizo Inc.</a>, all rights reserved.<br />
+			The Feats List software belongs to GammaRayBurst and is distributed freely under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 International License</a>. <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br />
+			If you like the software, consider a <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CQ895MAZ4URBU&currency_code=EUR&source=url">small donation</a> to show your appreciation.
+			<!-- Please do not remove the footer. You can freely modify the rest of the page, and can add your own copyright conditions, as long as they are coherent with the CC ShareAlike condition. You can also add a donation link or something similar if you modify the software or the database significantly (for example if you port it for another game), but the software must remain free. Thanks! GRB -->
+			<br /><br />Version 210319
+		</div>
+	</body>
+</html>

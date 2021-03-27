@@ -1,0 +1,383 @@
+body {
+	margin: 1em 1%;
+	padding: 0;
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+	width: 100%;
+	margin: 0;
+	padding: 1px 0 0;
+}
+
+h1 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+h3.show, h3.hide {
+	border: 1px solid #aaa;
+	border-radius: 0.3em;
+	padding: 0.1em 0.2%;
+	margin: 0 auto;
+}
+
+h3.hide {
+	width: 99.14%;
+	position: relative;
+	bottom: 0.65em;
+	background-color: #FFFFFF;
+}
+
+h3.show {
+	width: 95%;
+	margin-top: 0.25em;
+}
+
+hr {
+	border: 1px solid #AAAAAA;
+}
+
+.content {
+	border: 1px solid #AAAAAA;
+	border-radius: 1em;
+	padding: 0 1% 1em;
+	margin: 1em 1%;
+	display: none;
+}
+
+.center {
+	text-align: center;
+	margin-top: 0.5em;
+}
+
+.right {
+	float: right;
+	margin-right: 0.5em;
+}
+
+label { /* Source: csscheckbox.com */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+:not(.right) > label {
+	white-space: nowrap;
+	display: inline-block;
+}
+
+:not(.right) > label.width1 {
+	width: 16em;
+}
+
+:not(.right) > label.width2 {
+	width: 20em;
+}
+
+:not(.right) > label.width3 {
+	width: 24em;
+}
+
+input[type=number] {
+	width: 3em;
+	float: right;
+	margin-right: 5em;
+}
+
+input[type=checkbox] { /* Source: csscheckbox.com */
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
+input[type=checkbox] + label { /* Source: csscheckbox.com */
+	padding-left: 20px;
+	height: 15px;
+	line-height: 15px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+input[type=checkbox]:checked + label { /* Source: csscheckbox.com */
+	background-position: 0 -15px;
+}
+
+input[type=checkbox].cbox_no:checked + label, input[type=checkbox].cbox_only:checked + label { /* Source: csscheckbox.com */
+	background-position: 0 -30px;
+}
+
+input[type=checkbox].cbox_yesonly:disabled + label {
+	background-position: 0 -45px;
+}
+
+input[type=checkbox].cbox_yesno + label { /* Source: csscheckbox.com */
+	background-image: url(images/checkbox1.png);
+}
+
+input[type=checkbox].cbox_yesonly + label { /* Source: csscheckbox.com */
+	background-image: url(images/checkbox2.png);
+}
+
+input[type=checkbox].cbox_trad + label { /* Source: csscheckbox.com */
+	background-image: url(images/checkbox3.png);
+}
+
+.show, .hide {
+	cursor: pointer;
+}
+
+.slider {
+	width: 90%;
+	margin: 2em auto 0.5em;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.under {
+	text-decoration: underline;
+}
+
+.greyed {
+	color: #AAAAAA !important;
+}
+
+.source {
+	font-size: 80%;
+}
+
+h2 + .source, h3 + .source, h4 + .source {
+	position: relative;
+	top: -1em;
+}
+
+.close {
+	font-weight: bold;
+	font-size: 120%;
+	float: right;
+	margin: 0 1em 0 0;
+	color: inherit;
+	cursor: pointer;
+}
+
+.close:hover {
+	color: red;
+}
+
+.restore {
+	display: inline-block;
+	padding: 4px 8px;
+	margin: 2px;
+	cursor: pointer;
+	border: 1px solid #AAAAAA;
+	border-radius: 0.5em;
+	background-color: #F8F8F8;
+}
+
+#suggestions {
+	font-size: 95%;
+	padding: 2em 2% 0;
+}
+
+#footer {
+	font-size: 80%;
+	padding: 2em 7% 1em;
+}
+
+/* Specific to creatures */
+#creatures_table {
+	border: 1px solid #AAAAAA;
+	border-collapse: collapse;
+	margin: 0 auto;
+	max-width: 95.6%;
+}
+
+#creatures_table td, #creatures_table th {
+	border: 1px solid #AAAAAA;
+	padding: 3px 8px;
+}
+
+#creatures_table th {
+	border-bottom: 3px double #AAAAAA;
+}
+
+#creatures_table th:nth-last-of-type(5) {
+	width: 60px;
+}
+
+#creatures_table th:nth-last-of-type(3) {
+	width: 95px;
+}
+
+#creatures_table th:last-of-type {
+	width: 90px;
+}
+
+#creatures_table td:nth-last-of-type(5), #creatures_table td:nth-last-of-type(3), #creatures_table td:last-of-type {
+	text-align: center;
+}
+
+#creatures_table tfoot td {
+	font-size: 80%;
+	border-top: 3px double #AAAAAA;
+	text-align: left !important;
+}
+
+/* Specific to feats */
+#feats_list {
+	width: 95%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#feats_list .tbody, #feats_list .ttop {
+	display: table;
+	width: 100%;
+}
+
+#feats_list .trow {
+	display: table-row;
+}
+
+#feats_list .tdel, #feats_list .tfeat, #feats_list .ttype, #feats_list .tpre, #feats_list .tdesc, #feats_list .tsource {
+	display: table-cell;
+	padding: 5px 5px 5px 1em;
+	border-left: 1px solid #AAAAAA;
+	border-bottom: 1px solid #AAAAAA;
+	position: relative;
+}
+
+#feats_list .tfeat {
+	border-left-width: 0;
+	padding-left: 0;
+}
+
+#feats_list .ttop .tfeat, #feats_list .ttop .ttype, #feats_list .ttop .tpre, #feats_list .ttop .tdesc, #feats_list .ttop .tsource {
+	border-top: 1px solid #AAAAAA;
+}
+
+#feats_list .ttop .tfeat {
+	border-left-width: 1px;
+}
+
+#feats_list .tdel {
+	width: 2%;
+	font-size: 120%;
+	font-weight: bold;
+	color: inherit;
+	cursor: pointer;
+	padding-left: 0.25em;
+	padding-right: 0;
+}
+
+#feats_list .tdel:hover {
+	color: red;
+}
+
+#feats_list .tfeat {
+	width: 20%;
+}
+
+#feats_list .tfeat:not(.bold) {
+	color: blue;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#feats_list .tfeat:not(.bold):hover {
+	color: red;
+	text-decoration: underline;
+}
+
+#feats_list .ttop .tfeat {
+	width: 22%;
+}
+
+#feats_list .ttype {
+	width: 12%;
+}
+
+#feats_list .tpre {
+	width: 28%;
+}
+
+#feats_list .tdesc {
+	width: 30%;
+}
+
+#feats_list .tsource {
+	width: 8%;
+	border-right: 1px solid #AAAAAA;
+	text-align: center;
+}
+
+#feats_list .tcompl {
+	width: 100%;
+	padding: 5px 5px 5px 1em;
+	display: table-cell;
+	border: 1px solid #AAAAAA;
+	border-top-width: 0;
+}
+
+#feats_list .thidden {
+	display: none;
+}
+
+#feats_list .mythic {
+	background-color: #FFFF0033;
+}
+
+#feats_list .bigborder {
+	height: 3px;
+	background-color: #AAAAAA;
+	margin-top: -3px;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-top-width: 0;
+	border-bottom-width: 0;
+}
+
+#feats_list .tbody:hover {
+	background-color: #F8F8F8;
+}
+
+#feats_list .tbody:hover .mythic {
+	background-color: #F8F80033;
+}
+
+#feats_list .tcont:hover {
+	background-color: transparent;
+}
+
+#feats_list .dotvline, #feats_list .dothline, #feats_list .dotangle {
+	position: absolute;
+	top: 0;
+	width: 0.5em;
+}
+
+#feats_list .dotvline, #feats_list .dotangle {
+	height: 100%;
+	border-left: 1px dotted #555555;
+}
+
+#feats_list .dothline, #feats_list .dotangle {
+	height: 1em;
+	border-bottom: 1px dotted #555555;
+}

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="sys/favicon.png" type="image/png" sizes="32x32">
+		<title>GammaRayBurst's Random Encounter Generator</title>
+		<link rel="stylesheet" type="text/css" href="sys/jquery-ui-1.12.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="sys/style.css" />
+		<script>
+			//Shared variables
+			var values = ['1/2', '1/3', '1/4', '1/6', '1/8'];
+			var sizes = ['Fine', 'Diminutive', 'Tiny', 'Small', 'Medium', 'Large', 'Huge', 'Gargantuan', 'Colossal'];
+			var sources = ['BB', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'UM', 'MA', 'MC', 'HA', 'BD', 'UW', 'PA', 'CS', 'PC', 'AP', 'AM'];
+			var sub_mythic = 49;
+			var maximum_amount = 50; var maximum_ability = 70;
+		</script>
+		<script src="sys/global_vars.js"></script>
+		<script src="sys/jquery-3.6.0.min.js"></script>
+		<script src="sys/jquery-ui-1.12.1.min.js"></script>
+		<script src="dbs/creatures/creatures.js"></script>
+		<script src="dbs/creatures/templates.js"></script>
+		<script src="sys/creatures/dice.js"></script>
+		<script src="sys/creatures/gendice.js"></script>
+		<script src="sys/creatures/readypage.js"></script>
+		<script src="sys/creatures/genlink.js"></script>
+		<script src="sys/creatures/funcs.js"></script>
+		<script src="sys/creatures/templfunc.js"></script>
+		<script src="sys/creatures/init.js"></script>
+	</head>
+	<body>
+		<h1 style="margin-bottom: 0"><a href="creatures.html">GammaRayBurst's Random Encounter Generator</a></h1>
+		<h4 style="margin-top: 0">(and Creatures List)</h4>
+		<form action="#" method="get">
+			<h3 class="show" id="show_challenge_rating">Challenge Rating</h3>
+			<div class="content" id="challenge_rating">
+				<h3 class="hide" id="hide_challenge_rating">Challenge Rating</h3>
+				<div style="float: left; margin-left: 5%;">
+					<label for="cr_min">Minimum CR: <input type="hidden" name="cr_min" id="cr_min" /><span id="cr_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="cr_max">Maximum CR: <input type="hidden" name="cr_max" id="cr_max" /><span id="cr_max2"></span></label>
+				</div>
+				<div id="cr_slide" class="slider"></div>
+			</div>
+			<h3 class="show" id="show_mythic_rank">Mythic Rank</h3>
+			<div class="content" id="mythic_rank">
+				<h3 class="hide" id="hide_mythic_rank">Mythic Rank</h3>
+				<div style="float: left; margin-left: 5%;">
+					<label for="mr_min">Minimum MR: <input type="hidden" name="mr_min" id="mr_min" /><span id="mr_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="mr_max">Maximum MR: <input type="hidden" name="mr_max" id="mr_max" /><span id="mr_max2"></span></label>
+				</div>
+				<div id="mr_slide" class="slider"></div>
+			</div>
+			<h3 class="show" id="show_alignment">Alignment</h3>
+			<div class="content" id="alignment">
+				<h3 class="hide" id="hide_alignment">Alignment</h3>
+				<input type="checkbox" name="al" id="al1" class="cbox_yesno" value="1" /><label class="width1" for="al1">Lawful Good (LG)</label>
+				<input type="checkbox" name="al" id="al2" class="cbox_yesno" value="2" /><label class="width1" for="al2">Neutral Good (NG)</label>
+				<input type="checkbox" name="al" id="al3" class="cbox_yesno" value="3" /><label class="width1" for="al3">Chaotic Good (CG)</label>
+				<input type="checkbox" name="al" id="al4" class="cbox_yesno" value="4" /><label class="width1" for="al4">Lawful Neutral (LN)</label>
+				<input type="checkbox" name="al" id="al5" class="cbox_yesno" value="5" /><label class="width1" for="al5">True Neutral (N)</label>
+				<input type="checkbox" name="al" id="al6" class="cbox_yesno" value="6" /><label class="width1" for="al6">Chaotic Neutral (CN)</label>
+				<input type="checkbox" name="al" id="al7" class="cbox_yesno" value="7" /><label class="width1" for="al7">Lawful Evil (LE)</label>
+				<input type="checkbox" name="al" id="al8" class="cbox_yesno" value="8" /><label class="width1" for="al8">Neutral Evil (NE)</label>
+				<input type="checkbox" name="al" id="al9" class="cbox_yesno" value="9" /><label class="width1" for="al9">Chaotic Evil (CE)</label>
+				<div class="center">
+					<input type="button" name="alcheck" class="check" value="Check All" /> <input type="button" name="alnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="aluncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_size">Size</h3>
+			<div class="content" id="size">
+				<h3 class="hide" id="hide_size">Size</h3>
+				<div style="float: left; margin-left: 5%;">
+					<label for="size_min">Minimum size: <input type="hidden" name="size_min" id="size_min" /><span id="size_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="size_max">Maximum size: <input type="hidden" name="size_max" id="size_max" /><span id="size_max2"></span></label>
+				</div>
+				<div id="size_slide" class="slider"></div>
+			</div>
+			<h3 class="show" id="show_types">Types</h3>
+			<div class="content" id="types">
+				<h3 class="hide" id="hide_types">Types</h3>
+				<input type="checkbox" name="type" id="type1" class="cbox_yesno" value="1" /><label class="width1" for="type1">Aberration</label>
+				<input type="checkbox" name="type" id="type2" class="cbox_yesno" value="2" /><label class="width1" for="type2">Animal</label>
+				<input type="checkbox" name="type" id="type3" class="cbox_yesno" value="3" /><label class="width1" for="type3">Construct</label>
+				<input type="checkbox" name="type" id="type4" class="cbox_yesno" value="4" /><label class="width1" for="type4">Dragon</label>
+				<input type="checkbox" name="type" id="type5" class="cbox_yesno" value="5" /><label class="width1" for="type5">Fey</label>
+				<input type="checkbox" name="type" id="type6" class="cbox_yesno" value="6" /><label class="width1" for="type6">Humanoid</label>
+				<input type="checkbox" name="type" id="type7" class="cbox_yesno" value="7" /><label class="width1" for="type7">Magical Beast</label>
+				<input type="checkbox" name="type" id="type8" class="cbox_yesno" value="8" /><label class="width1" for="type8">Monstrous Humanoid</label>
+				<input type="checkbox" name="type" id="type9" class="cbox_yesno" value="9" /><label class="width1" for="type9">Ooze</label>
+				<input type="checkbox" name="type" id="type10" class="cbox_yesno" value="10" /><label class="width1" for="type10">Outsider</label>
+				<input type="checkbox" name="type" id="type11" class="cbox_yesno" value="11" /><label class="width1" for="type11">Plant</label>
+				<input type="checkbox" name="type" id="type12" class="cbox_yesno" value="12" /><label class="width1" for="type12">Undead</label>
+				<input type="checkbox" name="type" id="type13" class="cbox_yesno" value="13" /><label class="width1" for="type13">Vermin</label>
+				<div class="center">
+					<input type="button" name="typecheck" class="check" value="Check All" /> <input type="button" name="typenotcheck" class="notcheck" value="Negate All" /> <input type="button" name="typeuncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_subtypes">Subtypes</h3>
+			<div class="content" id="subtypes">
+				<h3 class="hide" id="hide_subtypes">Subtypes</h3>
+				<div class="right">
+					<label for="st_and"><input type="radio" name="st_logic" id="st_and" value="0" /> AND</label>
+					<label for="st_or"><input type="radio" name="st_logic" id="st_or" value="1" checked="checked" /> OR</label>
+					<label for="st_xor"><input type="radio" name="st_logic" id="st_xor" value="2" /> XOR</label>
+				</div>
+				<div>
+					<h4>Element Subtypes</h4>
+					<input type="checkbox" name="st" id="st1" class="cbox_yesno" value="1" /><label class="width1" for="st1">Aether</label>
+					<input type="checkbox" name="st" id="st2" class="cbox_yesno" value="2" /><label class="width1" for="st2">Air</label>
+					<input type="checkbox" name="st" id="st3" class="cbox_yesno" value="3" /><label class="width1" for="st3">Aquatic</label>
+					<input type="checkbox" name="st" id="st4" class="cbox_yesno" value="4" /><label class="width1" for="st4">Cold</label>
+					<input type="checkbox" name="st" id="st5" class="cbox_yesno" value="5" /><label class="width1" for="st5">Earth</label>
+					<input type="checkbox" name="st" id="st6" class="cbox_yesno" value="6" /><label class="width1" for="st6">Elemental</label>
+					<input type="checkbox" name="st" id="st7" class="cbox_yesno" value="7" /><label class="width1" for="st7">Fire</label>
+					<input type="checkbox" name="st" id="st8" class="cbox_yesno" value="8" /><label class="width1" for="st8">Water</label>
+				</div>
+				<div>
+					<h4>Alignment Subtypes</h4>
+					<input type="checkbox" name="st" id="st9" class="cbox_yesno" value="9" /><label class="width1" for="st9">Chaotic</label>
+					<input type="checkbox" name="st" id="st10" class="cbox_yesno" value="10" /><label class="width1" for="st10">Evil</label>
+					<input type="checkbox" name="st" id="st11" class="cbox_yesno" value="11" /><label class="width1" for="st11">Good</label>
+					<input type="checkbox" name="st" id="st12" class="cbox_yesno" value="12" /><label class="width1" for="st12">Lawful</label>
+				</div>
+				<div>
+					<h4>Outsider Subtypes</h4>
+					<input type="checkbox" name="st" id="st13" class="cbox_yesno" value="13" /><label class="width1" for="st13">Extraplanar</label>
+					<input type="checkbox" name="st" id="st14" class="cbox_yesno" value="14" /><label class="width1" for="st14">Native</label>
+					<input type="checkbox" name="st" id="st15" class="cbox_yesno" value="15" /><label class="width1" for="st15">Aeon</label>
+					<input type="checkbox" name="st" id="st16" class="cbox_yesno" value="16" /><label class="width1" for="st16">Agathion</label>
+					<input type="checkbox" name="st" id="st17" class="cbox_yesno" value="17" /><label class="width1" for="st17">Angel</label>
+					<input type="checkbox" name="st" id="st18" class="cbox_yesno" value="18" /><label class="width1" for="st18">Archon</label>
+					<input type="checkbox" name="st" id="st19" class="cbox_yesno" value="19" /><label class="width1" for="st19">Asura</label>
+					<input type="checkbox" name="st" id="st20" class="cbox_yesno" value="20" /><label class="width1" for="st20">Azata</label>
+					<input type="checkbox" name="st" id="st21" class="cbox_yesno" value="21" /><label class="width1" for="st21">Daemon</label>
+					<input type="checkbox" name="st" id="st22" class="cbox_yesno" value="22" /><label class="width1" for="st22">Demodand</label>
+					<input type="checkbox" name="st" id="st23" class="cbox_yesno" value="23" /><label class="width1" for="st23">Demon</label>
+					<input type="checkbox" name="st" id="st24" class="cbox_yesno" value="24" /><label class="width1" for="st24">Devil</label>
+					<input type="checkbox" name="st" id="st25" class="cbox_yesno" value="25" /><label class="width1" for="st25">Div</label>
+					<input type="checkbox" name="st" id="st26" class="cbox_yesno" value="26" /><label class="width1" for="st26">Inevitable</label>
+					<input type="checkbox" name="st" id="st27" class="cbox_yesno" value="27" /><label class="width1" for="st27">Kami</label>
+					<input type="checkbox" name="st" id="st28" class="cbox_yesno" value="28" /><label class="width1" for="st28">Kyton</label>
+					<input type="checkbox" name="st" id="st29" class="cbox_yesno" value="29" /><label class="width1" for="st29">Manasaputra</label>
+					<input type="checkbox" name="st" id="st30" class="cbox_yesno" value="30" /><label class="width1" for="st30">Oni</label>
+					<input type="checkbox" name="st" id="st31" class="cbox_yesno" value="31" /><label class="width1" for="st31">Protean</label>
+					<input type="checkbox" name="st" id="st32" class="cbox_yesno" value="32" /><label class="width1" for="st32">Psychopomp</label>
+					<input type="checkbox" name="st" id="st33" class="cbox_yesno" value="33" /><label class="width1" for="st33">Qlippoth</label>
+					<input type="checkbox" name="st" id="st34" class="cbox_yesno" value="34" /><label class="width1" for="st34">Rakshasa</label>
+					<input type="checkbox" name="st" id="st35" class="cbox_yesno" value="35" /><label class="width1" for="st35">Sahkil</label>
+				</div>
+				<div>
+					<h4>Other Subtypes</h4>
+					<input type="checkbox" name="st" id="st36" class="cbox_yesno" value="36" /><label class="width1" for="st36">Automaton</label>
+					<input type="checkbox" name="st" id="st37" class="cbox_yesno" value="37" /><label class="width1" for="st37">Behemoth</label>
+					<input type="checkbox" name="st" id="st38" class="cbox_yesno" value="38" /><label class="width1" for="st38">Blight</label>
+					<input type="checkbox" name="st" id="st39" class="cbox_yesno" value="39" /><label class="width1" for="st39">Clockwork</label>
+					<input type="checkbox" name="st" id="st40" class="cbox_yesno" value="40" /><label class="width1" for="st40">Colossus</label>
+					<input type="checkbox" name="st" id="st41" class="cbox_yesno" value="41" /><label class="width1" for="st41">Dark Folk</label>
+					<input type="checkbox" name="st" id="st42" class="cbox_yesno" value="42" /><label class="width1" for="st42">Giant</label>
+					<input type="checkbox" name="st" id="st43" class="cbox_yesno" value="43" /><label class="width1" for="st43">Goblinoid</label>
+					<input type="checkbox" name="st" id="st44" class="cbox_yesno" value="44" /><label class="width1" for="st44">Great Old One</label>
+					<input type="checkbox" name="st" id="st45" class="cbox_yesno" value="45" /><label class="width1" for="st45">Herald</label>
+					<input type="checkbox" name="st" id="st46" class="cbox_yesno" value="46" /><label class="width1" for="st46">Hive</label>
+					<input type="checkbox" name="st" id="st47" class="cbox_yesno" value="47" /><label class="width1" for="st47">Incorporeal</label>
+					<input type="checkbox" name="st" id="st48" class="cbox_yesno" value="48" /><label class="width1" for="st48">Kaiju</label>
+					<input type="checkbox" name="st" id="st49" class="cbox_yesno" value="49" /><label class="width1" for="st49">Mythic</label>
+					<input type="checkbox" name="st" id="st50" class="cbox_yesno" value="50" /><label class="width1" for="st50">Mortic</label>
+					<input type="checkbox" name="st" id="st51" class="cbox_yesno" value="51" /><label class="width1" for="st51">Nightshade</label>
+					<input type="checkbox" name="st" id="st52" class="cbox_yesno" value="52" /><label class="width1" for="st52">Reptilian</label>
+					<input type="checkbox" name="st" id="st53" class="cbox_yesno" value="53" /><label class="width1" for="st53">Robot</label>
+					<input type="checkbox" name="st" id="st54" class="cbox_yesno" value="54" /><label class="width1" for="st54">Shapechanger</label>
+					<input type="checkbox" name="st" id="st55" class="cbox_yesno" value="55" /><label class="width1" for="st55">Spawn of Rovagug</label>
+					<input type="checkbox" name="st" id="st56" class="cbox_yesno" value="56" /><label class="width1" for="st56">Swarm</label>
+					<input type="checkbox" name="st" id="st57" class="cbox_yesno" value="57" /><label class="width1" for="st57">Troop</label>
+					<input type="checkbox" name="st" id="st58" class="cbox_yesno" value="58" /><label class="width1" for="st58">Wild Hunt</label>
+					<input type="checkbox" name="st" id="st0" class="cbox_yesno" value="0" /><label class="width1" for="st0">None/Others</label>
+				</div>
+				<div class="center">
+					<input type="button" name="stcheck" class="check" value="Check All" /> <input type="button" name="stnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="stuncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_groups">Creature Groups</h3>
+			<div class="content" id="groups">
+				<h3 class="hide" id="hide_groups">Creature Groups</h3>
+				<div>
+					<h4>Semidivine Outsiders</h4>
+					<input type="checkbox" name="gr" id="gr1" class="cbox_yesno" value="1" /><label class="width1" for="gr1">Archdaemon</label>
+					<input type="checkbox" name="gr" id="gr2" class="cbox_yesno" value="2" /><label class="width1" for="gr2">Archdevil</label>
+					<input type="checkbox" name="gr" id="gr3" class="cbox_yesno" value="3" /><label class="width1" for="gr3">Asura Rana</label>
+					<input type="checkbox" name="gr" id="gr4" class="cbox_yesno" value="4" /><label class="width1" for="gr4">Daemon Harbinger</label>
+					<input type="checkbox" name="gr" id="gr5" class="cbox_yesno" value="5" /><label class="width1" for="gr5">Demon Lord</label>
+					<input type="checkbox" name="gr" id="gr6" class="cbox_yesno" value="6" /><label class="width1" for="gr6">Div Lord</label>
+					<input type="checkbox" name="gr" id="gr7" class="cbox_yesno" value="7" /><label class="width1" for="gr7">Elemental Lord</label>
+					<input type="checkbox" name="gr" id="gr8" class="cbox_yesno" value="8" /><label class="width1" for="gr8">Empyreal Lord</label>
+					<input type="checkbox" name="gr" id="gr9" class="cbox_yesno" value="9" /><label class="width1" for="gr9">Kami Lord</label>
+					<input type="checkbox" name="gr" id="gr10" class="cbox_yesno" value="10" /><label class="width1" for="gr10">Kyton Demagogue</label>
+					<input type="checkbox" name="gr" id="gr11" class="cbox_yesno" value="11" /><label class="width1" for="gr11">Manasaputra Kumara</label>
+					<input type="checkbox" name="gr" id="gr12" class="cbox_yesno" value="12" /><label class="width1" for="gr12">Oni Daimyo</label>
+					<input type="checkbox" name="gr" id="gr13" class="cbox_yesno" value="13" /><label class="width1" for="gr13">Primal Inevitable</label>
+					<input type="checkbox" name="gr" id="gr14" class="cbox_yesno" value="14" /><label class="width1" for="gr14">Protean Lord</label>
+					<input type="checkbox" name="gr" id="gr15" class="cbox_yesno" value="15" /><label class="width1" for="gr15">Psychopomp Usher</label>
+					<input type="checkbox" name="gr" id="gr16" class="cbox_yesno" value="16" /><label class="width1" for="gr16">Qlippoth Lord</label>
+					<input type="checkbox" name="gr" id="gr17" class="cbox_yesno" value="17" /><label class="width1" for="gr17">Rakshasa Immortal</label>
+					<input type="checkbox" name="gr" id="gr18" class="cbox_yesno" value="18" /><label class="width1" for="gr18">Sahkil Tormentor</label>
+					<input type="checkbox" name="gr" id="gr19" class="cbox_yesno" value="19" /><label class="width1" for="gr19">Titan</label>
+				</div>
+				<div>
+					<h4>True Dragons</h4>
+					<input type="checkbox" name="gr" id="gr20" class="cbox_yesno" value="20" /><label class="width1" for="gr20">Chromatic Dragon</label>
+					<input type="checkbox" name="gr" id="gr21" class="cbox_yesno" value="21" /><label class="width1" for="gr21">Esoteric Dragon</label>
+					<input type="checkbox" name="gr" id="gr22" class="cbox_yesno" value="22" /><label class="width1" for="gr22">Imperial Dragon</label>
+					<input type="checkbox" name="gr" id="gr23" class="cbox_yesno" value="23" /><label class="width1" for="gr23">Metallic Dragon</label>
+					<input type="checkbox" name="gr" id="gr24" class="cbox_yesno" value="24" /><label class="width1" for="gr24">Outer Dragon</label>
+					<input type="checkbox" name="gr" id="gr25" class="cbox_yesno" value="25" /><label class="width1" for="gr25">Planar Dragon</label>
+					<input type="checkbox" name="gr" id="gr26" class="cbox_yesno" value="26" /><label class="width1" for="gr26">Primal Dragon</label>
+				</div>
+				<div>
+					<h4>Other Groups</h4>
+					<input type="checkbox" name="gr" id="gr27" class="cbox_yesno" value="27" /><label class="width1" for="gr27">Axiomite</label>
+					<input type="checkbox" name="gr" id="gr28" class="cbox_yesno" value="28" /><label class="width1" for="gr28">Beheaded</label>
+					<input type="checkbox" name="gr" id="gr29" class="cbox_yesno" value="29" /><label class="width1" for="gr29">Companion</label>
+					<input type="checkbox" name="gr" id="gr30" class="cbox_yesno" value="30" /><label class="width1" for="gr30">Couatl</label>
+					<input type="checkbox" name="gr" id="gr31" class="cbox_yesno" value="31" /><label class="width1" for="gr31">Dinosaur</label>
+					<input type="checkbox" name="gr" id="gr32" class="cbox_yesno" value="32" /><label class="width1" for="gr32">Drake</label>
+					<input type="checkbox" name="gr" id="gr33" class="cbox_yesno" value="33" /><label class="width1" for="gr33">Entothrope</label>
+					<input type="checkbox" name="gr" id="gr34" class="cbox_yesno" value="34" /><label class="width1" for="gr34">Familiar</label>
+					<input type="checkbox" name="gr" id="gr35" class="cbox_yesno" value="35" /><label class="width1" for="gr35">Familiar, Improved</label>
+					<input type="checkbox" name="gr" id="gr36" class="cbox_yesno" value="36" /><label class="width1" for="gr36">Fleshwarp</label>
+					<input type="checkbox" name="gr" id="gr37" class="cbox_yesno" value="37" /><label class="width1" for="gr37">Formian</label>
+					<input type="checkbox" name="gr" id="gr38" class="cbox_yesno" value="38" /><label class="width1" for="gr38">Gigas</label>
+					<input type="checkbox" name="gr" id="gr39" class="cbox_yesno" value="39" /><label class="width1" for="gr39">Golem</label>
+					<input type="checkbox" name="gr" id="gr40" class="cbox_yesno" value="40" /><label class="width1" for="gr40">Gremlin</label>
+					<input type="checkbox" name="gr" id="gr41" class="cbox_yesno" value="41" /><label class="width1" for="gr41">Hag</label>
+					<input type="checkbox" name="gr" id="gr42" class="cbox_yesno" value="42" /><label class="width1" for="gr42">Herd Animal</label>
+					<input type="checkbox" name="gr" id="gr43" class="cbox_yesno" value="43" /><label class="width1" for="gr43">Leshy</label>
+					<input type="checkbox" name="gr" id="gr44" class="cbox_yesno" value="44" /><label class="width1" for="gr44">Linnorm</label>
+					<input type="checkbox" name="gr" id="gr45" class="cbox_yesno" value="45" /><label class="width1" for="gr45">Lycanthrope</label>
+					<input type="checkbox" name="gr" id="gr46" class="cbox_yesno" value="46" /><label class="width1" for="gr46">Mephit</label>
+					<input type="checkbox" name="gr" id="gr47" class="cbox_yesno" value="47" /><label class="width1" for="gr47">Megafauna</label>
+					<input type="checkbox" name="gr" id="gr48" class="cbox_yesno" value="48" /><label class="width1" for="gr48">Naga</label>
+					<input type="checkbox" name="gr" id="gr49" class="cbox_yesno" value="49" /><label class="width1" for="gr49">No Racial HD</label>
+					<input type="checkbox" name="gr" id="gr50" class="cbox_yesno" value="50" /><label class="width1" for="gr50">Sphinx</label>
+					<input type="checkbox" name="gr" id="gr51" class="cbox_yesno" value="51" /><label class="width1" for="gr51">Thriae</label>
+					<input type="checkbox" name="gr" id="gr52" class="cbox_yesno" value="52" /><label class="width1" for="gr52">Troll</label>
+					<input type="checkbox" name="gr" id="gr53" class="cbox_yesno" value="53" /><label class="width1" for="gr53">True Giant</label>
+					<input type="checkbox" name="gr" id="gr54" class="cbox_yesno" value="54" /><label class="width1" for="gr54">Tsukumogami</label>
+					<input type="checkbox" name="gr" id="gr55" class="cbox_yesno" value="55" /><label class="width1" for="gr55">Vampire</label>
+					<input type="checkbox" name="gr" id="gr56" class="cbox_yesno" value="56" /><label class="width1" for="gr56">Veela</label>
+					<input type="checkbox" name="gr" id="gr57" class="cbox_yesno" value="57" /><label class="width1" for="gr57">Wysp</label>
+					<input type="checkbox" name="gr" id="gr0" class="cbox_yesno" value="0" /><label class="width1" for="gr0">None/Others</label>
+				</div>
+				<div class="center">
+					<input type="button" name="grcheck" class="check" value="Check All" /> <input type="button" name="grnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="gruncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_hd">Hit Dice</h3>
+			<div class="content" id="hd">
+				<h3 class="hide" id="hide_hd">Hit Dice</h3>
+				<div style="float: left; margin-left: 5%;">
+					<label for="hd_min">Minimum HD: <input type="hidden" name="hd_min" id="hd_min" /><span id="hd_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="hd_max">Maximum HD: <input type="hidden" name="hd_max" id="hd_max" /><span id="hd_max2"></span></label>
+				</div>
+				<div id="hd_slide" class="slider"></div>
+			</div>
+			<h3 class="show" id="show_speeds">Movement Types</h3>
+			<div class="content" id="speeds">
+				<h3 class="hide" id="hide_speeds">Movement Types</h3>
+				<div class="right">
+					<label for="sp_and"><input type="radio" name="sp_logic" id="sp_and" value="0" /> AND</label>
+					<label for="sp_or"><input type="radio" name="sp_logic" id="sp_or" value="1" checked="checked" /> OR</label>
+					<label for="sp_xor"><input type="radio" name="sp_logic" id="sp_xor" value="2" /> XOR</label>
+				</div>
+				<input type="checkbox" name="sp" id="sp1" class="cbox_yesno" value="1" /><label class="width1" for="sp1">Land</label>
+				<input type="checkbox" name="sp" id="sp2" class="cbox_yesno" value="2" /><label class="width1" for="sp2">Burrow</label>
+				<input type="checkbox" name="sp" id="sp3" class="cbox_yesno" value="3" /><label class="width1" for="sp3">Climb</label>
+				<input type="checkbox" name="sp" id="sp4" class="cbox_yesno" value="4" /><label class="width1" for="sp4">Fly</label>
+				<input type="checkbox" name="sp" id="sp5" class="cbox_yesno" value="5" /><label class="width1" for="sp5">Swim</label>
+				<input type="checkbox" name="sp" id="sp6" class="cbox_yesno" value="6" /><label class="width1" for="sp6">Others</label>
+				<div class="center">
+					<input type="button" name="spcheck" class="check" value="Check All" /> <input type="button" name="spnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="spuncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_abilities">Ability Scores</h3>
+			<div class="content" id="abilities">
+				<h3 class="hide" id="hide_abilities">Ability Scores</h3>
+				<div style="float: left; margin-left: 5%;">
+					<label for="str_min">Minimum Str: <input type="hidden" name="str_min" id="str_min" /><span id="str_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="str_max">Maximum Str: <input type="hidden" name="str_max" id="str_max" /><span id="str_max2"></span></label>
+				</div>
+				<div id="str_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="dex_min">Minimum Dex: <input type="hidden" name="dex_min" id="dex_min" /><span id="dex_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="dex_max">Maximum Dex: <input type="hidden" name="dex_max" id="dex_max" /><span id="dex_max2"></span></label>
+				</div>
+				<div id="dex_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="con_min">Minimum Con: <input type="hidden" name="con_min" id="con_min" /><span id="con_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="con_max">Maximum Con: <input type="hidden" name="con_max" id="con_max" /><span id="con_max2"></span></label>
+				</div>
+				<div id="con_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="int_min">Minimum Int: <input type="hidden" name="int_min" id="int_min" /><span id="int_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="int_max">Maximum Int: <input type="hidden" name="int_max" id="int_max" /><span id="int_max2"></span></label>
+				</div>
+				<div id="int_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="wis_min">Minimum Wis: <input type="hidden" name="wis_min" id="wis_min" /><span id="wis_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="wis_max">Maximum Wis: <input type="hidden" name="wis_max" id="wis_max" /><span id="wis_max2"></span></label>
+				</div>
+				<div id="wis_slide" class="slider"></div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="cha_min">Minimum Cha: <input type="hidden" name="cha_min" id="cha_min" /><span id="cha_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="cha_max">Maximum Cha: <input type="hidden" name="cha_max" id="cha_max" /><span id="cha_max2"></span></label>
+				</div>
+				<div id="cha_slide" class="slider"></div>
+			</div>
+			<h3 class="show" id="show_environment">Environment</h3>
+			<div class="content" id="environment">
+				<h3 class="hide" id="hide_environment">Environment</h3>
+				<div class="right">
+					<label for="env_and"><input type="radio" name="env_logic" id="env_and" value="0" /> AND</label>
+					<label for="env_or"><input type="radio" name="env_logic" id="env_or" value="1" checked="checked" /> OR</label>
+				</div>
+				<input type="checkbox" name="env" id="env2" class="cbox_yesno" value="2" /><label class="width1" for="env2">Coastlines</label>
+				<input type="checkbox" name="env" id="env3" class="cbox_yesno" value="3" /><label class="width1" for="env3">Deserts</label>
+				<input type="checkbox" name="env" id="env4" class="cbox_yesno" value="4" /><label class="width1" for="env4">Forests</label>
+				<input type="checkbox" name="env" id="env5" class="cbox_yesno" value="5" /><label class="width1" for="env5">Glaciers</label>
+				<input type="checkbox" name="env" id="env6" class="cbox_yesno" value="6" /><label class="width1" for="env6">Hills</label>
+				<input type="checkbox" name="env" id="env7" class="cbox_yesno" value="7" /><label class="width1" for="env7">Mountains</label>
+				<input type="checkbox" name="env" id="env8" class="cbox_yesno" value="8" /><label class="width1" for="env8">Oceans</label>
+				<input type="checkbox" name="env" id="env9" class="cbox_yesno" value="9" /><label class="width1" for="env9">Plains</label>
+				<input type="checkbox" name="env" id="env10" class="cbox_yesno" value="10" /><label class="width1" for="env10">Rivers/Lakes</label>
+				<input type="checkbox" name="env" id="env11" class="cbox_yesno" value="11" /><label class="width1" for="env11">Ruins</label>
+				<input type="checkbox" name="env" id="env12" class="cbox_yesno" value="12" /><label class="width1" for="env12">Sky</label>
+				<input type="checkbox" name="env" id="env13" class="cbox_yesno" value="13" /><label class="width1" for="env13">Swamps</label>
+				<input type="checkbox" name="env" id="env14" class="cbox_yesno" value="14" /><label class="width1" for="env14">Underground</label>
+				<input type="checkbox" name="env" id="env15" class="cbox_yesno" value="15" /><label class="width1" for="env15">Urban</label>
+				<input type="checkbox" name="env" id="env16" class="cbox_yesno" value="16" /><label class="width1" for="env16">Vacuum</label>
+				<input type="checkbox" name="env" id="env17" class="cbox_yesno" value="17" /><label class="width1" for="env17">Volcanoes</label>
+				<div class="center">
+					<input type="button" name="envcheck" class="check" value="Check All" /> <input type="button" name="envnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="envuncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_climate">Climate</h3>
+			<div class="content" id="climate">
+				<h3 class="hide" id="hide_climate">Climate</h3>
+				<div class="right">
+					<label for="cl_or"><input type="radio" name="cl_logic" id="cl_or" value="0" checked="checked" /> OR</label>
+					<label for="cl_xor"><input type="radio" name="cl_logic" id="cl_xor" value="1" /> XOR</label>
+				</div>
+				<input type="checkbox" name="cl" id="cl1" class="cbox_yesno" value="1" /><label class="width1" for="cl1">Cold</label>
+				<input type="checkbox" name="cl" id="cl2" class="cbox_yesno" value="2" /><label class="width1" for="cl2">Temperate</label>
+				<input type="checkbox" name="cl" id="cl3" class="cbox_yesno" value="3" /><label class="width1" for="cl3">Warm</label>
+				<div class="center">
+					<input type="button" name="clcheck" class="check" value="Check All" /> <input type="button" name="clnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="cluncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_planes">Planes</h3>
+			<div class="content" id="planes">
+				<h3 class="hide" id="hide_planes">Planes</h3>
+				<div class="right">
+					<label for="pl_or"><input type="radio" name="pl_logic" id="pl_or" value="0" checked="checked" /> OR</label>
+					<label for="pl_xor"><input type="radio" name="pl_logic" id="pl_xor" value="1" /> XOR</label>
+				</div>
+				<input type="checkbox" name="pl" id="pl1" class="cbox_yesno" value="1" /><label class="width1" for="pl1" style="margin-top: 2em;">Material Plane</label>
+				<div>
+					<h4>Transitive Planes</h4>
+					<input type="checkbox" name="pl" id="pl2" class="cbox_yesno" value="2" /><label class="width1" for="pl2">Shadow Plane</label>
+					<input type="checkbox" name="pl" id="pl3" class="cbox_yesno" value="3" /><label class="width1" for="pl3">Astral Plane</label>
+					<input type="checkbox" name="pl" id="pl4" class="cbox_yesno" value="4" /><label class="width1" for="pl4">Ethereal Plane</label>
+				</div>
+				<div>
+					<h4>Inner Planes</h4>
+					<input type="checkbox" name="pl" id="pl8" class="cbox_yesno" value="8" /><label class="width1" for="pl8">Plane of Air</label>
+					<input type="checkbox" name="pl" id="pl9" class="cbox_yesno" value="9" /><label class="width1" for="pl9">Plane of Earth</label>
+					<input type="checkbox" name="pl" id="pl10" class="cbox_yesno" value="10" /><label class="width1" for="pl10">Plane of Fire</label>
+					<input type="checkbox" name="pl" id="pl11" class="cbox_yesno" value="11" /><label class="width1" for="pl11">Plane of Water</label>
+					<input type="checkbox" name="pl" id="pl12" class="cbox_yesno" value="12" /><label class="width1" for="pl12">Negative Energy Plane</label>
+					<input type="checkbox" name="pl" id="pl13" class="cbox_yesno" value="13" /><label class="width1" for="pl13">Positive Energy Plane</label>
+				</div>
+				<div>
+					<h4>Outer Planes</h4>
+					<input type="checkbox" name="pl" id="pl14" class="cbox_yesno" value="14" /><label class="width1" for="pl14">Boneyard/Purgatory (N)</label>
+					<input type="checkbox" name="pl" id="pl15" class="cbox_yesno" value="15" /><label class="width1" for="pl15">Heaven (LG)</label>
+					<input type="checkbox" name="pl" id="pl16" class="cbox_yesno" value="16" /><label class="width1" for="pl16">Nirvana (NG)</label>
+					<input type="checkbox" name="pl" id="pl17" class="cbox_yesno" value="17" /><label class="width1" for="pl17">Elysium (CG)</label>
+					<input type="checkbox" name="pl" id="pl18" class="cbox_yesno" value="18" /><label class="width1" for="pl18">Limbo/Maelstrom (CN)</label>
+					<input type="checkbox" name="pl" id="pl19" class="cbox_yesno" value="19" /><label class="width1" for="pl19">Abyss (CE)</label>
+					<input type="checkbox" name="pl" id="pl20" class="cbox_yesno" value="20" /><label class="width1" for="pl20">Abaddon (NE)</label>
+					<input type="checkbox" name="pl" id="pl21" class="cbox_yesno" value="21" /><label class="width1" for="pl21">Hell (LE)</label>
+					<input type="checkbox" name="pl" id="pl22" class="cbox_yesno" value="22" /><label class="width1" for="pl22">Utopia (LN)</label>
+				</div>
+				<div>
+					<h4>Other Planes</h4>
+					<input type="checkbox" name="pl" id="pl5" class="cbox_yesno" value="5" /><label class="width1" for="pl5">First World</label>
+					<input type="checkbox" name="pl" id="pl6" class="cbox_yesno" value="6" /><label class="width1" for="pl6">Dimension of Dreams</label>
+					<input type="checkbox" name="pl" id="pl7" class="cbox_yesno" value="7" /><label class="width1" for="pl7">Dimension of Time</label>
+					<input type="checkbox" name="pl" id="pl23" class="cbox_yesno" value="23" /><label class="width1" for="pl23">Others</label>
+				</div>
+				<div class="center">
+					<input type="button" name="plcheck" class="check" value="Check All" /> <input type="button" name="plnotcheck" class="notcheck" value="Negate All" /> <input type="button" name="pluncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_sources">Sources</h3>
+			<div class="content" id="sources">
+				<h3 class="hide" id="hide_sources">Sources</h3>
+				<div>
+					<h4>Bestiaries</h4>
+					<input type="checkbox" name="s" id="s1" class="cbox_yesno" value="1" /><label class="width1" for="s1">Bonus Bestiary (BB)</label>
+					<input type="checkbox" name="s" id="s2" class="cbox_yesno" value="2" /><label class="width1" for="s2">Bestiary 1 (B1)</label>
+					<input type="checkbox" name="s" id="s3" class="cbox_yesno" value="3" /><label class="width1" for="s3">Bestiary 2 (B2)</label>
+					<input type="checkbox" name="s" id="s4" class="cbox_yesno" value="4" /><label class="width1" for="s4">Bestiary 3 (B3)</label>
+					<input type="checkbox" name="s" id="s5" class="cbox_yesno" value="5" /><label class="width1" for="s5">Bestiary 4 (B4)</label>
+					<input type="checkbox" name="s" id="s6" class="cbox_yesno" value="6" /><label class="width1" for="s6">Bestiary 5 (B5)</label>
+					<input type="checkbox" name="s" id="s7" class="cbox_yesno" value="7" /><label class="width1" for="s7">Bestiary 6 (B6)</label>
+				</div>
+				<div>
+					<h4>Other Core Rulebooks</h4>
+					<input type="checkbox" name="s" id="s8" class="cbox_yesno" value="8" /><label class="width1" for="s8">Ultimate Magic (UM)</label>
+					<input type="checkbox" name="s" id="s9" class="cbox_yesno" value="9" /><label class="width1" for="s9">Mythic Adventures (MA)</label>
+					<input type="checkbox" name="s" id="s10" class="cbox_yesno" value="10" /><label class="width1" for="s10">Monster Codex (MC)</label>
+					<input type="checkbox" name="s" id="s11" class="cbox_yesno" value="11" /><label class="width1" for="s11">Horror Adventures (HA)</label>
+					<input type="checkbox" name="s" id="s12" class="cbox_yesno" value="12" /><label class="width1" for="s12">Book of the Damned (BD)</label>
+					<input type="checkbox" name="s" id="s13" class="cbox_yesno" value="13" /><label class="width1" for="s13">Ultimate Wilderness (UW)</label>
+					<input type="checkbox" name="s" id="s14" class="cbox_yesno" value="14" /><label class="width1" for="s14">Planar Adventures (PA)</label>
+				</div>
+				<div>
+					<h4>Other Books</h4>
+					<input type="checkbox" name="s" id="s15" class="cbox_yesno" value="15" /><label class="width1" for="s15">Campaign Settings (CS)</label>
+					<input type="checkbox" name="s" id="s16" class="cbox_yesno" value="16" /><label class="width1" for="s16">Player Companions (PC)</label>
+					<input type="checkbox" name="s" id="s17" class="cbox_yesno" value="17" /><label class="width1" for="s17">Adventure Paths (AP)</label>
+					<input type="checkbox" name="s" id="s18" class="cbox_yesno" value="18" /><label class="width1" for="s18">Adventure Modules (AM)</label>
+					<input type="checkbox" name="s" id="s99" class="cbox_yesno" value="99" /><label class="width1" for="s99">Others Paizo (OP)</label>
+				</div>
+				<div class="center">
+					<input type="button" name="scheck" class="check" value="Check All" /> <input type="button" name="snotcheck" class="notcheck" value="Negate All" /> <input type="button" name="suncheck" class="uncheck" value="Uncheck All" />
+				</div>
+			</div>
+			<h3 class="show" id="show_templates">Templates</h3>
+			<div <div class="content" id="templates">
+				<h3 class="hide" id="hide_templates">Templates</h3>
+				<h4>Overall Probability</h4>
+				<p>Warning: Keep this number low, unless you don't mind waiting a few minutes.</p>
+				<label for="t_over">Apply templates to <input type="hidden" name="t_over" id="t_over" style="width: 4em;" /><span id="t_over2"></span>% of the creatures.</label><br />
+				<div id="over_slide" class="slider"></div>
+				<h4>Physical Modification Templates</h4>
+				<p>More than one template can be applied. The probability is used each template that meets the requisites.</p>
+				<label for="t_phys">Probability to apply a physical modification or planar template: <input type="hidden" name="t_phys" id="t_phys" style="width: 4em;" /><span id="t_phys2"></span>%</label><br />
+				<div id="phys_slide" class="slider"></div>
+				<h4>Planar Templates</h4>
+				<p>Only one planar template can be applied.</p>
+				<label for="t_plan">Probability to apply a physical modification or planar template: <input type="hidden" name="t_plan" id="t_plan" style="width: 4em;" /><span id="t_plan2"></span>%</label><br />
+				<div id="plan_slide" class="slider"></div>
+				<h4>Class Templates</h4>
+				<p>Only one class template can be applied.</p>
+				<label for="t_class">Probability to apply a class template: <input type="hidden" name="t_class" id="t_class" style="width: 4em;" /><span id="t_class2"></span>%</label><br />
+				<div id="class_slide" class="slider"></div>
+				<h4>Mythic Templates</h4>
+				<p>Only one mythic template can be applied.</p>
+				<label for="t_myth">Probability to apply a class template: <input type="hidden" name="t_myth" id="t_myth" style="width: 4em;" /><span id="t_myth2"></span>%</label><br />
+				<div id="myth_slide" class="slider"></div>
+				<h4>Amount of Variants Generated</h4>
+				<p>Warning: Large amounts of variants may require time to generate, particularly if the probabilities are low.</p>
+				<label for="t_var">Maximum amount of variants generated per creature: <input type="hidden" name="t_var" id="t_var" style="width: 4em;" /><span id="t_var2"></span></label><br />
+				<div id="var_slide" class="slider" style="margin-top: 3em;"></div>
+			</div>
+			<h3 class="show" id="show_other_options">Other Options</h3>
+			<div class="content" id="other_options">
+				<h3 class="hide" id="hide_other_options">Other Options</h3>
+				<div style="padding-bottom: 1.5em;">
+					<input type="checkbox" name="slist" id="slist" class="cbox_trad" value="0" /><label for="slist" style="width: auto;">Generate only a list of creatures</label> (If checked, mixed groups are ignored, as well as the number of creatures in the table and the CR increase.)
+				</div>
+				<div style="padding-bottom: 1.5em;">
+					<input type="checkbox" name="links" id="links" class="cbox_trad" value="0" checked="checked" /><label for="links" style="width: auto;">Enable links</label> (Warning: some links may not work.)
+				</div>
+				<input type="checkbox" name="variants" id="variant" class="cbox_yesonly" value="1" checked="checked" /><label class="width1" for="variant">Include variant creatures</label>
+				<input type="checkbox" name="mixed" id="mixed" class="cbox_yesonly not_slist" value="1" checked="checked" /><label class="width1" for="mixed">Include mixed groups</label>
+				<input type="checkbox" name="unique" id="unique" class="cbox_yesonly" value="1" checked="checked" /><label class="width1" for="unique">Include unique creatures</label><br />
+				<label for="numtable" style="margin-top: 1.5em;">Maximum number of creatures in the table: <input name="maxcreatures" id="numtable" class="not_slist" value="25" style="width: 4em;" /> (0 indicates all the creatures found)</label><br />
+				<label for="numcolumn">Maximum number in the dice column: <input name="maxdice" id="numcolumn" class="not_slist" value="100" style="width: 4em;" /> (0 indicates no dice column)</label><br />
+				<div style="padding-bottom: 1em; margin-top: 1.5em;">Number of creatures in a group:</div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="amount_min">Minimum number: <input type="hidden" name="amount_min" id="amount_min" /><span id="amount_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="amount_max">Maximum number: <input type="hidden" name="amount_max" id="amount_max" /><span id="amount_max2"></span></label>
+				</div>
+				<div id="amount_slide" class="slider"></div>
+				<div style="padding-bottom: 1em; margin-top: 1.5em;">CR increase for combination of creatures:</div>
+				<div style="float: left; margin-left: 5%;">
+					<label for="cr_comb_min">Minimum CR increase: <input type="hidden" name="cr_comb_min" id="cr_comb_min" /><span id="cr_comb_min2"></span></label>
+				</div>
+				<div style="float: right; margin-right: 5%; text-align: right;">
+					<label for="cr_comb_max">Maximum CR increase: <input type="hidden" name="cr_comb_max" id="cr_comb_max" /><span id="cr_comb_max2"></span></label>
+				</div>
+				<div id="cr_comb_slide" class="slider"></div>
+				<p>Warning: CR increase is calculated only on the total amount of experience points. For a high number of creature it doesn't necessarily reflect the real challenge posed by the creature. Consider using <a target="_blank" href="https://www.aonprd.com/MonsterSubtypes.aspx?ItemName=Troop">troops</a> instead, or split the encounter into many smaller ones.</p>
+				<p>Sort results by:</p>
+				<input type="checkbox" name="sort" id="sort1" class="cbox_trad" value="1" /><label class="width1" for="sort1">CR, then MR</label>
+				<input type="checkbox" name="sort" id="sort2" class="cbox_trad" value="2" /><label class="width1" for="sort2">Alphabetical</label>
+				<input type="hidden" name="timestamp" id="tstamp" value="" />
+			</div>
+			<input type="submit" value="Generate Table" style="display: block; width: 95.7%; height: 3em; margin: 0.5em auto;" />
+			<div id="debug"></div>
+			<div id="table"></div>
+		</form>
+		<div id="suggestions">
+			Do you want more personalized creatures? Look no further! There are numerous possibilities:
+			<ul>
+				<li>You can <a target="_blank" href="https://www.aonprd.com/Rules.aspx?Name=Adding%20Racial%20Hit%20Dice&Category=Monster%20Advancement">increase the racial hit dice</a> of a low-CR creature you like.</li>
+				<li>You can add <a target="_blank" href="https://www.aonprd.com/Classes.aspx">class levels</a> to a creature. The rules can be found <a target="_blank" href="https://www.aonprd.com/Rules.aspx?Name=Adding%20Class%20Levels&Category=Monster%20Advancement">here</a>, altough it can be difficult to find the creature's role. A few creatures with class levels can already be found <a target="_blank" href="https://www.aonprd.com/Monsters.aspx">here</a>.</li>
+				<li>You can <a target="_blank" href="https://www.aonprd.com/Rules.aspx?Name=Templates&Category=Monster%20Advancement">apply</a> one or more <a target="_blank" href="https://www.aonprd.com/MonsterTemplates.aspx?ItemName=All">templates</a> to a creature.</li>
+				<li>You can choose <a target="_blank" href="https://www.aonprd.com/NPCs.aspx">an NPC</a> from an extensive list.</li>
+				<li>You can create your own NPC using the lists of <a target="_blank" href="https://www.aonprd.com/Races.aspx">races</a> and <a target="_blank" href="https://www.aonprd.com/Classes.aspx">classes</a>.</li>
+				<li>You can take a look at the list of <a target="_blank" href="creatures_groups.html">vague and huge groups</a>.</li>
+				<li>Or any combination of these suggestions.</li>
+			</ul>
+		</div>
+		<div id="footer">
+			All the monster names and statistics belong to <a target="_blank" href="https://paizo.com">Paizo Inc.</a>, all rights reserved.<br />
+			The Random Encounter Generator software belongs to GammaRayBurst and is distributed freely under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons BY-NC-SA 4.0 International License</a>. <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br />
+			If you like the software, consider a <a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=CQ895MAZ4URBU&currency_code=EUR&source=url">small donation</a> to show your appreciation.
+			<!-- Please do not remove the footer. You can freely modify the rest of the page, and can add your own copyright conditions, as long as they are coherent with the CC ShareAlike condition. You can also add a donation link or something similar if you modify the software or the database significantly (for example if you port it for another game), but the software must remain free. Thanks! GRB -->
+			<br /><br />Version 210319
+		</div>
+	</body>
+</html>

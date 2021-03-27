@@ -1,0 +1,6 @@
+colorOn=1
+lang=eng
+logFile=dice.log
+logOn=1
+macroFile=dice.macro
+verboseOn=1

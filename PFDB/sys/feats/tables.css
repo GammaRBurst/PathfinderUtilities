@@ -1,0 +1,360 @@
+.tab {
+	border-collapse: collapse;
+	border: 3px double #999999;
+	margin: 0 auto;
+}
+
+.tab + .tab {
+	margin-top: 1em;
+}
+
+.tab td, .tab th {
+	border: 1px solid #AAAAAA;
+	padding: 2px 5px;
+}
+
+.box1, .box2 {
+	border: 1px solid #AAAAAA;
+	border-radius: 1em;
+	padding: 10px;
+
+}
+
+.box1 {
+	width: 95%;
+	margin: 5px auto;
+}
+
+.box2 {
+	width: 46.5%;
+	margin: 5px 0;
+}
+
+.box1 h4, .box2 h4 {
+	margin-top: 0;
+}
+
+.tcompl .box2:nth-of-type(even) {
+	float: left;
+	margin-left: 5px;
+	clear: both;
+}
+
+.tcompl .box2:nth-of-type(odd) {
+	float: right;
+	margin-right: 1em;
+}
+
+/* 0: Improved Familiar */
+#tab0 th:first-of-type {
+	width: 200px;
+}
+
+#tab0 th:nth-of-type(2) {
+	width: 230px;
+}
+
+#tab0 th:nth-of-type(3) {
+	width: 85px;
+}
+
+/* 1, 2, 3, 4: Leadership; 33, 34, 35: Vile Leadership */
+#tab1 tr:first-of-type th:first-of-type {
+	width: 90px;
+}
+
+#tab1 tr:first-of-type th:nth-of-type(2) {
+	width: 60px;
+}
+
+#tab1 tr:nth-of-type(2) th {
+	width: 30px;
+}
+
+#tab2 th:first-of-type, #tab3 th:first-of-type, #tab4 th:first-of-type, #tab33 th:first-of-type, #tab34 th:first-of-type, #tab35 th:first-of-type {
+	width: 360px;
+}
+
+#tab2 th:nth-of-type(2), #tab3 th:nth-of-type(2), #tab4 th:nth-of-type(2), #tab33 th:nth-of-type(2), #tab34 th:nth-of-type(2), #tab35 th:nth-of-type(2) {
+	width: 60px;
+}
+
+/* 5: Empower Spell-Like Ability, Fearsome Spell-Like Ability, Sickening Spell-Like Ability, Traumatic Spell-Like Ability; 6: Quicken Spell-Like Ability; 39: Bouncing Spell-Like Ability, Disruptive Spell-Like Ability, Lingering Spell-Like Ability, Scarring Spell-Like Ability */
+#tab5 th, #tab6 th, #tab39 th {
+	width: 60px;
+}
+
+/* 8: Field Repair */
+#tab8 th:first-of-type {
+	width: 300px;
+}
+
+#tab8 th:nth-of-type(2) {
+	width: 120px;
+}
+
+#tab8 th:nth-of-type(3) {
+	width: 140px;
+}
+
+/* 9: Heavenly Radiance */
+#tab9 th:first-of-type {
+	width: 190px;
+}
+
+#tab9 th:nth-of-type(2) {
+	width: 80px;
+}
+
+/* 10: Ostentatious Display */
+#tab10 th:first-of-type {
+	width: 170px;
+}
+
+#tab10 th:nth-of-type(2) {
+	width: 130px;
+}
+
+/* 11: Summon Good Monster; 17: Summon Neutral Monster; 24: Summon Evil Monster, 31: Expanded Summon Monster */
+#list11, #list17, #list24, #list31 {
+	list-style-type: none;
+	column-count: 3;
+}
+
+#list11 ul, #list17 ul, #list24 ul, #list31 ul {
+	list-style-type: disc;
+	break-inside: avoid;
+}
+
+#list11 > li, #list17 > li, #list24 > li, #list31 > li {
+	margin-top: 5px;
+	break-inside: avoid;
+}
+
+/* 14: Dragoncrafting */
+#tab14 th:first-of-type {
+	width: 90px;
+}
+
+#tab14 th:not(:first-of-type) {
+	width: 65px;
+}
+
+/* 15: Outer Planes Traveler */
+#tab15 th:first-of-type {
+	width: 110px;
+}
+
+#tab15 th:nth-of-type(2) {
+	width: 80px;
+}
+
+#tab15 th:nth-of-type(3) {
+	width: 80px;
+}
+
+/* 18: Craft Ooze */
+#tab18 th:first-of-type {
+	width: 140px;
+}
+
+#tab18 th:nth-of-type(2) {
+	width: 100px;
+}
+
+#tab18 th:nth-of-type(3) {
+	width: 50px;
+}
+
+/* 19: Align Weapon */
+#tab19-1 th:first-of-type {
+	width: 120px;
+}
+
+#tab19-1 th:nth-of-type(2) {
+	width: 70px;
+}
+
+#tab19-1 th:nth-of-type(3) {
+	width: 70px;
+}
+
+#tab19-2 th:first-of-type {
+	width: 210px;
+}
+
+#tab19-2 th:nth-of-type(2) {
+	width: 70px;
+}
+
+#tab19-2 th:nth-of-type(3) {
+	width: 80px;
+}
+
+/* 20: Bless Weapon */
+#tab20-1 th:first-of-type {
+	width: 90px;
+}
+
+#tab20-1 th:nth-of-type(2) {
+	width: 70px;
+}
+
+#tab20-1 th:nth-of-type(3) {
+	width: 70px;
+}
+
+#tab20-2 th:first-of-type {
+	width: 140px;
+}
+
+#tab20-2 th:nth-of-type(2) {
+	width: 70px;
+}
+
+#tab20-2 th:nth-of-type(3) {
+	width: 80px;
+}
+
+/* 21: Arithmancy */
+#tab21 th:first-of-type {
+	width: 80px;
+}
+
+#tab21 th:nth-of-type(2) {
+	width: 90px;
+}
+
+/* 22: Sacred Geometry */
+#tab22 th:first-of-type {
+	width: 70px;
+}
+
+#tab22 th:nth-of-type(2) {
+	width: 100px;
+}
+
+/* 28, 29: Monstrous Companion */
+#tab28 th:first-of-type {
+	width: 70px;
+}
+
+#tab28 th:nth-of-type(2) {
+	width: 70px;
+}
+
+#tab29 th:first-of-type {
+	width: 160px;
+}
+
+#tab29 th:nth-of-type(2) {
+	width: 70px;
+}
+
+/* 32: Summon Guardian Spirit */
+#tab32 th:first-of-type {
+	width: 90px;
+}
+
+#tab32 th:nth-of-type(2) {
+	width: 30px;
+}
+
+#tab32 th:nth-of-type(3) {
+	width: 55px;
+}
+
+#tab32 th:nth-of-type(4) {
+	width: 40px;
+}
+
+#tab32 th:nth-of-type(5) {
+	width: 60px;
+}
+
+#tab32 th:nth-of-type(6) {
+	width: 250px;
+}
+
+/* 40: Reach Spell-Like Ability */
+#tab40 th:first-of-type {
+	width: 50px;
+}
+
+#tab40 th:not(:first-of-type) {
+	width: 30px;
+}
+
+/* 41: Spirit Speaker */
+#tab41 th:first-of-type {
+	width: 50px;
+}
+
+#tab41 th:nth-of-type(2) {
+	width: 80px;
+}
+
+/* 44: Genie-Touched Companion */
+#tab44 th:first-of-type {
+	width: 90px;
+}
+
+#tab44 th:nth-of-type(2) {
+	width: 90px;
+}
+
+#tab44 th:nth-of-type(3) {
+	width: 100px;
+}
+
+#tab44 th:nth-of-type(4) {
+	width: 110px;
+}
+
+#tab44 th:nth-of-type(5) {
+	width: 130px;
+}
+
+/* 47: Strange Yield */
+#tab47 th:first-of-type {
+	width: 50px;
+}
+
+#tab47 th:nth-of-type(2) {
+	width: 160px;
+}
+
+/* 48: Sinister Reputation */
+#tab48 th:first-of-type {
+	width: 80px;
+}
+
+#tab48 th:nth-of-type(2) {
+	width: 30px;
+}
+
+/* 49: Cecaelia Focus Tattoo */
+#tab49 th:first-of-type {
+	width: 100px;
+}
+
+#tab49 th:nth-of-type(2) {
+	width: 350px;
+}
+
+/* 51: Mutated Shape */
+#tab51 th:first-of-type {
+	width: 60px;
+}
+
+#tab51 th:nth-of-type(2), #tab51 th:nth-of-type(3), #tab51 th:nth-of-type(4), #tab51 th:nth-of-type(5), #tab51 th:nth-of-type(6), #tab51 th:nth-of-type(7), #tab51 th:nth-of-type(8), #tab51 th:nth-of-type(9), #tab51 th:nth-of-type(10) {
+	width: 85px;
+}
+
+#tab51 th:nth-of-type(11) {
+	width: 65px;
+}
+
+#tab51 th:nth-of-type(12) {
+	width: 60px;
+}

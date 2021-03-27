@@ -1,0 +1,1 @@
+var debug = true; //Alerts in case of double entries and wrong number of fields, should be false for distribution
