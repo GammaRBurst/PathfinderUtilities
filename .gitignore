@@ -135,5 +135,5 @@ dmypy.json
 
 # Ignored scripts
 .reserved
-saves
+saves/*
 PFDB/pics/*
