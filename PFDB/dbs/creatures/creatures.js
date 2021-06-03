@@ -503,7 +503,7 @@ young red dragon|10||9|5|4|7|20|11|1;4|25|12|19|12|13|12|7|3|1||1|2
 young silver dragon|10||1|5|4|4|23|11|1;4|21|12|17|16|17|16|7|2|1||1|2
 young white dragon|6||9|4|4|4|20|7|1;2;4;5|19|14|17|8|11|8|7|1|1||1|2
 zombie~human zombie|0||8|4|12|||2|1|17|10|||10|10|0;14||1||1-100|2
-1 [night hag] mounted on a [nightmare]|9||8|4;5|10|10;13|41|6;8|1;4|18;21|15;19|16;22|13;18|13;16|12;17|0||19;20;21||*2|2
+1 [night hag] mounted on a [nightmare]|9;0||8|4;5|10|10;13|41|6;8|1;4|18;21|15;19|16;22|13;18|13;16|12;17|0||19;20;21||*2|2
 1 [yellow musk creeper] plus 1d6 yellow musk zombies|2;2||5|4|11|||2;3|1|17|10;15|0;16||10;11|8;1|4;14|2;3|1||*2-7|2
 a band of 1d4+2 [ettins~ettin] plus 1d2 [grizzly bears~grizzly bear]|6;5||5;9|5|2;6|42||5;1|1|21;23|8;13|15;19|2;6|10;12|6;11|6|1|1||*4-8|2
 a band of 1d4+6 [djinn~djinni] plus 1 djinni vizier|8;4||3|5|10|2;13||7;1|1;4|18;23|19|14|14|15|15;17|0;12||8|djinni|*8-11|2
@@ -622,7 +622,7 @@ vireseed swarm|5||5|0|11|56||7|1;4|1|13|18||10|13|0;12||1||1;2-4%flight;5-7%clou
 a tribe of 1 [obambo] plus 1d2 [giant flytraps~giant flytrap]|13;1||5;7|4;6|11;12|47||13;14|1;4|0;25|18;23|0;25|1;19|12;18|6;25|4|3|1||*2-3|2;17
 a tribe of 1 [obambo] plus 1d3 [shambling mounds~shambling mound]|13;0||5;7|4;5|11;12|47||9;14|1;4;5|0;21|10;23|0;17|7;19|10;18|9;25|4|3|1||*2-4|2;17
 
-#Misfit monsters revisited (10.2010)
+#Misfit monsters redeemed (10.2010)
 delver|9||5|6|1|5||12|1;2|28|19|22|15|15|10|14||1||1|15
 lava child%-ren|3||5|4|8|6;7||4|1;2|15|12|14|10|13|13|14;17|3|1||1;2-40%cyst|15
 
@@ -1051,16 +1051,16 @@ a band of 1d10+11 [tritons~triton] plus 2d8 [dolphins~dolphin]|2;9||2;5|4|2;1|8;
 a band of 1d8+3 [quicklings~quickling] plus 1 advanced quickling leader|4;5||9|3|5|||4|1|8;12|24;28|13;17|15;19|15;19|14;18|4|2|1|quickling|*5-12|3
 a colony of 2d8+2 [giant bees~giant bee] and 1 [giant queen bee]|5;4||5|4;5|13|||3;7|1;4|11;19|11;14|13;18||12|9;13|9|2;3|1||*5-19|3
 a cortege of 1d4 [handmaiden devil~handmaiden devil (gylou)] and 2d10 [erinyes]|14;4||7|4|10|10;12;13;24||9;15|1;4|20;24|23;25|21;25|14;22|18;21|20;21|0;12;14||21||*3-24|2;3
-a court of 1 [vampire] and 1d6+2 [dhampirs~dhampir]|9||9|4|6;12||49;55|1;8|1|13;16|17;18|0;1|10;14|8;16|16;26|0;14||1||*4-9|2;3
+a court of 1 [vampire] and 1d6+2 [dhampirs~dhampir]|9;0||9|4|6;12||49;55|1;8|1|13;16|17;18|0;1|10;14|8;16|16;26|0;14||1||*4-9|2;3
 a cult of 1d6+2 various [sinspawns~sinspawn]|2;5||8|4|1|||3|1|13;15|11;13;15|12;14;16|10;14|11;13;15|10;12;16|11||1||*3-8|3
 a gang of 1 [dark stalker] and 1d4+1 [dark slayers~dark slayer]|4;3||6;9|3;4|6|41||4;6|1|9;14|18|12;14|9;1|11|13;15|14||1||*3-6|2;3
 a hunting party of 1d6+4 [wood giants~wood giant] plus 1d4 [dire wolves~dire wolf]|6;6||3;5|5|2;6|42|53|5;9|1|19;2|15;21|17|2;14|12;15|10;12|4|2|1||*6-14|2;3
 a retinue of 1 [handmaiden devil~handmaiden devil (gylou)] and 2d4 [erinyes]|14;1||7|4|10|10;12;13;24||9;15|1;4|20;24|23;25|21;25|14;22|18;21|20;21|0;12;14||21||*3-9|2;3
 a tribe of 1d6+6 [monkey swarms~monkey swarm] plus 1d4 [gorillas~gorilla]|2;7||5|2;5|2|56||3|1;3|7;15|15;16|14;17|2|12|7;11|4|3|1||*8-16|2;3
 a tribunal of 1 [pleroma]; 3 [akhanas~akhana]; and 1d4+1 [theletos]|20;1||5|4;5|10|13;15||9;11;24|1;4|18;21;24|14;23;27|17;26|11;16;26|19;21;31|12;18;25|0;12;14||14;15;16;17;18;19;20;21;22||*6-9|3
-a troupe of 1 [nereid] plus 1 [giant moray eel]|10||5;6|4;5|2;5|3;8||7;12|1;5|11;22|14;29|16;24|1;14|12;22|8;21|8||1||*2|2;3
+a troupe of 1 [nereid] plus 1 [giant moray eel]|10;0||5;6|4;5|2;5|3;8||7;12|1;5|11;22|14;29|16;24|1;14|12;22|8;21|8||1||*2|2;3
 a troupe of 1 [nereid] plus 1 [giant octopus]|10;1||5;6|4;5|2;5|3;8||12|1;5;6|11;2|15;29|17;24|2;14|12;22|3;21|8||1||*2|2;3
-a troupe of 1 [nereid] plus 1 [orca]|10||5;6|4;6|2;5|8||9;12|1;5|11;27|15;29|16;24|2;14|15;22|6;21|8||1||*2|2;3
+a troupe of 1 [nereid] plus 1 [orca]|10;0||5;6|4;6|2;5|8||9;12|1;5|11;27|15;29|16;24|2;14|15;22|6;21|8||1||*2|2;3
 a troupe of 1 [nereid] plus 1 [giant squid]|10;1||5;6|4;6|2;5|3;8||12|1;5;6|11;25|17;29|19;24|2;14|12;22|2;21|8||1||*2|2;3
 a troupe of 1d4+2 [werebears~werebear (human form)] plus 1d4 black bears|4;5||1;5|4|2;6|54|45|4;5|1|16;17;21|14;17|13;15;19|2;12|12|6;8|4||1|young [grizzly bear]|*4-10|2;3
 a troupe of 1d4+2 [werebears~werebear (human form)] plus 1d4 [grizzly bears~grizzly bear]|4;6||1;5|4;5|2;6|54|45|4;5|1|16;21|13;14|13;19|2;12|12|6;8|4||1||*4-10|2;3
@@ -1083,7 +1083,7 @@ gillman|-1||5|4|6|3|49|1|1;5|12|13|13|9|8|10|8|2|1||1;2-6%patrol|15
 spine dragon|16||6|7|4|5||16|1|32|15|29|16|22|19|6|2|1||1|15
 strix%-|-1||5|4|6||49|1|1;4|12|15|10|8|11|7|7|2|1||1-2;3-6%hunting party;5-12%war party|15;17
 Treerazer~Treerazor|25||9|6|10|14;23||28|1;4;5|36|30|40|21|24|25|0;12;14||19||1u|15
-a group of [Treerazer~Treerazor] plus 1d4 [nalfeshnees~nalfeshnee] and 2d4 [hezrous~hezrou]|25||9|5;6|10|3;9;10;13;14;23||10;14;28|1;4;5|27;32;36|11;13;30|29;4|14;21;23|14;22;24|18;20;25|0||19||*4-13u|2;15
+a group of [Treerazer~Treerazor] plus 1d4 [nalfeshnees~nalfeshnee] and 2d4 [hezrous~hezrou]|25;0||9|5;6|10|3;9;10;13;14;23||10;14;28|1;4;5|27;32;36|11;13;30|29;4|14;21;23|14;22;24|18;20;25|0||19||*4-13u|2;15
 
 #Carrion crown (#43-#48 - 3.2011-7.2011)
 boruta|9||5|4|11|||14|1|17|15|16|13|17|16|0||1||1;2-4%party|17
@@ -1669,7 +1669,7 @@ water wraith|2||6|5|7|3||3|1;5|14|13|13|3|12|6|10|3|1||1-2;3-12%swarm|15
 whirlmaw|8||5|4|1|||12|1;2;4|23|22|18|3|10|3|3|3|1||1;2-9%flight|15
 woundwyrm|15||9|6|4|9;1||18|1;2;4;5|31|13|22|14|13|20|0||1||1|15
 Zelishkar of the Bitter Flame~*Zelishkar of the Bitter Flame|21||8|5|10|7;10;13;21|4|24|1;4|33|21|32|17|22|23|0;12;14||20||1u|15
-a patrol of 1 [kakuen-taka] and 1d4 [carrionstorms~carrionstorm]|14||8;9|2;6|10;12|9;10;13;56||2;21|1;4|1;1|11;23|0;16|2;6|13;14|13|0;14||19||*2-5|15
+a patrol of 1 [kakuen-taka] and 1d4 [carrionstorms~carrionstorm]|14;0||8;9|2;6|10;12|9;10;13;56||2;21|1;4|1;1|11;23|0;16|2;6|13;14|13|0;14||19||*2-5|15
 
 #Mystery monsters revisited (12.2012)
 death worm leviathan|11||5|7|7|||15|1;2|26|16|21|3|11|6|3;6;9|3|1||1|15
@@ -2145,7 +2145,7 @@ a pack of 1 death worg and 1d10+1 [death dogs~death dog]|3;5||8|5|7|||3|1|13;17|
 a patrol of 1 [winter hag] plus 1 [winter wolf]|7;1||8;9|4;5|7;8|4|41|6;1|1|17;2|13|16;18|9;16|13|10;18|4;9|1|1||*2|2;5
 a platoon of 1 [formian myrmarch] plus 1d12+6 [formian warriors~formian warrior] and 1d6+6 [formian workers~formian worker]|10;2||4|3;4;5|8||37|1;4;12|1;2|13;14;20|10;17;19|13;15;20|10;11;17|10;16|9;12;17|0;14|2;3|1||*15-31|5
 a pod of 1d4+1 [astral leviathans~astral leviathan] plus 1d2 young astral leviathans|18;4||5|7;8|10|13||20|4|31;35|14;18|27;31|6|15|14|0;12;16||3||*3-7|5
-a retinue of 1 [hamadryad] plus 1d4+1 [dryads~dryad]|15||3|4|5|||6;2|1|10;12|19;23|13;23|14;18|15;19|18;22|4|2|1||*3-6|2;5
+a retinue of 1 [hamadryad] plus 1d4+1 [dryads~dryad]|15;0||3|4|5|||6;2|1|10;12|19;23|13;23|14;18|15;19|18;22|4|2|1||*3-6|2;5
 a retinue of 1d3 [sayonas~sayona] plus 2d6 spawn|12;2||9|4|12|||2;17|1|13;17|19;2||11;17|12;18|18;21|0;14||1|[sayona]; advanced [ghoul]|*3-15|5
 a royal guard of 4 [formian myrmarchs~formian myrmarch] plus 1d8+12 [formian warriors~formian warrior]|10;5||4|4;5|8||37|4;12|1|14;2|17;19|15;2|11;17|10;16|12;17|0;14|2;3|1||*17-24|5
 a squad of 1 [erlking] plus 2d6 [centaurs~centaur]; 2d6 [satyrs~satyr] and 1d2 [treants~treant]|18;0||2;5;6|4;5;6|5;8;11|||4;8;12;20|1;4|14;15;20;29|8;14;15;25|15;21;28|11;12;19|14;16;20|12;13;19;21|4|2|1||*6-27|2;5
@@ -2280,7 +2280,7 @@ warden robot|9||5|5|3|53||15|1|18|19||11|14|1|0;14||1||1-2;3-12%sentry|17
 yah-thelgaad|14||9|5|1|||16|1;4|32|18|26|23|25|21|0;14||1||1|17
 yarahkut|14||4|5|10|12;13;26||15|1;4|24|23|20|13|20|19|0;12;14;16||||1-2;3-6%intervention|17
 a patrol of 1 [director robot] and 2d4 [gearsman robots~gearsman robot]|10;1||5|4;5|3|53||4;14|1;3|20;22|13;17||10;16|13;15|1|0;14||1||*3-9|6;15;17
-a team of [Latten Mechanism] plus 1d6 [clockwork soldiers~clockwork soldier] and 1d6 [clockwork servants~clockwork servant]|15||5|4;5|3|13;39;45||2;8;18|1;2;3|19;28;29|14;15;19||0;21|11;18|1;16|0;14||22||*3-13u|4;17
+a team of [Latten Mechanism] plus 1d6 [clockwork soldiers~clockwork soldier] and 1d6 [clockwork servants~clockwork servant]|15;0||5|4;5|3|13;39;45||2;8;18|1;2;3|19;28;29|14;15;19||0;21|11;18|1;16|0;14||22||*3-13u|4;17
 a unit of 1 [director robot]; 2d6 [gearsman robots~gearsman robot] and 1 [myrmidon robot]|11;2||5|4;5|3|53||4;14;15|1;3;4|20;22;27|13;15;17||10;12;16|13;14;15|1|0;14||1||*4-14|6;15;17
 
 #Monster Codex (10.2014)
@@ -2390,7 +2390,7 @@ ragewight|6||9|4|12|||11|1|18|14||11|13|17|6|2|1||1|15
 sawdust slough|4||5|5|11|||6|1;3|18|8|21||1|1|4|2|1||1-2;3-6%cascade|15
 silverblood werewolf%silverblood werewolves~silverblood lycanthrope (human form)|5||9|4|6|54|45|4|1|18;2|13;15|14;17|12|12|6|0||1||1;2-4%pack|15
 Talmandor|23||2|5|10|11;13;16||27|1;4|26|36|35|19|23|24|12||16||1u|15
-a flight of [Talmandor] and 1d4+2 advanced [avorals~avoral]|23||2|4;5|10|11;13;16||9;27|1;4|21;26|27;36|24;35|19|20;23|20;24|12||16|avoral|*4-7u|2;15
+a flight of [Talmandor] and 1d4+2 advanced [avorals~avoral]|23;0||2|4;5|10|11;13;16||9;27|1;4|21;26|27;36|24;35|19|20;23|20;24|12||16|avoral|*4-7u|2;15
 a pack of 2d3 [silverblood werewolves~silverblood lycanthrope (human form)]; 2d4 [werevolves~werewolf (human form)] and 1d10+10 [hobgoblins~hobgoblin]|5;6||7;9|4|6|43;54|45|1;2;4|1|15;17;18;19;20|13;15|14;16;17|8;10;12|12;14|6;8|6|2|1||*15-34|2;15
 a war band of 1 [ragewight] plus 1d4+1 cairn wights|6;3||7;9|4|12|||4;11|1|16;18|14;16||11;15|13;17|17;19|6|2|1|wight|*3-6|15
 a war clan of 1d4+1 [ragewight] plus 1d8+2 cairn wights|6;6||7;9|4|12|||4;11|1|16;18|14;16||11;15|13;17|17;19|6|2|1|wight|*5-15|2;15
@@ -2818,12 +2818,12 @@ young etheric dragon|7||5|4|4|13|21|8|1;4|24|13|18|15|12|13|0;12;16||4||1|6
 young nightmare dragon|6||8|4|4|13|21|7|1;4|23|13|20|12|14|15|0;12;14||6||1|6
 young occult dragon|6||2|4|4||21|6|1;4|18|14|17|16|14|13|0;12;14||1||1|6
 zygomind|18||5|8|11|||28|1;3|31|25|20||24|35|0;14|2|1||1|6
-1 [saxra] plus 1d6 [skeletons~human skeleton] and 1d4 [skeletal champions~skeletal champion]|18||8|4;6|12|2||1;3;24|1;4|15;17;36|13;14;25||0;9;13|10;23|10;12;26|7||1||*3-11|2;6
-a cadre of 1 [wyrmwraith] plus 1d3+1 dread wraiths|17||7;9|5;7|12|47||5;24|4||18;34||18;2|18;21|22;25|0;12;14||1|wraith|*3-5|2;6
+1 [saxra] plus 1d6 [skeletons~human skeleton] and 1d4 [skeletal champions~skeletal champion]|18;0||8|4;6|12|2||1;3;24|1;4|15;17;36|13;14;25||0;9;13|10;23|10;12;26|7||1||*3-11|2;6
+a cadre of 1 [wyrmwraith] plus 1d3+1 dread wraiths|17;0||7;9|5;7|12|47||5;24|4||18;34||18;2|18;21|22;25|0;12;14||1|wraith|*3-5|2;6
 a court of 1 [mummy lord] and 1d8+6 [mummies~mummy]|10;3||7|4|12|||8;9|1|20;24|10;14||6;1|15;2|15;2|0;14||1||*8-15|2;6;17
 a court of 1d3 [seilenoi~+seilenos] plus 1d3 [muses~+muse]; 1d6+2 [centaurs~+centaur]; 1d4 [satyrs~+satyr]; 1d2 [leanan sidhe]; 1d3+1 [maenads~+maenad] and 1d3 [storm giants~+storm giant]|19;5|3|3;5;6;9|4;5;6|5;6;8|42;49||4;8;9;11;17;19;23|1;4;5|10;14;15;19;31;39|14;15;17;18;27;29|15;18;20;23;32|11;12;13;16;23;24|12;14;16;20;26|12;15;19;21;29|4|2|1||*10-27|2;5;6
 a cult of 1d4+2 [akanames~akaname] plus 1 [otyugh]|4;3||5|3;5|1|||2;6|1;3|15;18|10;15|13;15|5;1|12;13|6|14;15||1||*4-7|2;6
-a cult of 1 [seraptis] plus 2d3 [succubi~succubus]|15||9|4|10|9;10;13;23||8;15|1;4|13;26|17;23|20;28|16;18|14;19|21;27|0;14||19||*3-7|2;6
+a cult of 1 [seraptis] plus 2d3 [succubi~succubus]|15;0||9|4|10|9;10;13;23||8;15|1;4|13;26|17;23|20;28|16;18|14;19|21;27|0;14||19||*3-7|2;6
 a hive of 2d8+2 [giant ant soldiers~giant ant] plus 1d100+10 giant ant workers; 1d6+2 [knight ants~knight ant]; 2d4 giant ant drones and 1 giant ant queen|4;1||5|3;4;5|13|||2;4|1;2;3;4|14;18;20;22|10;12;14|17;21;25||13;17|11;15|0;14||1|giant ant|*21-145|2;6
 a hive of 1 [vescavor queen] plus 2d10 [vescavor swarms~vescavor swarm]|9;4||9|1;5|10|9;10;13;56||5;12|1;4|7;21|16;17|16;18|4;11|13;14|12;13|0;12;14||19||*3-21|6
 a hunting party of 1 [gristly demodand] plus 1d4+1 [tarry demodands~tarry demodand]|17;2||9|4|10|9;10;13;22||18;23|1;4|28;31|21;22|18;23|12;17|13;14|17;18|0;12;14||19||*3-6|4;6
@@ -3344,7 +3344,7 @@ a blasphemy of 2 [clockwork fiends~clockwork fiend] plus 1d4+4 [clockwork angels
 a cabal of 3 [derro magisters~derro magister] plus 1d10+10 [derros~derro]|5;7||9|3|6|||3;7|1|11;15|15;17|16;18|10;16|5|16|14||1||*14-23|2;7
 a cabal of 1d4+2 [venedaemons~venedaemon] plus 2d6 [cacodaemons~cacodaemon]|5;6||8|2;4|10|10;13;21||3;6|1;4|12;13|11;15|13;16|8;22|13;16|12;17|0;12;14||20||*5-18|3;7
 a clan of 1d10+2 [saurians~saurian] plus 2d4 [tyrannosauruses~tyrannosaurus]|16;6||5|6;7|2;8||31|18;21|1;4|28;32|13;18|19;23|2;16|15;25|10;21|6;7|3|1||*5-20|2;7
-a cult of 1 [euryale] plus 2d8+2 [medusas~medusa]|20||7;9|4|8|||8;21|1;2|10;28|15;32|18;35|12;29|13;26|15;31|14||1||*5-19|2;7
+a cult of 1 [euryale] plus 2d8+2 [medusas~medusa]|20;0||7;9|4|8|||8;21|1;2|10;28|15;32|18;35|12;29|13;26|15;31|14||1||*5-19|2;7
 a cult of 1 [lilitu] and 1d6+6 [succubi~succubus]|17;1||9|4|10|9;10;13;23||8;17|1;4|13;27|17;2|20;3|18;21|14;23|26;27|0;12;14||19||*8-13|2;7;15
 a family of 2 [deinotheriums~deinotherium] and 1 young deinotherium|7;3||5|5;6|2||47|8|1|25;29|9;13|18;22|2|13|4|4;9||1|deinotherium|*3|7
 a hunting party of 1 [vanth] plus 1d8+2 [esoboks~esobok]|7;3||5|4|10|13;32||4;9|1;4|14;18|16;17|14;17|5;13|14;19|15;17|0;14||14||*4-11|5;7
@@ -3361,7 +3361,7 @@ a witchlight of 1d8+2 [banelights~banelight] plus 1d3+3 [will-o'-wisps~*Will-o%u
 a witchlight of 1d8+2 [banelights~banelight] plus 1d3+3 [lurkers in light~*Lurker in Light]|12;6||8|3;4|5|13||8;16|1;4|12;13|18;32|15;25|14;21|16;22|17;23|0;12||1||*7-16|3;7
 the four [apocalypse horses~apocalypse horse]|25;4||8|5|10|10;13||30|1;4|30|28|36|13|21|25|0||20||*4u|7
 [Apollyon] mounted on [the White Horse of Pestilence~apocalypse horse]|29;1|10|8|4;5|10|10;13;21|1|30;35|1;4|30;42|27;28|36;4|13;31|21;32|25;33|0;14||20||*2u|7
-[Charon] mounted on [the Pale Horse of Death~apocalypse horse]|30|10|8|4;5|10|10;13;21|1|30;36|1;4;5|30;4|27;28|36;42|13;35|21;32|25;35|0;14||20||*2u|7
+[Charon] mounted on [the Pale Horse of Death~apocalypse horse]|30;1|10|8|4;5|10|10;13;21|1|30;36|1;4;5|30;4|27;28|36;42|13;35|21;32|25;35|0;14||20||*2u|7
 [Szuriel] mounted on [the Red Horse of War~apocalypse horse]|28;1|10|8|4;5|10|10;13;21|1|30;33|1;4|30;46|28;29|36;4|13;29|21;3|25;31|0;14||20||*2u|7
 [Trelmarixian] mounted on [the Black Horse of Famine~apocalypse horse]|27;1|10|8|4;5|10|10;13;21|1|30;32|1;4|30;38|28;29|36;4|13;31|21;32|25;31|0;14||20||*2u|7
 
@@ -3430,7 +3430,7 @@ Voice of the Damned~*Voice of the Damned|25||8|5|10|10;14||29|1;4|38|35|38|35|34
 a battalion of 1d4+1 [squamous demodands~squamous demodand] plus 1 [shaggy demodand] and 1d10+2 [tarry demodands~tarry demodand]|20;4||9|4;7|10|9;10;13;22||2;18;25|1;4|11;28;29|10;21;24|13;18;21|10;12;19|11;13;18|10;17;20|0;12;14||19||*6-18|4;12
 a delegation of 1 [oitos] plus 1d6 [kyton evangelists~kyton]|11;1||7|4|10|10;12;13;28||8;13|1;4|15;19|17;2|14;23|11;19|12;2|12;2|0;14||2||*2-7|2;12
 
-#Ultimate Wilderness (11.2017)
+#Ultimate wilderness (11.2017)
 arctic fox|-2||5|2|2||34|1|1|9|15|13|2|12|6|0|1|1|fox|1-2;3-12%skulk|13
 arctic hare|-3||5|2|2||34|1|1|3|16|9|2|12|5|4;9|1|1||1-2;3-16%down|13
 arctic tern|-3||5|2|2||34|1|1;4|2|15|7|2|14|5|2|1|1||1-2;3-20%flock|13
@@ -3533,7 +3533,7 @@ wyrm edict dragon|22||4|7|4|12;13|25|30|1;4|41|4|29|24|29|24|0||22|edict dragon~
 young adult edict dragon|14||4|6|4|12;13|25|18|1;4|29|8|23|18|23|18|0||22|edict dragon~adult edict dragon|1|17
 young edict dragon|12||4|5|4|12;13|25|14|1;4|25|10|21|16|21|16|0||22||1|17
 zalyakavat|13||7|4|10|14;34;54||17|1|19|22|21|16|18|15|0||1||1-2;3-6%muster|17
-an investigation of 1 [hykariut] plus 1d4+4 [arbiters~arbiter]|18||4|2;5|10|12;13;26||2;2|1;4|11;27|10;16|14;24|11;15|11;24|14;27|15||||*6-9|3;17
+an investigation of 1 [hykariut] plus 1d4+4 [arbiters~arbiter]|18;0||4|2;5|10|12;13;26||2;2|1;4|11;27|10;16|14;24|11;15|11;24|14;27|15||||*6-9|3;17
 a mitigation of 1 [hykariut] plus 1d6+4 [arbiters~arbiter] and 2d4 [kolyaruts~kolyarut]|18;1||4|2;4;5|10|12;13;26||2;12;20|1;4|11;22;27|10;16;19|14;23;24|10;11;15|11;17;24|14;16;27|15||||*8-19|3;17
 a mitigation of 1 [hykariut] plus 1d6+4 [arbiters~arbiter] and 2d4 [zelekhuts~zelekhut]|18;1||4|2;5|10|12;13;26||2;10;20|1;4|11;25;27|10;16;20|14;16;24|10;11;15|11;17;24|14;17;27|15||||*8-19|3;17
 
@@ -3695,7 +3695,7 @@ sump steward|9||5|5|11|||14|1|21|15|16|11|14|12|13;14||1||1-2;3-8%choir|17
 tletli|14||2|6|10|14|30|16|1;4|32|19|24|17|24|23|0||1||1-2|17
 tooth fairy monarch|3||8|3|5|||5|1;4|14|18|15|11|15|14|15||1||1|17
 a court of 1 [tooth fairy monarch] plus 2d6 [tooth fairies~tooth fairy]|3;2||8;9|1;3|5|13||2;5|1;4|5;14|14;18|9;15|8;11|15|9;14|15||1||*3-13|17
-a voidpair of 1 [sceazir] and 1 [sceaduinar]|10||8|4;5|10|13||9;12|1;4|17;21|18;2|18;19|2;13|14|9;17|0;12||12|[sceazir]; [sceaduinar]|*2|3;17
+a voidpair of 1 [sceazir] and 1 [sceaduinar]|9;1||8|4;5|10|13||9;12|1;4|17;21|18;2|18;19|2;13|14|9;17|0;12||12|[sceazir]; [sceaduinar]|*2|3;17
 
 #Concordance of rivals (4.2019)
 agnoia|14||5|5|10|13;15||16|1;4|26|19|24|25|22|21|0;12;14||14;15;16;17;18;19;20;21;22||1-2;3-8%forgetting|15
