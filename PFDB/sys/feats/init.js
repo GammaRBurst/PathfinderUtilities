@@ -433,7 +433,7 @@ $(function() {
 					if(filters[2]) {
 						//Levels
 						level_test = false;
-						if((level == 0) || (feats2[i][3][j][3] > 0 && feats2[i][3][j][3] > level) || (feats2[i][3][j][3] < 0 && -feats2[i][3][j][3] < level)) { //Any level, minimum level, maximum level
+						if(level == 0 || feats2[i][3][j][3] == 0 || (feats2[i][3][j][3] > 0 && feats2[i][3][j][3] <= level) || (feats2[i][3][j][3] < 0 && -feats2[i][3][j][3] >= level)) { //Any level, minimum level, maximum level
 							level_test = true;
 						}
 						if(!level_test) {
@@ -441,7 +441,7 @@ $(function() {
 						}
 						//Mythic tier
 						mythic_test = false;
-						if((mtier == 0) || (feats2[i][3][j][4] > 0 && feats2[i][3][j][4] > mtier) || (feats2[i][3][j][4] < 0 && -feats2[i][3][j][4] < mtier)) { //Any tier, minimum tier, maximum tier
+						if(mtier == 0 || feats2[i][3][j][4] == 0 || (feats2[i][3][j][4] > 0 && feats2[i][3][j][4] <= mtier) || (feats2[i][3][j][4] < 0 && -feats2[i][3][j][4] >= mtier)) { //Any tier, minimum tier, maximum tier
 							mythic_test = true;
 						}
 						if(!mythic_test) {
@@ -471,7 +471,7 @@ $(function() {
 						}
 						//BAB
 						bab_test = false;
-						if(feats2[i][3][j][6] <= bab) {
+						if(bab == 0 || feats2[i][3][j][6] == 0 || feats2[i][3][j][6] <= bab) {
 							bab_test = true;
 						}
 						if(!bab_test) {
@@ -485,7 +485,7 @@ $(function() {
 								for(var l = 0; l < feats2[i][3][j][7][k].length; l++) { //All of these conditions must be true
 									var cas_id = Number(feats2[i][3][j][7][k][l].split(':')[0]) - 1;
 									var min_val = Number(feats2[i][3][j][7][k][l].split(':')[1]);
-									if(cas_id == -1) { 
+									if(cas_id == -1) {
 										if(Math.max(...cas) < min_val) {
 											cas_test2 = false;
 											break;
@@ -547,25 +547,35 @@ $(function() {
 				}
 			}
 		}
-		//Greying feats down the tree branches
-		if(grey) {
-			var ids = [];
-			for(var i = 0; i < feats2.length; i++) {
-				ids.push(feats2[i][0]);
-			}
-			var changes = true;
-			while(changes) {
-				changes = false;
-				for(var i = 0; i < feats2.length; i++) {
-					for(var j = 0; j < feats2[i][3].length; j++) {
-						if(feats2[i][3][j][1].length > 0 && !feats2[i][6]) {
-							for(var k = 0; k < feats2[i][3][j][1].length; k++) {
-								if(ids.indexOf(feats2[i][3][j][1][k]) == -1 || feats2[ids.indexOf(feats2[i][3][j][1][k])][6]) {
-									feats2[i][6] = true;
-									changes = true;
-									break;
-								}
+		//Greying or removing feats down the tree branches
+		var ids = [];
+		for(var i = 0; i < feats2.length; i++) {
+			ids.push(feats2[i][0]);
+		}
+		var changes = true;
+		while(changes) {
+			changes = false;
+			var deleted = false;
+			for(var i = feats2.length - 1; i >= 0; i--) {
+				for(var j = 0; j < feats2[i][3].length; j++) {
+					if(feats2[i][3][j][1].length > 0 && !feats2[i][6]) {
+						for(var k = 0; k < feats2[i][3][j][1].length; k++) {
+							if(ids.indexOf(feats2[i][3][j][1][k]) == -1) {
+								ids.splice(ids.indexOf(feats2[i][0]), 1);
+								feats2.splice(i, 1);
+								changes = true;
+								deleted = true;
+								break;
 							}
+							else if(grey && feats2[ids.indexOf(feats2[i][3][j][1][k])][6]) {
+								feats2[i][6] = true;
+								changes = true;
+								break;
+							}
+						}
+						if(deleted) {
+							deleted = false;
+							break;
 						}
 					}
 				}
